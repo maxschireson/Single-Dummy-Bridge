@@ -1,0 +1,105 @@
+{
+  "before_revision": "008c8d368b0fbca3005ea1a04adc05e7e7154fa9",
+  "drain_revision": "94505a462d80fea92c35fdbfcdcc807d080e0eba",
+  "after_revision": "dcd7fb7a9066d8d3fa81b75bb6fcb41db2bdfe7a",
+  "states": {
+    "008c8d368b0fbca3005ea1a04adc05e7e7154fa9": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3879,
+      "target": 18283,
+      "contiguous": 3878,
+      "by_pair": {
+        "8s-32~1": 646,
+        "8c-32~71s-32": 647,
+        "8c-32~8s-32": 646,
+        "8s-32~71s-32": 1294,
+        "8s-32~5RZ32": 646
+      },
+      "root_games": 12928,
+      "tables": 159234,
+      "failures": 0,
+      "epoch": 1794627552.3317602,
+      "complete": false
+    },
+    "94505a462d80fea92c35fdbfcdcc807d080e0eba": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3880,
+      "target": 18283,
+      "contiguous": 3880,
+      "by_pair": {
+        "8s-32~1": 646,
+        "8c-32~71s-32": 647,
+        "8c-32~8s-32": 647,
+        "8s-32~71s-32": 1294,
+        "8s-32~5RZ32": 646
+      },
+      "root_games": 12932,
+      "tables": 159271,
+      "failures": 0,
+      "epoch": 1794627622.6906312,
+      "complete": false
+    },
+    "dcd7fb7a9066d8d3fa81b75bb6fcb41db2bdfe7a": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 3880,
+      "target": 18283,
+      "contiguous": 3880,
+      "by_pair": {
+        "8s-32~1": 646,
+        "8c-32~71s-32": 647,
+        "8c-32~8s-32": 647,
+        "8s-32~71s-32": 1294,
+        "8s-32~5RZ32": 646
+      },
+      "root_games": 12932,
+      "tables": 159271,
+      "failures": 0,
+      "epoch": 1794627693.034428,
+      "complete": false
+    }
+  },
+  "heartbeats": {
+    "008c8d368b0fbca3005ea1a04adc05e7e7154fa9": {
+      "epoch": 1794627544.554174,
+      "completed": 3879,
+      "in_flight": [
+        3878,
+        3879
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794614471.5096643,
+      "stopping": true
+    },
+    "94505a462d80fea92c35fdbfcdcc807d080e0eba": {
+      "epoch": 1794627618.7089121,
+      "completed": 3880,
+      "in_flight": [
+        3878
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794614471.5096643,
+      "stopping": true
+    },
+    "dcd7fb7a9066d8d3fa81b75bb6fcb41db2bdfe7a": {
+      "epoch": 1794627689.5090003,
+      "completed": 3880,
+      "in_flight": [
+        3880,
+        3881,
+        3882
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794627629.231109,
+      "stopping": false
+    }
+  },
+  "exact_draining_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "final_state_contiguous": 3880,
+  "final_receipt_markers": 3880,
+  "heartbeat_note": "The final drained snapshot retains in-flight index 3878; the later post-rotation snapshot has the new collector heartbeat. No heartbeat was rewritten to imply a different lifecycle.",
+  "old_collector_exited": true,
+  "current_writer_owner": 223844
+}
