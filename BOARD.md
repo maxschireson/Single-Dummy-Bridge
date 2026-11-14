@@ -4936,3 +4936,10 @@ further notice".
 
 ### 2026-11-14 17:10 UTC, stu-dash
 - Gen 8's early layout budget, on Max's question (09:58 UTC). Run in my own sandbox, no box. 720 decisions (tricks 1 to 6, one in each of tricks 1-2, 3-4, 5-6 of 240 local g8a~g8b self-play tables) replayed at 16 to 256 layouts and scored against 1,024 layouts of Gen 8's own posterior, every legal card solved. Per table against Gen 8's 32: 16 -0.013 +- 0.024 IMPs a board (CPU -6%), 64 +0.023 +- 0.018 (+9%), 128 +0.030 +- 0.012 (+25%), 256 from a 2,048 pool +0.048 +- 0.014 (+123%). Noise part only (the reference is Gen 8's posterior and double dummy). Report, code, rows and positions: `reports/gen8-layout-budget-2026-11-14/` on `research/gen8-layout-budget-20261114`. No change to any bot or collection.
+
+### 2026-11-14 17:28 UTC, sidplay
+
+azure1's play server updated to `e7f61d7` (PR #33), Max's word (09:08 PST): the post-hand analysis now reads the auction
+(Sid's hand-fit scorer from its bundle, plus the vendored cell game `native/cells`, from 8 cards left). Install 86 s
+including one smoke board over https; analyses 10.5 s and 4.8 s at Nice 0. Unit memory 1.36 GB just after the restart.
+Nothing of the loop's touched.
