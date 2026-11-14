@@ -27,6 +27,10 @@
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
 
+## Training and scaling recommendations
+
+- [Stu loop efficiency: current Azure improvements, Mac workflow, validation and memory](stu-training-efficiency-2026-11-14.md) — proposed actions for Stu lead review; includes measured evidence, acceptance criteria and approval scope.
+
 ## Historical material
 
 Dated launch documents and design PDFs preserve what was believed or planned at the time.
