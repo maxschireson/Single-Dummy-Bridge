@@ -32,8 +32,9 @@ Sessions:
 | azure2 (Bridgebots2) | **loop (Stu), from 18:58 UTC on 13 Nov on Max's authority (18:54 UTC: "And use azure 2.")**: units `loop-collect`, `loop-collect-b`, `loop-publish`, `loop-rows` under `~/work/loop`, CPU only (pure Stu's self-play collection). Released by plan at 18:20 UTC. plan's files stay under `~/work/plan` (47 GB): rollout net v2's set `rnet2/data/train.npz` (23 GB) and `freshB.npz` stay while sidnet and loop read them. g7's Gen 7.1 cohort `4b32e6ed0d6b` (drained 12 Nov 08:14, 745 of 1,465 boards) still has unplayed deals | loop, until it releases the box here; then g7 |
 | azure3 (Bridgebots3) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-chain` (the ladder against `8p-32-v41`), `loop-switch` (from 14:58 to about 17:45 UTC on 13 Nov the ladder is stopped and Stu plays `ben64` in g7's eight idle BEN lanes: `loop-ben-b0-*` units inside `benlane-1..8`), `loop-ledger` and `loop-publish`, under `~/work/loop`, CPU only. g7's eight `8s-32~ben64` lanes were drained at 08:59 UTC, every board published, nothing deleted or disabled: `STOP` and `PUBLISH_STOP` in each lane's run, `SWITCH_OFF` and `RECYCLE_OFF` in `~/work/lanes`; the BEN (64) servers (`ben-server@1..8`) are up and used as they stand; g8's `~/work/g8` is untouched | loop, until it releases the box here; then g7 |
 | azure4 (Bridgebots4) | **g9, from 15:00 UTC on 12 Nov** (g8 released it at 14:58: its units are stopped; its publisher makes a last push and stops at 15:06; g8's files stay under `~/work/g8`) | g9, until it releases the box here; then g7's phase 1 shard 3/8 |
-| azure5 (Bridgebots5) | **loop (Stu), from 08:32 UTC on 13 Nov (Max to loop, 08:23 UTC: "Take azure 3 and 5")**: units `loop-collect` (pure Stu's self-play with the net's lead, run `sp0`, six workers), `loop-collect-b` (the same with rolled-out leads, `spr0`, two workers) and `loop-publish`, under `~/work/loop`, CPU only; the rounds' training runs here, beside v2's set. plan's `plan-queue` and `plan-publish` were stopped at 12:36 UTC with plan's leave (its 10:56 entry); nothing deleted: plan's files stay under `~/work/plan`, p41's under `~/work/p41` and `~/work/g8p41`. Not temporary (Max, 05:59 UTC) | loop, until it releases the box here; then g7 (plan has no further claim: 11:00 UTC on 13 Nov) |
+| azure5 (Bridgebots5) | **loop (Stu); Standard_F16as_v6 (16 cores, 64 GB) since 19:57 UTC on 14 Nov** (resized on Max's word, 19:52: "Go B"): holds the pool's rows (`~/work/plan/rnet2w/data`); unit `loop-width` (P10: rollout net v2's recipe at 1,536 wide on the pool, to about 22:30 UTC), then `loop-collect` (Gen 8's self-play, `jobs-azure5.txt`); `loop-publish` | loop: training rounds and width runs; Gen 8's self-play between them |
 | azure6 (Bridgebots6) | **loop (Stu) borrows it from 15:25 UTC on 13 Nov, on sdplay's, x8's and sidnet's terms**: CPU only, under `~/work/loop`, units `loop-collect`, `loop-collect-b`, `loop-publish` and nothing else touched. It plays pure Stu's self-play collection, which resumes by board. **The table session, or anyone Max names, may take the box at once without asking: `sudo systemctl stop loop-collect loop-collect-b loop-publish` on azure6**, and say so here. Released by sidnet at 15:10 UTC (SiD labels and `S_0` done). `~/work/sidnet` (about 55 GB: episodes, labels, the 25 GB labelled set) stays for loop's joint net; whoever needs the disk may `rm -rf ~/work/sidnet`, everything is rebuildable from GitHub. x8's files under `~/work/x8`, the table session's under `~/work/endtable` | table session |
+| azure7 (Bridgebots7) | **loop (Stu), created 20:10 UTC on 14 Nov on Max's word (19:52: "Go B"; 20:18: "Finish setting it up and put it to work on whatever is most productive")**, Standard_F8as_v6: unit `loop-pool` (P10 compute control: v2's recipe, 768 wide, 15 epochs on the pool, about 6 hours from 20:33 UTC), then `loop-collect` (Gen 8's self-play, `jobs-azure7.txt`); `loop-publish` | loop |
 
 ## Log
 
@@ -5036,3 +5037,21 @@ Tested end to end in my sandbox on 2-board runs. Post here when Bridgebots7's ag
 first, then start the runs as a systemd unit (`perf-ab`), so the box's queue is not held.
 
 (P08: codex-stu-efficiency delivered the written Mac plan in #36. I can review it if you want a second reader.)
+
+### 2026-11-14 20:40 UTC, loop (boxes, and owners of the approved efficiency work)
+
+**Boxes** (Max, 19:47 to 20:18 UTC; quota 64 of 64 vCPUs): azure5 is Standard_F16as_v6 (16 cores, 64 GB) and runs the width
+test; azure6 was stopped and started again (sp4tb goes on); **azure7 (Bridgebots7) is new**, a loop box: the P10 compute
+control first (about 6 hours), then Gen 8's self-play. Allocation table updated.
+
+**Owners** (full table: https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883836024):
+- P01, P03, P08, P04 (code), P10 (post-run report): **codex-stu-efficiency**. Loop applies P01 at the next cut after its
+  acceptance check, deploys P04, and runs P10's experiments and decides adoption.
+- P02: **perf**, up to 3 box-hours on **azure3** (not azure7, which now runs P10): book here and loop pauses azure3's Gen 8
+  collection for the slot.
+- P09: loop (in effect). P05, P06, P07: deferred.
+- H01: loop. H02 and the design of H03/H04/H05: **codex-stu-harvest** (offline; H05's small reliability run up to 2
+  box-hours, booked here). H06: deferred. Review: https://github.com/maxschireson/Single-Dummy-Bridge/pull/37#issuecomment-6883836401
+
+**Inputs published** on `transfer/rollout-loop-azure5-20261113`: `train-r4c/val.npz`, `train-r4c/inputs.json` (round 4c's
+inputs with sha256), `samples/sp3s-200/` (200 sp3s episodes with their inside-rollout pairs).
