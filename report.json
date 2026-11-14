@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T21:54:45Z",
+  "updated": "2026-11-14T21:55:47Z",
   "purpose": "development only; old depth invalid, v2 correctness smokes",
   "runs": [
     {
@@ -300,6 +300,95 @@
             "worker_cpu_seconds": 246.09913418700052,
             "inclusive_cpu_seconds": 256.6758561870005,
             "initialization_seconds": 0.6438841249992038
+          },
+          "recursive": {},
+          "precisions": [
+            [
+              "bf16",
+              "bf16"
+            ]
+          ]
+        }
+      },
+      "driver_failure": null,
+      "source_commit": "d82f9a7d9884262474a6c0e37871001d70709346",
+      "validity": "correctness-only; not strength evidence"
+    },
+    {
+      "name": "v2-smoke-selective32",
+      "pair": "rx2-selective32~rx2-control",
+      "boards": 5,
+      "cpu_per_board": 49.97,
+      "common": {
+        "imps_per_board": 0.4,
+        "se": 0.2449,
+        "boards": 5,
+        "won": 2,
+        "lost": 0,
+        "flat": 3
+      },
+      "native": {
+        "imps_per_board": 0.4,
+        "se": 0.2449,
+        "boards": 5,
+        "won": 2,
+        "lost": 0,
+        "flat": 3
+      },
+      "failures": 0,
+      "unfinished": 4,
+      "attempts": 9,
+      "interpretation": "development only; not a strength or equal-time decision",
+      "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
+      "attempt_work": {
+        "wall_seconds": 254.75209626099968,
+        "worker_cpu_seconds": 250.04096433900003,
+        "solver_cpu_seconds": 4.986403999999999,
+        "inclusive_cpu_seconds": 255.02736833900002
+      },
+      "actors": {
+        "rx2-selective32": {
+          "work": {
+            "solver_cpu_seconds": 3.2041379999999995,
+            "solver_wall_seconds": 3.2225427109997327,
+            "solver_calls": 13510.0,
+            "solver_hits": 482.0,
+            "solver_timeouts": 0.0,
+            "wall_seconds": 175.33194717900187,
+            "worker_cpu_seconds": 172.097369726,
+            "inclusive_cpu_seconds": 175.301507726,
+            "initialization_seconds": 4.63411103100043
+          },
+          "recursive": {
+            "opportunities": 131210.0,
+            "calls": 590.0,
+            "cache_hits": 4.0,
+            "changed": 1137.0,
+            "net_rows": 168102.0,
+            "gate_rejected": 15225.0,
+            "child_wall_seconds": 119.17958610500864,
+            "argmax_different": 895.0,
+            "applied_rows": 1928.0,
+            "budget_rejected": 9938.0
+          },
+          "precisions": [
+            [
+              "bf16",
+              "bf16"
+            ]
+          ]
+        },
+        "rx2-control": {
+          "work": {
+            "solver_cpu_seconds": 1.53,
+            "solver_wall_seconds": 1.6920580230025735,
+            "solver_calls": 21458.0,
+            "solver_hits": 2267.0,
+            "solver_timeouts": 0.0,
+            "wall_seconds": 74.1571086280037,
+            "worker_cpu_seconds": 72.65702715700004,
+            "inclusive_cpu_seconds": 74.18702715700002,
+            "initialization_seconds": 0.21991201299806562
           },
           "recursive": {},
           "precisions": [
