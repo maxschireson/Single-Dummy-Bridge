@@ -8,7 +8,8 @@ rollout mechanisms?"; bench/value_check.py found the values optimistic for the s
 
 RUN_DIR is a match played with --episodes (its manifest.json holds the bots as played; several folders of one match's
 shards may be given). At a sample of the bot's recorded rollout decisions the bot decides again under each setting below,
-every candidate on every layout (no race), all settings on the SAME layouts (drawn once, as the bot draws them). Scored:
+every candidate on every layout (no race), all settings on the SAME layouts (drawn once, as the bot draws them). The plain
+draw is played twice with different draws inside the rollouts: how far that control moves is the noise floor. Scored:
 
   values    declarer's tricks the rollouts expect with the card that WAS played at the table, against what declarer took
             there: the level error by what the seat was doing, and the squared error against the plain draw's, decision by
@@ -45,6 +46,7 @@ from bridge_harness.core import Board, Game, card      # noqa: E402
 
 VARIANTS = (
     ('draw (as played)', dict()),
+    ('draw, other seed', dict()),           # the control: the same setting with other draws in the rollouts (the same layouts)
     ('top card', dict(seat='top')),
     ('draw, power 2', dict(power=2.)),
     ('draw, cut 0.25', dict(cut=.25)),
@@ -129,9 +131,9 @@ def one_file(job):
                     values, _ = dds.solve(world, o.contract.trump, o.leader, list(o.trick))
                     best = max(values[y] for y in o.legal)
                     p.token, out, started = (path, key, ti, ai), [], time.process_time()
-                    for config in configs:
+                    for k, config in enumerate(configs):
                         p.x8 = config
-                        got = p.choose(o, random.Random(seed))
+                        got = p.choose(o, random.Random(seed + (7919 if VARIANTS[k][0] == 'draw, other seed' else 0)))
                         n2 = (got.details or {}).get('x8') or {}
                         est = read(n2, a['card'], declaring, target) if n2.get('mode') == 'rollout' else None
                         out.append(None if est is None else (int(got.card), float(best - values[got.card]), est[0], est[1]))

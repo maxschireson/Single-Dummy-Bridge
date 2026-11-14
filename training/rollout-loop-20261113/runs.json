@@ -1480,6 +1480,32 @@
     "rung": "pure-rs-t"
    },
    "tables_a_board": 1,
+   "stopped": "17:45 UTC on 14 November: round 4's net (stu4c, trained only on bots) takes over the one-net self-play (sp4t, sp4tb; Max, 17:34: 'likely adopt')",
+   "queue_order": null
+  },
+  {
+   "name": "sp4tb",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "collection",
+   "pair": "stu4c-psta~stu4c-pstb",
+   "seed": 9001,
+   "first": 780000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-rs-t"
+   },
+   "tables_a_board": 1,
    "queue_order": 1
   },
   {
@@ -1794,6 +1820,32 @@
     "family": "stu",
     "round": 3,
     "net": "stu3",
+    "rung": "pure-rs-t"
+   },
+   "tables_a_board": 1,
+   "stopped": "17:45 UTC on 14 November: round 4's net (stu4c, trained only on bots) takes over the one-net self-play (sp4t, sp4tb; Max, 17:34: 'likely adopt')",
+   "queue_order": null
+  },
+  {
+   "name": "sp4t",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "collection",
+   "pair": "stu4c-psta~stu4c-pstb",
+   "seed": 9001,
+   "first": 760000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
+    "rung": "pure-rs-t"
+   },
+   "second_bot": {
+    "family": "stu",
+    "round": 4,
+    "net": "stu4c",
     "rung": "pure-rs-t"
    },
    "tables_a_board": 1,
@@ -3832,27 +3884,6 @@
    "queue_order": 37
   },
   {
-   "name": "bu4-pst200c",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "other",
-   "pair": "stu4-put~ben200",
-   "seed": 131,
-   "first": 512,
-   "deals": 512,
-   "records": true,
-   "first_bot": {
-    "family": "stu",
-    "round": 4,
-    "net": "stu4",
-    "rung": "pure-blind-t"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 38
-  },
-  {
    "name": "bu4c-pst200c",
    "box": "azure3",
    "branch": "transfer/rollout-loop-azure3-20261113",
@@ -3871,28 +3902,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 39
-  },
-  {
-   "name": "bu4-pst200d",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "other",
-   "pair": "stu4-put~ben200",
-   "seed": 131,
-   "first": 1024,
-   "deals": 512,
-   "records": true,
-   "first_bot": {
-    "family": "stu",
-    "round": 4,
-    "net": "stu4",
-    "rung": "pure-blind-t"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 40
+   "queue_order": 38
   },
   {
    "name": "bu4c-pst200d",
@@ -3913,28 +3923,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 41
-  },
-  {
-   "name": "bu4-pst200e",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "other",
-   "pair": "stu4-put~ben200",
-   "seed": 131,
-   "first": 1536,
-   "deals": 512,
-   "records": true,
-   "first_bot": {
-    "family": "stu",
-    "round": 4,
-    "net": "stu4",
-    "rung": "pure-blind-t"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 42
+   "queue_order": 39
   },
   {
    "name": "bu4c-pst200e",
@@ -3955,7 +3944,7 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 43
+   "queue_order": 40
   },
   {
    "name": "l0-r3",

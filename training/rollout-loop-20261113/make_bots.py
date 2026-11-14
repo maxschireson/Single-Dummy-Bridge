@@ -90,7 +90,7 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
              'stuhf-pst', 'stubf-pst', 'stumf-pst', 'stuhs-pst', 'stubs-pst',
              'stum10-pst', 'stum10h-pst', 'stum10h4-pst', 'stus10-pst', 'stus10h-pst',
              'stum10F-pst', 'stum10A-pst', 'stum10B-pst', 'stuhA-pst', 'stubA-pst', 'stusAh-pst',
-             'stu4-pst', 'stu4-put', 'stu4-psta', 'stu4-pstb', 'stu4-putb', 'stu4c-pst', 'stu4c-put'])   # every bot that claims and mixes as Stu does
+             'stu4-pst', 'stu4-put', 'stu4-psta', 'stu4-pstb', 'stu4-putb', 'stu4c-pst', 'stu4c-put', 'stu4c-psta', 'stu4c-pstb'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -368,10 +368,12 @@ def main():
         bots[f'stu{tag}-n'] = alone(f'{what} alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims',
                                     path, dict(NAMES2))
         bots[f'stu{tag}-n']['label'] = bots[f'stu{tag}-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 4 ladder: ')
-    for twin in ('stu4-psta', 'stu4-pstb'):                    # the one-net bot under two ids for its self-play, defenders mixing
-        bots[twin] = copy.deepcopy(bots['stu4-pst'])
+    # stu4c is round 4's net (Max, 15:39 and 15:50 UTC: no clear gain from the human tables inside the bot, "I kinda like the
+    # idea of being trained only on bots"; 17:34: "likely adopt"): its twins play the one-net self-play from 17:45 UTC.
+    for twin, base in (('stu4-psta', 'stu4-pst'), ('stu4-pstb', 'stu4-pst'), ('stu4c-psta', 'stu4c-pst'), ('stu4c-pstb', 'stu4c-pst')):
+        bots[twin] = copy.deepcopy(bots[base])                 # the one-net bot under two ids for its self-play, defenders mixing
         bots[twin]['x8']['mix'] = dict(bots[twin]['x8']['mix'], defender=True)
-        bots[twin]['label'] = bots['stu4-pst']['label'] + "; its defenders too play a random one of their equal cards (under a second id, for self-play records)"
+        bots[twin]['label'] = bots[base]['label'] + "; its defenders too play a random one of their equal cards (under a second id, for self-play records)"
     bots['stu4-putb'] = copy.deepcopy(bots['stu4-put'])
     bots['stu4-putb']['label'] = bots['stu4-put']['label'] + ' (under a second id, for blind self-play)'
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).

@@ -13,4 +13,6 @@
 # 05:20 UTC on 14 November (Max: the best data the strongest existing bots make): Gen 8 card play's self-play records
 #stopped sg8h g8a~g8b 9001 560000 20000 8 --episodes --one-room
 # 05:30 UTC on 14 November (Max, 05:24: two boxes of each self-play): the one-net SiD Stu R3's self-play records
-sp3t stu3-psta~stu3-pstb 9001 600000 20000 8 --episodes --one-room
+#stopped sp3t stu3-psta~stu3-pstb 9001 600000 20000 8 --episodes --one-room
+# 17:45 UTC on 14 November: round 4's net (stu4c, trained only on bots) takes over the one-net self-play (Max, 17:34: "likely adopt")
+sp4t stu4c-psta~stu4c-pstb 9001 760000 20000 8 --episodes --one-room
