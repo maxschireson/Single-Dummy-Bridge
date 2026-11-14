@@ -1,0 +1,248 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "f5c318ed22c2e39ee5eb0312dfcec1f1d7cd7ff1",
+  "commits": [
+    {
+      "sha": "f5c318ed22c2e39ee5eb0312dfcec1f1d7cd7ff1",
+      "date": "2026-11-14T22:04:34Z",
+      "message": "README: H05 reliability results (5,000 pairs, sp3s and sp0): one pair's label by trick of the fork\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "a1be7d9a9364fcfdbd3266325078a0df03ce21b5",
+      "date": "2026-11-14T21:48:32Z",
+      "message": "README: H01 inventory (19.15M recorded pairs across the boxes) and H05's reliability run\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "e590369ada31fe93667e4b7f5ccf7c204142e323",
+      "date": "2026-11-14T21:42:53Z",
+      "message": "pair_reliability: report by layouts drawn and by nonzero single labels\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "4631362234afc8c27660893ab7275d42b4bba831",
+      "date": "2026-11-14T21:41:45Z",
+      "message": "pair_reliability: keep pairs with few distinct layouts (late in the hand); record layouts drawn and unplayed\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "f56a46227adc348c813985c875e5d15ffc970207",
+      "date": "2026-11-14T21:40:16Z",
+      "message": "bench/pair_reliability.py: one inside-rollout pair against a panel of fresh layouts from the fork seat's own information\n\nH05's small reliability run (#37), taken on by loop to keep the thread moving (Max, 21:38 UTC). Read-only on recorded\nepisodes: rebuilds each pair's seat view, re-plays both cards on 128 fresh layouts with the same net and seats (no\nclaims inside), and reports sign agreement, correlation, slope and the single label's reliability by side and trick.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu H01/H05 reliability/inventory, V1 validation, new-identity rollout/BEN expansion, persona capability and partial P03 cache.",
+  "disposition": "Continue the same frozen Gen8 primary. Current persona capability adds new optional actors for Loop/g9/server but no existing official round8 actor/plan change or launch. Experimental corrected d82/4951 screens have new Max throughput/BEN authority, separate from production adoption; old7c results remain invalid and preserved. V1 protects future Stu training, H05/H03 concern internal rollout pairs, P03 is partial training-row cache. No local source/model/settings/corpus/exclusion/worker/guard change, training, self-play, BEN or peer operation.",
+  "evidence": [
+    {
+      "sha": "f5c318ed22c2e39ee5eb0312dfcec1f1d7cd7ff1",
+      "message": "README: H05 reliability results (5,000 pairs, sp3s and sp0): one pair's label by trick of the fork\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "a1be7d9a9364fcfdbd3266325078a0df03ce21b5"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/README.md"
+      ]
+    },
+    {
+      "sha": "a1be7d9a9364fcfdbd3266325078a0df03ce21b5",
+      "message": "README: H01 inventory (19.15M recorded pairs across the boxes) and H05's reliability run\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "e590369ada31fe93667e4b7f5ccf7c204142e323"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/README.md"
+      ]
+    },
+    {
+      "sha": "e590369ada31fe93667e4b7f5ccf7c204142e323",
+      "message": "pair_reliability: report by layouts drawn and by nonzero single labels\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "4631362234afc8c27660893ab7275d42b4bba831"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/bench/pair_reliability.py"
+      ]
+    },
+    {
+      "sha": "4631362234afc8c27660893ab7275d42b4bba831",
+      "message": "pair_reliability: keep pairs with few distinct layouts (late in the hand); record layouts drawn and unplayed\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "f56a46227adc348c813985c875e5d15ffc970207"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/bench/pair_reliability.py"
+      ]
+    },
+    {
+      "sha": "f56a46227adc348c813985c875e5d15ffc970207",
+      "message": "bench/pair_reliability.py: one inside-rollout pair against a panel of fresh layouts from the fork seat's own information\n\nH05's small reliability run (#37), taken on by loop to keep the thread moving (Max, 21:38 UTC). Read-only on recorded\nepisodes: rebuilds each pair's seat view, re-plays both cards on 128 fresh layouts with the same net and seats (no\nclaims inside), and reports sign agreement, correlation, slope and the single label's reliability by side and trick.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "5ab40eede958f9d46112ad44ec381ac3caa18f64"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/bench/pair_reliability.py"
+      ]
+    },
+    {
+      "sha": "7e412f5b3838b75684257abebc006277eb71e984",
+      "message": "P10/V1: per-deal sums in eval_nets.py and paired.py, paired differences with standard errors by deal\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "31d3b6d3215cc7e79110722ce4fdbea97f387ffe"
+      ],
+      "files": [
+        "training/perf-20261114/p10/eval_nets.py",
+        "training/perf-20261114/p10/paired.py"
+      ]
+    },
+    {
+      "sha": "31d3b6d3215cc7e79110722ce4fdbea97f387ffe",
+      "message": "V1 frozen validation set: selection, manifest, reserved families, family check, first lifecycle table\n\nMax (21:35 UTC): a stable validation set to compare builds on matched held-out data.\nApproved by loop (21:55). Arena part: 2,248 never-trained, test-split arena records\n(1.65M rows); Stu part: round 4's test set. check_families.py fails a training set\nthat holds a reserved family. lifecycle-20261114T2220Z.md scores v1, v4.1, v2's\nepochs, rounds 1-4c and the wide run's epochs 1-3 on V1 and freshB.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "2a503a94de8c7442e34c835a5391422dfc698bdc"
+      ],
+      "files": [
+        "training/perf-20261114/val/README.md",
+        "training/perf-20261114/val/V1/eval_a.json",
+        "training/perf-20261114/val/V1/eval_b.json",
+        "training/perf-20261114/val/V1/eval_fresh.json",
+        "training/perf-20261114/val/V1/eval_stu.json",
+        "training/perf-20261114/val/V1/eval_w.json",
+        "training/perf-20261114/val/V1/lifecycle-20261114T2220Z.md",
+        "training/perf-20261114/val/V1/manifest.json",
+        "training/perf-20261114/val/V1/v1_families.txt",
+        "training/perf-20261114/val/check_families.py",
+        "training/perf-20261114/val/lifecycle.py",
+        "training/perf-20261114/val/select_v1.py"
+      ]
+    },
+    {
+      "sha": "4951fb0b40adfcf85fe5cfc1b929f71f0ebc50e2",
+      "message": "Add isolated BEN lanes and explicit external timing scope",
+      "parents": [
+        "d82f9a7d9884262474a6c0e37871001d70709346"
+      ],
+      "files": [
+        "scripts/stu_rollout_experiments/match.py",
+        "scripts/stu_rollout_experiments/test_review_protocol.py"
+      ]
+    },
+    {
+      "sha": "d82f9a7d9884262474a6c0e37871001d70709346",
+      "message": "Record actual BF16 switch and concise native parity failures",
+      "parents": [
+        "ffb634eacf4198e9732083d623928835a48957ac"
+      ],
+      "files": [
+        "scripts/stu_rollout_experiments/match.py",
+        "scripts/stu_rollout_experiments/native_acceptance.py"
+      ]
+    },
+    {
+      "sha": "ffb634eacf4198e9732083d623928835a48957ac",
+      "message": "Fix rollout observation scheduling and isolate audited experiment runs",
+      "parents": [
+        "7c79acfaa138a29d140dfef3d50f9a52216a24aa"
+      ],
+      "files": [
+        "docs/stu-rollout-experiments-2026-11-14.md",
+        "scripts/stu_rollout_experiments/accounting.py",
+        "scripts/stu_rollout_experiments/batch.sh",
+        "scripts/stu_rollout_experiments/engine.py",
+        "scripts/stu_rollout_experiments/make_config.py",
+        "scripts/stu_rollout_experiments/match.py",
+        "scripts/stu_rollout_experiments/native_acceptance.py",
+        "scripts/stu_rollout_experiments/summarize.py",
+        "scripts/stu_rollout_experiments/test_review_allocation.py",
+        "scripts/stu_rollout_experiments/test_review_boundaries.py",
+        "scripts/stu_rollout_experiments/test_review_protocol.py"
+      ]
+    },
+    {
+      "sha": "109a21c74730749bb6c6bfe16cac78bf04120bd9",
+      "message": "Variable personalities: partnerships (0.5), identifiers, per-seat personas in Gen 8 and 8X\n\nMax, 21:14 UTC on 14 November: randomize Sid's personalities; partners\ncorrelated 0.5; SidVariable as an identifier that readers use by default;\npartners can be asked for estimated styles; the variability and disclosure\nrules public; Gen 8/9 to take the capability.\n\n- persona.py: draw_partnership (each latent draw correlated 0.5 with the\n  partner's; dimension correlation drawn per partnership), seats(),\n  public(identifier), KNOWN (SidVariable, Gen8Variable), is_variable,\n  describe(persona, 'opponent' | 'partner' | 'full').\n- Gen7Player / X8Player: table_styles {seat: {play, near}} set per table; a\n  Gen 8 seat styles among its near_tie cards, an 8X seat among rollout\n  candidates within its own margin (random share: one of them at random).\n  Seats without a persona play as before (tests).\n- X8Player.meet: a blind bot is still told a variable population's\n  identifier (x8 read_variable, default on).\n- gen8_match: bots with \"persona\": {\"variable\": true} get a partnership a\n  side per board, play styles via table_styles, bidding via VariableBidder;\n  records keep the personas.\n- make_bots.py / loop-bots.json: SidVariable (stu4c-put + persona) and\n  Gen8Variable (8p-32-v41 at margin 0 + persona); no existing bot changed.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk",
+      "parents": [
+        "ea595b4285422ad9bc2aac338a5a1da774537982"
+      ],
+      "files": [
+        "bridge_harness/gen7.py",
+        "bridge_harness/persona.py",
+        "bridge_harness/x8_player.py",
+        "configs/loop-bots.json",
+        "docs/styles.md",
+        "scripts/gen8_match.py",
+        "tests/test_bid_style.py",
+        "tests/test_style.py",
+        "tests/test_x8.py",
+        "training/rollout-loop-20261113/make_bots.py"
+      ]
+    },
+    {
+      "sha": "ac1f12d2bcecdc74ab86b261cd776f0bdcea7900",
+      "message": "Close P04 high-index sandbox acceptance gate",
+      "parents": [
+        "554ff0602d67fbd15179ef0eb155c277bd39cd26"
+      ],
+      "files": [
+        "docs/stu-efficiency/P04-standing-collection.md"
+      ]
+    },
+    {
+      "sha": "26cc9e3025509a8f68c5ae1ba734187b3a23401a",
+      "message": "play/: 'Actual styles' (North is your partner, not theirs)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk",
+      "parents": [
+        "4bb484f3080c91e72ad85ad02f34a8e1a9a2558e"
+      ],
+      "files": [
+        "play/sidplay/static/app.js",
+        "play/sidplay/static/index.html"
+      ]
+    },
+    {
+      "sha": "4bb484f3080c91e72ad85ad02f34a8e1a9a2558e",
+      "message": "play/: Sid's personalities (SidVariable), drawn per board and shown as a partner would know them\n\nMax, 21:14 UTC on 14 Nov: \"Update Sid to randomize personalities\", partners\ncorrelated 0.5, SidVariable as the identifier other bots use, partners can\nbe asked for estimated styles, the variability and disclosure public.\n\n- personas.py: each board North gets a persona, East-West a partnership\n  (bridge_harness/persona.py at the bundle source); what the person may\n  know (partner's knowledge view, opponents' disclosure), the actual styles\n  after the board, the public rules.\n- engine.py: bid/play take the seat's style per call (stateless); the Sids\n  meet each other as SidVariable and treat it as keeping guaranteed\n  contracts; Sid's own table plays the same N/E/W personas, South plain.\n- tables/store/app/page: personas per board (stored, kept for a deal played\n  again), a styles panel during and after the board and on the review page.\n- Recipe: source moves to 109a21c (a42fe6c's engine plus the persona code).\n- tests/test_personas.py (needs SIDPLAY_TEST_SOURCE with persona.py).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk",
+      "parents": [
+        "d28a44d5de03a6407ff89ff8b3e2ed33ca34e794"
+      ],
+      "files": [
+        "play/README.md",
+        "play/bundles/stu4c-put.json",
+        "play/deploy/install.sh",
+        "play/sidplay/app.py",
+        "play/sidplay/config.py",
+        "play/sidplay/engine.py",
+        "play/sidplay/fake_engine.py",
+        "play/sidplay/personas.py",
+        "play/sidplay/pool.py",
+        "play/sidplay/static/app.js",
+        "play/sidplay/static/index.html",
+        "play/sidplay/static/style.css",
+        "play/sidplay/store.py",
+        "play/sidplay/tables.py",
+        "play/tests/test_personas.py"
+      ]
+    },
+    {
+      "sha": "33043e614a87fc2b0b165b1b931e9f9e13c996b0",
+      "message": "Integrate BEN and R4c recursion screens with opponent-style roadmap",
+      "parents": [
+        "73691a69d67dee9e807adb383cced11deb6b88c8"
+      ],
+      "files": [
+        "docs/stu-training-efficiency-2026-11-14.md"
+      ]
+    },
+    {
+      "sha": "5cf597563e7921f3871d80e1dcd78c8961868f4d",
+      "message": "Arena ladder: refresh (2026-11-14T21:59Z)\n\narena/ladder.json only, from scripts/arena_ladder.py on feature/gen9-ladder e0c1e9dc (Gen 9 G9-D9).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "a3affd42e98e94f7899649942e61edee1ed5f3d7"
+      ],
+      "files": [
+        "arena/ladder.json"
+      ]
+    }
+  ],
+  "research_plan_blob": "531e445bb156b87300c44ea765acf2446c908254",
+  "research_plan_status": "WIP research plan; current scoped Stu capabilities/experiments/validation approvals do not migrate this primary collector.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}

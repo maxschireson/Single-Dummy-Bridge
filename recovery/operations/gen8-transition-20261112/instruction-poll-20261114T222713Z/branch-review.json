@@ -1,0 +1,192 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "total": 361,
+  "new_branches": {
+    "feature/stu-row-cache-20261114": "dd0da240356926114ce1c15b1a4e27d2efd00a81"
+  },
+  "removed_branches": [],
+  "changed_refs": {
+    "arena-gen6-chatgpt-feed": {
+      "before": "1769acd11480cd54dd9a7b264f32bed5be62214a",
+      "after": "776d4e1b8cbe091cb6c2e0c8f58b7c5e2f9c61f0"
+    },
+    "arena-gen8-19bbdce5-20261112-feed": {
+      "before": "1236aa7e8145da408dd84616dd8e352573fe477c",
+      "after": "9788b0856067b992e3a24e072e94b2a7bdc829fd"
+    },
+    "arena-gen8-candidate-codex-20261112-feed": {
+      "before": "287296f256ec9e974f8f0659c30cceac2820ca1a",
+      "after": "39a76d664716cbce93276d58b1cd3b4e1740f4fb"
+    },
+    "arena-gen8-independent-feed": {
+      "before": "7692f5f5b2585b46cc1e045a4aace1fa46f56204",
+      "after": "d6e7692b951d57c900a51dde26eba23b65cc4ad9"
+    },
+    "arena-gen9-azure4-ben64-feed": {
+      "before": "e7776e694399ac9a0d99deb076205d73df112007",
+      "after": "0059476b0f70c6f8d83d1fe68e9f5ce52ddcea58"
+    },
+    "arena-gen9-azure4-feed": {
+      "before": "d920f587bb5ab467a70e19b795eb31fb4ae891b8",
+      "after": "86f52f3f0ff7101a892aac02f5e63fbd297009e2"
+    },
+    "arena-gen9-genx-stu4c-azure4-feed": {
+      "before": "bd371ba3b1e54cc0727d9872abfbe50d785e1c3c",
+      "after": "dde046f31c04510c53db6839125c26b1a6013653"
+    },
+    "box/azure1/control": {
+      "before": "5573d5338938e2350eb67ff346bd7e0f8f71ac45",
+      "after": "217795a3997d89c4c88bc2e1164d2d8add086311"
+    },
+    "box/azure1/status": {
+      "before": "3aa59c7aa924c3e96b4a9d540d6db21e7b3c7d1f",
+      "after": "74cf5dc72654757c80fe1a843e441e049088c545"
+    },
+    "box/azure2/control": {
+      "before": "8470b43070e39cfdb6f2b2e3211aa7c60a89339c",
+      "after": "c08068835100d9b9ba21c7ec939493faf78e151c"
+    },
+    "box/azure2/status": {
+      "before": "07dee317fcd94a70eba5d571ca07c1769303a464",
+      "after": "2fa13284ea2adb84591be712869a1009c9c3f879"
+    },
+    "box/azure3/control": {
+      "before": "0f4669afe292fe42f12e1bff982b6fe7c098c4bf",
+      "after": "217fcf0b79d84bb8e4eb1d27122d97756177a7da"
+    },
+    "box/azure3/status": {
+      "before": "6a11c4f6b82241525a4a9314b64d95664c8dce94",
+      "after": "29b05d172fb2fdfad88c6fb7b0abdf2a02247119"
+    },
+    "box/azure4/control": {
+      "before": "4a2b469e8d5d6d68ec678d59c4bff2e0eb4d9110",
+      "after": "2334cb0b2dd208fd7ecd8cf0d899e67767914b3b"
+    },
+    "box/azure4/status": {
+      "before": "b29021c812132564c8cd360c1084b208cea834c6",
+      "after": "f1bb94e8dc1d5523691a61883eb1a7e8338d1ce4"
+    },
+    "box/azure5/control": {
+      "before": "73f2966c401d2236635498781b85132607a4446d",
+      "after": "7c433b8bb3261ca99c71d7f3da9cf12d2bd4673d"
+    },
+    "box/azure5/status": {
+      "before": "0f822fc98975094b084f1b563c27f46dc511694c",
+      "after": "b6aebae50cf24eb47191a30465f478901285b7f6"
+    },
+    "box/azure6/control": {
+      "before": "8bf3f7e0838b9b7fd92b88c7666eabd8cdd0949d",
+      "after": "4437f461cf50607c5471ed4bd0fb05d3d56467d3"
+    },
+    "box/azure6/status": {
+      "before": "1ad21eb610aa02fcae0a7db9ab7e6b64b75531fc",
+      "after": "6d57863a063162ad34c1d016e377048d25cac6f3"
+    },
+    "box/azure7/control": {
+      "before": "f15a3a8cb9af2fb4eff5efc42ebc25af6d8eebcf",
+      "after": "8ba6681617d44f4210cc47bfc9cc401c939b35aa"
+    },
+    "box/azure7/status": {
+      "before": "e823dfb884832bc2682733a86386eeadfea359d1",
+      "after": "d8f2d7f18f4f676bfe9e3f21917bc91d07ae1c5a"
+    },
+    "box/coordination": {
+      "before": "9e480765ddee4953499629fa0c4a16515a582064",
+      "after": "63e67311af160fbd4bd07e0724c86ea78c9bde2e"
+    },
+    "docs/stu-training-efficiency-20261114": {
+      "before": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+      "after": "33043e614a87fc2b0b165b1b931e9f9e13c996b0"
+    },
+    "feature/bid-style-20261114": {
+      "before": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+      "after": "109a21c74730749bb6c6bfe16cac78bf04120bd9"
+    },
+    "feature/sid-play-20261113": {
+      "before": "d28a44d5de03a6407ff89ff8b3e2ed33ca34e794",
+      "after": "26cc9e3025509a8f68c5ae1ba734187b3a23401a"
+    },
+    "feature/stu-standing-fallback-20261114": {
+      "before": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+      "after": "ac1f12d2bcecdc74ab86b261cd776f0bdcea7900"
+    },
+    "gh-pages": {
+      "before": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
+      "after": "5cf597563e7921f3871d80e1dcd78c8961868f4d"
+    },
+    "mail/coord": {
+      "before": "e0cd9ec94a9221b2d1d91d2c124c07c9c3514f47",
+      "after": "55447d311a35ec8010f625f15e0dac376e211b19"
+    },
+    "perf/stu-20261114": {
+      "before": "2a503a94de8c7442e34c835a5391422dfc698bdc",
+      "after": "7e412f5b3838b75684257abebc006277eb71e984"
+    },
+    "research/rollout-loop-20261113": {
+      "before": "5ab40eede958f9d46112ad44ec381ac3caa18f64",
+      "after": "f5c318ed22c2e39ee5eb0312dfcec1f1d7cd7ff1"
+    },
+    "research/stu-rollout-experiments-20261114": {
+      "before": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+      "after": "4951fb0b40adfcf85fe5cfc1b929f71f0ebc50e2"
+    },
+    "team/gen9": {
+      "before": "8ed4b23e5527f8137c385091a184a8fdbf216458",
+      "after": "ed6dabcd4afb19f7794593e993dd2147f503d665"
+    },
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": {
+      "before": "c15411e20f52676017c1ea3e6f805dbeb8579d23",
+      "after": "59852388f18b164e5806e120a0f0e9a6867f0a9e"
+    },
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": {
+      "before": "15ef505f4c472a131c5bd30175617b552f7d1795",
+      "after": "b2bf2367a306e657a73c2514707211c2f99e1f34"
+    },
+    "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114": {
+      "before": "77750fe6c29c355a8aa6e6229a2449d5ceefd705",
+      "after": "ffeaf5b620289d7b2cb764fcde2cdc18c89bd6db"
+    },
+    "transfer/rollout-loop-azure1-20261113": {
+      "before": "5ad575017e3e1ed37d27e50e732e4cc382b6b2a9",
+      "after": "2265ca9f90dffcf2e2571c12e51244411ddc32f1"
+    },
+    "transfer/rollout-loop-azure2-20261113": {
+      "before": "6ccc9d99a5e28da149b7c71db5df2622a8c22d42",
+      "after": "67ed1555f7dd1b50f3e22db7f1fc069cebbdfaac"
+    },
+    "transfer/rollout-loop-azure3-20261113": {
+      "before": "6dbfe747ae533a7ae16e60695c7ea01f4a09d1b5",
+      "after": "61ffa788e53bbe05abb72b1cfe189d40108cc7a8"
+    },
+    "transfer/rollout-loop-azure5-20261113": {
+      "before": "ac2886b97487a8e4717a0d05a1aa642d9ba41ded",
+      "after": "63c0452e9522ed376ac59df578d087b7f618b046"
+    },
+    "transfer/rollout-loop-azure6-20261113": {
+      "before": "7ca8a162d329adb5e087cbdd874a7319011066df",
+      "after": "28d1b5f9187e252c951ddd756339d075c121fd21"
+    },
+    "transfer/rollout-loop-azure7-20261113": {
+      "before": "094b3c3a1c19ce477f876f57c07afb5099920be4",
+      "after": "572a88969a036127c609de60b4ca04558c0e5c5c"
+    },
+    "transfer/stu-rollout-experiments-azure2-20261114": {
+      "before": "5961d6dfbaec921c8baf282359f8c5cefc7b7b58",
+      "after": "f01f042c3bd84d38e6c3fa4910cf30f5c5d72516"
+    },
+    "transfer/stu-rollout-experiments-azure6-20261114": {
+      "before": "ff08dd5bdb0e311ae53b731fa7390a13469589e0",
+      "after": "d0a46d7e91ceab13b2bedfbd2fc12ed3f0c1de92"
+    }
+  },
+  "complete": true,
+  "reviewed_new_branches": [
+    {
+      "branch": "feature/stu-row-cache-20261114",
+      "revision": "dd0da240356926114ce1c15b1a4e27d2efd00a81",
+      "kind": "Draft partial P03 training-row cache, no collection/trainer recipe deployment",
+      "applied": false,
+      "evidence": "stu-efficiency-scope-review.json"
+    }
+  ]
+}

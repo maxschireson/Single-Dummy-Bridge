@@ -1,0 +1,102 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "authority": "Max quoted in box/coordination20:29: reassign one Azure box for rollout experiments, make a plan and proceed.",
+  "owner": "codex-rollout track, distinct from this producer and P01/P03/perf/harvest.",
+  "allocation": "Azure6 and Azure2, six-hour first budgets under separate Max authority; both collected Stu R4c, not this independent Gen8 arena producer.",
+  "scope": "R01 identity-routing/guarantee behavior, R02 ranking/IMP objective, R03 continuation/value cutoff; hold128layouts initially. Fresh experimental seeds/descendants withheld from training, seed131/squeeze tests excluded.",
+  "production_adoption": "Loop retains promotion after equal-time/interaction checks. No report or helper assignment adopts source or changes primary.",
+  "owned_producer_source_or_layout_budget_changed": false,
+  "remote_commands_executed": false,
+  "applied": false,
+  "pr38": {
+    "number": 38,
+    "title": "Study Stu rollout gain transfer and selective information-set replanning",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T22:17:03Z",
+    "head": "4951fb0b40adfcf85fe5cfc1b929f71f0ebc50e2",
+    "base": "main",
+    "draft": true
+  },
+  "helper_A_pr": {
+    "number": 41,
+    "title": "Design Stu allocation/frontier selectors and equal-compute gain-transfer tests",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T21:46:02Z",
+    "head": "f2c865707193b910ef7a5ee617be5a014faaca64",
+    "base": "main",
+    "draft": false
+  },
+  "helper_B_pr": {
+    "number": 43,
+    "title": "Stu helper B: recursive-search correctness review and adversarial tests",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T21:47:34Z",
+    "head": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
+    "base": "main",
+    "draft": false
+  },
+  "observed_peer_drains": {
+    "azure6": {
+      "at": "2026-11-14T20:52:21Z",
+      "preserved_rows_episodes": 2551
+    },
+    "azure2": {
+      "at": "2026-11-14T20:59:04Z",
+      "preserved_rows_episodes": 4000
+    }
+  },
+  "current_review_decision": {
+    "old_source_no_go_persists": true,
+    "old_source": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+    "old_pause": {
+      "stopped": "2026-11-14T21:23:14Z",
+      "reason": "PR41/43 cache/scheduling inconsistency; old recursive/selective results diagnostic only; no extension or adoption",
+      "interrupted_boards": "possible; preserve episodes and logs; do not treat partial screen as complete",
+      "runs": {
+        "smoke-guarantee": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-flat32": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-reader": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-recursive32": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "smoke-selective32": {
+          "rows": 16,
+          "episodes": 16
+        },
+        "screen-reader": {
+          "rows": 117,
+          "episodes": 117
+        }
+      }
+    },
+    "corrected_engine": "d82f9a7d9884262474a6c0e37871001d70709346",
+    "ben_adapter_source": "4951fb0b40adfcf85fe5cfc1b929f71f0ebc50e2",
+    "acceptance": "Owner reports25corrected BF16 regressions,34FP32native-SURE runtime tests, real R4c null/zero/action/value/RNG parity plus bounded real child. Earlier failed acceptance logs preserved; independent B re-review still requested.",
+    "current_authority": "Max explicitly requests larger recursion screens versus BOTH R4c128 and BEN and increased throughput; supersedes earlier correctness-only/no-extension scope for these owned experimental boxes. No production promotion.",
+    "current_runs": "Azure6 eight-worker512family development panel then matched flat32; Azure2 finishes guarantee512 then isolated dedicated BEN64 pilots/256matched families. Existing R4c/BEN panels remain frozen while identity ablation is designed.",
+    "stale_label_note": "Root extended-* correctness-only labels are stale; explicit R4C512_PLAN and newer owner authority define development scope. Preserve dated raw reports.",
+    "primary_stop_required": false,
+    "owned_adoption": false
+  },
+  "actual_publication_scope": "Transfer reports are development-only, not arena strength/completion evidence; published row count and review-pause inventory are distinct dated cuts.",
+  "old_review_preserved": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T212644Z/rollout-experiment-scope-review.json",
+  "latest_peer_reports": {
+    "azure2": "# Stu rollout mechanism screen\n\nDevelopment-only; these small samples do not establish strength.\n\n| Run | Boards | IMP/board ± SE | CPU s/board | Failures |\n| --- | ---: | ---: | ---: | ---: |\n| mechanism-guarantee | 512 | 0.1309 ± 0.1646 | 33.75 | 0 |\n| mechanism-reader | 512 | 0.1152 ± 0.1665 | 33.71 | 0 |\n| mechanism-sham | 32 | 0.0 ± 0.0 | 32.86 | 0 |\n",
+    "azure6": "# Rollout review correction\n\nOld recursive/selective results are invalid for inference. V2 correctness-only progress follows; source d82f9a7, native acceptance passed.\n\n# Stu rollout mechanism screen\n\nDevelopment-only; these small samples do not establish strength.\n\n| Run | Boards | IMP/board ± SE | Python CPU s/board (solver excluded) | Failures |\n| --- | ---: | ---: | ---: | ---: |\n| calibration-c1 | 16 | -2.4375 ± 1.1104 | 33.95 | 0 |\n| extended-recursive32 | 134 | -0.1866 ± 0.3475 | 56.04 | 0 |\n| smoke-flat32 | 16 | -2.0 ± 0.9129 | 23.86 | 0 |\n| smoke-recursive32 | 16 | -0.4375 ± 0.8707 | 51.52 | 0 |\n| smoke-selective32 | 16 | -0.9375 ± 0.7609 | 52.77 | 0 |\n\n## calibration-c1 actor costs\n\n| Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| rx2-recursive32-c1 | 305.85 | 297.31 | 8.39 | 548.0 | 0.0 |\n| rx2-control | 250.16 | 239.40 | 11.07 | 0 | 0.0 |\n\n## extended-recursive32 actor costs\n\n| Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| rx2-recursive32 | 5317.59 | 5141.03 | 159.27 | 16821.0 | 8.0 |\n| rx2-control | 2435.50 | 2324.60 | 102.69 | 0 | 8.0 |\n\n## smoke-flat32 actor costs\n\n| Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| rx2-flat32 | 141.78 | 137.23 | 4.42 | 0 | 0.0 |\n| rx2-control | 248.23 | 238.07 | 10.45 | 0 | 0.0 |\n\n## smoke-recursive32 actor costs\n\n| Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| rx2-recursive32 | 591.61 | 571.77 | 19.98 | 2113.0 | 2.0 |\n| rx2-control | 256.40 | 246.10 | 10.58 | 0 | 1.0 |\n\n## smoke-selective32 actor costs\n\n| Actor | Action wall s | Worker CPU s | Solver CPU s | Child searches | Timeouts |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| rx2-selective32 | 616.40 | 593.52 | 23.02 | 2025.0 | 2.0 |\n| rx2-control | 254.98 | 244.29 | 10.98 | 0 | 1.0 |\n",
+    "scope": "Pinned dated development reports, independent of owned arena data; interim guarantee signal did not persist, no strength/CI/adoption claim."
+  },
+  "identity_priority": "New supported-vocabulary continuation-identity ablation is separate from history-reader, likelihood weights and guarantees; latent style/public identifier does not imply trained neural population embedding. No result or owned behavior change."
+}

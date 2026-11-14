@@ -1,0 +1,167 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "processes": {
+    "collector": {
+      "pid": 335661,
+      "command": "/workspace/work/arena-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/gen8-candidate-codex-20261112/run --workers 3 "
+    },
+    "supervisor": {
+      "pid": 68686,
+      "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/supervise_gen8.py "
+    },
+    "publisher": {
+      "pid": 68688,
+      "command": "/workspace/work/arena-venv/bin/python -u /workspace/work/gen6-fast-selfplay-stream/publish_stream.py "
+    }
+  },
+  "all_lineage_locks": {
+    "/workspace/work/gen6-fast-selfplay-stream/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen6-fast-selfplay-stream/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen6-fast-selfplay-stream/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-phase1-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen7-selfplay-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.writer.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.watchdog.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen71-compare-codex-20261112/run/.publisher.lock": {
+      "held": false,
+      "owner_pid": null,
+      "current": false
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.writer.lock": {
+      "held": true,
+      "owner_pid": 335661,
+      "current": true
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.watchdog.lock": {
+      "held": true,
+      "owner_pid": 68686,
+      "current": true
+    },
+    "/workspace/work/gen8-candidate-codex-20261112/run/.publisher.lock": {
+      "held": true,
+      "owner_pid": 68688,
+      "current": true
+    }
+  },
+  "lineage_states": [
+    {
+      "run": "/workspace/work/gen8-candidate-codex-20261112/run",
+      "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 5902,
+      "receipts": 5902,
+      "failures": [],
+      "retired": false
+    },
+    {
+      "run": "/workspace/work/gen71-compare-codex-20261112/run",
+      "manifest": "cb3fe1be55d6632151696b8fbc6aea85eeea06e4e43a37a29c96252c550f06a2",
+      "completed": 1974,
+      "receipts": 1974,
+      "failures": [],
+      "retired": true
+    },
+    {
+      "run": "/workspace/work/gen7-selfplay-capture-final-codex-20261112/run",
+      "manifest": "e0500f3edd2368e463a09d7ebd953c483f4d0fe79f39d90d5557abc801607f6e",
+      "completed": 437,
+      "receipts": 437,
+      "failures": [],
+      "retired": true
+    },
+    {
+      "run": "/workspace/work/gen6-fast-selfplay-stream/run",
+      "manifest": "f2fcbb519abc7237b9baf820e7c01b7823425a87132e1eebbe8c84abfb90a2c9",
+      "completed": 3710,
+      "receipts": 3710,
+      "failures": [],
+      "retired": true
+    },
+    {
+      "run": "/workspace/work/gen7-phase1-codex-20261112/run",
+      "manifest": "fe19dc484f6bdb173a8af3baec9fdee8d3d7470506192bec9f24e8f93b88eb26",
+      "completed": 564,
+      "receipts": 564,
+      "failures": [],
+      "retired": true
+    },
+    {
+      "run": "/workspace/work/gen7-selfplay-codex-20261112/run",
+      "manifest": "32e1e006fcff4bc9a4174fff302ecf7e24c70a2dc693344a0d79653e69da08a8",
+      "completed": 32,
+      "receipts": 32,
+      "failures": [],
+      "retired": true
+    }
+  ],
+  "supervisor_sha256": "06fed99b288ac4c17ecba9d6c32aa232bcfc1412923026671fe0cd87aaf79500",
+  "stream_sha256": "c731f591036f8b62f271de7b4fd087d3a3ef2898d434fda24260c6f44b7f25ff",
+  "frozen_source_guard_sha256": "228ecad5f6587c2b671f7782b2729cac4e2121ea9150a7589b3a284c6f7b7211",
+  "strict_source_hash_check_retained": true,
+  "source_amendments_file_exists": false,
+  "peer_commands_executed": false,
+  "manual_restart": false,
+  "failures_cleared": false
+}

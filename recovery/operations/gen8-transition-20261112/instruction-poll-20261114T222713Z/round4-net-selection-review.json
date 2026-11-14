@@ -1,0 +1,32 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "revision": "540e15964750ae8535c2839154d4ddaae01aa516",
+  "readme_blob": "60bc5100aa17cfc7973b8e5e1f84dff03400dce9",
+  "authority": "Max15:39 rule and15:50 preference for bot-trained net, recorded16:36 Nov14.",
+  "selected_net": "stu4c, bots-only control",
+  "observations": {
+    "stu4_vs_stu4c_inside_one_net_rollout_bot": {
+      "imps_per_deal": -0.1,
+      "se": 0.17,
+      "deals": 500
+    },
+    "nets_alone": {
+      "imps_per_deal": 0.03,
+      "se": 0.03,
+      "deals": 8000
+    }
+  },
+  "scoped_action": "Latest18:43 report: Stu4c adopted without full BEN gate, stopped at698. No owned gate/model change or CI completion claim.",
+  "owned_gate_changed": false,
+  "owned_model_changed": false,
+  "local_training": false,
+  "applied_to_this_stream": false,
+  "excerpt": "**No gain from the human tables reaches the bot**, so by Max's rule (15:39 UTC) and his preference for a net trained only on\nbots (15:50), **stu4c is round 4's net**. stu4's gate blocks c to e are dropped (commented in place in the running job\nfile at 16:36 UTC, same length, so the chain's offsets do not move); azure3 plays stu4c alone through its 2,048 deals.\n\n",
+  "historical_scoped_action": "Stu4 BEN gate blocks c-e commented in the running Azure3 job file; Stu4c continues its2048-deal gate.",
+  "latest_collection_evidence": "stu-collection-scope-review.json",
+  "previous_gate_checkpoint": {
+    "completed": 650,
+    "evidence": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T182358Z/round4-net-selection-review.json",
+    "historical": true
+  }
+}

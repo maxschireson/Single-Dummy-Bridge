@@ -1,0 +1,54 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "pr37": {
+    "number": 37,
+    "title": "Stu: harvest unused rollout pairs and target the learning frontier",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T22:04:55Z",
+    "head": "30a665bb6057e8011c8d3f2843a38181b53c3198",
+    "base": "main",
+    "draft": false
+  },
+  "proposal_blob": "2958b54408faafd3089fefbc05ba29eca8b825be",
+  "status": "Loop completed bounded H05 reliability measurement and H01 inventory reporting; H02 checkpoint requested by23:00, H03 weighted-late-pair arm proposed; H06 not adopted.",
+  "reported_capture": {
+    "tables": 3166,
+    "inside_rollout_pairs": 640974,
+    "root_rollout_decisions": 116403,
+    "availability_update": "Loop reports sp3s3166episodes survived resize and publishes200episode sample; no remote payload inventory was performed here."
+  },
+  "availability": "GitHub summaries/location notice verified by the proposer; raw Azure5 payload survival/decoding remains H01 acceptance, not verified here.",
+  "semantic_scope": "Inside-rollout single-imagined-layout pairs differ from searched full-bot audit/gap fork tables. They are not independent boards or an established5.5x information gain.",
+  "H06": "Increase collection forks only after marginal gain established; not an instruction to this frozen producer.",
+  "local_fork_settings_changed": false,
+  "local_training_or_data_import": false,
+  "owned_adoption": false,
+  "applied": false,
+  "review_comment_id": 6883836401,
+  "approved_scopes": {
+    "H01": "loop inventories/preserves raw Stu episodes; manifest and failures required.",
+    "H02": "codex-stu-harvest offline extractor/reconstruction on published200-episode sample, no box time.",
+    "H05": "harvest designs, loop executes about2000pairs within2box-hours after booking, reliability/claim-floor by phase.",
+    "H03_H04": "data/design only until P10 architecture and H05 reliability gates.",
+    "H06": "deferred; no increase of owned internal or full-bot forks."
+  },
+  "latest_h05": {
+    "source": "f5c318ed22c2e39ee5eb0312dfcec1f1d7cd7ff1",
+    "pairs": 5000,
+    "cohorts": "2500sp3s +2500sp0",
+    "reliability_by_trick": {
+      "1-2": 0.07,
+      "3-4": 0.09,
+      "5-6": 0.18,
+      "7-8": 0.28,
+      "9-10": 0.63,
+      "11-13": 0.87
+    },
+    "scope": "Internal one-layout rollout-pair label reliability, not arena full-bot fork audit/gap quality.",
+    "raw_labels_unfloored": true,
+    "H03": "Proposed raw late-trick7-13 pair rows weighted by reliability; no primary training or capture change."
+  },
+  "latest_h01_reported_pairs": 19150000,
+  "H02_deadline": "23:00UTC checkpoint/ETA requested from codex-stu-harvest; Loop may build a minimal extractor for its workflow. Not an assignment to this collector."
+}

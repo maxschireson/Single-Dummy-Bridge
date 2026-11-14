@@ -1,0 +1,25 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "pr42": {
+    "number": 42,
+    "title": "Bidding styles, variable personas (SidVariable, Gen8Variable), partnerships and identifiers",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T22:20:51Z",
+    "head": "109a21c74730749bb6c6bfe16cac78bf04120bd9",
+    "base": "research/rollout-loop-20261113",
+    "draft": false
+  },
+  "guide_blob": "9a080918577c1ad78b11b2ddf744b15b3fb74b95",
+  "approval_comment_id": 6884372234,
+  "status": "Max21:14 personality capability implemented on feature/bid-style for Loop/g9 and Sid server; no existing bot changes, no job list names the new actors.",
+  "existing_actors": "No current owned actor is replaced or configured variable; seats without personas retain prior behavior. No silent source/model/settings change to frozen primary.",
+  "owned_source_or_bidding_changed": false,
+  "applied": false,
+  "new_actor_ids": [
+    "SidVariable",
+    "Gen8Variable"
+  ],
+  "source_scope": "Source109a21c on research-based PR42 adds opt-in per-table personas, partner correlation0.5, disclosure/population identifiers. Max Gen8/9 capability request is for those source owners; current official round8-candidate plan/actors/pins unchanged.",
+  "neural_identity_scope": "Identifier/disclosure capabilities alone do not train SidVariable embedding; current ablations remain research and existing panels frozen."
+}

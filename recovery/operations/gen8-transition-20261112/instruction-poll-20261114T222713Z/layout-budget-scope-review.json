@@ -1,0 +1,22 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "branch": "research/gen8-layout-budget-20261114",
+  "revision": "7da1d0904fd17237b382411444b070272b7ba1c8",
+  "readme_path": "reports/gen8-layout-budget-2026-11-14/README.md",
+  "readme_blob": "bd19f009f1ae7f18dc6dc09f33b70335407902fe",
+  "authority": "Max09:58 Nov14 question, relayed stu-dash17:10; benchmark in its own sandbox.",
+  "explicit_collection_notice": "No change to any bot or collection.",
+  "sample": {
+    "tables": 240,
+    "decisions": 720,
+    "tricks": "1 to6, one non-forced decision per1-2/3-4/5-6 window per table; opening lead excluded",
+    "reference": "1024 layouts from8192, Gen8 own posterior; every legal card solved DD"
+  },
+  "scope": "Sampling-noise-only research; posterior/defender correctness and independent arena strength are not established. Tables/decision windows are not independent arena boards.",
+  "result": "Tradeoffs for16/64/128/256 solved layouts and512/2048 pools; report does not authorize a deployed setting change.",
+  "owned_settings_changed": false,
+  "benchmark_records_imported": false,
+  "adopted_by_this_stream": false,
+  "applied": false,
+  "rechecked_unchanged": true
+}

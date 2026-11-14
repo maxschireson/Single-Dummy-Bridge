@@ -1,0 +1,12 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "revision": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+  "authority_quote": "Max09:17 Nov14 to Will, fixing the refused Gen9/Azure4 cache-source restart.",
+  "context": "Unchanged9b2e7ad source-amendment branch. New Gen9 STATE report says Azure4 resumed09:24 with NORMAL sync; scoped peer status, no canonical Gen8 adoption.",
+  "applied": false,
+  "local_guard_retained": true,
+  "local_amendments_file_exists": false,
+  "disposition": "Keep strict frozen792c4cb guard and user-required new identity/drained successor for any changed source. No local source-amendments.json or NORMAL sync.",
+  "evidence": "ownership-review.json",
+  "rechecked_unchanged": true
+}

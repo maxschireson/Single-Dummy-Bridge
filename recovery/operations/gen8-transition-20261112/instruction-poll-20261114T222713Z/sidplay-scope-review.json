@@ -1,0 +1,30 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "pr33": {
+    "number": 33,
+    "title": "play/: play bridge with Sid: analysis, Sid in your seat, history, replays; Sid = SiD (rollout) Stu R4c",
+    "state": "open",
+    "merged": false,
+    "updated_at": "2026-11-14T21:49:15Z",
+    "head": "26cc9e3025509a8f68c5ae1ba734187b3a23401a",
+    "base": "main",
+    "draft": false
+  },
+  "reviews": [],
+  "scope": "Sid server persona update under Max21:14: source109a21c, new opt-in personality public interface. No owned actor/source change or Azure command; no official arena job names new variable actors.",
+  "deployed_or_tested_here": false,
+  "commands_on_azure1": false,
+  "commits": [
+    {
+      "sha": "26cc9e3025509a8f68c5ae1ba734187b3a23401a",
+      "date": "2026-11-14T21:47:47Z",
+      "message": "play/: 'Actual styles' (North is your partner, not theirs)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk"
+    },
+    {
+      "sha": "4bb484f3080c91e72ad85ad02f34a8e1a9a2558e",
+      "date": "2026-11-14T21:41:51Z",
+      "message": "play/: Sid's personalities (SidVariable), drawn per board and shown as a partner would know them\n\nMax, 21:14 UTC on 14 Nov: \"Update Sid to randomize personalities\", partners\ncorrelated 0.5, SidVariable as the identifier other bots use, partners can\nbe asked for estimated styles, the variability and disclosure public.\n\n- personas.py: each board North gets a persona, East-West a partnership\n  (bridge_harness/persona.py at the bundle source); what the person may\n  know (partner's knowledge view, opponents' disclosure), the actual styles\n  after the board, the public rules.\n- engine.py: bid/play take the seat's style per call (stateless); the Sids\n  meet each other as SidVariable and treat it as keeping guaranteed\n  contracts; Sid's own table plays the same N/E/W personas, South plain.\n- tables/store/app/page: personas per board (stored, kept for a deal played\n  again), a styles panel during and after the board and on the review page.\n- Recipe: source moves to 109a21c (a42fe6c's engine plus the persona code).\n- tests/test_personas.py (needs SIDPLAY_TEST_SOURCE with persona.py).\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPM4diYoA9p1MN4nk"
+    }
+  ],
+  "rechecked_unchanged": true
+}

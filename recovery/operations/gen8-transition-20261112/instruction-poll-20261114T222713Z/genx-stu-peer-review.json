@@ -1,0 +1,142 @@
+{
+  "poll_start": "2026-11-14T22:27:13Z",
+  "registered": true,
+  "adopted_by_this_stream": false,
+  "adopted_on_azure4": true,
+  "registration": {
+    "revision": "5cf597563e7921f3871d80e1dcd78c8961868f4d",
+    "blob": "3e289c39830e8a7beab36b12465e34171dde5ca9",
+    "entry": {
+      "key": "gen9genxstu4cazure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen X Stu (round 4c) · azure4 (stu4c-put against Gen 8, Gen 9 and Gen 7.1)",
+      "branch": "arena-gen9-genx-stu4c-azure4-feed",
+      "cohort": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a"
+    },
+    "authority": {
+      "authority": "Max, 2026-11-14 00:48 UTC: the Stu team's latest bot into the arena; 00:49: \"We will call it Gen X Stu\"; 01:00: \"Put it into the mix at whatever level you want\"; 02:35: trim the Gen 9 cohort for it.",
+      "feeds": "azure4: arena-gen9-genx-stu-azure4-feed, manifest 66563aba..., stu3-ps (the loop's pure Stu, round 3's rollout net) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9019), two workers. configs/round9-genx-stu.json on feature/gen9-genx-stu at 9bba86b6; job boxq/azure4/g9-genx-stu-azure4.json on team/gen9.",
+      "registered_by": "will (Gen 9), 2026-11-14 02:5x UTC",
+      "session": "https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "round4c": "From 14 Nov 16:22 UTC: arena-gen9-genx-stu4c-azure4-feed, manifest 17d6186e..., stu4c-put (round 4's control net at the table and in the rollouts, blind) against 8s-32 (2), 9a-32 and 71s-32 (1 each), the Gen 9 cohort's actors; 4,000 fresh deals (seed 9021), two workers. configs/round9-genx-stu-r4c.json on feature/gen9-genx-stu at 57d0855f. Round 3's feed ended at 719 boards (revision d959fd31) and is archived. Max, 14 Nov: 'I will have an iteration before long'; to the play server, 'use r4c until further notice'."
+    }
+  },
+  "feed_revision": "dde046f31c04510c53db6839125c26b1a6013653",
+  "current_branch_revision": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+  "state": {
+    "manifest_identity": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a",
+    "completed": 302,
+    "target": 4000,
+    "contiguous": 302,
+    "by_pair": {
+      "stu4c-put~71s-32": 75,
+      "stu4c-put~8s-32": 152,
+      "stu4c-put~9a-32": 75
+    },
+    "root_games": 604,
+    "tables": 10278,
+    "failures": 0,
+    "epoch": 1794695206.3413985,
+    "complete": false,
+    "blob": "3769a5a1c517656e86b4f6cdddcd2d9f9c595f35"
+  },
+  "source_provenance": "New R4c feed manifest/source57d0855f; canonical peer plan b0fb4004 and full net pin e4b689c8... observed, no local model/source downloaded.",
+  "plan": {
+    "path": "configs/round9-genx-stu-r4c.json",
+    "blob": "b0fb4004ab450246274fc6bc6e1cd12deb2860e1",
+    "notes": [
+      "Max, 14 Nov 2026: \"I will have an iteration before long\" (08:08 UTC); to the play server's session, \"use r4c until further notice\" (board, sidplay, 15:47 UTC). will said at 08:08 that a new iteration takes Gen X Stu's 2 cores on azure4 by default, round 3 stopping; Max did not object. Prepared and run by will (Gen 9) on azure4.",
+      "The bot is the loop session's stu4c-put (configs/loop-bots.json on research/rollout-loop-20261113 at 4488e91d), its gen7 and x8 blocks unchanged: round 4's control net (without the human tables) as its table net and in its rollouts, pure Stu, and blind (x8.blind: told nothing about who sits against it), so no opponent names are needed.",
+      "Its net is round 4c's (models/cardplay/stu-net-r4c-20261113, sha256 e4b689c8...; restore.py fetches it). Round 3's Gen X Stu (stu3-ps, configs/round9-genx-stu.json) stays on its own feed.",
+      "9a-32, 8s-32 and 71s-32 are configs/round9-cohort.json's entries unchanged, so they are the same actors (identities) as in the Gen 9 cohort. 6-32 is in the roster as the common bidder only.",
+      "Deals: fresh, from bridge_harness.corpus.generate with this run's seed (9021, not used by any earlier run). Left out: policy v4.1's and rollout net v1's training families (gen8x-v3-exclusions.json, 50,818), every family of the source corpus, and every family already played on registered feeds (the cohort's list). Round 4's arena sample and the loop's own deals are not listed; they are arena boards and fresh deals of other seeds."
+    ],
+    "adopted_by_this_stream": false
+  },
+  "model_manifest": {
+    "blob": "991bc22dee9272452817a5fbfeb36450f5b61ce9",
+    "release": "stu-net-r4c-20261113",
+    "files": {
+      "policy": "e4b689c87db2f56b98221a491757dbf348ddaea066e016f06a9331fc671197f2"
+    },
+    "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+    "scorer_note": "hand-fit scorer v0 (models/cardplay/hand-fit-scorer-v0-2026-11-11): the loop builds its rows with it (training/rollout-loop-20261113 round*.sh, rows*.sh: SCORER=.../hand_fit_v0.npz)",
+    "trained_on": {
+      "start": "round 1's net, 4 epochs at 1e-4 (training/rollout-loop-20261113/README.md, 'Round 4 as trained', a42fe6c1)",
+      "rows": "the arena sample (2,600 records), the loop's own records, the other boxes' row files and replay rows of v2's deals; the control net has no human tables"
+    },
+    "made_by": "loop session, transfer/rollout-loop-azure5-20261113 train-r4c/policy.npz"
+  },
+  "manifest_observation": {
+    "identity": "17d6186e0ef7eb76fdbaa309e38ace007c3470b947e1615e382ea5069899ab7a",
+    "source_commit": "57d0855fb61d841e1308187d3737a3fe0338f3f4",
+    "source_sha256": "055711bee104568ee600921a5e46ca8d9d664b2c73a050acaccf7e807a582abf",
+    "evaluation_exclusions": {
+      "path": "artifacts/validation/evaluation-exclusions.json",
+      "sha256": "72fafc4cce9ed62e6427b021103533e62e1bdfedc6acc96bf01c81186a88ee7a",
+      "families": 50818,
+      "reason": "Exclude released-policy training families from fresh comparisons"
+    },
+    "exclusion_families": 21369,
+    "systems": {
+      "stu4c-put": "house-gen6",
+      "9a-32": "house-gen6",
+      "8s-32": "house-gen6",
+      "71s-32": "house-gen6",
+      "6-32": "house-gen6"
+    },
+    "pair_weights": {
+      "stu4c-put~8s-32": 2,
+      "stu4c-put~9a-32": 1,
+      "stu4c-put~71s-32": 1
+    }
+  },
+  "archived_previous_genx": {
+    "registration": {
+      "key": "gen9genxstuazure4",
+      "group": "gen9",
+      "generation": 9,
+      "variant": "9",
+      "environment": "azure",
+      "name": "Gen X Stu (round 3) · azure4 (stu3-ps against Gen 8, Gen 9 and Gen 7.1), ended at 719",
+      "branch": "arena-gen9-genx-stu-azure4-feed",
+      "cohort": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+      "retired": true,
+      "revision": "d959fd318ddc68d9932516613ae83c92a5b0a44c"
+    },
+    "feed_revision": "d959fd318ddc68d9932516613ae83c92a5b0a44c",
+    "state": {
+      "manifest_identity": "66563aba033f064043a98ff6281b6a2a6372b6c8af0b034bc1ab8e943f376091",
+      "completed": 719,
+      "target": 4000,
+      "contiguous": 719,
+      "by_pair": {
+        "stu3-ps~8s-32": 360,
+        "stu3-ps~71s-32": 179,
+        "stu3-ps~9a-32": 180
+      },
+      "root_games": 1438,
+      "tables": 25465,
+      "failures": 0,
+      "epoch": 1794673266.5249133,
+      "complete": false,
+      "blob": "766aa244bba849e64db2fdbf20df61ac6f820de8"
+    },
+    "retired_at": 719,
+    "source_commit": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+    "resumed_here": false
+  },
+  "transfer_mirror": {
+    "branch": "transfer/gen9-g9-genx-stu4c-azure4-azure4-20261114",
+    "revision": "ffeaf5b620289d7b2cb764fcde2cdc18c89bd6db",
+    "readme": "# g9-genx-stu4c-azure4 on azure4\n\nResults of box job `g9-genx-stu4c-azure4` (no experiment, owner will), published by tools/boxq.py on team/gen9. Source `feature/gen9-genx-stu` at `57d0855f`. A transfer branch: never merged into source.\n\nLast published 2026-11-14T22:26:47Z: 302 of 4000 boards, state running.\n",
+    "same_cohort_not_independent_boards": true
+  },
+  "scope": "Will/Azure4 R4c source/model/plan unchanged, dated302/4000 contiguous302, zero failures. R3 retired719; experimental BEN/recursion/style sources are not additional primary arena boards.",
+  "exclusion_scope_note": "Peer plan explicitly omits R4 arena/loop training memberships based on different seeds. Such metadata is not the complete all-released-model family proof required before ANY future new owned cohort. No new owned cohort prepared; preserve current frozen34092-family bytes/proofs.",
+  "complete_released_training_membership_verified": false,
+  "peer_commands_executed": false
+}
