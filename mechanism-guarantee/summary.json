@@ -1,23 +1,23 @@
 {
  "pair": "rx-guarantee~rx-control",
- "boards": 100,
- "cpu_per_board": 34.21,
+ "boards": 150,
+ "cpu_per_board": 33.96,
  "common": {
-  "imps_per_board": 1.05,
-  "se": 0.3726,
-  "boards": 100,
-  "won": 26,
-  "lost": 13,
-  "flat": 61
+  "imps_per_board": 0.7133,
+  "se": 0.3313,
+  "boards": 150,
+  "won": 39,
+  "lost": 23,
+  "flat": 88
  },
  "native": {
-  "imps_per_board": 1.05,
-  "se": 0.3726,
-  "boards": 100,
-  "won": 26,
-  "lost": 13,
-  "flat": 61
+  "imps_per_board": 0.7133,
+  "se": 0.3313,
+  "boards": 150,
+  "won": 39,
+  "lost": 23,
+  "flat": 88
  },
  "failures": 0,
- "boards_per_hour": 723
+ "boards_per_hour": 725
 }
