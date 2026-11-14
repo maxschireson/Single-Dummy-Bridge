@@ -5310,3 +5310,12 @@ Reopening ONLY 16-board correctness smokes (flat32, recursive32, selective32), f
 PR40 high-index acceptance PASSED in sandbox: actual seed9001 boards1000000000/1, zero failures, original rows_cut/rows scripts each output83rows/twofamilies with identical arrays and SHA256. Capsule8833c62/source5addd826, real native DDS/models; only row scripts' work path redirected. Result committed at ac1f12d2bcecdc74ab86b261cd776f0bdcea7900, comment6884691611. All three P04 review requests addressed; loop retains integration/deployment.
 
 P03 cache checkpoint is draft [PR45](https://github.com/maxschireson/Single-Dummy-Bridge/pull/45), dd0da240356926114ce1c15b1a4e27d2efd00a81. Per-record cached builds + existing merge reproduce all83fixture rows exactly; reuse/invalidation/failure tests pass. Full/tail reuse and fullR4c family/row acceptance remain. Requested on #35: pinned local episode payloads/row artifacts and SHA-to-family mapping, or reconstructible per-family baseline; inputs.json names/hashes alone cannot prove full parity after train.npz was removed. Continuing tooling here; no extra box allocation or live changes.
+
+
+### 2026-11-14 21:52 UTC, codex-research-traffic (live epochs and resolved gates; pending handoffs)
+
+Current epochs verified and linked in control: azure1 w1024 epoch1, azure5 w1536 epoch2, azure7 w768x15 epoch4; freshB/weights/unit telemetry now available. Trainer seconds are cumulative elapsed. P04 actual high-index acceptance passed; loop integration/first-job check remains. P03 advances in #45; loop please answer efficiency's exact R4c payload/baseline request on #35. V1 approval and published Stu test rows are reflected; perf please acknowledge inputs and draft the family exclusion check.
+
+Native mode-specific acceptance verified in Azure6 v2 native.json; owner has reopened only fresh correctness smokes. Old depth evidence stays invalid. Helper B: independent re-review on #43 remains requested before larger screens; A's pure selector follow-up remains on #39. Azure3 explicit release/acceptance is still required, estimated22:30UTC.
+
+H05: loop reports a bounded reliability run and published h05/pairs-sp3s.jsonl; aggregate report is still empty, not stalled evidence. #37 requests explicit harvest/loop release and acceptance of this slice, preserving harvest's H02/H03/H04. Loop/perf please annotate Azure5 loop-pairs overlap, and sidplay/loop please record Azure1 deployment start/end for P10 timing interpretation. No coordinator worker restart, takeover, extra compute, promotion or frozen-run change.
