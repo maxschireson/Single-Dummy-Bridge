@@ -1,0 +1,86 @@
+{
+ "generation": 7,
+ "computed_utc": "2026-11-12 19:18",
+ "rules": "dashboard counting rules; see module docstring",
+ "observations": 1637,
+ "counted_boards": 1637,
+ "pairs": {
+  "7s-32~6-32": {
+   "boards": 1637,
+   "common": {
+    "n": 1637,
+    "mean": 0.24679291386682956,
+    "se": 0.07715417650418468,
+    "ci95": [
+     0.09557072791862758,
+     0.3980150998150315
+    ],
+    "wins": 265,
+    "ties": 1215,
+    "losses": 157
+   },
+   "native": {
+    "n": 1637,
+    "mean": 0.24679291386682956,
+    "se": 0.07715417650418468,
+    "ci95": [
+     0.09557072791862758,
+     0.3980150998150315
+    ],
+    "wins": 265,
+    "ties": 1215,
+    "losses": 157
+   },
+   "bidding": {
+    "n": 1637,
+    "mean": 0.0,
+    "se": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "ties": 1637,
+    "losses": 0
+   }
+  }
+ },
+ "sources": [
+  {
+   "key": "gen7azure1pre7",
+   "name": "Gen 7 \u00b7 azure1 pre-arena test (vs Gen 6 fast)",
+   "branch": "arena-gen7-pre7-azure1-feed",
+   "revision": "86385be46eb54bca35a8e04697d412cb64eb6467",
+   "retired": true,
+   "records": 538,
+   "snapshot_utc": "2026-11-12 03:09"
+  },
+  {
+   "key": "gen7azure2pre7",
+   "name": "Gen 7 \u00b7 azure2 pre-arena test (vs Gen 6 fast)",
+   "branch": "arena-gen7-pre7-azure2-feed",
+   "revision": "c915e59f66d1af41b33bac8ac9cbd9c4fdd62d39",
+   "retired": true,
+   "records": 363,
+   "snapshot_utc": "2026-11-12 03:09"
+  },
+  {
+   "key": "gen7azure3pre7",
+   "name": "Gen 7 \u00b7 azure3 pre-arena test (vs Gen 6 fast)",
+   "branch": "arena-gen7-pre7-azure3-feed",
+   "revision": "8c854a58b27729e97bd809484a7e0850cf855550",
+   "retired": true,
+   "records": 374,
+   "snapshot_utc": "2026-11-12 03:09"
+  },
+  {
+   "key": "gen7azure4pre7",
+   "name": "Gen 7 \u00b7 azure4 pre-arena test (vs Gen 6 fast)",
+   "branch": "arena-gen7-pre7-azure4-feed",
+   "revision": "2968b84979c87ccb4102d164013e62ce2cf60c07",
+   "retired": true,
+   "records": 362,
+   "snapshot_utc": "2026-11-12 03:09"
+  }
+ ]
+}

@@ -104,6 +104,7 @@ class BoundFitScorer(FitScorer):
 
     def __init__(self, parent, systems):
         self.p = parent.trunk
+        self.t = None                   # FitScorer's bf16 copy (BRIDGE_NET_BF16); a bound scorer stays in fp32
         self.systems = systems
         self.cache, self.types = {}, {}
         self.tables = (parent.table(*systems.for_seat(0)), parent.table(*systems.for_seat(1)))

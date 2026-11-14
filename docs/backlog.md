@@ -1,54 +1,22 @@
-# Backlog and request triage
+# Backlog
 
-Reviewed 11 November 2026. The twelve original open items were pull requests,
-mostly stacked generation launches. They were not twelve outstanding feature
-requests. The cleanup brings the existing Gen6 source onto main and disposes of
-historical PRs without deleting their branches or artifacts.
+Open items only, reviewed at the Gen 7 → Gen 8 cleanup (12 November 2026). Items keep their
+numbers, so a gap is an item that was closed: its disposition is on the generation page of the
+cleanup that closed it (items 2, 3, 6 and 12: [Gen 7](generations/gen7/README.md#backlog-dispositions-at-closeout)).
+The 11 November PR ledger is in [Gen 6's cleanup ledger](generations/gen6/cleanup-ledger.md).
 
-## Remaining PR work
+| # | Priority | Item | Next action | Done when |
+| --- | --- | --- | --- | --- |
+| 1 | High | Collector runtime changes are still off main. On main since this cleanup: the self-play regime with the gen7 engine and the capture port (`feature/gen7-selfplay-20261112`), `--exclude-families`, and every collector's Gen 8 source. Not on main, each conflicting with it now: [PR #15](https://github.com/maxschireson/Single-Dummy-Bridge/pull/15) `fix/gen7-selfplay-capture-codex-20261112` (gap and guess capture kept in self-play; `bridge_harness/gen5_arena.py`), [PR #13](https://github.com/maxschireson/Single-Dummy-Bridge/pull/13) `fix/gen6-feed-health-20261111` (feed-health supervision; `bridge_harness/gen5_arena.py`, `ops/export_gen5.py`, `ops/publish_gen5.py`, `ops/watch_gen5.py`), `ops/gen7-fast-selfplay-cloud-20261111` (`bridge_harness/gen5_arena.py`, `ops/export_gen5.py`, `ops/publish_gen5.py`), `codex/gen7-independent-selfplay-20261112` and `ops/gen71-19bbdce5-20261112` (`ops/prepare_gen7_alpha.py`). Also not on main, and not tried against it at this cleanup: the Gen 6 runtime branches `codex/gen6-fast-selfplay-20261111`, `codex/gen6-gen7-capture-20261111`, `codex/gen6-v7-capture-20261111` (BEN auto-expansion among them). Gen 8's plans have no self-play pair, so nothing running waits on this; a self-play cohort with capture prepared from main does | Port PR #15's capture onto main's `gen5_arena.py` (which now also seats two systems at a table) with its tests, then PR #13's supervision; retire the Gen 6 runtime branches as superseded | A self-play cohort with gap and guess capture passes a preflight from main |
+| 4 | Medium | Two coordination channels for the Azure boxes, both in use on 12 November: `box/coordination` (allocation table and the log every session writes to) and `fleet/azure` (the operator's status). They overlap | Max picks one; the other gets a pointer | One channel named in [operations](operations.md#remote-boxes) |
+| 5 | Low | `feature/gen7-prepare-slice-20261112` (pre-7 test runs: `--first/--count` slicing, `ops/publish_test_run.py`) conflicts with main in twelve files. `--shard` replaced the slicing | Keep the branch and `transfer/pre7-test-azure*` as the record of the pre-7 test data; port `publish_test_run.py` only if transfer publishing is still wanted | Ported or marked superseded here |
+| 7 | Low | Hand-fit scorer v1a packaged on `research/hand-fit-scorer-v1a-20261111` (one commit; it conflicts with main only in two index pages); every bot uses v0, and Gen 8's system scorer is built on v0 | Decide when the scorer is next retrained | Adopted in a plan or closed |
+| 8 | Low | Model release READMEs link files that are not on main (gen5-belief, hand-fit-scorer-v0, joint-auction-belief-lead-v0, gen7-policy-v4 → v3.1, gen7-policy-v4.1 → its training folder): seven links | Add the files from their branches, or repoint links to pinned commits, as a new release revision (release folders are frozen) | Link check clean |
+| 9 | Deferred | [PR #4](https://github.com/maxschireson/Single-Dummy-Bridge/pull/4): bidding-to-belief exporter/trainer/prediction tools absent from main | Compare with current training paths; port only what is needed | Ported with family-split tests, or closed as redundant |
+| 10 | Deferred | [PR #9](https://github.com/maxschireson/Single-Dummy-Bridge/pull/9): nested 16/32/64 prefix scoring | Decide whether it fits weighted layouts | Ported and tested, or closed |
+| 11 | **Before the next net is trained on arena records** | Gen 8 tables are not all house against house. A pipeline that reads auctions with the hand-fit scorer (policy, lead net, scorer retraining) and treats every call as a house call misreads the rule system's auctions (loss 0.7 to 1.3 against 0.12, [Gen 8 notice](gen8_candidate_2026-11-12.md)) | Bind each table's systems from `systems:NS|EW` in `auction_source`, or leave out tables that are not house against house, in every training reader; say which in the release notes | The next release trained on Gen 8 records states how it read them |
+| 13 | Low | `scripts/generation_results.py` keeps its own copy of the dashboard's actor order, which names and signs every pair; it had fallen behind (`71s-32` missing) and was brought level at this cleanup | Read the order from one place, or test the two against each other | A new actor cannot be added to one and not the other |
+| 14 | Low | A Gen 8 decision record carries the whole `opponent_play_weight` table but not the factor that was applied at that table; it follows from the pair and from `gen5_arena.run_board` telling each player whom it faces | Record the applied factor in the decision note, as a new source revision | An audit can read the factor from the record alone |
 
-| Priority | Item | Next action | Done when |
-| --- | --- | --- | --- |
-| Next | [#4: missing bidding-to-belief export tools](https://github.com/maxschireson/Single-Dummy-Bridge/pull/4) | Compare the remaining exporter/trainer/prediction code with current training paths; port only needed pieces from the preserved branch into a new main-based change | Provenance/family split tests pass, or redundancy is documented and the PR is closed |
-| Deferred | [#9: nested 16/32/64 scoring](https://github.com/maxschireson/Single-Dummy-Bridge/pull/9) | Decide whether the older prefix-sampling prototype fits current Gen6 weighted sampling; if pursued, port and test explicitly | Prefix decision/RNG parity and physical solve accounting verified; divergent-trajectory limitations stated |
-
-Neither is ready to merge wholesale into main. The old PR bases preserve their
-original diffs; do not blindly retarget them and import a whole historical stack.
-There is no assigned owner until someone takes the work.
-
-Research branches may contain additional experiments or unfinished ideas; their
-existence alone does not put them in the committed backlog. When adopting one,
-create one scoped issue with an owner/claim and completion criterion rather than
-another indefinite “launch” PR.
-
-## Disposition ledger
-
-“Contained” below means exact commit ancestry, not an assumption based on title.
-“Historical” explicitly does not claim every branch-only file was integrated.
-
-| PR | Disposition | Evidence / retained work |
-| --- | --- | --- |
-| [#1](https://github.com/maxschireson/Single-Dummy-Bridge/pull/1) | Archive research | The 1,000-board report says the alpha-mu/rollout variants did not earn their extra compute. Preserve branch and negative results; do not integrate as current engine. |
-| [#2](https://github.com/maxschireson/Single-Dummy-Bridge/pull/2) | Close historical launch | Most lineage is in Gen6; the two unique commits are the old bounded collection supervisor and its test. Gen6 has its own watchdog. Preserve the old launcher for reproducing that run. |
-| [#3](https://github.com/maxschireson/Single-Dummy-Bridge/pull/3) | Close completed milestone | Bidding loop lineage is in Gen6. The unique tail is the 40k confirmation report; preserve and index that evidence. |
-| [#4](https://github.com/maxschireson/Single-Dummy-Bridge/pull/4) | Keep draft: scoped follow-up | DDS binding, cache and cache test are byte-identical to Gen6, but bidding_belief_data.py and exporter/trainer/prediction tools are absent. Review/port only that missing work against main. |
-| [#5](https://github.com/maxschireson/Single-Dummy-Bridge/pull/5) | Close completed historical training | Continuation report records completion and promotion. continue_large_belief.py is identical in Gen6; old promotion script and reports remain preserved on the branch. Do not replay a historical promotion. |
-| [#6](https://github.com/maxschireson/Single-Dummy-Bridge/pull/6) | Close: contained in Gen6 | Exact PR head is an ancestor of the adopted Gen6 source. |
-| [#7](https://github.com/maxschireson/Single-Dummy-Bridge/pull/7) | Close: contained in Gen6 | Exact PR head is an ancestor. Historical IMP-policy work is not a recommendation to replace the current retained Gen5 policy. |
-| [#8](https://github.com/maxschireson/Single-Dummy-Bridge/pull/8) | Close: contained in Gen6 | Exact PR head is an ancestor; this generation's launch is historical. |
-| [#9](https://github.com/maxschireson/Single-Dummy-Bridge/pull/9) | Keep draft: deferred prototype | All seven unique commits remain outside Gen6. Prefix scoring at a shared state does not supply divergent trajectories, and Gen6 weighted layouts need a separate compatibility decision. |
-| [#10](https://github.com/maxschireson/Single-Dummy-Bridge/pull/10) | Close: contained in Gen6 | Exact PR head is an ancestor; Gen4 recovery is historical. |
-| [#11](https://github.com/maxschireson/Single-Dummy-Bridge/pull/11) | Close: contained in Gen6 | Exact PR head is an ancestor; its BEN32 preparation is superseded by the current BEN16 plan. |
-| [#12](https://github.com/maxschireson/Single-Dummy-Bridge/pull/12) | Close: contained in Gen6 | Exact PR head is an ancestor; Gen5 launch is historical. |
-
-## Review evidence
-
-Checks compared the original PR heads with Gen6
-`b34a40fd7829ebeaaf96b86a424289e3f938a868`.
-Heads for #6, #7, #8, #10, #11 and #12 are ancestors. For #1, #2, #3, #4,
-#5 and #9, the unique tails were inspected; the reasons above preserve that
-distinction. [Machine-readable ledger](pr-triage-2026-11-11.json) records head SHAs.
-
-Historical evidence is linked in [archive](archive/README.md).
-Reopen a closed item if there is a concrete remaining requirement; name that
-requirement instead of treating old deployment prose as an active task.
+Research branches are not backlog by existing. To adopt one, open a scoped item here with
+an owner and a completion criterion.
