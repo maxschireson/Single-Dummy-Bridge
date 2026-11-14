@@ -1,23 +1,23 @@
 {
  "pair": "stumf-n~stubf-n",
- "boards": 1950,
- "cpu_per_board": 0.66,
+ "boards": 3950,
+ "cpu_per_board": 0.65,
  "common": {
-  "imps_per_board": 0.1631,
-  "se": 0.0826,
-  "boards": 1950,
-  "won": 369,
-  "lost": 300,
-  "flat": 1281
+  "imps_per_board": 0.0949,
+  "se": 0.0579,
+  "boards": 3950,
+  "won": 713,
+  "lost": 608,
+  "flat": 2629
  },
  "native": {
-  "imps_per_board": 0.1631,
-  "se": 0.0826,
-  "boards": 1950,
-  "won": 369,
-  "lost": 300,
-  "flat": 1281
+  "imps_per_board": 0.0949,
+  "se": 0.0579,
+  "boards": 3950,
+  "won": 713,
+  "lost": 608,
+  "flat": 2629
  },
  "failures": 0,
- "boards_per_hour": 43321
+ "boards_per_hour": 22640
 }
