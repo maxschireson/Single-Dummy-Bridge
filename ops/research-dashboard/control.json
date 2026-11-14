@@ -1,6 +1,6 @@
 {
   "schema": "stu-research-control-v1",
-  "updated": "2026-11-14T21:28:56Z",
+  "updated": "2026-11-14T21:38:54.760Z",
   "coordinator": "codex-research-traffic",
   "issue": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/44",
   "streams": [
@@ -9,7 +9,7 @@
       "name": "Rollout optimization",
       "owner": "codex-rollout",
       "state": "Mixed: running / paused",
-      "summary": "Azure2 reader and guarantee screens continue. Azure6's old recursive/selective batch is paused for correctness fixes.",
+      "summary": "Azure2 mechanism screens continue. Old Azure6 depth arms stay paused; local fixes pass synthetic witnesses, real-model acceptance is next.",
       "next": "Pass strict A/B regression checks and real-model acceptance; launch corrected depth arms with a new identity.",
       "links": [
         {
@@ -53,7 +53,7 @@
       "name": "Performance optimization",
       "owner": "perf · codex-stu-efficiency",
       "state": "Implementation / queued",
-      "summary": "P01 baseline acceptance passed; P04 fallback code delivered; P03 row reuse in progress. P02 benchmark waits for Azure3 release.",
+      "summary": "P01 acceptance passed. P04 review revisions pass 13 tests; real row-export acceptance is open. P03 is queued; P02 waits for Azure3 release.",
       "next": "Loop integrates P01/P04 at a safe boundary; perf starts P02 after explicit Azure3 handoff.",
       "links": [
         {
@@ -73,9 +73,9 @@
       "stream": "rollout",
       "title": "Repair recursive / selective policy consistency",
       "owner": "codex-rollout",
-      "status": "blocked",
-      "detail": "Old arms paused. New acceptance and run identity required before interpreting results.",
-      "next": "Publish strict tests + real R4c/native-SURE checks",
+      "status": "working",
+      "detail": "Rollout owner acknowledges #44. Local A/B witnesses pass after fixes; real R4c/BF16/SURE acceptance and independent review remain open.",
+      "next": "Finish fresh-only runner / timing checks, then publish corrected source and run identity",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/issues/39#issuecomment-6884403002"
     },
     {
@@ -123,8 +123,8 @@
       "stream": "performance",
       "title": "Reuse prepared row chunks",
       "owner": "codex-stu-efficiency",
-      "status": "working",
-      "detail": "Manifest received; content/family validation and implementation remain.",
+      "status": "waiting",
+      "detail": "Owned by codex-stu-efficiency; queued behind P04 review acceptance.",
       "next": "Report first verified cache reuse and next checkpoint",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/35"
     },
@@ -142,11 +142,21 @@
       "id": "P04",
       "stream": "performance",
       "title": "Standing fallback & idle alerts",
-      "owner": "loop (integration)",
+      "owner": "codex-stu-efficiency → loop",
       "status": "review",
-      "detail": "11 tests passed. Disabled until recipe/namespace/ownership configured.",
-      "next": "Reserve disjoint seed/index bands; select safe fallback recipe",
+      "detail": "13 tests pass after busy-workload / pair-rotation review fixes. Actual two-board high-index match → row-export acceptance remains open; no deployment.",
+      "next": "Assemble sandbox runtime and pass real high-index row-export acceptance",
       "source": "https://github.com/maxschireson/Single-Dummy-Bridge/pull/40"
+    },
+    {
+      "id": "V1",
+      "stream": "model",
+      "title": "Freeze a common validation anchor",
+      "owner": "perf (proposal / build), loop (recipe)",
+      "status": "review",
+      "detail": "Perf proposed a family-disjoint anchor and lifecycle comparison matrix. v2 and width-run logged validation populations differ.",
+      "next": "Loop agrees size/mix and publishes Stu test rows; freeze manifest before cross-net scoring",
+      "source": "https://github.com/maxschireson/Single-Dummy-Bridge/blob/box/coordination/BOARD.md"
     }
   ],
   "handoffs": [
@@ -272,5 +282,7 @@
       "label": "Width 768 × 15",
       "target": 15
     }
-  ]
+  ],
+  "dashboard_url": "https://stu-research-control.reflectiveguppy5.chatgpt.site",
+  "coordinator_schedule": "Hourly at :45 America/Los_Angeles"
 }
