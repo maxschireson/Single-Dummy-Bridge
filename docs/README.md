@@ -34,3 +34,5 @@ They are evidence, not task queues. The [historical reading guide](archive/READM
 Gens 1–4 and the early design documents (`SELFPLAY.md`, `SELF_IMPROVEMENT.md`,
 `TRAINING_PLAN.md`, the v4 design PDF). The original harness README is kept as
 [baseline usage](archive/baseline-README.md).
+
+- [Stu efficiency implementation handoff](stu-efficiency/README.md): scoped P01 patch, checks and P08 Mac benchmark plan (pending loop acceptance).

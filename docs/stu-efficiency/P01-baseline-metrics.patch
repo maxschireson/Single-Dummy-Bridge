@@ -1,0 +1,96 @@
+diff --git a/scripts/train_rollout_net.py b/scripts/train_rollout_net.py
+index c3f30b2..6c0dae9 100644
+--- a/scripts/train_rollout_net.py
++++ b/scripts/train_rollout_net.py
+@@ -351,6 +351,7 @@ def main():
+     p.add_argument('--weight-decay', type=float, default=1e-4)
+     p.add_argument('--kinds', default='0,1,2', help='table kinds to train on: 0 root tables, 1 tie-fork tables, 2 gap-fork tables')
+     p.add_argument('--save-epochs', action='store_true', help="also write each epoch's weights as policy_epoch<n>.npz")
++    p.add_argument('--before-metrics', type=Path, help='write starting validation and blank-ID metrics before any optimizer step')
+     p.add_argument('--all-train', action='store_true', help='train on every deal of --data, whatever its split (needs --val-data)')
+     p.add_argument('--val-data', type=Path, help='held-out rows come from this set (all of its rows) instead of split 1 of --data')
+     p.add_argument('--init', type=Path, help='start from the weights of this net (same kind and width; bot vectors may be missing)')
+@@ -472,14 +473,14 @@ def main():
+         return loss + a.sid_weight * (sum(heads) + t14), (ce, gap, owner, tricks, *heads, t14)
+ 
+     @jax.jit
+-    def step(params, state, b):
++    def step(params, state, b, total):
+         (loss, parts), grads = jax.value_and_grad(loss_fn, has_aux=True)(params, b)
+         if only is not None:                        # before the clip, so its norm is the trained weights' alone
+             grads = {k: g * only[k] for k, g in grads.items()}
+         updates, state = opt.update(grads, state, params)
+         if only is not None:                        # and after, so weight decay does not move a frozen weight
+             updates = {k: u * only[k] for k, u in updates.items()}
+-        return optax.apply_updates(params, updates), state, loss, parts
++        return optax.apply_updates(params, updates), state, total + jnp.stack(parts)
+ 
+     @jax.jit
+     def predict(params, b):
+@@ -519,8 +520,16 @@ def main():
+         return mine[select_key], rest
+ 
+     start_rest = None
+-    if select_bot:                              # the starting net is epoch 0: the limit on forgetting is measured from it
++    if select_bot or a.before_metrics:
+         v0 = evaluate(lambda b: predict(params, b), vdata, val)
++        if a.before_metrics:
++            before = dict(validation=v0,
++                          who_use=dict(real=v0, blank=evaluate(lambda b: predict(params, b), vdata, val, blank=True)),
++                          selected_epoch=0, optimizer_steps=0, init=str(a.init) if a.init else None,
++                          bots=vocab, val_data=str(a.val_data) if a.val_data else None)
++            a.before_metrics.parent.mkdir(parents=True, exist_ok=True)
++            a.before_metrics.write_text(json.dumps(before, indent=1))
++    if select_bot:                              # the starting net is epoch 0: the limit on forgetting is measured from it
+         if select_bot not in v0['by_bot']:
+             raise SystemExit(f'--select: no held-out rows of {select_bot}')
+         score0, start_rest = chooser(v0)
+@@ -529,14 +538,14 @@ def main():
+         print(json.dumps(history[-1]), flush=True)
+     for epoch in range(a.epochs):
+         order = rng.permutation(train)
+-        total = np.zeros(4 + (len(SID_HEADS) + 1 if sid else 0))
++        total = jnp.zeros(4 + (len(SID_HEADS) + 1 if sid else 0), dtype=jnp.float32)
+         count = 0
+         for i in range(0, len(order) - a.batch + 1, a.batch):
+-            params, state, loss, parts = step(params, state, batch_of(order[i:i + a.batch]))
+-            total += np.array([float(x) for x in parts])
++            params, state, total = step(params, state, batch_of(order[i:i + a.batch]), total)
+             count += 1
+             if count % 2000 == 0:
+                 print(f"epoch {epoch + 1} step {count} of {len(order) // a.batch}, {round(time.time() - started)} s", file=sys.stderr, flush=True)
++        total = np.asarray(total, dtype=np.float64)  # one metric synchronization per epoch, not per batch
+         v = evaluate(lambda b: predict(params, b), vdata, val)
+         row = dict(epoch=epoch + 1, seconds=round(time.time() - started), train_ce=round(total[0] / count, 4),
+                    train_gap=round(total[1] / count, 4), train_owner=round(total[2] / count, 4), val=v['all'],
+diff --git a/training/rollout-loop-20261113/round2.sh b/training/rollout-loop-20261113/round2.sh
+index e19573b..e1635e9 100644
+--- a/training/rollout-loop-20261113/round2.sh
++++ b/training/rollout-loop-20261113/round2.sh
+@@ -74,15 +74,15 @@ nice -n 10 "$PY" $T/sample_set.py "$BIG" "$R/replay.npz" --rows "$rows" --seed 1
+ nice -n 10 "$PY" $M "$R/train.npz" "$R/stu_train.npz" $EXTRA $NOREPLAY "$R/replay.npz" | tee -a "$R/timeline.log"
+ nice -n 10 "$PY" $M "$R/val.npz" "$R/stu_held.npz" "$FRESH" | tee -a "$R/timeline.log"
+ 
+-# 4. The net before (pure Stu's vectors are Stu's and nothing is trained: a rate of 1e-12) and after, on the same held-out rows.
++# 4. The main trainer writes the starting net's metrics before any update, then trains on the same held-out population.
+ export OPENBLAS_NUM_THREADS=$THREADS OMP_NUM_THREADS=$THREADS MKL_NUM_THREADS=$THREADS
+ train() {   # folder epochs rate
+   nice -n 10 "$PY" scripts/train_rollout_net.py --data "$R/train.npz" --all-train --val-data "$R/val.npz" --out "$R/$1" --width 768 \
+     --epochs "$2" --patience 2 --batch 256 --lr "$3" --id-dropout 0 --save-epochs --init "$INIT" --init-as "stup0=stu0${INIT_AS:+,$INIT_AS}" \
+     ${SELECT:+--select "$SELECT" --forget "$FORGET"} \
++    --before-metrics "$R/before/metrics.json" \
+     --compare "$V2" --compare "$V41" --compare "$V1" > "$R/$1.log" 2>&1 || { say "training $1 failed"; tail -n 5 "$R/$1.log"; exit 1; }
+ }
+-train before 1 1e-12
+ train net "$EPOCHS" "$LR"
+ say "trained"
+ 
+@@ -113,7 +113,7 @@ PY
+ 
+ # 6. For the publisher (and the dashboard: train-NAME/metrics.json is the trainer's own file, one record an epoch under `history`).
+ P=$W/pub/train-$NAME; mkdir -p "$P"
+-cp -f "$R/net/metrics.json" "$R/net/policy.npz" "$R/net.log" "$R/before.log" "$R/timeline.log" "$P/"
++cp -f "$R/net/metrics.json" "$R/net/policy.npz" "$R/net.log" "$R/timeline.log" "$P/"
+ cp -f "$R/before/metrics.json" "$P/metrics_before.json"
+ sha256sum "$R/net/policy.npz" | cut -c1-64 > "$P/policy.sha256"
+ say "published to $P: policy.npz sha256 $(cut -c1-16 "$P/policy.sha256")"
