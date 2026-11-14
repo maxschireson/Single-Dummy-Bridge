@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T22:01:22Z",
+  "updated": "2026-11-14T22:02:23Z",
   "purpose": "development only; old depth invalid, v2 correctness smokes",
   "runs": [
     {
@@ -147,6 +147,94 @@
       "failures": 0,
       "boards_per_hour": 284,
       "validity": "invalid-for-inference: PR41/43; original run preserved"
+    },
+    {
+      "name": "v2-calibration-c1",
+      "pair": "rx2-recursive32-c1~rx2-control",
+      "boards": 4,
+      "cpu_per_board": 32.21,
+      "common": {
+        "imps_per_board": 0.75,
+        "se": 0.25,
+        "boards": 4,
+        "won": 3,
+        "lost": 0,
+        "flat": 1
+      },
+      "native": {
+        "imps_per_board": 0.75,
+        "se": 0.25,
+        "boards": 4,
+        "won": 3,
+        "lost": 0,
+        "flat": 1
+      },
+      "failures": 0,
+      "unfinished": 4,
+      "attempts": 8,
+      "interpretation": "development only; not a strength or equal-time decision",
+      "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
+      "attempt_work": {
+        "wall_seconds": 131.06931401100064,
+        "worker_cpu_seconds": 128.984989462,
+        "solver_cpu_seconds": 2.203921,
+        "inclusive_cpu_seconds": 131.188910462
+      },
+      "actors": {
+        "rx2-recursive32-c1": {
+          "work": {
+            "solver_cpu_seconds": 1.2180049999999998,
+            "solver_wall_seconds": 1.2795953110053233,
+            "solver_calls": 6412.0,
+            "solver_hits": 438.0,
+            "solver_timeouts": 0.0,
+            "wall_seconds": 71.2150444580002,
+            "worker_cpu_seconds": 69.95279397999997,
+            "inclusive_cpu_seconds": 71.17079897999997,
+            "initialization_seconds": 4.537806323998666
+          },
+          "recursive": {
+            "opportunities": 110116.0,
+            "calls": 142.0,
+            "cache_hits": 0.0,
+            "changed": 399.0,
+            "net_rows": 36583.0,
+            "child_wall_seconds": 28.9934173799993,
+            "argmax_different": 324.0,
+            "applied_rows": 728.0,
+            "budget_rejected": 21085.0
+          },
+          "precisions": [
+            [
+              "bf16",
+              "bf16"
+            ]
+          ]
+        },
+        "rx2-control": {
+          "work": {
+            "solver_cpu_seconds": 0.84,
+            "solver_wall_seconds": 0.9291287739997642,
+            "solver_calls": 8918.0,
+            "solver_hits": 2035.0,
+            "solver_timeouts": 0.0,
+            "wall_seconds": 54.81986282900107,
+            "worker_cpu_seconds": 53.97975315800002,
+            "inclusive_cpu_seconds": 54.81975315800001,
+            "initialization_seconds": 0.1741304110000783
+          },
+          "recursive": {},
+          "precisions": [
+            [
+              "bf16",
+              "bf16"
+            ]
+          ]
+        }
+      },
+      "driver_failure": null,
+      "source_commit": "d82f9a7d9884262474a6c0e37871001d70709346",
+      "validity": "correctness-only; not strength evidence"
     },
     {
       "name": "v2-smoke-flat32",
