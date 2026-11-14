@@ -1,0 +1,21 @@
+{
+  "status": "verified_github_watch_readback",
+  "poll_start": "2026-11-14T07:24:22Z",
+  "verified_at": "2026-11-14 07:36:13 UTC",
+  "revision": "964ba0cf81f046a6207cea0648787ba1e000706f",
+  "path": "recovery/operations/instruction-watch.json",
+  "watch_blob": "f5cae10f0ac286b5f1ab5f34fa1522d76a95c072",
+  "checked_at": "2026-11-14T07:24:22Z",
+  "next_comment_scan_since": "2026-11-14T07:24:22Z",
+  "result": "no_current_collection_instruction_change",
+  "last_diagnosed_cache_rotation": {
+    "completed": 4274,
+    "new_collector_pid": 246161,
+    "diagnosed": true,
+    "requires_attention": false
+  },
+  "performance_proposal_applied": false,
+  "stu_latest_poll_applied": false,
+  "published_completed": 4298,
+  "published_receipt_markers": 4298
+}
