@@ -1,0 +1,1 @@
+W=$HOME/work/loop; for r in bu4c-pst200a bu4c-pst200b bu4c-pst200c; do printf "%s: %s | " $r "$(cat $W/runs/$r-[1-8]/results.jsonl 2>/dev/null | wc -l)"; done; echo; tail -n 2 $W/runs.log | cut -c1-140; systemctl list-units --plain --no-legend "loop-*" | awk "{print \$1, \$4}" | tr "\n" " "; echo; free -g | sed -n 2p; date -u +%T
