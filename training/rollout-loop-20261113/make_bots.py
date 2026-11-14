@@ -88,7 +88,8 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
           + ['stu0-ps', 'stu0-psa', 'stu0-psb', 'stu3-ps', 'stu3-psa', 'stu3-psb', 'stuS-ps', 'stuM-ps', 'stu3-pst',
              'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti', 'stu0-pst', 'stu3-psta', 'stu3-pstb', 'stu3-psu', 'stu3-putb',
              'stuhf-pst', 'stubf-pst', 'stumf-pst', 'stuhs-pst', 'stubs-pst',
-             'stum10-pst', 'stum10h-pst', 'stum10h4-pst', 'stus10-pst', 'stus10h-pst'])   # every bot that claims and mixes as Stu does
+             'stum10-pst', 'stum10h-pst', 'stum10h4-pst', 'stus10-pst', 'stus10h-pst',
+             'stum10F-pst', 'stum10A-pst', 'stum10B-pst', 'stuhA-pst', 'stubA-pst', 'stusAh-pst'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -336,7 +337,14 @@ def main():
                            ('m10h', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and the human boards"),
                            ('m10h4', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and the human boards four times over"),
                            ('s10', 'stup0', 'a net trained from scratch on about 10,000 pure-Stu boards'),
-                           ('s10h', 'stup0', 'a net trained from scratch on about 10,000 pure-Stu boards and the human boards')):
+                           ('s10h', 'stup0', 'a net trained from scratch on about 10,000 pure-Stu boards and the human boards'),
+                           # every expert table of those events, not one a deal (10:26 UTC, after the first part's result)
+                           ('m10F', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and every human table with a familiar auction"),
+                           ('m10A', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and every human table, auctions as bid"),
+                           ('m10B', 'stup0', "round 1's net tuned as a round is on about 10,000 pure-Stu boards and every human table, the unfamiliar auctions blanked"),
+                           ('hA', 'usbc', 'a net trained from scratch on every human table'),
+                           ('bA', 'stup0', 'a net trained from scratch on as many pure-Stu boards as there are human tables'),
+                           ('sAh', 'stup0', 'a net trained from scratch on those pure-Stu boards and every human table')):
         path = f'{HUMAN}/{tag}.npz'
         names = {'self': own, '*': own}
         bots[f'stu{tag}-n'] = alone(f'{what}, alone: its first card at every trick, no search, no rollouts, no claims', path, names)

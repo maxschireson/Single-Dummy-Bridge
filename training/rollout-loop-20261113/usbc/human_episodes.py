@@ -9,6 +9,10 @@ gives at least --min-call (an auction familiar to our bidder).
 OUT_DIR/<n>.json.gz: one episode file a table in the format gen8_match writes (candidate and opponent 'usbc', North-South
 the candidate), the humans' auction and cards, `declarer_tricks` the result (a claim's count where the play was claimed).
 scripts/gen7_build_dataset.py --policy-only turns them into rows whose target is the card the human played.
+
+--all-tables: every table of every deal, in OUT_DIR/fit/ (an auction our bidder knows) or OUT_DIR/unfit/ (any other), for
+the experiment's second part: is every expert table worth having, and are the unfamiliar auctions? --part K/N: the deals
+whose place in the sorted list is K mod N (to run N at once; the files carry the part in their names).
 """
 import argparse, collections, gzip, hashlib, json, random, sys
 from pathlib import Path
@@ -112,12 +116,33 @@ def main():
     ap.add_argument('--min-call', type=float, default=.05)
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--seed', type=int, default=20261114)
+    ap.add_argument('--all-tables', action='store_true')
+    ap.add_argument('--part', default='0/1')
     a = ap.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     b, name = mt.bidder(a.source, a.bots)
     by = collections.defaultdict(list)
     for key, r in tables(a.records):
         by[key].append(r)
+    if a.all_tables:
+        k, n_parts = (int(x) for x in a.part.split('/'))
+        (a.out / 'fit').mkdir(exist_ok=True)
+        (a.out / 'unfit').mkdir(exist_ok=True)
+        count = collections.Counter()
+        for j, key in enumerate(sorted(by)):
+            if j % n_parts != k:
+                continue
+            for r in by[key]:
+                where = 'fit' if min(mt.fit(b, r['hands'], r['dealer'], r['vul'], r['calls'])) >= a.min_call else 'unfit'
+                ep = episode(r, count[where])
+                if ep is None:
+                    count['play not usable'] += 1
+                    continue
+                with gzip.open(a.out / where / f'{k}_{count[where]:06d}.json.gz', 'wt') as f:
+                    json.dump(ep, f)
+                count[where] += 1
+        print(f'part {a.part}: {dict(count)}; common bidder {name}')
+        return
     rng = random.Random(a.seed)
     keys = sorted(by)
     rng.shuffle(keys)

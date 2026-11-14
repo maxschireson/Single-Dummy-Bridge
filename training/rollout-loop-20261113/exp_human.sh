@@ -13,12 +13,19 @@
 # mini     round 4 in small: from round 1's net as a round trains (4 epochs at 1e-4, as many replay rows), on about 10,000
 #          pure-Stu boards (m10), with the human boards (m10h), and with them four times over (m10h4).
 # scratch  from scratch on the same 10,000 boards (s10) and with the human boards (s10h): 512 wide, 6 epochs at 2e-3.
+# fit, all every expert table (Max, 09:43 UTC: "the human boards with a medium set of other boards"; the first part's result:
+#          1,556 boards help): the 3,841 tables with an auction our bidder knows and the 18,428 with any other (FEED2), added
+#          to mini's set: m10F (fit: the familiar ones), m10A (all: every table, auctions as bid), m10B (all: the unfamiliar
+#          auctions blanked).
+# big      from scratch at that size (512 wide, 6 epochs at 2e-3, the last epoch kept): hA (every human table), bA (as many
+#          pure-Stu boards), sAh (both together, playing as SiD).
 # Every net is scored on the same held-out rows of the one-net SiD's self-play (stu_eval: the tricks its first card gives up
 # against the rollouts' values), read as the bot it plays as. Nets go to models/cardplay/stu-exp-human-20261114/<tag>.npz
 # for the bots stu<tag>-n (the net alone) and stu<tag>-pst (inside the one-net rollout bot); logs and scores to pub/exp-human/.
 set -euo pipefail
 W=$HOME/work/loop; PY=$W/venv/bin/python; T=training/rollout-loop-20261113; X=$W/exp-human; P=$W/pub/exp-human
 FEED=${FEED:-feed/usbc-human-20261114}
+FEED2=${FEED2:-feed/usbc-human-all-20261114}
 BIG=${BIG:-$HOME/work/plan/rnet2w/data/train.npz}
 R1=${R1:-$W/pub/train-r1/policy.npz}; R3=${R3:-$W/pub/train-r3/policy.npz}
 THREADS=${THREADS:-8}
@@ -88,9 +95,53 @@ scratch)
   for tag in s10 s10h; do
     nice -n 10 "$PY" scripts/train_rollout_net.py --data "$X/$tag.npz" --all-train --val-data "$X/stu_eval.npz" --out "$X/$tag" --kind suit --width 512 \
       --epochs 6 --batch 512 --lr 2e-3 --save-epochs --compare "$R3" > "$X/$tag.log" 2>&1 || { say "training $tag failed: $(tail -n 3 "$X/$tag.log" | tr '\n' ' ' | cut -c1-300)"; exit 1; }
-    keep "$tag" "$X/$tag/policy.npz"
-  done
+    keep "$tag" "$X/$tag/policy_epoch6.npz"     # the last epoch: the held-out log-loss picks the least-trained one (its rows are the
+  done                                          # one-net bot's, whose defenders mix), while the tricks given up fall to the end
   rm -f "$X/s10.npz" "$X/s10h.npz" ;;
+fit)
+  git fetch -q --depth 1 origin "$FEED2"
+  git show "FETCH_HEAD:human_fit.npz" > "$X/human_fit.z"
+  "$PY" -c "import numpy as np, sys; z = np.load(sys.argv[1]); np.savez(sys.argv[2], **{k: z[k] for k in z.files})" "$X/human_fit.z" "$X/human_fit.npz"
+  rm -f "$X/human_fit.z"; say "set human_fit: $(rows "$X/human_fit.npz") rows"
+  nice -n 10 "$PY" $T/usbc/human_sets.py --merge "$X/m10F.npz" "$X/stu10.npz" "$X/human_fit.npz" "$X/replay10.npz" | tee -a "$P/timeline.log"
+  tune m10F m10F stu_eval "$R1" stup0=stu0,usbc=stu0 --all-train; rm -f "$X/m10F.npz" ;;
+all)
+  git fetch -q --depth 1 origin "$FEED2"
+  git show "FETCH_HEAD:human_unfit.npz" > "$X/human_unfit.z"
+  "$PY" -c "import numpy as np, sys; z = np.load(sys.argv[1]); np.savez(sys.argv[2], **{k: z[k] for k in z.files})" "$X/human_unfit.z" "$X/human_unfit.npz"
+  rm -f "$X/human_unfit.z"; say "set human_unfit: $(rows "$X/human_unfit.npz") rows"
+  # the unfamiliar auctions blanked: the calls and what they show read as nothing, as the trainer's own blank test does
+  "$PY" -c "import numpy as np, sys; z = dict(np.load(sys.argv[1])); z['auction'] = np.zeros_like(z['auction']); z['shown'] = np.zeros_like(z['shown']); np.savez(sys.argv[2], **z)" "$X/human_unfit.npz" "$X/human_unfit_blank.npz"
+  nice -n 10 "$PY" $T/usbc/human_sets.py --merge "$X/m10A.npz" "$X/stu10.npz" "$X/human_fit.npz" "$X/human_unfit.npz" "$X/replay10.npz" | tee -a "$P/timeline.log"
+  nice -n 10 "$PY" $T/usbc/human_sets.py --merge "$X/m10B.npz" "$X/stu10.npz" "$X/human_fit.npz" "$X/human_unfit_blank.npz" "$X/replay10.npz" | tee -a "$P/timeline.log"
+  for tag in m10A m10B; do tune "$tag" "$tag" stu_eval "$R1" stup0=stu0,usbc=stu0 --all-train; rm -f "$X/$tag.npz"; done ;;
+big)
+  # as many pure-Stu boards as there are human tables: round 3's own rows and every block and cut file it fetched
+  # shellcheck disable=SC2046
+  nice -n 10 "$PY" $T/usbc/human_sets.py --merge "$X/stu_all.npz" "$W/r3/stu_train.npz" $(ls "$W"/in/rows-*/*.npz "$W"/in/cut-*/*.npz) | tee -a "$P/timeline.log"
+  nice -n 10 "$PY" $T/usbc/human_sets.py --merge "$X/hA.npz" "$X/human_fit.npz" "$X/human_unfit.npz" | tee -a "$P/timeline.log"
+  deals=$("$PY" -c "import numpy as np, sys; print(len(np.load(sys.argv[1], mmap_mode='r')['family']))" "$X/hA.npz")
+  "$PY" - "$X/stu_all.npz" "$X/bA.npz" "$deals" <<'PY' | tee -a "$P/timeline.log"
+import sys
+import numpy as np
+sys.path.insert(0, 'training/rollout-loop-20261113/usbc')
+import human_sets as hs
+z = hs.load(sys.argv[1])
+n = min(int(sys.argv[3]), len(z['family']))
+pick = np.sort(np.random.default_rng(3).permutation(len(z['family']))[:n])
+out = hs.keep_deals(z, pick)
+hs.describe(sys.argv[2], out)
+np.savez(sys.argv[2], **out)
+PY
+  rm -f "$X/stu_all.npz"
+  nice -n 10 "$PY" $T/usbc/human_sets.py --merge "$X/sAh.npz" "$X/bA.npz" "$X/hA.npz" | tee -a "$P/timeline.log"
+  for trio in "hA stu_eval_usbc" "bA stu_eval" "sAh stu_eval"; do
+    read -r tag held <<< "$trio"
+    nice -n 10 "$PY" scripts/train_rollout_net.py --data "$X/$tag.npz" --all-train --val-data "$X/$held.npz" --out "$X/$tag" --kind suit --width 512 \
+      --epochs 6 --batch 512 --lr 2e-3 --save-epochs > "$X/$tag.log" 2>&1 || { say "training $tag failed: $(tail -n 3 "$X/$tag.log" | tr '\n' ' ' | cut -c1-300)"; exit 1; }
+    keep "$tag" "$X/$tag/policy_epoch6.npz"
+  done
+  rm -f "$X/hA.npz" "$X/bA.npz" "$X/sAh.npz" ;;
 *) say "unknown stage $stage"; exit 1 ;;
 esac
 done
