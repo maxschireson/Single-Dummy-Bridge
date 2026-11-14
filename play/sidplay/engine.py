@@ -48,6 +48,8 @@ class ArenaSid:
 
     def __init__(self, bundle, meta):
         bundle, spec = Path(bundle), meta['spec']
+        self.spec = spec
+        self.style_salt = random.SystemRandom().getrandbits(32)     # a bidding style's random share is not replayable
         try:
             import tensorflow as tf
             tf.config.threading.set_intra_op_parallelism_threads(1)
@@ -81,6 +83,11 @@ class ArenaSid:
             x = encode(BidObservation(tuple(hand), seat, dealer, vulnerability, tuple(calls)))
             xs, lengths = pack_inputs([x])
             raw, _ = self.bidder.predict(xs, lengths)
+            style = self.spec.get('bid_style')
+            if style:           # a bidding style (bridge_harness/bid_style.py, where the bundle's source has it)
+                from bridge_harness import bid_style
+                u = random.Random(hash((tuple(sorted(hand)), seat, dealer, len(calls), 7919)) ^ self.style_salt)
+                return CALLS[bid_style.choose(raw[0], mask, tuple(hand), style, u.random(), u.random())]
             return CALLS[int(np.argmax(np.where(mask, raw[0], -np.inf)))]
         from bridge_harness.bidding_env import CALL_ID
         from bridge_harness.core import normalize_bid
