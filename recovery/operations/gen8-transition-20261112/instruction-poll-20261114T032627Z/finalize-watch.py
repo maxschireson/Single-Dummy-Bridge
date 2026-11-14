@@ -21,7 +21,9 @@ oldrefs=w['watched_source_refs']
 newrefs=scan['refs']
 newbranches=sorted(set(newrefs)-set(oldrefs))
 removed=sorted(set(oldrefs)-set(newrefs))
-assert not newbranches and not removed,(newbranches,removed)
+reviewed_branches=read(CASE/'new-branch-review.json')
+assert reviewed_branches['all_reviewed'] and not reviewed_branches['owned_stream_changed'] and not reviewed_branches['other_producers_mutated']
+assert set(newbranches)=={r['branch'] for r in reviewed_branches['new_branches']} and not removed,(newbranches,removed)
 for path,sha in scan['main_files'].items():
     assert w['file_revisions'][path]==sha,(path,sha)
 for path,sha in scan['source_files'].items():
@@ -65,7 +67,14 @@ w['source_file_revisions']={'ref':newrefs['feature/gen8-prototype-20261112'],'pa
 w['poll_checkpoint_note']='Comments scan is anchored to poll START, not finish. Current watch/recovery publication is independently verified after the existing publisher captures these exact bytes; proof is in this case.'
 w['completion_status']={'completed':h['state']['completed'],'target':s['target'],'complete':False,'source_budget_only':True,'gen71_comparison_gate_enabled':False,'selfplay_launch_enabled':False}
 w['stu_scope_review']['latest_poll_review']={'poll_start':start,'revision':research['revision'],'commits':research['commits'],'scope':research['scope'],'disposition':research['disposition'],'applied':False,'evidence':str(CASE/'research-commit-review.json')}
-w['latest_scope_review']={'revision':scan['coordination']['revision'],'blob':scan['coordination']['blob'],'entry':scan['coordination']['latest_entry'],'scope':scan['coordination']['scope'],'disposition':scan['coordination']['disposition'],'continuing_authority':scan['coordination']['continuing_general_authority'],'current_effect':'Continue immutable Gen8 source792c4cb, manifestcd98, five-pair main mix, three normal workers, zero BEN and source budget18283. Preserve FP32 source, existing cache semantics, all retired cohorts and the disabled legacy gates.'}
+w['latest_scope_review']={'revision':scan['coordination']['revision'],'blob':scan['coordination']['blob'],'entry':scan['coordination']['latest_entry'],'scope':scan['coordination']['scope'],'disposition':scan['coordination']['disposition'],'continuing_authority':scan['coordination']['continuing_general_authority'],'current_effect':'Continue immutable Gen8 source 792c4cb, manifest cd98, five-pair main mix, three normal workers, zero BEN and source budget 18283. GenX runs on Azure4; Stu external-data and Gen8-cardplay self-play work is directed at the loop and Azure1. No canonical-plan change, all-collector switch, local self-play opening or new model/settings adoption.'}
+peer_review=read(CASE/'genx-stu-peer-review.json')
+w['genx_stu_peer_review'].update(peer_review)
+w['genx_stu_peer_review']['queued_status']='Running since02:45 on Azure4, two cores. Latest pinned registered-feed state in this review: '+str(peer_review['state']['completed'])+'/4000, 0 failures; transfer is a mirror, not extra boards.'
+w['genx_stu_peer_review']['peer_status']='registered_running'
+w['research_disposition']='Gen X Stu is registered and running as an authorized Gen9/Azure4 peer. Stu has Max-directed strong/external-data, Gen8-cardplay self-play and sampled-seat experiments on its own boxes and branch. These do not change the Codex canonical Gen8 plan, open local self-play or authorize local model promotion/training. Keep frozen science and all released-model exclusion requirements.'
+w['future_gen9_review']['latest_genx_operational_review']={'poll_start':start,'registered':True,'registration_key':peer_review['registration']['entry']['key'],'feed':peer_review['registration']['entry']['branch'],'feed_revision':peer_review['feed_revision'],'manifest':peer_review['manifest']['identity'],'source_commit':peer_review['manifest']['source_commit'],'completed':peer_review['state']['completed'],'target':4000,'failures':0,'adopted_by_this_stream':False,'evidence':str(CASE/'genx-stu-peer-review.json')}
+w['reviewed_new_branches']=reviewed_branches
 w['performance_proposal_review']['research_revision']=research['revision']
 w['performance_proposal_review']['applied']=False
 w['performance_proposal_review']['latest_poll_review']={'number':34,'head':scan['performance_proposal']['head'],'state':scan['performance_proposal']['state'],'merged':scan['performance_proposal']['merged'],'reviews':[],'frozen_source_retained':True,'conditional_bf16_guidance_applies':False,'current_runtime_has_no_bf16_path':True}
@@ -80,5 +89,5 @@ p=C/'instruction-watch.json.tmp'
 p.write_text(json.dumps(w,indent=2,ensure_ascii=False)+'\n')
 os.replace(p,C/'instruction-watch.json')
 (CASE/'live-capture-sample.json').write_text(json.dumps(h['live_capture_sample'],indent=2)+'\n')
-(CASE/'branch-review.json').write_text(json.dumps({'poll_start':start,'total':len(newrefs),'new_branches':newbranches,'removed_branches':removed,'changed_refs':{k:{'before':oldrefs[k],'after':v} for k,v in newrefs.items() if oldrefs[k]!=v},'complete':True},indent=2)+'\n')
+(CASE/'branch-review.json').write_text(json.dumps({'poll_start':start,'total':len(newrefs),'new_branches':newbranches,'removed_branches':removed,'changed_refs':{k:{'before':oldrefs.get(k),'after':v} for k,v in newrefs.items() if oldrefs.get(k)!=v},'complete':True},indent=2)+'\n')
 print(json.dumps({'poll_start':start,'comments_since':scan['comments_since'],'next_comment_scan_since':w['next_comment_scan_since'],'result':w['result'],'completed':h['state']['completed'],'source_unchanged':True,'watch_bytes':(C/'instruction-watch.json').stat().st_size,'next_check':w['next_check']}))
