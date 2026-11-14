@@ -3,3 +3,5 @@ stuhs-pst v stubs-pst: 250 boards to play (0 done), 8 workers
 100 boards: -0.29 +- 0.45 IMPs/board for stuhs-pst; 532 boards/hour; 0 failed
 150 boards: -0.2333 +- 0.4026 IMPs/board for stuhs-pst; 608 boards/hour; 0 failed
 200 boards: -0.105 +- 0.357 IMPs/board for stuhs-pst; 652 boards/hour; 0 failed
+250 boards: -0.008 +- 0.3176 IMPs/board for stuhs-pst; 688 boards/hour; 0 failed
+{"pair": "stuhs-pst~stubs-pst", "boards": 250, "cpu_per_board": 21.48, "common": {"imps_per_board": -0.008, "se": 0.3176, "boards": 250, "won": 84, "lost": 72, "flat": 94}, "native": {"imps_per_board": -0.008, "se": 0.3176, "boards": 250, "won": 84, "lost": 72, "flat": 94}}

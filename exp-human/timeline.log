@@ -111,3 +111,4 @@ s10h   454954    | 1: 1.3395/0.4168/0.0996 2: 1.3391/0.4350/0.0927 3: 1.3470/0.4
 /home/bridgebots/work/loop/exp-human/bA.npz: 920187 rows of 22269 deals (train 17910, validation 2247, test 2112); rows by bot {'stup0': 920187}; with the rollouts' values 77%
 /home/bridgebots/work/loop/exp-human/sAh.npz: 1550483 rows of 44538 deals (train 35840, validation 4340, test 4358); rows by bot {'stup0': 920187, 'usbc': 630296}; with the rollouts' values 46%
 2026-11-14T11:54:51Z net hA: sha256 228544464cae3224
+2026-11-14T12:00:06Z net bA: sha256 39e3c819c1bbb527
