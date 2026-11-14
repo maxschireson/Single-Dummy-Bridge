@@ -219,7 +219,7 @@ function stylesPanel(p, tag) {
     h('p', {}, h('span', { class: 'muted' }, 'North, your partner, as you know it: '), t.N),
     h('p', {}, h('span', { class: 'muted' }, 'East and West, as their partner describes them: '),
       'East ', t.E, '. West ', t.W, '.'),
-    actual ? h('div', {}, h('h3', {}, 'Their actual styles'),
+    actual ? h('div', {}, h('h3', {}, 'Actual styles'),
       ['N', 'E', 'W'].map(s => h('p', {}, h('b', {}, SEAT_NAME[s]), ': ', actual[s].text,
         h('span', { class: 'muted small' }, ` (play ${weights(actual[s].play)}, random ${Math.round(actual[s].play.random * 100)}%; `,
           `bidding ${weights(actual[s].bid)}, random ${Math.round(actual[s].bid.random * 100)}%)`))),
