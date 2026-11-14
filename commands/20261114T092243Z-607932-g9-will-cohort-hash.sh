@@ -1,0 +1,2 @@
+# boxctl: timeout=60
+sudo -n journalctl -u g9-job-g9-cohort-azure4 --since "09:20" --no-pager | grep -oE "source [0-9a-f]{64} is neither" | sort | uniq -c; S=$HOME/work/g9/src/9b2e7ad0; cd $S && git rev-parse --short HEAD && git status --porcelain | head -5; /home/bridgebots/work/venv/bin/python -c "import sys; sys.path.insert(0,\".\"); from bridge_harness.loop_registry import source_hash; print(\"computed\", source_hash())"
