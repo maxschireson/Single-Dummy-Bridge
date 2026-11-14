@@ -1,0 +1,71 @@
+{
+  "poll_start": "2026-11-14T07:24:22Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "233093851269b409f9ebe1abbd517ca63534d475",
+  "commits": [
+    {
+      "sha": "233093851269b409f9ebe1abbd517ca63534d475",
+      "date": "2026-11-14T07:22:33Z",
+      "message": "USBC harvest: --part K/N to split the sessions across boxes; the session list kept\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "dd511357c385637eda54e7ebcb086182ce19ed4d",
+      "date": "2026-11-14T07:14:23Z",
+      "message": "USBC harvest: a match's facts keep their home and visiting ids\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "0c8afbad8ec1c420f5a231731e83bcdf514ba669",
+      "date": "2026-11-14T07:08:33Z",
+      "message": "USBC test data: harvest.py, the USBCs' bidding and play records from LoveBridge vugraph's public archive (Max, 06:55 UTC on 14 November). Test only, never trained on\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "7e815c6fc6648f10416060cbcfe40619a68bf11d",
+      "date": "2026-11-14T06:39:23Z",
+      "message": "Stu: round4_arena.sh SKIP_BUILD for a count ahead of the cut\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "8ee3ece332a8abfcab51ed3ddbc0e918b963ff82",
+      "date": "2026-11-14T06:39:03Z",
+      "message": "Stu: round4_arena.sh, the arena's Gen 8 and Gen 9 boards for round 4 (not in v2's set, BEN kept at round 3's share); round2.sh takes INIT_AS for new ids\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "9f1899325815367516ae38bb62c015d22c43d9e4",
+      "date": "2026-11-14T06:27:56Z",
+      "message": "Stu: the gate is blind (Max, 06:22 UTC). The one-net and two-net bots blind (stu3-put, stu3-psu) against BEN (200) on the same 1,024 deals, then the one-net bot blind until round 4's cut (jobs-azure3-ben7.txt); the non-blind blocks stop\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu blind one-net/two-net BEN200 measurements, round4 training-data preparation and test-only USBC harvest.",
+  "disposition": "Max06:22 makes Stu's BEN gate blind on the same1024deals and stops its non-blind blocks; only Stu loop configs/jobs/runs change. round4_arena.sh prepares training from arena Gen8/Gen9 feeds, not a collector transition or local training authorization. Max06:55's USBC records are explicitly TEST ONLY, NEVER TRAINED ON: do not harvest/import them into this immutable corpus or train on them. No local blind mode, new net, BEN job/gate, self-play, training, model promotion or test-data addition.",
+  "evidence": [
+    {
+      "sha": "0c8afbad8ec1c420f5a231731e83bcdf514ba669",
+      "message": "USBC test data: harvest.py, the USBCs' bidding and play records from LoveBridge vugraph's public archive (Max, 06:55 UTC on 14 November). Test only, never trained on\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "training/rollout-loop-20261113/usbc/harvest.py"
+      ]
+    },
+    {
+      "sha": "9f1899325815367516ae38bb62c015d22c43d9e4",
+      "message": "Stu: the gate is blind (Max, 06:22 UTC). The one-net and two-net bots blind (stu3-put, stu3-psu) against BEN (200) on the same 1,024 deals, then the one-net bot blind until round 4's cut (jobs-azure3-ben7.txt); the non-blind blocks stop\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "configs/loop-bots.json",
+        "training/rollout-loop-20261113/jobs-azure3-ben6.txt",
+        "training/rollout-loop-20261113/jobs-azure3-ben7.txt",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/make_runs.py",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    },
+    {
+      "sha": "8ee3ece332a8abfcab51ed3ddbc0e918b963ff82",
+      "message": "Stu: round4_arena.sh, the arena's Gen 8 and Gen 9 boards for round 4 (not in v2's set, BEN kept at round 3's share); round2.sh takes INIT_AS for new ids\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "files": [
+        "training/rollout-loop-20261113/round2.sh",
+        "training/rollout-loop-20261113/round4_arena.sh"
+      ]
+    }
+  ],
+  "research_plan_blob": "ff27cd3668e90d4e86544e420911254df9b36eec",
+  "future_exclusions": "Any later new owned cohort requires complete pinned exclusions for all released-model training families and existing corpus safeguards. Preserve current original v4.1 list and proof; keep test-only datasets held out."
+}
