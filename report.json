@@ -1,7 +1,31 @@
 {
-  "updated": "2026-11-14T20:55:35Z",
+  "updated": "2026-11-14T20:57:36Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
+    {
+      "name": "smoke-guarantee",
+      "pair": "rx-guarantee~rx-control",
+      "boards": 16,
+      "cpu_per_board": 29.43,
+      "common": {
+        "imps_per_board": 0.0625,
+        "se": 0.9375,
+        "boards": 16,
+        "won": 4,
+        "lost": 3,
+        "flat": 9
+      },
+      "native": {
+        "imps_per_board": 0.0625,
+        "se": 0.9375,
+        "boards": 16,
+        "won": 4,
+        "lost": 3,
+        "flat": 9
+      },
+      "failures": 0,
+      "boards_per_hour": 408
+    },
     {
       "name": "smoke-reader",
       "pair": "rx-reader~rx-control",
