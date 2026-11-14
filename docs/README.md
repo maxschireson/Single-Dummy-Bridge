@@ -27,6 +27,11 @@
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
 
+## Research reviews
+
+- [Stu allocation and learning-frontier selectors](../reports/stu-rollout-helper-allocation-2026-11-14.md): helper A's observable selector, label-selection interface, equal-cost experiments and net/search interaction test for #39.
+- [Stu search-allocation review and test contract](stu-search-allocation-review-2026-11-14.md): reproduced scheduling findings and detailed R02–R04 controls supporting the selector proposal.
+
 ## Historical material
 
 Dated launch documents and design PDFs preserve what was believed or planned at the time.

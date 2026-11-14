@@ -18,6 +18,10 @@ For current published observations use the [arena](https://maxschireson.github.i
 A launch snapshot's board count or running flag should never be presented as a
 current live reading.
 
+## Research design and independent review
+
+- [Stu helper A: allocation and learning-frontier selectors](stu-rollout-helper-allocation-2026-11-14.md) — proposed selectors and experiment design for #39; includes local diagnostic findings, no playing-strength claim.
+
 ## Adding a report
 
 Use a dated filename or dated experiment folder. Include the question, exact
