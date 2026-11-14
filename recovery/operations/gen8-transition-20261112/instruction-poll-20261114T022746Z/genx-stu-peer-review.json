@@ -1,0 +1,42 @@
+{
+  "poll_start": "2026-11-14T02:27:46Z",
+  "branch": "feature/gen9-genx-stu",
+  "revision": "43d555eb48be2d80405a5bea86b464bf9d864b19",
+  "current_branch_revision": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+  "plan": {
+    "path": "configs/round9-genx-stu.json",
+    "sha": "27fa4742e11081e4f34830d213af5d77945a7297",
+    "launch_enabled": true,
+    "pending": [],
+    "pair_weights": {
+      "stu3-ps~8s-32": 2,
+      "stu3-ps~9a-32": 1,
+      "stu3-ps~71s-32": 1
+    },
+    "scope": "Explicit Max authority to Gen9/will on Azure4. Not an instruction to switch this Codex collector.",
+    "source": "43d555eb48be2d80405a5bea86b464bf9d864b19"
+  },
+  "peer_launch_enabled": true,
+  "adopted_by_this_stream": false,
+  "queued_status": "Will's 01:30 notice: 4000 fresh deals, seed9019, 2workers when Azure4's cores free. Issue22 at01:58 reports waiting0/4000; no own queue change.",
+  "source_review": {
+    "commit": "9bba86b6eaba468f724a9917ae821cc196f082d1",
+    "message": "DDS position cache: BRIDGE_DDS_CACHE_SYNC=NORMAL lowers SQLite's sync level for one run (default FULL)\n\nFor Gen X Stu's run on azure4, which shares one Premium P10 disk with the Gen 9 cohort. At 01:33 UTC the box\nshowed 25-41% CPU idle, 4-17% iowait and 598 writes/s at 17 ms, with 166 flushes/s. Most of the writes are\nthe cohort's DDS-cache inserts, synced FULL. With WAL, NORMAL syncs at checkpoints only: a power loss can drop\nthe last entries, which are then solved again, and the file is never corrupted. Cards and results do not\nchange. Unset, the cache syncs FULL as before. Any other value is refused.\n\ntests/test_dds_cache_sync.py: FULL by default, NORMAL when asked, OFF refused. tests/test_dds_cache.py passes.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+    "files": [
+      {
+        "path": "bridge_harness/dds_cache.py",
+        "patch": "@@ -5,6 +5,7 @@\n needed: DD remaining tricks depend only on cards, strain, leader, current trick.\n \"\"\"\n import hashlib\n+import os\n from pathlib import Path\n import sqlite3\n import struct\n@@ -51,7 +52,12 @@ def __init__(self, path, library):\n         self.namespace = hashlib.sha256(b'dds-all-moves-v1\\0'+Path(library).read_bytes()).digest()\n         self.db = sqlite3.connect(path,timeout=60)\n         self.db.execute('PRAGMA journal_mode=WAL')\n-        self.db.execute('PRAGMA synchronous=FULL')\n+        # FULL unless BRIDGE_DDS_CACHE_SYNC=NORMAL: with WAL, NORMAL syncs at checkpoints only, so a power loss can drop\n+        # the last entries (they are solved again) but never corrupts the file. Cards and results are unchanged.\n+        sync = os.environ.get('BRIDGE_DDS_CACHE_SYNC', 'FULL').upper()\n+        if sync not in ('FULL', 'NORMAL'):\n+            raise ValueError('BRIDGE_DDS_CACHE_SYNC is FULL or NORMAL')\n+        self.db.execute(f'PRAGMA synchronous={sync}')\n         self.db.execute('CREATE TABLE IF NOT EXISTS positions ('\n                         'solver BLOB NOT NULL, position BLOB NOT NULL, scores BLOB NOT NULL,'\n                         'PRIMARY KEY(solver,position)) WITHOUT ROWID')"
+      },
+      {
+        "path": "tests/test_dds_cache_sync.py",
+        "patch": "@@ -0,0 +1,38 @@\n+\"\"\"The DDS position cache syncs FULL by default; BRIDGE_DDS_CACHE_SYNC=NORMAL lowers it, anything else is refused.\"\"\"\n+import os\n+from pathlib import Path\n+import tempfile\n+import unittest\n+from unittest import mock\n+\n+from bridge_harness.dds_cache import PositionCache\n+\n+\n+class CacheSyncTests(unittest.TestCase):\n+    def level(self, value):\n+        with tempfile.TemporaryDirectory() as tmp:\n+            lib = Path(tmp) / 'lib.so'\n+            lib.write_bytes(b'solver')\n+            env = {k: v for k, v in os.environ.items() if k != 'BRIDGE_DDS_CACHE_SYNC'}\n+            if value is not None:\n+                env['BRIDGE_DDS_CACHE_SYNC'] = value\n+            with mock.patch.dict(os.environ, env, clear=True):\n+                cache = PositionCache(Path(tmp) / 'c.sqlite', lib)\n+                try:\n+                    return cache.db.execute('PRAGMA synchronous').fetchone()[0]\n+                finally:\n+                    cache.db.close()\n+\n+    def test_full_by_default(self):\n+        self.assertEqual(self.level(None), 2)\n+\n+    def test_normal_when_asked(self):\n+        self.assertEqual(self.level('normal'), 1)\n+\n+    def test_other_values_are_refused(self):\n+        with self.assertRaises(ValueError):\n+            self.level('OFF')\n+\n+\n+if __name__ == '__main__':\n+    unittest.main()"
+      }
+    ]
+  },
+  "bound_scorer_fix": "The merged peer branch initialized BoundFitScorer.t for its newer optional bf16 FitScorer. Current frozen runtime has no bf16 path and is healthy; no backport.",
+  "cache_disposition": "BRIDGE_DDS_CACHE_SYNC=NORMAL is opt-in source support for Azure4's shared disk; FULL stays its default. No source patch, cache sync flag, tmpfs or resource control adopted here; exact-token local DDS rotation and disk guard remain unchanged.",
+  "names_mapping": "Will added 8s-32 to the new Stu actor's x8.names; 71s-32 and9a-32 remain its default. Will explicitly notes a later mapping change requires a new identity/run. Current owned actor configs and 8c~8s numeric-zero common comparison remain frozen.",
+  "future_local_requirements": "Any later new owned cohort still excludes all released-model training families by complete pinned membership, not assumptions about seed differences. No new cohort here.",
+  "peer_commands_executed": false,
+  "scientific_settings_changed": false
+}

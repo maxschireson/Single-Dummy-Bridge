@@ -1,0 +1,17 @@
+{
+  "poll_start": "2026-11-14T02:27:46Z",
+  "revision": "ca6c94d8aa384c982a6804bfb0d6f39ac41d13dc",
+  "blob": "de381b1f075fe8f8f4416ed3121d321911c03fa3",
+  "new_entries_since_prior_poll": 1,
+  "latest_entry": "2026-11-14T01:30:00Z will (Gen9)",
+  "notice_commits": [
+    {
+      "sha": "ca6c94d8aa384c982a6804bfb0d6f39ac41d13dc",
+      "message": "will (Gen 9): Gen X Stu prepared and queued on azure4; one question for loop on x8.names\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    }
+  ],
+  "scope": "Will's Gen X Stu preparation and queue on Azure4, including peer merge/actor names. No general Codex collection change.",
+  "continuing_general_authority": "Max19:57/19:59 relayed Nov13 20:00 by g7 explicitly continues arena collection at Codex primary, 19bbdce5 and the independent collector. Later Gen X Stu notices are addressed to Will/Gen9 on Azure4 and do not redirect this stream.",
+  "disposition": "Keep current immutable Gen8 main mix, source, actors, models, manifest, corpus, exclusions, 3 normal/0 BEN workers and disabled legacy gates. Observe peer queue read-only. Do not backport peer bf16/scorer or optional SQLite sync controls, install/operate BEN200 or rename DDS Gen8 as SiD.",
+  "evidence": "genx-stu-peer-review.json"
+}
