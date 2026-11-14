@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 73.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:57:06Z",
+ "id": "20261113T055533Z-586904-sidplay-install",
+ "output_bytes": 1876,
+ "output_tail": "== user and directories\n== code\n== python environment\n== double-dummy solver\n/opt/sidplay/source-792c4cb3f647ec71273f0cc57d95be1d0a0a5954/bridge_harness/libbridge_dds.so\n== bundle\n{\"bot\": \"8s-32\", \"system\": \"house-gen6\", \"source\": {\"path\": \"/opt/sidplay/source-792c4cb3f647ec71273f0cc57d95be1d0a0a5954\", \"commit\": \"792c4cb3f647ec71273f0cc57d95be1d0a0a5954\"}, \"artifacts\": [\"belief\", \"bidding\", \"gen7_policy\", \"lead_belief\", \"lead_state_bidder\", \"policy\", \"scorer\", \"system_scorer\"]}\n== switch\n== health\n{\"ok\":true,\"bot\":\"8s-32\",\"label\":\"Gen 8 standard (8s-32)\",\"engine\":\"bundle\",\"open_tables\":0,\"busy\":{\"interactive\":0,\"background\":0},\"decisions\":0,\"uptime\":9}\n\u25cf sidplay.service - Sid play server (people against the bridge bot)\n     Loaded: loaded (/etc/systemd/system/sidplay.service; enabled; preset: enabled)\n     Active: active (running) since Fri 2026-11-13 05:56:56 UTC; 10s ago\n   Main PID: 165237 (uvicorn)\n      Tasks: 60 (limit: 512)\n     Memory: 886.3M (max: 8.0G available: 7.1G peak: 886.3M)\n        CPU: 9.821s\n     CGroup: /system.slice/sidplay.service\n             \u251c\u2500165237 /opt/sidplay/venv/bin/python3 /opt/sidplay/venv/bin/uvicorn sidplay.app:app --app-dir /opt/sidplay/app/play --host 127.0.0.1 --port 8090 --no-access-log\n             \u251c\u2500165241 /opt/sidplay/venv/bin/python3 -c \"from multiprocessing.resource_tracker import main;main(13)\"\n             \u251c\u2500165242 /opt/sidplay/venv/bin/python3 -c \"from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=14, pipe_handle=18)\" --multiprocessing-fork\n             \u251c\u2500165245 /opt/sidplay/venv/bin/python3 -c \"from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=14, pipe_handle=20)\" --multiprocessing-fork\n               total        used        free      shared  buff/cache   available\nMem:           32086       12070        4429        1893       17952       20016\n",
+ "received": "2026-11-13T05:55:53Z",
+ "script_sha256": "8ece5ade8ec2fd5a61dff9d459639676210ac262dcefd9092d8be68abcb40753",
+ "started": "2026-11-13T05:55:53Z",
+ "timed_out": false,
+ "timeout_s": 3600
+}

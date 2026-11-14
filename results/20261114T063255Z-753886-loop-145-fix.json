@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 35.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:34:01Z",
+ "id": "20261114T063255Z-753886-loop-145-fix",
+ "output_bytes": 724,
+ "output_tail": "sg8e 1300 tables\nsource 9f18993\nRunning as unit: loop-collect.service; invocation ID: ba50f3a5d99c478d8cf237a0fe160f9b\nRunning as unit: loop-collect-b.service; invocation ID: 88f967e5c0c341a6b2008affc5f3d249\nRunning as unit: loop-rows.service; invocation ID: 714868dbab9e49b380f0c07c6551c825\nunits: loop-collect=active loop-collect-b=inactive loop-rows=active loop-switch=inactive \n2026-11-14T06:33:31Z azure1's role from here (Max, 05:24 and 05:37 UTC): Gen 8's personalities' self-play (jobs-azure1.txt, source 9f18993); set by hand, the switch had n\n2026-11-14T06:33:31Z start sg8s1 g8-greedy0~g8-passive0 seed 9001 first 700000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)\n2026-11-14T06:34:01Z\n",
+ "received": "2026-11-14T06:33:25Z",
+ "script_sha256": "7d0ef30c09ed55017f35ee83c5a25ee79bd7e5a4324c0ab2b3172951644d857e",
+ "started": "2026-11-14T06:33:25Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

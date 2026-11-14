@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:26:53Z",
+ "id": "20261113T012625Z-170439-next8-look",
+ "output_bytes": 1006,
+ "output_tail": "01:26:53\n0\n{ path=/home/Bridgebots/work/gen8/next8.sh ; argv[]=/home/Bridgebots/work/gen8/next8.sh ; ignore_errors=no ; start_time=[Thu 2026-11-12 20:56:31 UTC] ; stop_time=[Fri 2026-11-13 01:12:47 UTC] ; pid=11\nThu 2026-11-12 20:56:31 UTC\n10\n2026-11-13T01:12:45Z gen8-s3-azure1 done: 1468 of 1468 boards, all published; moving to gen8-s7-azure1\n01:12:47 units written\n01:12:47 collector active with 8 workers, publisher active, feed arena-gen8-s7-azure1-feed\n2026-11-13T01:12:47Z collector active, publisher active on gen8-s7-azure1\nBOX=azure1\nOLD=/home/Bridgebots/work/sources/arena-gen8-azure6-feed\nTAG=s7\nSRCDESC=\"cohort 08b8e638202a (azure6's first Gen 8 cohort, capsule shard 7/8 without the v4.1 training families, drained at 18:12 UTC on 12 November at 410 boards when azure6 was freed for another pro\nerror: process ID out of range\n\nUsage:\n ps [options]\n\n Try 'ps --help <simple|list|output|threads|misc|all>'\n  or 'ps --help <s|l|o|t|m|a>'\n for additional help text.\n\nFor more details see ps(1).\n",
+ "received": "2026-11-13T01:26:53Z",
+ "script_sha256": "c5e56dd3294fc8e5d11e0e8e695275dfd7c5f6f83f927a6c710a6473ab3da250",
+ "started": "2026-11-13T01:26:53Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

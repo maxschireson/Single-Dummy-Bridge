@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 54.9,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:10:12Z",
+ "id": "20261114T200911Z-589385-cmd",
+ "output_bytes": 884,
+ "output_tail": "quota: Fasv6 family 56/64, total regional 56/64\nVMs in the group now: 6\nazure1: OS disk 128 GB Premium_LRS; admin user bridgebots; secure boot true; vTPM true\n== creating Bridgebots7 at 2026-11-14T20:09:29Z\nexit 0\n  \"powerState\": \"VM running\"\n== VMs in Bridgebots_group\nName         Size               State       Zone\n-----------  -----------------  ----------  ------\nBridgebots   Standard_F8as_v6   VM running  1\nBridgebots2  Standard_F8as_v6   VM running  1\nBridgebots3  Standard_F8as_v6   VM running  1\nBridgebots4  Standard_F8as_v6   VM running  1\nBridgebots5  Standard_F16as_v6  VM running  1\nBridgebots6  Standard_F8as_v6   VM running  1\nBridgebots7  Standard_F8as_v6   VM running  1\n== quota after\nName                         Used    Limit\n---------------------------  ------  -------\nStandard Fasv6 Family vCPUs  64      64\nTotal Regional vCPUs         64      64\n20:10:12\n",
+ "received": "2026-11-14T20:09:18Z",
+ "script_sha256": "c207649b8206cb10ad689323b8c83c51261eaa5cc7c8a812cc35106e93c9066b",
+ "started": "2026-11-14T20:09:18Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

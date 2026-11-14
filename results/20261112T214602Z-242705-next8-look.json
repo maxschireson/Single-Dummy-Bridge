@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T21:46:17Z",
+ "id": "20261112T214602Z-242705-next8-look",
+ "output_bytes": 884,
+ "output_tail": "21:46:17\n111577\n{ path=/home/Bridgebots/work/gen8/next8.sh ; argv[]=/home/Bridgebots/work/gen8/next8.sh ; ignore_errors=no ; start_time=[Thu 2026-11-12 20:56:31 UTC] ; stop_time=[n/a] ; pid=111577 ; code=(null) ; sta\nThu 2026-11-12 20:56:31 UTC\n6\n20:26:08 units written\n20:26:08 collector active with 8 workers, publisher active, feed arena-gen8-s3-azure1-feed\n2026-11-12T20:26:08Z collector active, publisher active on gen8-s3-azure1\n2026-11-12T20:56:31Z started: waiting for the current cohort to finish, then gen8-s7-azure1\nBOX=azure1\nOLD=/home/Bridgebots/work/sources/arena-gen8-azure6-feed\nTAG=s7\nSRCDESC=\"cohort 08b8e638202a (azure6's first Gen 8 cohort, capsule shard 7/8 without the v4.1 training families, drained at 18:12 UTC on 12 November at 410 boards when azure6 was freed for another pro\n    PID ELAPSED COMMAND\n 111577    2986 bash /home/Bridgebots/work/gen8/next8.sh\n",
+ "received": "2026-11-12T21:46:17Z",
+ "script_sha256": "c5e56dd3294fc8e5d11e0e8e695275dfd7c5f6f83f927a6c710a6473ab3da250",
+ "started": "2026-11-12T21:46:17Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

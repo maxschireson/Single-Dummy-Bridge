@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 132.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:01:52Z",
+ "id": "20261113T055931Z-377315-sidplay-update",
+ "output_bytes": 1883,
+ "output_tail": "== user and directories\n== code\n== python environment\n== double-dummy solver\n== bundle\n{\"bot\": \"8s-32\", \"label\": \"Gen 8 standard (8s-32)\", \"stand_in\": true, \"entry\": null, \"system\": \"house-gen6\", \"source\": {\"path\": \"/opt/sidplay/source-792c4cb3f647ec71273f0cc57d95be1d0a0a5954\", \"commit\": \"792c4cb3f647ec71273f0cc57d95be1d0a0a5954\"}, \"artifacts\": [\"belief\", \"bidding\", \"gen7_policy\", \"lead_belief\", \"lead_state_bidder\", \"policy\", \"scorer\", \"system_scorer\"]}\n== switch\n== health\n{\"ok\":true,\"bot\":\"8s-32\",\"label\":\"Gen 8 standard (8s-32)\",\"stand_in\":true,\"engine\":\"bundle\",\"open_tables\":0,\"busy\":{\"interactive\":0,\"background\":0},\"decisions\":0,\"uptime\":9}\n{\"ok\": true, \"bot\": \"8s-32\", \"label\": \"Gen 8 standard (8s-32)\", \"stand_in\": true, \"engine\": \"bundle\", \"open_tables\": 0, \"busy\": {\"interactive\": 0, \"background\": 0}, \"decisions\": 0, \"uptime\": 9}\n{\"board\": 1, \"contract\": \"5CX\", \"declarer\": \"N\", \"tricks\": 3, \"score\": -2000, \"seconds\": 41.2, \"sid\": \"4H\", \"sid_score\": -420, \"imps\": -17, \"with_sid_seconds\": 52.8}\n{\"board\": 2, \"contract\": \"4S\", \"declarer\": \"W\", \"tricks\": 12, \"score\": -480, \"seconds\": 37.0, \"sid\": \"6C\", \"sid_score\": -920, \"imps\": 10, \"with_sid_seconds\": 63.8}\n{\"ok\": true, \"history_boards\": 2}\nMemoryCurrent=1343586304\nNice=-10\n    PID  NI   RSS     ELAPSED CMD\n 165832 -10 50528       02:06 /opt/sidplay/venv/bin/python3 /opt/sidplay/venv/bin/uvicorn sidplay.app:app --app-dir /opt\n 165837 -10 12660       02:06 /opt/sidplay/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(13\n 165838 -10 922532      02:06 /opt/sidplay/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(\n 165841 -10 928412      02:06 /opt/sidplay/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(\n 165842   0 887160      02:06 /opt/sidplay/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(\n",
+ "received": "2026-11-13T05:59:40Z",
+ "script_sha256": "34f0580124ff605ae9fd75c1817de4dc217bd3a1ec008bbd3ef33c316e20718c",
+ "started": "2026-11-13T05:59:40Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

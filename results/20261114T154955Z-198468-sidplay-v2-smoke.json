@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 58.9,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:51:14Z",
+ "id": "20261114T154955Z-198468-sidplay-v2-smoke",
+ "output_bytes": 1907,
+ "output_tail": "{\"ok\": true, \"bot\": \"stu4c-put\", \"label\": \"SiD (rollout) Stu R4c\", \"stand_in\": false, \"engine\": \"bundle\", \"open_tables\": 1, \"busy\": {\"interactive\": 0, \"background\": 0, \"analysis\": 0}, \"decisions\": 2, \"analysis\": true, \"uptime\": 103}\n{\"board\": 1, \"contract\": \"3NT\", \"declarer\": \"S\", \"tricks\": 3, \"score\": -300, \"seconds\": 28.0, \"sid\": \"3S\", \"sid_score\": 50, \"imps\": -8, \"with_sid_seconds\": 55.7, \"lost\": 4, \"events\": 2, \"analysis_seconds\": 2.53, \"sid_analysis_seconds\": 1.67, \"with_analysis_seconds\": 58.7}\n{\"ok\": true, \"history_boards\": 1}\nMemoryCurrent=2369159168\nNice=-10\n    PID  NI   RSS     ELAPSED CMD\n 439719 -10 53524       02:42 /opt/sidplay/venv/bin/python3 /opt/sidplay/venv/bin/uvicorn sidplay.app:app --app-dir /opt/sidplay/app/play --\n 439725 -10 12728       02:42 /opt/sidplay/venv/bin/python3 -c from multiprocessing.resource_tracker import main;main(13)\n 439726 -10 748328      02:42 /opt/sidplay/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=14, pipe_\n 439729 -10 732784      02:42 /opt/sidplay/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=14, pipe_\n 439730   0 762908      02:42 /opt/sidplay/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=14, pipe_\n 440087 -10 10068       00:44 /opt/sidplay/app-29c4cc008948aa8b1fa14bc20635207b219bfc5a/play/native/sure_cpp --keep\n 440088 -10 10024       00:43 /opt/sidplay/app-29c4cc008948aa8b1fa14bc20635207b219bfc5a/play/native/sure_cpp --keep\n 440089   0 36612       00:30 /opt/sidplay/venv/bin/python3 -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=14, pipe_\n 440093   0 10068       00:27 /opt/sidplay/app-29c4cc008948aa8b1fa14bc20635207b219bfc5a/play/native/sure_cpp --keep --value\n 440094   0 10036       00:15 /opt/sidplay/app-29c4cc008948aa8b1fa14bc20635207b219bfc5a/play/native/sure_cpp --keep\n",
+ "received": "2026-11-14T15:50:15Z",
+ "script_sha256": "bbbece792e31c7430266b5941e7eef0660ae651d57dea7bd439e920b1d26807f",
+ "started": "2026-11-14T15:50:15Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

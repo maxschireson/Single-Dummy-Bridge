@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 392.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:47:42Z",
+ "id": "20261114T124054Z-544088-cmd",
+ "output_bytes": 1338,
+ "output_tail": "source 9f18993\n2026-11-14T12:41:57Z cut sg8e 501000-501300: 300 boards, {\"episodes\": 300, \"deals\": 299, \"unique_families\": 299, \"examples\": 12399, \"train\": 9627, \"validation\": 1491, \"test\": 12, 624 KB\nsg8s1: nothing past block end 702000\nsg8s2: nothing past block end 704000\nsg8s3: nothing past block end 706000\nsg8s4: nothing past block end 708000\nsg8s5: nothing past block end 710000\nsg8s6: nothing past block end 712000\n2026-11-14T12:43:46Z cut sg8s7 713000-713740: 740 boards, {\"episodes\": 740, \"deals\": 740, \"unique_families\": 740, \"examples\": 30842, \"train\": 24666, \"validation\": 3073, \"test\": 3, 1512 KB\nsg8s8: no episodes\n2026-11-14T12:45:46Z cut sp3se 442000-442787: 787 boards, {\"episodes\": 787, \"deals\": 787, \"unique_families\": 787, \"examples\": 32405, \"train\": 26347, \"validation\": 3248, \"test\": 2, 1640 KB\n2026-11-14T12:47:42Z cut sps0e 341000-341744: 745 boards, {\"episodes\": 745, \"deals\": 743, \"unique_families\": 743, \"examples\": 30696, \"train\": 24953, \"validation\": 2413, \"test\": 3, 1552 KB\n2026-11-14T12:47:42Z cut round4 done on azure1\nsg8e 1300 tables sg8s1 2000 tables sg8s2 2000 tables sg8s3 2000 tables sg8s4 2000 tables sg8s5 2000 tables sg8s6 2000 tables sg8s7 1882 tables sp3se 2787 tables sps0e 1745 tables \n20\nMem:           32086       11802       12941           4        7891       20283\n2026-11-14T12:47:42Z\n",
+ "received": "2026-11-14T12:41:10Z",
+ "script_sha256": "00a27bdc8ee7a0e4de38cf1eafefacb85f291e9e86cfa31269f19a5f9f5b0537",
+ "started": "2026-11-14T12:41:10Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

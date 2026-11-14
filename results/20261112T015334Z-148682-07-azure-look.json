@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 132.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T01:56:07Z",
+ "id": "20261112T015334Z-148682-07-azure-look",
+ "output_bytes": 1871,
+ "output_tail": "azure-cli 2.92.0\n== signed in with the VM's managed identity\n== resources in Bridgebots_group\nName                                                  Location\n----------------------------------------------------  ----------\nBridgebots_key                                        eastus\nBridgebots-ip                                         eastus\nBridgebots-nsg                                        eastus\nvnet-eastus-1                                         eastus\nbridgebots586                                         eastus\nBridgebots                                            eastus\nBridgebots_OsDisk_1_2d6d2c7cbe474c49a21c7450adc3644a  eastus\n== role assignments on Bridgebots_group\nRole\n-----------\nOwner\nContributor\n== the VM\n{\n  \"identity\": \"SystemAssigned\",\n  \"image\": {\n    \"exactVersion\": \"24.04.202610250\",\n    \"offer\": \"ubuntu-24_04-lts\",\n    \"publisher\": \"canonical\",\n    \"sku\": \"server\",\n    \"version\": \"latest\"\n  },\n  \"osDiskGb\": null,\n  \"osDiskSku\": \"Premium_LRS\",\n  \"priority\": null,\n  \"securityType\": \"TrustedLaunch\",\n  \"size\": \"Standard_F8as_v6\",\n  \"zones\": [\n    \"1\"\n  ]\n}\n== network\n{\n  \"accelerated\": true,\n  \"nic\": \"bridgebots586\",\n  \"nsg\": \"Bridgebots-nsg\",\n  \"subnet\": \"snet-eastus-1\"\n}\n{\n  \"defaultOutboundAccess\": null,\n  \"natGateway\": null,\n  \"nsg\": null,\n  \"prefix\": null,\n  \"subnet\": \"snet-eastus-1\"\n}\nName           Sku       Allocation\n-------------  --------  ------------\nBridgebots-ip  Standard  Static\n== vCPU quota in eastus (used / limit)\nName                               Used    Limit\n---------------------------------  ------  -------\nStandard Fasv6 Family vCPUs        8       10\nTotal Regional Low-priority vCPUs  0       3\nTotal Regional vCPUs               8       10\n== F8as_v6 availability in eastus\n[\n  {\n    \"name\": \"Standard_F8as_v6\",\n    \"restrictions\": [],\n    \"zones\": [\n      \"2\",\n      \"1\",\n      \"3\"\n    ]\n  }\n]\n",
+ "received": "2026-11-12T01:53:54Z",
+ "script_sha256": "0878849b4f630c79fc961dafbec4708ee296cf10db30c389cfe08a1a1642f7ac",
+ "started": "2026-11-12T01:53:54Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

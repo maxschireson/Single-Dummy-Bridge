@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:06:15Z",
+ "id": "20261114T180606Z-543400-cmd",
+ "output_bytes": 912,
+ "output_tail": "2026-11-14T14:36:22Z start sg8s10 g8-greedy0~g8-low0 seed 9001 first 718000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)\n2026-11-14T15:29:22Z end sg8s10: exit 0\n2026-11-14T15:29:22Z start sg8s11 g8-patient0~g8-high0 seed 9001 first 720000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)\n2026-11-14T16:21:59Z end sg8s11: exit 0\n2026-11-14T16:21:59Z start sg8s12 g8-active0~g8-passive0 seed 9001 first 722000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)\n2026-11-14T17:15:39Z end sg8s12: exit 0\nloop-publish.service active running;loop-rows.service active running;\nsource 9f18993\nsg8s10 g8-greedy0~g8-low0 9001 718000 2000 8 --episodes --one-room\nsg8s11 g8-patient0~g8-high0 9001 720000 2000 8 --episodes --one-room\nsg8s12 g8-active0~g8-passive0 9001 722000 2000 8 --episodes --one-room\n26\nsg8s1 2000 | sg8s6 2000 | sg8s12 2000 | \n18:06:15\n",
+ "received": "2026-11-14T18:06:14Z",
+ "script_sha256": "7d2227a9bc64c9498f052650ff8508a494c7fa20836a9442947e4df9fe20049b",
+ "started": "2026-11-14T18:06:15Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

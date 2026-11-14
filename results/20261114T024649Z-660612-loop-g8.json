@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 152.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T02:49:29Z",
+ "id": "20261114T024649Z-660612-loop-g8",
+ "output_bytes": 760,
+ "output_tail": "source 5414b8a\nRunning as unit: loop-collect.service; invocation ID: 9d177c0191444f27ae11e887339a9b37\nRunning as unit: loop-rows.service; invocation ID: 7c1a5ea6f0ff4621971392da8025f138\nazure1: active active active \n2026-11-14T02:46:57Z sp3se stopped: the box makes Gen 8 card play's self-play records (sg8e)\n2026-11-14T02:46:57Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source 5414b8a, nets fp32)\n2026-11-14T02:49:29Z cut sp3se 442000-442774: 774 boards, {\"episodes\": 774, \"deals\": 774, \"unique_families\": 774, \"examples\": 31878, \"train\": 25899, \"validation\": 3208, \"test\": 2, 1616 KB\nsp3se 2787 tables (final)\nMem:           32086        5598       25238           4        1695       26488\n2026-11-14T02:49:29Z\n",
+ "received": "2026-11-14T02:46:56Z",
+ "script_sha256": "34f2f82de7893ff7e892fdd60ea89e4463431fd417fa90cc8dbf7e00b5606d4d",
+ "started": "2026-11-14T02:46:56Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

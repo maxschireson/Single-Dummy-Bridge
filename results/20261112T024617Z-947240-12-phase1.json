@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 237.0,
+ "exit_code": 2,
+ "finished": "2026-11-12T02:50:44Z",
+ "id": "20261112T024617Z-947240-12-phase1",
+ "output_bytes": 1636,
+ "output_tail": "== prepare (shard 0/8)\nidentity 002cbafd32e1f74b57021c15ba7db2841aaf63b002822246caac9bb443b50027 | target 2814 | shard {'index': 0, 'of': 8} | pairs {'7s-32~6-32': 1, '7s-32~5RZ32': 1, '7s-32~1': 1}\ntree: margin 0.25 trust 0.3 path 0.5 tricks 3 breadth 3 layouts 8 plain 1\n== preflight\npreflight passed: [('7s-32~5RZ32', 0, 267), ('7s-32~6-32', 1, 86), ('7s-32~1', 2, 216), ('7s-32~6-32', 3, 121), ('7s-32~1', 4, 200), ('7s-32~5RZ32', 5, 93)]\npreflight took 233s\n== records for recovery\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794451842.476219   15517 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nI0000 00:00:1794451842.508023   15517 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794451843.677290   15517 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\n== publication checkout (arena-gen7-phase1-azure1-feed)\n== drain the pre-7 test match\n",
+ "received": "2026-11-12T02:46:47Z",
+ "script_sha256": "62837b392d46c9da762e068e848b3d74c97e2b2e3727772d8bee061715b8590d",
+ "started": "2026-11-12T02:46:47Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

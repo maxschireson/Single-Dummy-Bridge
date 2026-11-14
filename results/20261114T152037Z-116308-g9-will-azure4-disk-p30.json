@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 136.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:23:00Z",
+ "id": "20261114T152037Z-116308-g9-will-azure4-disk-p30",
+ "output_bytes": 352,
+ "output_tail": "== before\n{\n  \"bursting\": null,\n  \"iops\": 500,\n  \"mbps\": 100,\n  \"name\": \"Bridgebots4_OsDisk\",\n  \"sizeGb\": 128,\n  \"sku\": \"Premium_LRS\",\n  \"state\": \"Attached\",\n  \"tier\": \"P10\"\n}\n== after\n{\n  \"bursting\": null,\n  \"iops\": 5000,\n  \"mbps\": 200,\n  \"name\": \"Bridgebots4_OsDisk\",\n  \"sizeGb\": 128,\n  \"sku\": \"Premium_LRS\",\n  \"state\": \"Attached\",\n  \"tier\": \"P30\"\n}\n",
+ "received": "2026-11-14T15:20:44Z",
+ "script_sha256": "6a6b84046d3c6ea7e600c84a411f79438a32460b801d907ddcacc938b4680d1d",
+ "started": "2026-11-14T15:20:44Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

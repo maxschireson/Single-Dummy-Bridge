@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:02:47Z",
+ "id": "20261114T070226Z-017951-loop-154-vgapi",
+ "output_bytes": 745,
+ "output_tail": "200 2 application/json https://vugraph.lovebridge.com/api/archive/boards/631412\n[]\n200 0  https://vugraph.lovebridge.com/api/archive/board/631412/1\n\n200 28 application/json https://vugraph.lovebridge.com/api/archive/rounds/631412\n{\"rounds\":[],\"withdraws\":{}}\n200 1021126 application/json https://vugraph.lovebridge.com/api/archive/miniSessions\n[{\"miniSessionId\":\"hkcba_132898_1_1\",\"name\":\"Round 4\",\"namePlus\":\"Men's Team Round 4\",\"type\":\"PAIR\",\"location\":\"Hong Kong\",\"startDateTime\":\"2022-02-12T06:30:39.906Z\",\"status\":\"ARCHIVED\",\"delay\":30,\"calcType\":\"IMP\",\"crossTable\":false,\"alertType\":\"SCREEN\",\"adaptive\":false,\"adaptiveOperation\":false,\"adaptivePercent\":0,\"arrangeType\":\"HOWELL\",\"bidOnly\":false,\"boardsPerRound\":16,\"clubId\":-17,\"eventId\":1\n",
+ "received": "2026-11-14T07:02:46Z",
+ "script_sha256": "01bd6c9d420d557cf55ebfd6ef548f938d6f3933339d95944cd0feb33d93d6f0",
+ "started": "2026-11-14T07:02:46Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

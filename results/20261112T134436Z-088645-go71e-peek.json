@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:44:44Z",
+ "id": "20261112T134436Z-088645-go71e-peek",
+ "output_bytes": 681,
+ "output_tail": "13:44:44\ngo71e inactive; mixswitch active\n   deal 3 71s-32~7s-32: 67s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 389, in the tree's tricks 110, tree consulted 61, moved 6, tree forks 0, gap forks 10 on 2 tables\n   tree in all: {'in_a_stage': 408, 'consulted': 224, 'moved': 13, 'over_budget': 0, 'tree_forks': 5, 'tree_fork_imps': 0, 'mean_seconds': 0.19, 'p95_seconds': 0.53, 'max_seconds': 1.04, 'mean_solves': 59.08, 'p95_solves': 98, 'max_solves': 136}\n13:44:40 == records\n13:44:43 records written; publication checkout on arena-gen7-1-mix2-azure1-feed\n13:44:44 next cohort armed: gen71-mix2-azure1; mixswitch active\n13:44:44 DONE\n",
+ "received": "2026-11-12T13:44:44Z",
+ "script_sha256": "40cbd90b8460a4f19a4f205e22729db75cad9b1580ed57c557771806bd403fc4",
+ "started": "2026-11-12T13:44:44Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

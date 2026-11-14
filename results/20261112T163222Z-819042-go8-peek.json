@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:32:42Z",
+ "id": "20261112T163222Z-819042-go8-peek",
+ "output_bytes": 316,
+ "output_tail": "16:32:42\ngo8 active; arena-gen8 inactive\n16:22:23 == preflight\n89.2     618 /home/Bridgebots/work/venv/bin/python ops/smoke_gen7.py --run /home/Bridgebots/work/runs/gen8-azure1 --out /home/Bridgebots/wor\n 0.0   56691 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers\n 0.0   56708 [rcu_sched]\n",
+ "received": "2026-11-12T16:32:42Z",
+ "script_sha256": "9c9202384cecaf5032b03d1287c61e82721b8edc825dd956b2bd2246785c615a",
+ "started": "2026-11-12T16:32:42Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

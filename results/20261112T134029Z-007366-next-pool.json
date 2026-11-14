@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 45.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:41:40Z",
+ "id": "20261112T134029Z-007366-next-pool",
+ "output_bytes": 238,
+ "output_tail": "go71e: active\nclaim cohort 3e1585609f82: shard 5/8 of capsule a76a39f13d9d, 2813 deals, disjoint from shards 0 to 4; mix2 cohort 31a8dd6ce638: 1478 deals (1335 training families left out), none in the current cohort\n13:40:58 == preflight\n",
+ "received": "2026-11-12T13:40:54Z",
+ "script_sha256": "1d8ad623818967df396300c0fa33097d9ef6e4c2a991c17c3697f7e6946bce77",
+ "started": "2026-11-12T13:40:54Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

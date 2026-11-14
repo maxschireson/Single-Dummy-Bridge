@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 5.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:30:51Z",
+ "id": "20261114T073018Z-314993-loop-167-lt",
+ "output_bytes": 419,
+ "output_tail": "Running as unit: loop-usbclt.service; invocation ID: 74b79bfbc9344e0d85cc16b7d6d2a008\nactive active 2026-11-14T07:28:50Z usbc_138424_2_1 Open Semifinal 2/4: 30 boards, 120 tables (1248 requests so far)\n2026-11-14T07:29:04Z usbc_138429_1_1 Open Final 1/4: 30 boards, 60 tables (1319 requests so far)\n2026-11-14T07:29:18Z usbc_138429_4_1 Open Final 4/4: 30 boards, 60 tables (1390 requests so far)\n9\n2026-11-14T07:30:51Z\n",
+ "received": "2026-11-14T07:30:46Z",
+ "script_sha256": "c5a98f58bbbdac3b2e2d232ef5a4004847b6a30f11d80479337e45aa077086a0",
+ "started": "2026-11-14T07:30:46Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

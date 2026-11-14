@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 111.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:53:25Z",
+ "id": "20261112T034924Z-428521-p41-create-azure5",
+ "output_bytes": 1454,
+ "output_tail": "03:51:38 quota in eastus: Fasv6 family 32/48, total regional 32/48\nlike azure1: Standard_F8as_v6, OS disk 128 GB Premium_LRS, zone 1, same network and security group\n== creating Bridgebots5 at 03:51:40 UTC\ncreate exit 0\n  \"powerState\": \"VM running\",\n  \"privateIp\": \"172.16.0.8\"\nRunning timer as unit: azure5-reaper.timer\nWill run service as unit: azure5-reaper.service\nNEXT                            LEFT LAST PASSED UNIT                ACTIVATES\nThu 2026-11-12 05:42:45 UTC 1h 49min -         - azure5-reaper.timer azure5-reaper.service\n\nAzure auto-shutdown not set: \tTarget: Microsoft.DevTestLab\n== agent on Bridgebots5 as box azure5\nEnable succeeded: \n[stdout]\nThe agent retries every 30 seconds. Once the key is in, a heartbeat appears on\nbranch box/azure5/status. To watch the agent here: journalctl -u boxctl -f\nactive\n[stderr]\n== VMs in Bridgebots_group\nName         Size              State       Zone\n-----------  ----------------  ----------  ------\nBridgebots   Standard_F8as_v6  VM running  1\nBridgebots2  Standard_F8as_v6  VM running  1\nBridgebots3  Standard_F8as_v6  VM running  1\nBridgebots4  Standard_F8as_v6  VM running  1\nBridgebots5  Standard_F8as_v6  VM running  1\n== quota after\nName                         Used    Limit\n---------------------------  ------  -------\nStandard Fasv6 Family vCPUs  40      48\nTotal Regional vCPUs         40      48\ncreated_epoch=1794455500 created_utc=03:51:40 reaper_at_utc=05:41:40 cap_utc=05:51:40\n",
+ "received": "2026-11-12T03:51:33Z",
+ "script_sha256": "04f9473aef3d2f207ac350534dd66d5bf10e3181fe93b06f2960bcccad98f677",
+ "started": "2026-11-12T03:51:33Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

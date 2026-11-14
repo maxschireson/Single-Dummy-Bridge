@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T20:21:36Z",
+ "id": "20261112T202127Z-689472-net-ip",
+ "output_bytes": 45,
+ "output_tail": "host Bridgebots ip 172.16.0.4  gw 172.16.0.1\n",
+ "received": "2026-11-12T20:21:36Z",
+ "script_sha256": "c9f068e5bae167772f1a375d5c5ef992aafc6e3d01af47a1f9e507e3049abc28",
+ "started": "2026-11-12T20:21:36Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 2107.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:23:41Z",
+ "id": "20261114T054801Z-033804-loop-142-oracle1",
+ "output_bytes": 818,
+ "output_tail": "120 boards of l3-p; decisions of the candidate by rollouts with a choice, to trick 4: 1459\nthe bot plays the recorded card again at 57% of them; how each card was chosen (again, oracle): {('rollout', 'rollout'): 1459}\ndouble-dummy tricks given up A DECISION (hindsight)     played   again   oracle | oracle below again by\n  declaring    771 decisions                         0.0545   0.0584   0.0285 | +0.0298 +- 0.0088\n  defending    688 decisions                         0.0596   0.0596   0.0291 | +0.0305 +- 0.0101\n  all         1459 decisions                         0.0569   0.0589   0.0288 | +0.0302 +- 0.0067\n\nreal\t35m6.516s\nuser\t41m33.401s\nsys\t0m31.174s\n2026-11-14T06:18:09Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source ba98377, nets fp32)\n2026-11-14T06:23:41Z\n",
+ "received": "2026-11-14T05:48:34Z",
+ "script_sha256": "a2c53f908f2a1301bbc00099393e0b9ba87d236c3525f31b80a46469cf4423bd",
+ "started": "2026-11-14T05:48:34Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

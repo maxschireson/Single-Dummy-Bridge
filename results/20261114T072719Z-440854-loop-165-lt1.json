@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 42.6,
+ "exit_code": 1,
+ "finished": "2026-11-14T07:28:28Z",
+ "id": "20261114T072719Z-440854-loop-165-lt1",
+ "output_bytes": 413,
+ "output_tail": "usbc_138206_2_1.json.gz 478 tables\nusbc_138206_1_1.json.gz 480 tables\n\nreal\t0m42.307s\nuser\t1m12.483s\nsys\t0m0.078s\ntables 958 errors 958 [('TypeError: dict() got multiple values fo', 957), ('play out of order', 1)]\ndistinct deals 0 tables a deal []\nper table: \nclaims 0 scored claims with a difference 0\nTraceback (most recent call last):\n  File \"<stdin>\", line 12, in <module>\nIndexError: list index out of range\n",
+ "received": "2026-11-14T07:27:45Z",
+ "script_sha256": "75e0b9a1a8ccd776c6dea1ff13193ac59ef5316fb3a6c4b17c09895e1cba9f2a",
+ "started": "2026-11-14T07:27:45Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

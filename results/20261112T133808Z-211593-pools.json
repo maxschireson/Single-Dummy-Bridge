@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 4.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:38:21Z",
+ "id": "20261112T133808Z-211593-pools",
+ "output_bytes": 1314,
+ "output_tail": "~/work/capsule-gen7-capture/recovery: identity a76a39f13d9d, deals 23233, played 725, fresh unplayed not in the current cohort 10315, STOP True, 7s-32 is the phase 1 bot: False, generation 6\n~/work/publication/gen7-phase1-azure1/recovery: identity 002cbafd32e1, deals 2814, played 828, fresh unplayed not in the current cohort 0, STOP True, 7s-32 is the phase 1 bot: True, generation 6\n~/work/publication/gen71-mix-azure1/recovery: identity f37d8d826522, deals 1471, played 984, fresh unplayed not in the current cohort 0, STOP True, 7s-32 is the phase 1 bot: True, generation 6\n~/work/publication/pre7-test/g7s-vs-g6f-01: identity fa01e3cdd490, deals 22508, played 538, fresh unplayed not in the current cohort 10315, STOP False, 7s-32 is the phase 1 bot: False, generation 6\n~/work/runs/g7s-vs-g6f-01: identity fa01e3cdd490, deals 22508, played 538, fresh unplayed not in the current cohort 10315, STOP True, 7s-32 is the phase 1 bot: False, generation 6\n~/work/runs/gen7-phase1-azure1: identity 002cbafd32e1, deals 2814, played 828, fresh unplayed not in the current cohort 0, STOP True, 7s-32 is the phase 1 bot: True, generation 6\n~/work/runs/gen71-mix-azure1: identity f37d8d826522, deals 1471, played 992, fresh unplayed not in the current cohort 0, STOP False, 7s-32 is the phase 1 bot: True, generation 6\n",
+ "received": "2026-11-12T13:38:17Z",
+ "script_sha256": "50ad4d9b688d9bc83bd8cc116c056689e3fdea6d42799a7ab1826e2e5928a1cf",
+ "started": "2026-11-12T13:38:17Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

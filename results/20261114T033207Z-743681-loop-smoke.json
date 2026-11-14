@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 270.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T03:36:41Z",
+ "id": "20261114T033207Z-743681-loop-smoke",
+ "output_bytes": 1455,
+ "output_tail": "{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 8, \"cpu_per_board\": 19.5}\n{\"pair\": \"stu3-px~stu0-ps\", \"boards\": 3, \"cpu_per_board\": 45.23, \"common\": {\"imps_per_board\": -3.6667, \"se\": 2.4037, \"boards\": 3, \"won\": 1, \"lost\": 2,\n{\"pair\": \"stu3-pu~8p-32-v41\", \"boards\": 3, \"cpu_per_board\": 23.94, \"common\": {\"imps_per_board\": -3.3333, \"se\": 3.3333, \"boards\": 3, \"won\": 0, \"lost\": \n{\"pair\": \"stu3-pux~8p-32-v41\", \"boards\": 3, \"cpu_per_board\": 24.44, \"common\": {\"imps_per_board\": -0.3333, \"se\": 0.3333, \"boards\": 3, \"won\": 0, \"lost\":\npf-one boards 8 cpu a board 19.5 IMPs [None, None, None, None] cards digest 98816ce14af8b825 | rollout decisions of the first bot 0 mean candidates 0.00\npx boards 3 cpu a board 45.2 IMPs [-7, -5, 1] cards digest d34d8a7772b60e51 | rollout decisions of the first bot 0 mean candidates 0.00\npu boards 3 cpu a board 23.9 IMPs [0, -10, 0] cards digest a1d0f507b612d127 | rollout decisions of the first bot 0 mean candidates 0.00\npux boards 3 cpu a board 24.4 IMPs [0, -1, 0] cards digest 81bb922a99fd2616 | rollout decisions of the first bot 0 mean candidates 0.00\npux pinned: {'seat': 'draw', 'cut': 0.5, 'seat_other': 'draw', 'cut_other': 0.25} blind True names {'self': 'stup0', '*': '', 'they_see': ''} mix {'declarer': True, 'defender': True, 'read_declarer': ['*'], 'read_defender': ['*']}\nstu0-pa pinned stage keys: ['cards', 'first', 'from_trick', 'layouts', 'mode', 'prior', 'race', 'seat', 'slack', 'to_trick']\n2026-11-14T03:36:41Z\n",
+ "received": "2026-11-14T03:32:11Z",
+ "script_sha256": "5e07dffd954c5e41e4e31e794996bcbb3a0f83b57816a8c2f0fdb48f348cd495",
+ "started": "2026-11-14T03:32:11Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 13.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:09:00Z",
+ "id": "20261112T020842Z-992435-08-create-retry",
+ "output_bytes": 795,
+ "output_tail": "quota: Fasv6 family 8/32, total regional 8/32\nazure1: OS disk 128 GB Premium_LRS; admin user Bridgebots; secure boot true; vTPM true\n== creating Bridgebots2\nexit 1\nERROR: admin user name cannot contain upper case character A-Z, special characters \\/\"[]:|<>+=;,?*@#()! or start with $ or -\nstopping after the first failure\n== VMs in Bridgebots_group\nName        Size              State       PrivateIp    Zone\n----------  ----------------  ----------  -----------  ------\nBridgebots  Standard_F8as_v6  VM running  172.16.0.4   1\n== quota after\nName                          Used    Limit\n----------------------------  ------  -------\nStandard Fasv6 Family vCPUs   8       32\nTotal Regional vCPUs          8       32\nStandard DCasv6 Family vCPUs  0       0\nStandard ECasv6 Family vCPUs  0       0\n",
+ "received": "2026-11-12T02:08:47Z",
+ "script_sha256": "8ce8741cefe013565b432b8d83b2d8c4a06b3fbf2c73b3b3fb0b015a263ab10c",
+ "started": "2026-11-12T02:08:47Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

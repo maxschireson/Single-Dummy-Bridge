@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:26:29Z",
+ "id": "20261112T052605Z-852433-p41-extend-azure5",
+ "output_bytes": 399,
+ "output_tail": "Thu 2026-11-12 05:50:29 UTC 24min -         - azure5-reaper.timer azure5-reaper.service\nnew timer in 7711 s\nRunning timer as unit: azure5-reaper.timer\nWill run service as unit: azure5-reaper.service\nNEXT                           LEFT LAST PASSED UNIT                ACTIVATES\nThu 2026-11-12 07:35:00 UTC 2h 8min -         - azure5-reaper.timer azure5-reaper.service\n\nreaper script present\n05:26:29\n",
+ "received": "2026-11-12T05:26:29Z",
+ "script_sha256": "4e350b580e52ad13cfd00feba08848ab416458ad3665aeb30451d34069563125",
+ "started": "2026-11-12T05:26:29Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

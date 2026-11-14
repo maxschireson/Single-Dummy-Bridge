@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 40.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:29:31Z",
+ "id": "20261113T072835Z-677998-setup8x",
+ "output_bytes": 353,
+ "output_tail": "setup8x: active\n07:29:07 DDS built\nREADME.md manifest.json policy_ft.npz policy_scratch.npz restore.py \n07:29:09 sure source: 2e6ed6d sure.cpp, sure.py: sound defender rule (fixes values a trick too high for declarer)\n07:29:11 sure_cpp built: 22979d652302b7b7\n07:29:11 exclusions: 72fafc4cce9ed62e, 50818 families\n07:29:11 played list: ac5243e11112bf68\n",
+ "received": "2026-11-13T07:28:51Z",
+ "script_sha256": "06ca9f71f4238013c746b93a7d39267286193aba829c8b0315e15bc3874c6abf",
+ "started": "2026-11-13T07:28:51Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

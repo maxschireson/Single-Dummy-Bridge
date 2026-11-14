@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 36.9,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:36:04Z",
+ "id": "20261114T213521Z-429949-cmd",
+ "output_bytes": 1858,
+ "output_tail": "Running as unit: loop-widthpub.service; invocation ID: b62faa2058f04430b13fb845e883f909\nb0-pst200b-1     32 files     2.1 MB | rollout decisions     1172 | pairs      6873 | records with pairs     32 | failed 0\nb0-pst200b-2     32 files     2.0 MB | rollout decisions     1141 | pairs      6688 | records with pairs     32 | failed 0\nb0-pst200b-3     32 files     2.0 MB | rollout decisions     1141 | pairs      6555 | records with pairs     32 | failed 0\nb0-pst200b-4     32 files     2.0 MB | rollout decisions     1142 | pairs      6638 | records with pairs     31 | failed 0\nb0-pst200b-5     32 files     2.0 MB | rollout decisions     1177 | pairs      6422 | records with pairs     32 | failed 0\nb0-pst200b-6     32 files     2.0 MB | rollout decisions     1086 | pairs      6071 | records with pairs     32 | failed 0\nb0-pst200b-7     32 files     2.0 MB | rollout decisions     1093 | pairs      6323 | records with pairs     32 | failed 0\nb0-pst200b-8     32 files     2.0 MB | rollout decisions     1174 | pairs      6714 | records with pairs     32 | failed 0\nh3-pi       500 files    33.2 MB | rollout decisions    36417 | pairs    199782 | records with pairs    498 | failed 0\nl3-p        500 files    21.2 MB | rollout decisions    17350 | pairs    101974 | records with pairs    497 | failed 0\nsp0e       3584 files   109.3 MB | rollout decisions   127853 | pairs    694837 | records with pairs   3578 | failed 1\nsp3se      2787 files    92.4 MB | rollout decisions   101897 | pairs    561653 | records with pairs   2783 | failed 0\nspr0e       941 files    37.4 MB | rollout decisions    34556 | pairs    189860 | records with pairs    938 | failed 0\nsps0e      1745 files    57.1 MB | rollout decisions    64180 | pairs    351927 | records with pairs   1742 | failed 0\ntotals: files 10313 | pairs 2152317 | rollout decisions 391379\n21:36:04\n",
+ "received": "2026-11-14T21:35:28Z",
+ "script_sha256": "666ef53fc254cc8a87a67c205475b3b364eaca8b097c4abc9fdc2fecf1937925",
+ "started": "2026-11-14T21:35:28Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

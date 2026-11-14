@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 55.9,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:43:26Z",
+ "id": "20261114T074219Z-048795-loop-172-dirs",
+ "output_bytes": 480,
+ "output_tail": "SUSBC2025_USA1 Bracket.php?stage=Final 631412 631417 631422 \nSUSBC2025_USA2 RRsheet.php?stage=RR1 631412 631427 \nSUSBC2025_USA2 Bracket.php?stage=Final 631412 631427 631432 631437 631442 \nMUSBC2025_USA1 Bracket.php?stage=Final 631312 631317 631322 631327 \nMUSBC2025_USA2 RRsheet.php?stage=RR1 631312 631332 \nMUSBC2025_USA2 Bracket.php?stage=Final 631312 631332 631337 631340 631343 631346 631349 \nfolders with screens: MUSBC2025_USA1 MUSBC2025_USA2 SUSBC2025_USA1 SUSBC2025_USA2 \n",
+ "received": "2026-11-14T07:42:30Z",
+ "script_sha256": "7cc58da46682bcd200e40bab9f252545186b916493738351a6da837dc2ee60b1",
+ "started": "2026-11-14T07:42:30Z",
+ "timed_out": false,
+ "timeout_s": 280
+}

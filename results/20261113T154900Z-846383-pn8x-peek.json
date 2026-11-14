@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T15:49:21Z",
+ "id": "20261113T154900Z-846383-pn8x-peek",
+ "output_bytes": 783,
+ "output_tail": "15:49:21\n   deal 9 8x3-32~71s-32: 40s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 194, in the tree's tricks 66, tree consulted 32, moved 0, tree forks 0, gap forks 9 on 2 tables\n   tree in all: {'in_a_stage': 246, 'consulted': 114, 'moved': 9, 'over_budget': 0, 'tree_forks': 0, 'tree_fork_imps': 0, 'mean_seconds': 0.28, 'p95_seconds': 0.65, 'max_seconds': 1.02, 'mean_solves': 73.28, 'p95_solves'\n15:46:26 == records\n15:46:29 records written; publication checkout on arena-gen8-x3n-azure1-feed\n15:46:29 next8x active: gen8-x3n-azure1 starts when gen8-x3-azure1 is played out\n15:46:29 DONE\nprepnext8x=inactive next8x=active arena-gen8x=active \n2026-11-13T15:46:29Z started: waiting for the current cohort to finish, then gen8-x3n-azure1\n",
+ "received": "2026-11-13T15:49:21Z",
+ "script_sha256": "2d2dd5f788f54f3d7074d0c3d78152600a34e3793f574c34ed01be7a70328188",
+ "started": "2026-11-13T15:49:21Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 93.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T01:45:46Z",
+ "id": "20261112T014346Z-483686-05-restart",
+ "output_bytes": 459,
+ "output_tail": "before restart: 14 boards in 309s since the cohort was prepared\nRunning as unit: g7s-vs-g6f-01b.service; invocation ID: ff648946ef7a47a7842b8634f0c7531a\n 01:45:46 up 58 min,  0 user,  load average: 14.85, 20.20, 10.24\n4 4 4 4 4 4 4 4 threads per worker\nboards now: 39\nStarted g7s-vs-g6f-01b.service - /home/Bridgebots/work/runs/drive.sh /home/Bridgebots/work/runs/g7s-vs-g6f-01 300 8.\n2026-11-12T01:44:16Z collector pid 4979, 8 workers, STOP after 300 boards\n",
+ "received": "2026-11-12T01:44:12Z",
+ "script_sha256": "411c09e8d914d5fb688aa25d87a4271f783d5d265d8b09f5e84bcb508b507711",
+ "started": "2026-11-12T01:44:12Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

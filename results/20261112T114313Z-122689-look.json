@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:43:21Z",
+ "id": "20261112T114313Z-122689-look",
+ "output_bytes": 1421,
+ "output_tail": "11:43:21\ngo71d active; arena-gen71 active\n11:41:54 units written\n11:42:24 phase 1 heartbeat publisher stopped\n11:42:25 == memory supervisor\n11:42:25 == start with eight workers\n11:42:26 collector active with 8 workers, publisher active, feed arena-gen7-1-mix-azure1-feed\n11:42:26 gen71-recycle active; cache /mnt/ddscache/gen71-mix-azure1.sqlite\nload 13.48 9.72 6.03; memory available 17604 MB\ng8 units: g8-publish.service=active/running g8-queue.service=active/running \nprocesses not of the Gen 7.1 setup, by CPU:\n94.3     956 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n94.3     956 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n94.3     956 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n94.2     956 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n94.2     956 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n94.1     956 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n",
+ "received": "2026-11-12T11:43:21Z",
+ "script_sha256": "a4330b2738e798bd42dd8c9e2e79fec32d4a274f4b3889135e61f0a69955fcd6",
+ "started": "2026-11-12T11:43:21Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

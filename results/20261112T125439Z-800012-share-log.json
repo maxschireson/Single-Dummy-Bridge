@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:54:54Z",
+ "id": "20261112T125439Z-800012-share-log",
+ "output_bytes": 255,
+ "output_tail": "2026-11-12T11:45:13Z collector active with 4 workers, 13 boards done\n2026-11-12T12:35:14Z no g8 match for ten minutes: going to eight workers\n2026-11-12T12:35:59Z collector active with 8 workers, 291 boards done\nshare71 inactive; WORKERS=8; g8 matches: 0\n",
+ "received": "2026-11-12T12:54:54Z",
+ "script_sha256": "8f0dd08f32fe13c253d78818bd070d51515d21d41c9cae2f2d9bf86e083250df",
+ "started": "2026-11-12T12:54:54Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

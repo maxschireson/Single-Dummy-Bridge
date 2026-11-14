@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:20:26Z",
+ "id": "20261112T161954Z-957382-go8-peek",
+ "output_bytes": 589,
+ "output_tail": "16:20:26\ngo8 active\n16:18:01 checkout: 792c4cb3f647ec71273f0cc57d95be1d0a0a5954 Gen 8 is authorized: both plans opened on Max's word; the notice; no \n16:18:14 v4.1 cb3fcfd5c5587373; system scorer 8f2c2f58be8e75c0; dds library c8bd50a986f51983 (phase 1 checkout: 8bc587f86a0d033b)\n16:18:30 tests test_gen8*.py: Ran 24 tests in 16.009s OK \n16:18:31 tests test_gen71*.py: Ran 7 tests in 0.238s OK \n16:19:04 tests test_rule_bidder.py: Ran 13 tests in 32.438s OK \n16:19:55 tests test_bidding_systems.py: Ran 28 tests in 50.819s OK \n16:19:55 tests took 101s\n16:19:55 == finish gen71-mix2-azure1\n",
+ "received": "2026-11-12T16:20:26Z",
+ "script_sha256": "3cb7906fa5fe9d394508abced1f6828ee0c30a91157d66a8cabf382bf1c7c0f4",
+ "started": "2026-11-12T16:20:26Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

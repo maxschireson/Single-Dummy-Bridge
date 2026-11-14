@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 2.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:44:01Z",
+ "id": "20261112T164346Z-742065-g8-59-stop-queue",
+ "output_bytes": 196,
+ "output_tail": "g8-queue: active, since Thu 2026-11-12 05:20:11 UTC\n  pid 26553: up 41027s, cpu 0.0%, rss 3 MB | bash /home/Bridgebots/work/g8/queue.sh \nafter: g8-queue inactive; g8 units: ; g8 processes left: 0\n",
+ "received": "2026-11-12T16:43:58Z",
+ "script_sha256": "49f14eb1ac4faad67fdd68186e6afc4039b4c6e1e777f5ed76ee11d8cf05d589",
+ "started": "2026-11-12T16:43:58Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

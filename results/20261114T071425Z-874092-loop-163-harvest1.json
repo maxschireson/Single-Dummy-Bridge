@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 419.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:21:56Z",
+ "id": "20261114T071425Z-874092-loop-163-harvest1",
+ "output_bytes": 761,
+ "output_tail": "2026-11-14T07:17:50Z sessions found: 230\n2026-11-14T07:19:53Z usbc_138206_1_1 Open Round of 16 1/4: 30 boards, 480 tables (866 requests so far)\n2026-11-14T07:21:56Z usbc_138206_2_1 Open Round of 16 2/4: 30 boards, 478 tables (1357 requests so far)\n2026-11-14T07:21:56Z done: 2 sessions, 958 tables, 1357 requests\nusbc_138206_1_1.json.gz Open Round of 16 1/4 boards 30 matches 8 tables 480\n  e.g. board 1 room OPEN auction ['N1', 'C3', 'P', 'P', 'P'] result {'suit': 'S', 'level': 4, 'mod': 'D', 'dec': 'S', 'pass': 'f'}\nusbc_138206_2_1.json.gz Open Round of 16 2/4 boards 30 matches 8 tables 478\n  e.g. board 31 room OPEN auction ['P', 'N1', 'P', 'H2', 'P', 'S2', 'P', 'D3', 'P', 'N3', 'P', 'P', 'P'] result {'suit': 'N', 'level': 3, 'dec': 'W', 'pass': 'f'}\n2\n",
+ "received": "2026-11-14T07:14:57Z",
+ "script_sha256": "8a6cc5f1898604b8a8385e9caf712a7883084a709e45c5bed8d467dc483ae61f",
+ "started": "2026-11-14T07:14:57Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

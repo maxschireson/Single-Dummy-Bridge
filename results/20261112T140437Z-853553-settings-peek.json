@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:04:58Z",
+ "id": "20261112T140437Z-853553-settings-peek",
+ "output_bytes": 732,
+ "output_tail": "14:04:58\nsettings1 inactive; match-m1 active; match-m3 active\n14:03:41 == source\n14:03:55 checkout 48982f7; v4 d6b011937ee9ec53, v4.1 cb3fcfd5c5587373\nbots: {'7s-32': ('gen7_policy_v4.npz', 0.5), '71s-32': ('gen7_policy_v4.1.npz', 0.5), '7s-32-w1': ('gen7_policy_v4.npz', 1.0), '71s-32-w1': ('gen7_policy_v4.1.npz', 1.0)}\n14:03:55 == smoke: two boards each\n14:04:15 smoke 71s-32-w1~7s-32: {'boards': 2, 'cpu_per_board': 15.88}\n14:04:27 smoke 71s-32-w1~7s-32-w1: {'boards': 2, 'cpu_per_board': 11.21}\n14:04:27 == matches\n14:04:27 match-m1 (71s-32-w1~7s-32): active\n14:04:27 match-m3 (71s-32-w1~7s-32-w1): active\n14:04:27 == results publisher\n14:04:27 settings-pub active; branch transfer/gen71-settings-azure1-20261112\n14:04:27 DONE\n",
+ "received": "2026-11-12T14:04:58Z",
+ "script_sha256": "d652a0538e298181ff967919a66bf55cbe66b63ede2e2bfa28316eccba557c5b",
+ "started": "2026-11-12T14:04:58Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

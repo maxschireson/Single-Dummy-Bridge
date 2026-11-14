@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:57:23Z",
+ "id": "20261114T075713Z-600606-loop-180-counts",
+ "output_bytes": 596,
+ "output_tail": "sg8e: 1300 tables, since 06:18, last 06:33, 5112 an hour\nsg8s1: 2000 tables, since 06:33, last 07:24, 2347 an hour\nsg8s2: 1172 tables, since 07:24, last 07:57, 2152 an hour\n2026-11-14T06:33:31Z azure1's role from here (Max, 05:24 and 05:37 UTC): Gen 8's personalities' self-play (jobs-azure1.txt, source 9f18993);\n2026-11-14T06:33:31Z start sg8s1 g8-greedy0~g8-passive0 seed 9001 first 700000 deals 2000 workers 8 --episodes --one-room (source 9f18993, n\n2026-11-14T07:24:39Z start sg8s2 g8-patient0~g8-active0 seed 9001 first 702000 deals 2000 workers 8 --episodes --one-room (source 9f18993, n\n",
+ "received": "2026-11-14T07:57:23Z",
+ "script_sha256": "f839c59790b2ecea686d6f58c7d0a6e4ee1cc0ee199720b7ede173b20912c51b",
+ "started": "2026-11-14T07:57:23Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

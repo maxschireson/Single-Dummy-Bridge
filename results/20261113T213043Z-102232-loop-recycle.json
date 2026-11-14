@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 30.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T21:31:33Z",
+ "id": "20261113T213043Z-102232-loop-recycle",
+ "output_bytes": 843,
+ "output_tail": "Mem:           32086        5997       25943           4         579       26088\n scripts/gen8_match.py | 45 ++++++++++++++++++++++++++-------------------\n 1 file changed, 26 insertions(+), 19 deletions(-)\nsource 474ed8b\nRunning as unit: loop-collect.service; invocation ID: 28406cbf567d4e70bed472e2574feb41\nRunning as unit: loop-collect-b.service; invocation ID: bfc580f7e5014a1bb0e5c90581093552\nbox azure1: active active \n2026-11-13T21:31:03Z start sp0e stu0-pa~stu0-pb seed 9001 first 220000 deals 20000 workers 6 --episodes --one-room (source 474ed8b, nets bf16, --recycle 30)\n2026-11-13T21:31:03Z start spr0e stu0-pra~stu0-prb seed 9001 first 240000 deals 20000 workers 2 --episodes --one-room (source 474ed8b, nets bf16, --recycle 30)\nMem:           32086       11468       20136           4         916       20618\n2026-11-13T21:31:33Z\n",
+ "received": "2026-11-13T21:31:02Z",
+ "script_sha256": "b74747e05d3efd532dc30547f71749cbf14b4be529fe2ce46a875011d0df1aa7",
+ "started": "2026-11-13T21:31:02Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

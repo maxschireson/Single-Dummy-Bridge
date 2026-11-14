@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:36:24Z",
+ "id": "20261114T073609Z-971558-loop-170-hv",
+ "output_bytes": 351,
+ "output_tail": "records 15 | scored 7 | units active active \n1\n2026-11-14T07:35:40Z usbc_179352_1_1 Knockout Day 1 1/2: 30 boards, 120 tables (3293 requests so far)\n230 {'2021 Beth': 16, '2021 Mixed': 24, '2021 Open': 24, '2021 Senior': 24, '2022 Knockout': 8, '2022 Open': 17, '2022 Round': 22, '2023 Beth': 16, '2023 Mixed': 31, '2023 Open': 17, '2023 Senior': 31}\n",
+ "received": "2026-11-14T07:36:24Z",
+ "script_sha256": "68c6585126f4ba0441508b682e0bb585345b380685ed739eb990a8f3c56ad5cd",
+ "started": "2026-11-14T07:36:24Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

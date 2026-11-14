@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:05:26Z",
+ "id": "20261112T020508Z-686556-07-report",
+ "output_bytes": 2270,
+ "output_tail": "top-level keys: ['match', 'tree', 'audits']\nmatch: {\"7s-32 against 6-32\": {\"boards\": 307, \"common_imps_per_board\": [0.3811, 0.1633], \"native_imps_per_board\": [0.3811, 0.1633]}}\ntree: {\"7s-32\": {\"all_tables\": {\"searched_decisions\": 40276, \"in_a_stage\": 8537, \"consulted\": 4034, \"moved\": 250, \"over_budget\": 0, \"consulted_share\": 0.473, \"moved_share\": 0.029, \"seconds_per_search\": 0.419, \"seconds_p95\": 1.23, \"seconds_max\": 5.21, \"solves_per_search\": 81.1, \"solves_p95\": 174, \"solves_max\": 434, \"tree_share_of_decision_time\": 0.253}, \"root_tables\": {\"searched_decisions\": 12751, \"in_a_stage\": 4289, \"consulted\": 2036, \"moved\": 139, \"over_budget\": 0, \"consulted_share\": 0.475, \"moved_share\": 0.032, \"seconds_per_search\": 0.46, \"seconds_p95\": 1.31, \"seconds_max\": 5.21, \"solves_per_search\": 79.8, \"solves_p95\": 169, \"solves_max\": 430, \"tree_share_of_decision_time\": 0.227}, \"by_trick\": {\"tricks 3-4\": {\"searched_decisions\": 3653, \"in_a_stage\": 3653, \"consulted\": 1728, \"moved\": 133, \"over_budget\": 0, \"consulted_share\": 0.473, \"moved_share\": 0.036, \"seconds_per_search\": 0.514, \"seconds_p95\": 1.42, \"seconds_max\": 4.85, \"solves_per_search\": 82.9, \"solves_p95\": 173, \"solves_max\": 403, \"tree_share_of_decision_time\": 0.714}, \"tricks 5-6\": {\"searched_decisions\": 4884, \"in_a_stage\": 4884, \"consulted\": 2306, \"moved\": 117, \"over_budget\": 0, \"consulted_share\": 0.472, \"moved_share\": 0.024, \"seconds_per_search\": 0.347, \"seconds_p95\": 1.02, \"seconds_max\": 5.21, \"solves_per_search\": 79.8, \"solves_p95\": 176, \"solves_max\": 434, \"tree_share_of_decision_time\": 0.843}}}}\naudits: {\"all\": {\"forks\": 325, \"deals\": 174, \"imps_per_fork\": [-0.1538, 0.1759], \"tricks_per_fork\": [-0.0062, 0.0303], \"tree_card_better\": 29, \"worse\": 32, \"same\": 264}, \"refused_by_budget\": 2, \"by_trick\": {\"tricks 3-4\": {\"forks\": 138, \"deals\": 96, \"imps_per_fork\": [0.0435, 0.2611], \"tricks_per_fork\": [0.0507, 0.0473], \"tree_card_better\": 18, \"worse\": 11, \"same\": 109}, \"tricks 5-6\": {\"forks\": 187, \"deals\": 118, \"imps_per_fork\": [-0.2995, 0.1846], \"tricks_per_fork\": [-0.0481, 0.0365], \"tree_card_better\": 11, \"worse\": 21, \"same\": 155}}, \"from_root_tables\": {\"forks\": 172, \"deals\": 138, \"imps_per_fork\": [-0.0291, 0.2009], \"tricks_per_fork\": [0.0, 0.0369], \"tree_card_better\": 16, \"worse\": 16, \"same\": 140}}\n",
+ "received": "2026-11-12T02:05:26Z",
+ "script_sha256": "58d184e37a38a59a5dabb863dccd426b02240ac004175b1b9b7cff6f10eefa27",
+ "started": "2026-11-12T02:05:26Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

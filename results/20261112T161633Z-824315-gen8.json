@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 25.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:17:26Z",
+ "id": "20261112T161633Z-824315-gen8",
+ "output_bytes": 358,
+ "output_tail": "go8: failed (mode drain)\n16:17:01 load 8.12 8.22 8.10; memory available 21387 MB; units g8-*: g8-publish.service=active/running g8-queue.service=active/running \n16:17:01 == build and test (the box keeps doing what it does)\n/home/Bridgebots/work/gen8/gen8.sh: line 14: /home/Bridgebots/work/gen8/gen8.env: No such file or directory\n16:17:01 STOPPED at: build\n",
+ "received": "2026-11-12T16:17:01Z",
+ "script_sha256": "49479a32136823d65693b9665ed711f2991af90d1b3834d7c69b9264cdaeb7ba",
+ "started": "2026-11-12T16:17:01Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

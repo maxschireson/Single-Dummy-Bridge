@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 96.8,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:14:39Z",
+ "id": "20261112T021231Z-353215-09-agents",
+ "output_bytes": 825,
+ "output_tail": "== Bridgebots2 as box azure2\nEnable succeeded: \n[stdout]\n  4. Tick \"Allow write access\", then \"Add key\".\nThe agent retries every 30 seconds. Once the key is in, a heartbeat appears on\nbranch box/azure2/status. To watch the agent here: journalctl -u boxctl -f\nactive\n[stderr]\n== Bridgebots3 as box azure3\nEnable succeeded: \n[stdout]\n  4. Tick \"Allow write access\", then \"Add key\".\nThe agent retries every 30 seconds. Once the key is in, a heartbeat appears on\nbranch box/azure3/status. To watch the agent here: journalctl -u boxctl -f\nactive\n[stderr]\n== Bridgebots4 as box azure4\nEnable succeeded: \n[stdout]\n  4. Tick \"Allow write access\", then \"Add key\".\nThe agent retries every 30 seconds. Once the key is in, a heartbeat appears on\nbranch box/azure4/status. To watch the agent here: journalctl -u boxctl -f\nactive\n[stderr]\n",
+ "received": "2026-11-12T02:13:02Z",
+ "script_sha256": "c140bffda9d44a93f2e5c42aa450d5fdfba197893781e2a85caa224405037ffb",
+ "started": "2026-11-12T02:13:02Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:18:54Z",
+ "id": "20261112T151827Z-761662-settings-peek",
+ "output_bytes": 401,
+ "output_tail": "15:18:54\nmatch-m1 active; match-m3 active; settings-pub active\nm1 71s-32-w1~7s-32 common: 775 boards, +0.178 +- 0.090, won 100, lost 77\nm1 71s-32-w1~7s-32 native: 775 boards, +0.178 +- 0.090, won 100, lost 77\n   cpu a board 19.7s\nm3 71s-32-w1~7s-32-w1 common: 775 boards, +0.156 +- 0.091, won 96, lost 73\nm3 71s-32-w1~7s-32-w1 native: 775 boards, +0.156 +- 0.091, won 96, lost 73\n   cpu a board 19.7s\n",
+ "received": "2026-11-12T15:18:54Z",
+ "script_sha256": "91815229c00615085b0393bb7c145056be054051db437fec1a6a57ddc18399fa",
+ "started": "2026-11-12T15:18:54Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

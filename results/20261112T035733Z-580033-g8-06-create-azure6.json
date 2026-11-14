@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 55.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:58:52Z",
+ "id": "20261112T035733Z-580033-g8-06-create-azure6",
+ "output_bytes": 1970,
+ "output_tail": "quota: Fasv6 family 40/48, total regional 40/48\nVMs in the group now: 5\nazure1: OS disk 128 GB Premium_LRS; admin user bridgebots; secure boot true; vTPM true\n== creating Bridgebots6 at 2026-11-12T03:58:09Z\nexit 0\n  \"powerState\": \"VM running\"\nWARNING: Resource provider 'Microsoft.DevTestLab' used by this operation is not registered. We are registering for you.WARNING: Registration failed. Please register manually.ERROR: (MissingSubscriptionRegistration) The subscription is not registered to use namespace 'Microsoft.DevTestLab'. See https://aka.ms/rps-not-found for how to register subscriptions.Code: MissingSubscriptionRegistrationMessage: The subscription is not registered to use namespace 'Microsoft.DevTestLab'. See https://aka.ms/rps-not-found for how to register subscriptions.Exception Details:\t(MissingSubscriptionRegistration) The subscription is not registered to use namespace 'Microsoft.DevTestLab'. See https://aka.ms/rps-not-found for how to register subscriptions.\tCode: MissingSubscriptionRegistration\tMessage: The subscription is not registered to use namespace 'Microsoft.DevTestLab'. See https://aka.ms/rps-not-found for how to register subscriptions.\tTarget: Microsoft.DevTestLab\nThu 2026-11-12 10:03:46 UTC   6h -         - g8-azure6-deallocate.timer g8-azure6-deallocate.service\n== VMs in Bridgebots_group\nName         Size              State       Zone\n-----------  ----------------  ----------  ------\nBridgebots   Standard_F8as_v6  VM running  1\nBridgebots2  Standard_F8as_v6  VM running  1\nBridgebots3  Standard_F8as_v6  VM running  1\nBridgebots4  Standard_F8as_v6  VM running  1\nBridgebots5  Standard_F8as_v6  VM running  1\nBridgebots6  Standard_F8as_v6  VM running  1\n== quota after\nName                          Used    Limit\n----------------------------  ------  -------\nStandard Fasv6 Family vCPUs   48      48\nTotal Regional vCPUs          48      48\nStandard DCasv6 Family vCPUs  0       0\nStandard ECasv6 Family vCPUs  0       0\n",
+ "received": "2026-11-12T03:57:56Z",
+ "script_sha256": "edee9afd7f7d8462188ebd81658875c39d7bf152cda31cb462f72b2b077b337e",
+ "started": "2026-11-12T03:57:56Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

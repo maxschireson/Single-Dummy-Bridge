@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.5,
+ "exit_code": 1,
+ "finished": "2026-11-12T06:11:19Z",
+ "id": "20261112T061057Z-017631-g8-25-azure6-keep",
+ "output_bytes": 158,
+ "output_tail": "Removed \"/etc/systemd/system/timers.target.wants/g8-azure6-stop.timer\".\nNEXT LEFT LAST PASSED UNIT ACTIVATES\n\n0 timers listed.\ng8-azure6-stop.timer: disabled\n",
+ "received": "2026-11-12T06:11:19Z",
+ "script_sha256": "3ff26ebd104b02fb7d55ab6e5c1e9af06beb1bdd0ea7825f15c6f3fda8e01567",
+ "started": "2026-11-12T06:11:19Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

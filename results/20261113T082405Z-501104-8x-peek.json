@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:24:10Z",
+ "id": "20261113T082405Z-501104-8x-peek",
+ "output_bytes": 1481,
+ "output_tail": "08:24:09\n08:18:27 == preflight\npreflight passed in 248s:\n   deal 1 8x3-32~8s-32: 64s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 214, in the tree's tricks 51, tree consulted 23, moved 3, tree forks 0, gap forks 10 on 2 tables\n   deal 2 8x3-32~71s-32: 41s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 174, in the tree's tricks 44, tree consulted 10, moved 0, tree forks 0, gap forks 8 on 2 tables\n   deal 3 8x3-32~8s-32: 75s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 214, in the tree's tricks 65, tree consulted 41, moved 1, tree forks 0, gap forks 8 on 2 tables\n   deal 9 8x3-32~71s-32: 64s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 188, in the tree's tricks 64, tree consulted 26, moved 2, tree forks 0, gap forks 10 on 2 tables\n   tree in all: {'in_a_stage': 224, 'consulted': 100, 'moved': 6, 'over_budget': 0, 'tree_forks': 0, 'tree_fork_imps': 0, 'mean_seconds': 0.21, 'p95_seconds': 0.43, 'max_seconds': 0.58, 'mean_solves': 93.9, 'p95_solves': 187, 'max_solves': 198}\n08:22:35 == records\n08:22:37 records written; publication checkout on arena-gen8-x3-azure1-feed\n08:22:37 == units\n08:22:37 units written\n08:22:38 collector active with 8 workers, publisher active, feed arena-gen8-x3-azure1-feed\ngo8x=active arena-gen8x=active arena-gen8x-publish=active gen8x-recycle=active sidplay=active \n",
+ "received": "2026-11-13T08:24:09Z",
+ "script_sha256": "f3c9220336893f5216e6e25dada56c0154c7b6f714ce9e17ea94fe7cd6e6bf81",
+ "started": "2026-11-13T08:24:09Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

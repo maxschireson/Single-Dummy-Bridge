@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T03:57:42Z",
+ "id": "20261114T035733Z-662380-loop-near",
+ "output_bytes": 340,
+ "output_tail": "6-32 {'near_tie': 0.0, 'exploration': 0.0, 'samples': 32, 'engine': 'gen6', 'policy_role': 'pimc-ties-only'}\n3 {'near_tie': 0.125, 'exploration': 0.0, 'samples': 32, 'engine': None, 'policy_role': None}\n2026-11-14T03:10:11Z start h3-p2 stu3-p2~stu0-ps seed 131 first 5000 deals 1000 workers 8  (source fc8202f, nets fp32)\nh3-p2 boards: 499\n",
+ "received": "2026-11-14T03:57:42Z",
+ "script_sha256": "b92605243390f8aa2432f91c7c0c5041936afb19ab70090fda7c500bcb4dfaac",
+ "started": "2026-11-14T03:57:42Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

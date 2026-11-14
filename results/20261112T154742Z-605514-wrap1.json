@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 30.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:48:28Z",
+ "id": "20261112T154742Z-605514-wrap1",
+ "output_bytes": 408,
+ "output_tail": "wrap1: inactive\n15:47:59 matches stopped: m1 1096 boards, m3 1096 boards\n15:48:00 results pushed: f119ca8\n15:48:00 == the 7.1 mix, next cohort\n15:48:00 units written\n15:48:00 collector active with 8 workers, publisher active, feed arena-gen7-1-mix2-azure1-feed\n15:48:01 collector active on gen71-mix2-azure1; publisher active; gen71-recycle active; cache /mnt/ddscache/gen71-mix2-azure1.sqlite\n15:48:01 DONE\n",
+ "received": "2026-11-12T15:47:58Z",
+ "script_sha256": "8925cb46b6919adaaef21e2f26fa317cae94c120fd32b4fc6108ec4cba3e3538",
+ "started": "2026-11-12T15:47:58Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

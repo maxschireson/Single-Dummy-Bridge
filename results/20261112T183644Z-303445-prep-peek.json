@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T18:37:01Z",
+ "id": "20261112T183644Z-303445-prep-peek",
+ "output_bytes": 2469,
+ "output_tail": "18:37:01\n   deal 1 8s-32~71s-32: 133s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 622, in the tree's tricks 191, tree consulted 81, moved 17, tree forks 3, gap forks 11 on 2 tables\n   deal 2 8c-32~71s-32: 122s, root tables 2, tables with forks 4, IMPs {'common': -5, 'native': -5}, searched decisions 803, in the tree's tricks 199, tree consulted 72, moved 6, tree forks 0, gap forks 23 on 4 tables\n   deal 3 8s-32~71s-32: 76s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 528, in the tree's tricks 120, tree consulted 49, moved 4, tree forks 1, gap forks 8 on 2 tables\n   deal 4 8s-32~1: 110s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 0}, searched decisions 471, in the tree's tricks 102, tree consulted 45, moved 8, tree forks 2, gap forks 20 on 4 tables\n   deal 5 8s-32~5RZ32: 64s, root tables 2, tables with forks 4, IMPs {'common': 1, 'native': 1}, searched decisions 485, in the tree's tricks 121, tree consulted 43, moved 0, tree forks 0, gap forks 15 on 4 tables\n   deal 6 8s-32~5RZ32: 71s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 0}, searched decisions 433, in the tree's tricks 112, tree consulted 35, moved 2, tree forks 0, gap forks 13 on 4 tables\n   deal 7 8s-32~1: 64s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 0}, searched decisions 378, in the tree's tricks 106, tree consulted 42, moved 6, tree forks 0, gap forks 11 on 4 tables\n   deal 10 8c-32~8s-32: 122s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 2}, searched decisions 798, in the tree's tricks 174, tree consulted 64, moved 7, tree forks 1, gap forks 24 on 4 tables\n   deal 11 8c-32~71s-32: 188s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 11}, searched decisions 1194, in the tree's tricks 303, tree consulted 168, moved 8, tree forks 3, gap forks 15 on 4 tables\n   tree in all: {'in_a_stage': 1743, 'consulted': 741, 'moved': 64, 'over_budget': 0, 'tree_forks': 13, 'tree_fork_imps': -6, 'mean_seconds': 0.22, 'p95_seconds': 0.63, 'max_seconds': 1.95, 'mean_solves': 71.08, 'p95_solves': 147,\n18:15:55 == records\n18:15:58 records written; publication checkout on arena-gen8-s3-azure1-feed\n18:15:59 next8 active\n18:15:59 DONE\nprepnext8=inactive next8=active arena-gen8=active gen8-recycle=active \n2026-11-12T18:15:59Z started: waiting for the current cohort to finish, then gen8-s3-azure1\n",
+ "received": "2026-11-12T18:37:01Z",
+ "script_sha256": "ea93e123352dcfd8bc00b64ac23f4210fee55f6da9ef30a9789460a3aff00d4f",
+ "started": "2026-11-12T18:37:01Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

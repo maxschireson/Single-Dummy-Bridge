@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 148.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:12:00Z",
+ "id": "20261112T020914Z-108859-08-create-retry2",
+ "output_bytes": 1050,
+ "output_tail": "quota: Fasv6 family 8/32, total regional 8/32\nazure1: OS disk 128 GB Premium_LRS; admin user bridgebots; secure boot true; vTPM true\n== creating Bridgebots2\nexit 0\n  \"powerState\": \"VM running\",\n  \"privateIp\": \"172.16.0.5\"\n== creating Bridgebots3\nexit 0\n  \"powerState\": \"VM running\",\n  \"privateIp\": \"172.16.0.6\"\n== creating Bridgebots4\nexit 0\n  \"powerState\": \"VM running\",\n  \"privateIp\": \"172.16.0.7\"\n== VMs in Bridgebots_group\nName         Size              State       PrivateIp    Zone\n-----------  ----------------  ----------  -----------  ------\nBridgebots   Standard_F8as_v6  VM running  172.16.0.4   1\nBridgebots2  Standard_F8as_v6  VM running  172.16.0.5   1\nBridgebots3  Standard_F8as_v6  VM running  172.16.0.6   1\nBridgebots4  Standard_F8as_v6  VM running  172.16.0.7   1\n== quota after\nName                          Used    Limit\n----------------------------  ------  -------\nStandard Fasv6 Family vCPUs   32      32\nTotal Regional vCPUs          32      32\nStandard DCasv6 Family vCPUs  0       0\nStandard ECasv6 Family vCPUs  0       0\n",
+ "received": "2026-11-12T02:09:31Z",
+ "script_sha256": "0679f188a92f1e1727d4e08a7fc0d8fc2d7c525dc4a62b4c71a71bee1bb2203b",
+ "started": "2026-11-12T02:09:31Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

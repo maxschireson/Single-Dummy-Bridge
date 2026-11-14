@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 2.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:06:10Z",
+ "id": "20261114T070546Z-486087-loop-159-watch2",
+ "output_bytes": 2211,
+ "output_tail": "otherTableNsId(){return this.battleField.game.roomType===\"CLOSED\"?this.battleField.game.homeTeam.teamId:this.battleField.game.visitingTeam.teamId}}},cu=\"data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20320%20512'%20%3e%3cpath%20d='M96%20480c-8.2%200-16.4-3.1-22.6-9.4-12.5-12.5-12.5-3\notherTableNsId(){return this.battleField.game.roomType===\"CLOSED\"?this.battleField.game.homeTeam.teamId:this.battleField.game.visitingTeam.teamId}}},Yw={data(){return{fontSize:16,imageWidth:16,nsTrickCount:0,ewTrickCount:0,game:null,visible:!1}},methods:{declarerDir(){return this.game.contract.declarerDir()},contrac\n{De.fixText(\"round\")}: ${this.game.roundNumber}`),this.roundResultInfo.teamLines.ns=\"N-S:\",this.roundResultInfo.teamLines.ew=\"E-W:\",this.roundResultInfo.round=this.game.roundNumber,this.roundResultInfo.ca\n${this.game.tableId}, ${this.game.roomType} ROOM`,this.roundResultInfo.teamLines.ns=\"N-S:\",this.roundResultInfo.teamLines.ew=\"E-W:\",this.game.roomType===\"OPEN\"?(this.roundResultInfo.teamLines.nsName=this.\nscreen,\"running-score\");return}this.openTable.screen=this.screen1,this.openTable.ns=this.ns1==null?null:this.ns1,this.openTable.round=this.round1==null?null:this.round1,this.openTable.board=this.board1==n\nz1==null?null:this.kibitz1,this.closedTable.screen=this.screen2,this.closedTable.ns=this.ns2==null?null:this.ns2,this.closedTable.round=this.round2==null?null:this.round2,this.closedTable.board=this.board\nble(e,t,s,n,o,d){d&&this.$refs.leftTable?(this.openTable.screen=e,this.openTable.ns=t??null,this.openTable.round=s??null,this.openTable.board=n??null,this.openTable.kibitz=o??null):!d&&this.$refs.rightTab\nId=${this.calcTableId}`,e+=`&screen1=${this.openTable.screen}`,e+=this.openTable.ns===null?\"\":`&ns1=${this.openTable.ns}`,e+=this.openTable.round===null?\"\":`&round1=${this.openTable.round}`,e+=this.openTa\n.openTable.kibitz}`,e+=`&screen2=${this.closedTable.screen}`,e+=this.closedTable.ns===null?\"\":`&ns2=${this.closedTable.ns}`,e+=this.closedTable.round===null?\"\":`&round2=${this.closedTable.round}`,e+=this.\n0 200 2\n1 200 2\n2 200 2\n3 200 2\n4 200 2\n400345 200 4070\n400346 200 3802\n1-1 400 435\n1_1 400 435\nOP 400 435\nCL 400 435\no1 400 435\nc1 400 435\n",
+ "received": "2026-11-14T07:06:07Z",
+ "script_sha256": "12b4d9a11291c662963a7aacf4d4d3459444dc90fc222e82e0be7e6d03d9ac6f",
+ "started": "2026-11-14T07:06:07Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 20.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:01:54Z",
+ "id": "20261112T140126Z-631208-settings",
+ "output_bytes": 59,
+ "output_tail": "settings1: active\n14:01:34 == pause the Gen 7.1 mix cohort\n",
+ "received": "2026-11-12T14:01:34Z",
+ "script_sha256": "0003121f279e6ba492a307673f83d7685e613d8fd92047bec504c03d0b7daa45",
+ "started": "2026-11-12T14:01:34Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

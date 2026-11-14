@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:42:54Z",
+ "id": "20261112T164221Z-122819-g8-58-stop-publisher",
+ "output_bytes": 220,
+ "output_tail": "before: g8 units: g8-publish.service=active/running g8-queue.service=active/running \nFailed to disable unit: Unit file g8-publish.service does not exist.\ng8-publish: inactive / not-found\ng8 timers: \ng8 processes left: 1\n",
+ "received": "2026-11-12T16:42:54Z",
+ "script_sha256": "f622dc516c8fc521d158361b973ac6aff54263732a79f656d51fea1d13d62b48",
+ "started": "2026-11-12T16:42:54Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

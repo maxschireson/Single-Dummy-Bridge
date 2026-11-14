@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:58:41Z",
+ "id": "20261113T195826Z-798189-8x-fail-read",
+ "output_bytes": 1190,
+ "output_tail": "drwxr-xr-x 2 Bridgebots Bridgebots 4096 Nov 13 16:32 .\ndrwxr-xr-x 7 Bridgebots Bridgebots 4096 Nov 13 19:00 ..\n-rw-r--r-- 1 Bridgebots Bridgebots   97 Nov 13 16:32 003990.json\n{'index': '3990', 'error': \"OperationalError('database or disk is full')\", 'epoch': '1794587525.3023784'}\nOperationalError('database or disk is full')\n    run(a.run.resolve(),a.workers)\n  File \"/home/Bridgebots/work/sdb-gen8x/ops/gen5_runtime.py\", line 131, in run\n    if list((root/'failures').glob('*.json')):raise ValueError('Preserved failure requires inspection')\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Preserved failure requires inspection\nTraceback (most recent call last):\n  File \"/home/Bridgebots/work/sdb-gen8x/ops/gen5_runtime.py\", line 163, in <module>\n    run(a.run.resolve(),a.workers)\n  File \"/home/Bridgebots/work/sdb-gen8x/ops/gen5_runtime.py\", line 131, in run\n    if list((root/'failures').glob('*.json')):raise ValueError('Preserved failure requires inspection')\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Preserved failure requires inspection\n",
+ "received": "2026-11-13T19:58:41Z",
+ "script_sha256": "49697e4139bb632e28c212fd8a368af080a15d5befd40d52603180dbd160f153",
+ "started": "2026-11-13T19:58:41Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

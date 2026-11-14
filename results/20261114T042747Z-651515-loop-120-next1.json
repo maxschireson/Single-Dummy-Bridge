@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 5.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:28:07Z",
+ "id": "20261114T042747Z-651515-loop-120-next1",
+ "output_bytes": 380,
+ "output_tail": "before: loop-rungs active, loop-rungs2 active\n2026-11-14T03:10:11Z end hd-n: exit 0\n2026-11-14T03:10:11Z start h3-p2 stu3-p2~stu0-ps seed 131 first 5000 deals 1000 workers 8  (source fc8202f, nets fp32)\nRunning as unit: loop-rungs2.service; invocation ID: 80afe1ba20ab47e7895918d2b7907cb0\nafter: loop-rungs active; loop-rungs2 active\nh3-p2 boards so far: 833\n2026-11-14T04:28:07Z\n",
+ "received": "2026-11-14T04:28:02Z",
+ "script_sha256": "f17f554bff65c5be680df307a8cf06de24ba806f96ef7b3089eef3e36546ff4b",
+ "started": "2026-11-14T04:28:02Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

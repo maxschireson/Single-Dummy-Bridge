@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 43.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:29:43Z",
+ "id": "20261114T072852Z-297645-loop-166-lt1",
+ "output_bytes": 1007,
+ "output_tail": "usbc_138206_2_1.json.gz 478 tables\nusbc_138206_1_1.json.gz 480 tables\n\nreal\t0m42.805s\nuser\t1m14.710s\nsys\t0m0.095s\ntables 958 errors 1 [('play out of order', 1)]\ndistinct deals 60 tables a deal [(16, 58), (14, 1), (15, 1)]\nper table: CD 0.070 (18 decisions), CF 0.011 (7 decisions), D 0.609 (13730 decisions), F 0.374 (12313 decisions), L 0.322 (957 decisions)\nclaims 760 scored claims with a difference 25\n{\"sid\": \"usbc_138206_2_1\", \"board\": 31, \"deal\": \"8f3e8fd21cee8f8b\", \"room\": \"OPEN\", \"contract\": \"3N\", \"dec\": \"W\", \"names\": {\"N\": \"Ralph Katz\", \"E\": \"Tien-Chun Yang\", \"S\": \"Nick Nickell\", \"W\": \"Yanong Han\"}, \"pids\": {\"N\": 2195, \"E\": 138201, \"S\": 2193, \"W\": 138203}, \"tricks_played\": 7, \"decisions\": [[1, \"N\", \"L\", 1, 1.077, 2, 13], [1, \"S\", \"F\", 0, 0.0, 0, 3], [1, \"W\", \"D\", 0, 0.4, 1, 5], [2, \"E\", \"D\", 0, 0.667, 1, 12], [2, \"S\", \"F\", 0, 0.0, 0, 3], [2, \"W\", \"D\", 0, 0.0, 0, 2], [2, \"N\", \"F\", 0, 0.0, 0, 3], [3, \"W\", \"D\", 0, 0.545, 1, 11], [3, \"N\", \"F\", 0, 0.0, 0, 2], [3, \"E\", \"D\", 0, 0.0, 0, 4], [3\n",
+ "received": "2026-11-14T07:29:00Z",
+ "script_sha256": "096db5929b0717749814dac22846fa23cdc45bdf63760d62d65369879699abcc",
+ "started": "2026-11-14T07:29:00Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

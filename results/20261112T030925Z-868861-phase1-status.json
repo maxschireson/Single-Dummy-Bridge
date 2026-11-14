@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:09:31Z",
+ "id": "20261112T030925Z-868861-phase1-status",
+ "output_bytes": 961,
+ "output_tail": "P1 {\"box\": \"azure1\", \"shard\": {\"index\": 0, \"of\": 8}, \"target\": 2814, \"completed\": 272, \"pairs\": {\"7s-32~6-32\": {\"n\": 90, \"sum\": 42, \"sumsq\": 794, \"won\": 22, \"flat\": 65, \"lost\": 3}, \"7s-32~5RZ32\": {\"n\": 91, \"sum\": 171, \"sumsq\": 2285, \"won\": 43, \"flat\": 42, \"lost\": 6}, \"7s-32~1\": {\"n\": 91, \"sum\": 264, \"sumsq\": 2704, \"won\": 47, \"flat\": 38, \"lost\": 6}}, \"tables\": 4164, \"last_30min\": 272, \"running_s\": 1043, \"failures\": [], \"stop\": false, \"collector\": \"active\", \"publisher\": \"active\", \"publish\": {\"status\": \"published\", \"completed\": 265, \"age_s\": 19}, \"disk_free_gb\": 123.6, \"cache_gb\": 0.48, \"load\": [6.7, 6.9, 6.3], \"other_units\": {\"pre7-match\": \"inactive\", \"pre7-publish\": \"inactive\", \"e2-fetch\": \"inactive\"}, \"pre7\": {\"run\": \"g7s-vs-g6f-01\", \"n\": 538, \"sum\": 142, \"sumsq\": 5156, \"won\": 86, \"flat\": 398, \"lost\": 54, \"tables\": 7560, \"failures\": 0, \"publisher_last\": \"ice: Failed to open /run/systemd/transient/pre7-publish.service: No such file or directory\"}}\n",
+ "received": "2026-11-12T03:09:31Z",
+ "script_sha256": "74bc98e545d9d7dae41ea1a5d0910b48834419a0e34f5f9beebc51a8e2a59e2f",
+ "started": "2026-11-12T03:09:31Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

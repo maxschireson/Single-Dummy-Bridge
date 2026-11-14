@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T06:03:38Z",
+ "id": "20261113T060333Z-909948-sidplay-check",
+ "output_bytes": 671,
+ "output_tail": "arena-gen8           active since Fri 2026-11-13 04:46:19 UTC\narena-gen8-publish   active since Fri 2026-11-13 04:46:20 UTC\nnext8                active since Fri 2026-11-13 05:11:56 UTC\ngen8-recycle         active since Thu 2026-11-12 16:41:57 UTC\nsidplay              active since Fri 2026-11-13 06:02:55 UTC\ncaddy                active since Fri 2026-11-13 06:02:55 UTC\n-- No entries --\n{\"ok\":true,\"bot\":\"8s-32\",\"label\":\"Gen 8 standard (8s-32)\",\"stand_in\":true,\"engine\":\"bundle\",\"open_tables\":0,\"busy\":{\"interactive\":0,\"background\":0},\"decisions\":0,\"uptime\":42}\nHTTP/1.1 308 Permanent Redirect\r\nConnection: close\r\nLocation: https://play-sid.eastus.cloudapp.azure.com/\r\n",
+ "received": "2026-11-13T06:03:37Z",
+ "script_sha256": "8ad040551e8b55d83aeb4010b01a7b62081191fce74a2b040a7218ed6619c1bf",
+ "started": "2026-11-13T06:03:37Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

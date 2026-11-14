@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 3.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T03:56:39Z",
+ "id": "20261114T035611Z-722913-loop-mix",
+ "output_bytes": 1146,
+ "output_tail": "table keys ['actions', 'cpu_seconds', 'declarer_tricks', 'depth', 'node', 'ns_score', 'seconds', 'status']\naction keys ['batch', 'behavior_probabilities', 'card', 'controller', 'cpu_seconds', 'dds_calls', 'dds_nodes', 'gen6', 'gen7', 'near_tie', 'objective', 'player', 'ply', 'samples', 'seat', 'seconds']\nx8 keys ['alive', 'asked', 'cap', 'cards', 'chosen', 'claim', 'ended', 'floored', 'forks', 'layouts', 'mix_moved', 'mixed', 'mode', 'n', 'narrowed', 'net', 'net_rows', 'objective', 'odds', 'odds_cover', 'odds_moved', 'prior', 'reference', 'roll', 'rounds', 'runs', 'se', 'seat', 'seconds', 'trick', 'v', 'value']\nrole None player candidate | candidate stu3-p\n1000 tables, 15382 rollout decisions of the candidate with a choice (15.4 a table)\nmargin  share of decisions with 2+ near-equal candidates  nominal tricks given up: a table, a board (two tables)\n 0.00    0.148   0.0000   0.0000\n 0.01    0.210   0.0031   0.0062\n 0.02    0.251   0.0083   0.0166\n 0.03    0.286   0.0152   0.0303\n 0.05    0.377   0.0456   0.0913\n 0.08    0.481   0.1070   0.2140\n 0.12    0.577   0.1999   0.3998\n 0.20    0.691   0.3877   0.7754\n2026-11-14T03:56:39Z\n",
+ "received": "2026-11-14T03:56:36Z",
+ "script_sha256": "6d6d1f6b6d812556396b1532080d65437a9c7a29edca2597fdae18d6d51e595b",
+ "started": "2026-11-14T03:56:36Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

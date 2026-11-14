@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:04:17Z",
+ "id": "20261112T020348Z-926360-progress",
+ "output_bytes": 792,
+ "output_tail": "unit: inactive\n 02:04:17 up  1:16,  0 user,  load average: 1.61, 5.55, 7.39\ng7s-vs-g6f-01b.service: Consumed 1h 55min 34.694s CPU time, 10.7G memory peak, 0B memory swap peak.\ng7s-vs-g6f-01b.service: Failed to open /run/systemd/transient/g7s-vs-g6f-01b.service: No such file or directory\ng7s-vs-g6f-01b.service: Failed to open /run/systemd/transient/g7s-vs-g6f-01b.service: No such file or directory\nboards 308, 869 an hour since the first finished; root games 616, tables 4390\ncommon auctions: +0.380 +- 0.163 IMPs a board (wins 51, flat 229, losses 28)\nnative auctions: +0.380 +- 0.163 IMPs a board\npairs: {'7s-32~6-32': 308}\n{\"completed\": 307, \"index\": 302, \"pair\": \"7s-32~6-32\", \"common\": -2, \"native\": -2}\n{\"completed\": 308, \"index\": 307, \"pair\": \"7s-32~6-32\", \"common\": 0, \"native\": 0}\n",
+ "received": "2026-11-12T02:04:17Z",
+ "script_sha256": "364fdd71a8ba0130f55b6ce4c903108aa43c14cfbf23734d624381b5e9295c13",
+ "started": "2026-11-12T02:04:17Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 5.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:00:33Z",
+ "id": "20261114T080002Z-356122-loop-181-h25",
+ "output_bytes": 139,
+ "output_tail": "Running as unit: loop-usbc25.service; invocation ID: f47d9a6ff4b744a893c7839cd15d974d\nactive active active records 74\n2026-11-14T08:00:33Z\n",
+ "received": "2026-11-14T08:00:27Z",
+ "script_sha256": "225c42a3f99b7d877d06bb7a78e34bad5386427ebb6b790d5808c1f4b3ea490c",
+ "started": "2026-11-14T08:00:27Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

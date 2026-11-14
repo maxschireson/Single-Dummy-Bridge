@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 33.9,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:20:59Z",
+ "id": "20261114T202009Z-453617-cmd",
+ "output_bytes": 275,
+ "output_tail": "== Bridgebots7 as box azure7\nEnable succeeded: \n[stdout]\n  4. Tick \"Allow write access\", then \"Add key\".\nThe agent retries every 30 seconds. Once the key is in, a heartbeat appears on\nbranch box/azure7/status. To watch the agent here: journalctl -u boxctl -f\nactive\n[stderr]\n",
+ "received": "2026-11-14T20:20:25Z",
+ "script_sha256": "4f39bd2ed1a79e2065a8f18b2954559c5ad6c5fec6bfa58434e1d365c76ebceb",
+ "started": "2026-11-14T20:20:25Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:51:05Z",
+ "id": "20261114T205055Z-968240-cmd",
+ "output_bytes": 319,
+ "output_tail": "h3-p2 h3-p2.log h3-pi h3-pi.log l3-p l3-p.log sp0e sp0e.log sp3se sp3se.log spr0e spr0e.log sps0e sps0e.log \n34M\t/home/Bridgebots/work/loop/runs/h3-pi\n39M\t/home/Bridgebots/work/loop/runs/spr0e\n61M\t/home/Bridgebots/work/loop/runs/sps0e\n98M\t/home/Bridgebots/work/loop/runs/sp3se\n116M\t/home/Bridgebots/work/loop/runs/sp0e\n",
+ "received": "2026-11-14T20:51:05Z",
+ "script_sha256": "8784b29175d5321135279c45937b03284ce2e48962157e0b6d8d59f38df8bfad",
+ "started": "2026-11-14T20:51:05Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

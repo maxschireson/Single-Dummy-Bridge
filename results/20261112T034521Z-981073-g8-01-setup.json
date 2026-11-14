@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 34.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:46:11Z",
+ "id": "20261112T034521Z-981073-g8-01-setup",
+ "output_bytes": 706,
+ "output_tail": "checkout: b6ad822 Gen 8 prototype: bidders of either kind at one table, EPBot adapter (WIP)\npolicy files: 4\ndds library: 1266008 bytes\nh5py 3.14.0 numpy 2.5.4\n/home/Bridgebots/work/capsule-gen7-capture/recovery/manifest.json\n\n/home/Bridgebots/work/capsule-gen7-capture/recovery/artifacts:\n8s-32 v 7s-32: 2 boards to play (0 done), 2 workers\n2 boards: 3.5 +- 3.5 IMPs/board for 8s-32; 227 boards/hour; 0 failed\n{\"pair\": \"8s-32~7s-32\", \"boards\": 2, \"cpu_per_board\": 26.16, \"common\": {\"imps_per_board\": 3.5, \"se\": 3.5, \"boards\": 2, \"won\": 1, \"lost\": 0, \"flat\": 1}, \"native\": {\"imps_per_board\": 3.5, \"se\": 3.5, \"boards\": 2, \"won\": 1, \"lost\": 0, \"flat\": 1}}\nsetup done on azure1: load average: 6.97, 6.74, 6.73\n",
+ "received": "2026-11-12T03:45:37Z",
+ "script_sha256": "8daef14113145452e5f8b059b402195487e0ae540f067fc32e07f75f26f1169b",
+ "started": "2026-11-12T03:45:37Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

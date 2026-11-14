@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 9.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:54:52Z",
+ "id": "20261112T035310Z-429581-g8-05-azure-look",
+ "output_bytes": 1024,
+ "output_tail": "== VMs in Bridgebots_group\nName         Size              State       Zone    Created\n-----------  ----------------  ----------  ------  ---------------------------------\nBridgebots   Standard_F8as_v6  VM running  1       2026-11-12T00:47:13.4203032+00:00\nBridgebots2  Standard_F8as_v6  VM running  1       2026-11-12T02:09:46.9050369+00:00\nBridgebots3  Standard_F8as_v6  VM running  1       2026-11-12T02:10:20.8242952+00:00\nBridgebots4  Standard_F8as_v6  VM running  1       2026-11-12T02:11:00.641671+00:00\nBridgebots5  Standard_F8as_v6  VM running  1       2026-11-12T03:51:46.525057+00:00\n== quota\nName                          Used    Limit\n----------------------------  ------  -------\nStandard Fasv6 Family vCPUs   40      48\nTotal Regional vCPUs          40      48\nStandard DCasv6 Family vCPUs  0       0\nStandard ECasv6 Family vCPUs  0       0\n== az version\n2.92.0\n== flags\n--nic-delete-option --os-disk-delete-option --public-ip-address-allocation --public-ip-sku --ssh-key-name --zone \nauto-shutdown: available\n",
+ "received": "2026-11-12T03:54:42Z",
+ "script_sha256": "46c7ccd477f5b4ed0bd23f1874c665a6f259e4b989b4892c61ba88ee0bcfc126",
+ "started": "2026-11-12T03:54:42Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

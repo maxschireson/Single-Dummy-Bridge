@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 59.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T05:06:23Z",
+ "id": "20261114T050457Z-229600-loop-131-ledger1",
+ "output_bytes": 1520,
+ "output_tail": "500\n500 record files; tables by bot: {'8p-32-v41': 994, 'stu3-p': 994}\ndouble-dummy tricks given up A TABLE (hindsight on the deal as it lay), and cards that turned the contract a 100 tables\n\n8p-32-v41: 994 tables | all cards 0.517 tricks a table | turned the contract 13.5 a 100 tables | cards giving up 0/1/2/3+ tricks: [20281, 391, 44, 11]\n  lead      0.103 tricks a table, turned 2.7 a 100 | lead 0.103\n  declaring 0.235 tricks a table, turned 5.8 a 100 | tricks 1-4 0.106 | tricks 5-8 0.099 | tricks 9-13 0.031\n  defending 0.179 tricks a table, turned 4.9 a 100 | tricks 1-4 0.111 | tricks 5-8 0.055 | tricks 9-13 0.013\n\nstu3-p: 994 tables | all cards 0.647 tricks a table | turned the contract 17.5 a 100 tables | cards giving up 0/1/2/3+ tricks: [19896, 531, 41, 9]\n  lead      0.120 tricks a table, turned 3.2 a 100 | lead 0.120\n  declaring 0.275 tricks a table, turned 7.6 a 100 | tricks 1-4 0.153 | tricks 5-8 0.100 | tricks 9-13 0.022\n  defending 0.253 tricks a table, turned 6.6 a 100 | tricks 1-4 0.136 | tricks 5-8 0.093 | tricks 9-13 0.024\n  of the tricks given up (a table: all, the lead and tricks 1-4, later): a candidate, rated lower 0.479, 0.260, 0.219; no rollout (other) 0.120, 0.120, 0.000; not a candidate 0.048, 0.029, 0.019\n\nreal\t0m59.160s\nuser\t1m45.461s\nsys\t0m0.182s\n2026-11-14T04:44:28Z the collection is paused for jobs-azure1-styles.txt\n2026-11-14T04:44:28Z start h3-pi stu3-psti~stu3-pst seed 131 first 17000 deals 500 workers 8 --episodes (source 68fb9ca, nets fp32)\n2026-11-14T05:06:23Z\n",
+ "received": "2026-11-14T05:05:24Z",
+ "script_sha256": "2b8e1cb97ee8df4e0080824740e6279eec27962ba13b4b707d74b435d889d056",
+ "started": "2026-11-14T05:05:24Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 1,
+ "finished": "2026-11-14T05:25:56Z",
+ "id": "20261114T052527Z-796820-loop-136-rates",
+ "output_bytes": 1059,
+ "output_tail": "2026-11-13T22:53:48Z round 3's cut: sp0e spr0e stopped; the collection moves to sps0e (pure rollout)\n2026-11-13T23:36:54Z the collection is paused for jobs-azure1-r3.txt\n2026-11-14T00:09:51Z jobs-azure1-r3.txt has ended; back to the collection\n2026-11-14T00:45:08Z sps0e stopped: the collection moves to sp3se (round 3's net in the rollouts)\n2026-11-14T00:45:08Z start sp3se stu3-psa~stu3-psb seed 9001 first 440000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets \n2026-11-14T02:46:57Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source 5414b8a, nets fp32)\n2026-11-14T03:07:21Z the collection is paused for jobs-azure1-hd.txt\n2026-11-14T04:43:28Z jobs-azure1-hd.txt has ended; back to the collection\n2026-11-14T04:43:28Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source fc8202f, nets fp32)\n2026-11-14T04:44:28Z the collection is paused for jobs-azure1-styles.txt\nsg8e 790 tables; first row 04:43 last 04:44\nsp3se 2787 tables; first row 00:45 last 02:46\n",
+ "received": "2026-11-14T05:25:56Z",
+ "script_sha256": "5a8bc3208aade44e54cf7984f65de0340c417f165dc54d18e80bd4f537bed6bd",
+ "started": "2026-11-14T05:25:56Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

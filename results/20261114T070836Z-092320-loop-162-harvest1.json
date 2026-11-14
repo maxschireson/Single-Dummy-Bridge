@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 305.5,
+ "exit_code": 1,
+ "finished": "2026-11-14T07:13:54Z",
+ "id": "20261114T070836Z-092320-loop-162-harvest1",
+ "output_bytes": 623,
+ "output_tail": "    main()\n  File \"/home/Bridgebots/work/loop/src-lc/training/rollout-loop-20261113/usbc/harvest.py\", line 153, in main\n    rec = harvest(c, sid, meta)\n          ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/Bridgebots/work/loop/src-lc/training/rollout-loop-20261113/usbc/harvest.py\", line 131, in harvest\n    return dict(miniSessionId=sid, meta=meta, boards=boards, teams=teams, matches=[dict(home=h, visiting=v, **i) for (h, v), i in matches.items()],\n                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: dict() got multiple values for keyword argument 'home'\n",
+ "received": "2026-11-14T07:08:49Z",
+ "script_sha256": "23a3cde9959d4f9cccb0d379c62f94926fca1c317aaaa51425df4b7c8113eb57",
+ "started": "2026-11-14T07:08:49Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

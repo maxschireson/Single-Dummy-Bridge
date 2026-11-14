@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 40.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:28:36Z",
+ "id": "20261113T012742Z-213465-next8-s1",
+ "output_bytes": 486,
+ "output_tail": "prepnext8: active\n20:56:31 DONE\n01:27:56 load 8.24 8.13 7.96; memory available 23539 MB; tag s1, mode feed\nsource 4b32e6ed0d6b: 1465 deals, 745 played, STOP and WATCHDOG_STOP present\n01:28:02 == prepare\ncohort 66ddfcee99a7: 720 deals taken over from cohort 4b32e6ed0d6b (745 of its 1465 were played, 0 unplayed deals from training families left out); pairs {'8s-32~71s-32': 2, '8c-32~71s-32': 1, '8c-32~8s-32': 1, '8s-32~5RZ32': 1, '8s-32~1': 1}; bots {'8s-32': '\n01:28:04 == preflight\n",
+ "received": "2026-11-13T01:27:55Z",
+ "script_sha256": "58c18a795ff27c616985d9d243834354751d43715048302dafa4c5c4713a4a00",
+ "started": "2026-11-13T01:27:55Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

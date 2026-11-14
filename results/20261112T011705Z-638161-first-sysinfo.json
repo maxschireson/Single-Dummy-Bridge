@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T01:25:55Z",
+ "id": "20261112T011705Z-638161-first-sysinfo",
+ "output_bytes": 1076,
+ "output_tail": "== host\nLinux 7.0.0-1017-azure x86_64\nUbuntu 24.04.5 LTS\n 01:25:55 up 38 min,  2 users,  load average: 0.20, 0.13, 0.10\n== azure size\nvmSize: Standard_F8as_v6\nlocation: eastus\n== cpu\n8\nModel name:                              AMD EPYC 9V74 80-Core Processor\nThread(s) per core:                      1\nCore(s) per socket:                      8\nSocket(s):                               1\nL3 cache:                                32 MiB (1 instance)\nNUMA node(s):                            1\n== memory\n               total        used        free      shared  buff/cache   available\nMem:              31           0          30           0           0          30\nSwap:              0           0           0\n== disks\nFilesystem       Size  Used Avail Use% Mounted on\n/dev/root        123G  1.9G  122G   2% /\n/dev/nvme0n1p16  881M   85M  735M  11% /boot\n/dev/nvme0n1p15  105M  6.2M   99M   6% /boot/efi\n== software\nPython 3.12.3\ngit version 2.43.0\ng++         missing\ncmake       missing\nmake        missing\ndocker      missing\nnvidia-smi  missing\n== sudo\npasswordless sudo ok\n",
+ "received": "2026-11-12T01:25:55Z",
+ "script_sha256": "98af55f2108c8e4a4fc0f03d28e78b05bfc04d988c2cff2242eb9c62c7c6a9fc",
+ "started": "2026-11-12T01:25:55Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

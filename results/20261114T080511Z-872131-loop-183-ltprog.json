@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:05:16Z",
+ "id": "20261114T080511Z-872131-loop-183-ltprog",
+ "output_bytes": 93,
+ "output_tail": "records 78 | lt2 21 | units inactive active active \n2026-11-14T08:05:15Z sessions found: 109\n",
+ "received": "2026-11-14T08:05:16Z",
+ "script_sha256": "b4ca98841f3f6e6f2b1bc8d95d9e8866f1cb87ffa2b3a40e2c343aade70ff8cd",
+ "started": "2026-11-14T08:05:16Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

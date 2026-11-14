@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:02:06Z",
+ "id": "20261112T060133Z-454548-p41-keep-azure5",
+ "output_bytes": 169,
+ "output_tail": "Thu 2026-11-12 07:35:00 UTC 1h 32min -         - azure5-reaper.timer azure5-reaper.service\ntimer after: inactive\n0\n-rwxr-xr-x /home/Bridgebots/azure5-reaper.sh\n06:02:06\n",
+ "received": "2026-11-12T06:02:05Z",
+ "script_sha256": "3555e5002511ba536f15608466ccf0ed3853fc133b4e0016ff58d662ec0e304d",
+ "started": "2026-11-12T06:02:05Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

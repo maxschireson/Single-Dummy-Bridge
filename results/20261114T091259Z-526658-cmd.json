@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:13:03Z",
+ "id": "20261114T091259Z-526658-cmd",
+ "output_bytes": 327,
+ "output_tail": "8\n 09:13:03 up 2 days,  8:25,  0 user,  load average: 8.31, 8.84, 9.81\nindex.json\nsessions.json\nusbc_138206_1_1.json.gz\n187\nda6ec57 USBC harvest: --screens, vugraph screens given by hand; the 2025 Open, Mixed and Senior USBC screens from USBF's bracket sheets\norigin\thttps://github.com/maxschireson/Single-Dummy-Bridge (fetch)\n",
+ "received": "2026-11-14T09:13:03Z",
+ "script_sha256": "a47945ddf285e7df840e82c2e448ec0f1c43665afd45af34b72c6f5f72eece9b",
+ "started": "2026-11-14T09:13:03Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

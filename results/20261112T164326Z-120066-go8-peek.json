@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:43:57Z",
+ "id": "20261112T164326Z-120066-go8-peek",
+ "output_bytes": 2467,
+ "output_tail": "16:43:57\n   deal 4 8s-32~1: 113s, root tables 2, tables with forks 4, IMPs {'common': 7, 'native': 0}, searched decisions 532, in the tree's tricks 145, tree consulted 48, moved 13, tree forks 1, gap forks 24 on 4 tables\n   deal 5 8s-32~5RZ32: 67s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 0}, searched decisions 560, in the tree's tricks 116, tree consulted 46, moved 7, tree forks 4, gap forks 21 on 4 tables\n   deal 6 8s-32~5RZ32: 69s, root tables 2, tables with forks 4, IMPs {'common': 1, 'native': 1}, searched decisions 492, in the tree's tricks 122, tree consulted 44, moved 7, tree forks 0, gap forks 21 on 4 tables\n   deal 7 8s-32~1: 84s, root tables 2, tables with forks 4, IMPs {'common': 17, 'native': 12}, searched decisions 387, in the tree's tricks 98, tree consulted 45, moved 9, tree forks 0, gap forks 20 on 4 tables\n   deal 10 8c-32~8s-32: 154s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 0}, searched decisions 1148, in the tree's tricks 223, tree consulted 84, moved 7, tree forks 3, gap forks 24 on 4 tables\n   deal 11 8c-32~71s-32: 193s, root tables 2, tables with forks 4, IMPs {'common': 0, 'native': 0}, searched decisions 1299, in the tree's tricks 320, tree consulted 143, moved 16, tree forks 4, gap forks 24 on 4 tables\n   tree in all: {'in_a_stage': 1812, 'consulted': 841, 'moved': 96, 'over_budget': 0, 'tree_forks': 22, 'tree_fork_imps': 1, 'mean_seconds': 0.18, 'p95_seconds': 0.44, 'max_seconds': 1.41, 'mean_solves': 74.35, 'p95_solves': 152, 'max_solves': 248}\n16:41:53 == records\n16:41:56 records written; publication checkout on arena-gen8-azure1-feed\n16:41:56 == units\n16:41:56 units written\n16:41:57 == start with eight workers\n16:41:57 collector active with 8 workers, publisher active, feed arena-gen8-azure1-feed\n16:41:57 gen8-recycle active; cache /mnt/ddscache/gen8-azure1.sqlite\ngo8=active arena-gen8=active arena-gen8-publish=active gen8-recycle=active \ngen8-azure1 \n%CPU ELAPSED COMMAND\n99.1     119 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --multiprocessing-f\n98.7     119 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=31) --multiprocessing-f\n98.6     119 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=27) --multiprocessing-f\n",
+ "received": "2026-11-12T16:43:57Z",
+ "script_sha256": "e0494d3742970d8a444a7ec36f09821cf736c99776f7a845afb55223a3c38ffe",
+ "started": "2026-11-12T16:43:57Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

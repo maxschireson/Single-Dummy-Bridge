@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:46:42Z",
+ "id": "20261112T044341Z-438064-g8-15-queue",
+ "output_bytes": 137,
+ "output_tail": "     1\tx1-8s-v-7s 8s-32~7s-32 0 2400 81\n     2\tc0-n-v4-v-v0 n-v4~n-v0 0 4000 83\n     3\tc1-8p-v4-v-v0 8p-32~8p-32-v0 0 2400 83\nposition 0\n",
+ "received": "2026-11-12T04:46:42Z",
+ "script_sha256": "d20f2eb93695df2b3f95c84858f50b233d48cf19d7e10a149abec3079ced4a8f",
+ "started": "2026-11-12T04:46:42Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

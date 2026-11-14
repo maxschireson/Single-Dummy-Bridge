@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 45.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:54:41Z",
+ "id": "20261112T035202Z-211938-g8-04-workers",
+ "output_bytes": 268,
+ "output_tail": "1\n2026-11-12T03:50:32Z start x1-8s-v-7s: 8s-32~7s-32 deals 0+2400 seed 81  (source b6ad822)\n2026-11-12T03:53:56Z start x1-8s-v-7s: 8s-32~7s-32 deals 0+2400 seed 81  (source b6ad822)\n8s-32 v 7s-32: 2392 boards to play (8 done), 8 workers\nload average: 4.76, 4.15, 5.50\n",
+ "received": "2026-11-12T03:53:56Z",
+ "script_sha256": "57d17ab4e24c01af8f4041d1ce375b6d35c6f531f6cd677aa504edcb6b60afa3",
+ "started": "2026-11-12T03:53:56Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

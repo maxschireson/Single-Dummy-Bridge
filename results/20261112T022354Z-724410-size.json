@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:24:18Z",
+ "id": "20261112T022354Z-724410-size",
+ "output_bytes": 336,
+ "output_tail": "episodes: 308 files, 37M\n1.3M\t/home/Bridgebots/work/runs/g7s-vs-g6f-01/receipts\n8.3M\t/home/Bridgebots/work/runs/g7s-vs-g6f-01/corpus.jsonl\n30M\t/home/Bridgebots/work/runs/g7s-vs-g6f-01/artifacts\n592M\t/home/Bridgebots/work/runs/g7s-vs-g6f-01/dds-cache.sqlite\n16K\t/home/Bridgebots/work/runs/g7s-vs-g6f-01/manifest.json\nmean episode 120 KB\n",
+ "received": "2026-11-12T02:24:18Z",
+ "script_sha256": "a5b009edc62722b87cc0f4bbadfbf4aeb0539ee64ce8a8093b82b17cd002252d",
+ "started": "2026-11-12T02:24:18Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

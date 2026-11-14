@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:43:58Z",
+ "id": "20261112T114334Z-805731-share71",
+ "output_bytes": 363,
+ "output_tail": "11:43:53\ngo71d active; arena-gen71 active\n11:42:25 == memory supervisor\n11:42:25 == start with eight workers\n11:42:26 collector active with 8 workers, publisher active, feed arena-gen7-1-mix-azure1-feed\n11:42:26 gen71-recycle active; cache /mnt/ddscache/gen71-mix-azure1.sqlite\nshare71: active\n2026-11-12T11:43:53Z g8's matches are running: going to four workers\n",
+ "received": "2026-11-12T11:43:53Z",
+ "script_sha256": "e95387cf2f0a6c95e55758a42254e769b55320a0663e1b77e9a7cf3fe715d46f",
+ "started": "2026-11-12T11:43:53Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 200.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:46:10Z",
+ "id": "20261112T044227Z-837682-g8-12-nocache",
+ "output_bytes": 299,
+ "output_tail": "7:export BRIDGE_DDS_CACHE=\nbefore: 758 boards: 0.3879 +- 0.1135 IMPs/board for 8s-32; 929 boards/hour; 0 failed\nafter 200 s: 816 boards: 0.4032 +- 0.11 IMPs/board for 8s-32; 1158 boards/hour; 0 failed\n100.0 100.0 100.0 100.0 90.9 90.9 90.9 90.9 (% CPU of the workers)\nload average: 8.24, 7.84, 7.77\n",
+ "received": "2026-11-12T04:42:50Z",
+ "script_sha256": "13cbc11b72cc892ac54f1e1cba0aa0efc331f59623845bc7a73bae0c260386d3",
+ "started": "2026-11-12T04:42:50Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

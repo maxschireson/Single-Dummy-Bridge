@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 114.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:34:16Z",
+ "id": "20261114T083218Z-981725-loop-188-bsmoke",
+ "output_bytes": 2248,
+ "output_tail": "{\"pair\": \"1~1-tw\", \"boards\": 3, \"cpu_per_board\": 7.25, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 3, \"won\": 0, \"lost\": 0, \"flat\": 3}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\":\n6 tables -> /tmp/bs-own-1.lt2.json.gz\n{\"pair\": \"6-32~6-32-tw\", \"boards\": 3, \"cpu_per_board\": 13.44, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 3, \"won\": 0, \"lost\": 0, \"flat\": 3}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"b\n6 tables -> /tmp/bs-own-6.lt2.json.gz\n{\"pair\": \"6-32~8p-32-v41\", \"boards\": 3, \"cpu_per_board\": 17.7, \"common\": {\"imps_per_board\": -3.6667, \"se\": 1.8559, \"boards\": 3, \"won\": 0, \"lost\": 2, \"flat\": 1}, \"native\": {\"imps_per_board\": -3.6667, \"\n6 tables -> /tmp/bs-hum-6.lt2.json.gz\n{\"pair\": \"7s-32-v41~8p-32-v41\", \"boards\": 3, \"cpu_per_board\": 19.99, \"common\": {\"imps_per_board\": -3.0, \"se\": 1.7321, \"boards\": 3, \"won\": 0, \"lost\": 2, \"flat\": 1}, \"native\": {\"imps_per_board\": -3.0, \"\n6 tables -> /tmp/bs-hum-7.lt2.json.gz\nbs-hum-6.lt2.json.gz 2N N {'N': '6-32', 'E': '8p-32-v41', 'S': '6-32', 'W': '8p-32-v41'} declarer 2 defense 0 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\nbs-hum-6.lt2.json.gz 2N N {'N': '8p-32-v41', 'E': '6-32', 'S': '8p-32-v41', 'W': '6-32'} declarer 0 defense 0 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\nbs-hum-7.lt2.json.gz 2N N {'N': '7s-32-v41', 'E': '8p-32-v41', 'S': '7s-32-v41', 'W': '8p-32-v41'} declarer 1 defense 0 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\nbs-hum-7.lt2.json.gz 2N N {'N': '8p-32-v41', 'E': '7s-32-v41', 'S': '8p-32-v41', 'W': '7s-32-v41'} declarer 0 defense 0 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\nbs-own-1.lt2.json.gz 2N N {'N': '1', 'E': '1-tw', 'S': '1', 'W': '1-tw'} declarer 0 defense 3 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\nbs-own-1.lt2.json.gz 2N N {'N': '1-tw', 'E': '1', 'S': '1-tw', 'W': '1'} declarer 0 defense 3 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\nbs-own-6.lt2.json.gz 2N N {'N': '6-32', 'E': '6-32-tw', 'S': '6-32', 'W': '6-32-tw'} declarer 1 defense 2 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\nbs-own-6.lt2.json.gz 2N N {'N': '6-32-tw', 'E': '6-32', 'S': '6-32-tw', 'W': '6-32'} declarer 1 defense 2 lead 0 | human usbc_138206_1_1 5 Open Round of 16 1/4\n",
+ "received": "2026-11-14T08:32:21Z",
+ "script_sha256": "52193664036b352c456ae9475afe453fbcb66d04265347bc6bb88db9fa4781c7",
+ "started": "2026-11-14T08:32:21Z",
+ "timed_out": false,
+ "timeout_s": 1200
+}

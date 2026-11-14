@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T01:57:40Z",
+ "id": "20261112T015706Z-498647-progress",
+ "output_bytes": 655,
+ "output_tail": "unit: active\n 01:57:40 up  1:10,  0 user,  load average: 6.90, 8.40, 8.60\nStarted g7s-vs-g6f-01b.service - /home/Bridgebots/work/runs/drive.sh /home/Bridgebots/work/runs/g7s-vs-g6f-01 300 8.\n2026-11-12T01:44:16Z collector pid 4979, 8 workers, STOP after 300 boards\nboards 225, 838 an hour since the first finished; root games 450, tables 3141\ncommon auctions: +0.578 +- 0.192 IMPs a board (wins 42, flat 162, losses 21)\nnative auctions: +0.578 +- 0.192 IMPs a board\npairs: {'7s-32~6-32': 225}\n{\"completed\": 224, \"index\": 224, \"pair\": \"7s-32~6-32\", \"common\": 0, \"native\": 0}\n{\"completed\": 225, \"index\": 226, \"pair\": \"7s-32~6-32\", \"common\": 0, \"native\": 0}\n",
+ "received": "2026-11-12T01:57:40Z",
+ "script_sha256": "364fdd71a8ba0130f55b6ce4c903108aa43c14cfbf23734d624381b5e9295c13",
+ "started": "2026-11-12T01:57:40Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

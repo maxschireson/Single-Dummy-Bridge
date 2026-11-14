@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 10.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T01:42:40Z",
+ "id": "20261112T014200Z-706417-threads",
+ "output_bytes": 2042,
+ "output_tail": " 01:42:30 up 54 min,  0 user,  load average: 40.76, 17.05, 6.59\n== top processes by CPU (pid, threads, cpu%, rss MB, command)\n    PID NLWP %CPU   RSS ELAPSED COMMAND\n4565 18 121 920 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=21) --\n4567 18 110 927 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=25) --\n4570 18 108 881 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=31) --\n4571 18 106 945 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=33) --\n4562 18 105 893 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=19) --\n4569 18 86.6 967 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=29) -\n4566 18 82.7 930 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=23) -\n4568 18 73.9 924 136 /home/Bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9, pipe_handle=27) -\n4548 10 2.0 80 137 /home/Bridgebots/work/venv/bin/python -u ops/gen5_runtime.py --run /home/Bridgebots/work/runs/g7s-vs-g6f-01 --workers 8\n1248 6 0.0 36 3279 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers\n1 1 0.0 13 3296 /sbin/init\n1457 4 0.0 49 2186 /usr/libexec/fwupd/fwupd\n2082 1 0.0 18 1268 /usr/bin/python3 /home/Bridgebots/.boxctl/agent.py --config /home/Bridgebots/.boxctl/config.json\n== CPU busy over 10 s\nbusy 100% of 8 CPUs (user 99%, system 1%, iowait 0%)\n== threads per python worker\n4562 18 threads\n4565 18 threads\n4566 18 threads\n4567 18 threads\n4568 18 threads\n4569 18 threads\n4570 18 threads\n4571 18 threads\nboards so far: 7\n",
+ "received": "2026-11-12T01:42:30Z",
+ "script_sha256": "ad43f6a740721395e6ccd4da469dd48839e9d2338a24cf8749b75c0c8476b371",
+ "started": "2026-11-12T01:42:30Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

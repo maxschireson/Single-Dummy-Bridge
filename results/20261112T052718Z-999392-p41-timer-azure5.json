@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:27:31Z",
+ "id": "20261112T052718Z-999392-p41-timer-azure5",
+ "output_bytes": 334,
+ "output_tail": "Running timer as unit: azure5-reaper.timer\nWill run service as unit: azure5-reaper.service\nNEXT                           LEFT LAST PASSED UNIT                ACTIVATES\nThu 2026-11-12 07:35:00 UTC 2h 7min -         - azure5-reaper.timer azure5-reaper.service\n\n05:27:31\nSystem clock synchronized: yes\n              NTP service: active\n",
+ "received": "2026-11-12T05:27:31Z",
+ "script_sha256": "367ba9dfff6a918648f5dcb726886bdf8b2a4693eda37e71b9abe3405e8bfa09",
+ "started": "2026-11-12T05:27:31Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 12.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:48:38Z",
+ "id": "20261114T214756Z-228452-sidplay-v5",
+ "output_bytes": 824,
+ "output_tail": "== before\n{\"ok\":true,\"bot\":\"stu4c-put\",\"label\":\"SiD (rollout) Stu R4c\",\"stand_in\":false,\"engine\":\"bundle\",\"open_tables\":0,\"busy\":{\"interactive\":0,\"background\":0,\"analysis\":0},\"decisions\":31,\"analysis\":true,\"uptime\":308}\n== user and directories\n== code\n== sure-trick search and cell game (play/native/sure.cpp, cells.cpp, for the analyses)\n== python environment\n== double-dummy solver\n== bundle\n== switch\n== health\n{\"ok\":true,\"bot\":\"stu4c-put\",\"label\":\"SiD (rollout) Stu R4c\",\"stand_in\":false,\"engine\":\"bundle\",\"open_tables\":0,\"busy\":{\"interactive\":0,\"background\":0,\"analysis\":0},\"decisions\":0,\"analysis\":true,\"uptime\":4}\n== smoke (public name: secure cookies)\nskip smoke\n5 personas seats ['0', '1', '3'] E bid style {'aggressive': -0.207, 'shape': 1.501, 'random': 0.136, 'near': 6.0} sid table True\nMemoryCurrent=954605568\n",
+ "received": "2026-11-14T21:48:26Z",
+ "script_sha256": "f0438e59fe6d36bbde39464eefc4e69b08fa46187eb09825f81719d433bb560d",
+ "started": "2026-11-14T21:48:26Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

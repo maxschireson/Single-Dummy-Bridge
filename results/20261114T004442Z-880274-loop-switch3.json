@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 20.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T00:45:28Z",
+ "id": "20261114T004442Z-880274-loop-switch3",
+ "output_bytes": 525,
+ "output_tail": "source e87d09a\nRunning as unit: loop-collect.service; invocation ID: bf88255321d741b8b1b40c580b8d31ce\nRunning as unit: loop-rows.service; invocation ID: d677b7e7316b4b25be9b2508cf2a6d8a\nbox azure1: active active active \n2026-11-14T00:45:08Z sps0e stopped: the collection moves to sp3se (round 3's net in the rollouts)\n2026-11-14T00:45:08Z start sp3se stu3-psa~stu3-psb seed 9001 first 440000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets bf16, --recycle 20)\nsps0e 1745 tables (final)\n2026-11-14T00:45:28Z\n",
+ "received": "2026-11-14T00:45:08Z",
+ "script_sha256": "74239d3ed9baba5a94d9d445f6a3d1db59cf568cecf5fa3e7ef611f6cd7f756b",
+ "started": "2026-11-14T00:45:08Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

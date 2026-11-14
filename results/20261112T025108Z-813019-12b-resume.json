@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 147.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:53:44Z",
+ "id": "20261112T025108Z-813019-12b-resume",
+ "output_bytes": 687,
+ "output_tail": "== drain the pre-7 test match\npre-7 run: 538 boards, failures 0; its publisher makes the last push by itself\n== units\ncollector: active; boards 23; load average: 6.74, 6.19, 5.08\n{\"completed\": 22, \"index\": 23, \"pair\": \"7s-32~5RZ32\", \"common\": 0, \"native\": 0}\n{\"completed\": 23, \"index\": 26, \"pair\": \"7s-32~6-32\", \"common\": 0, \"native\": 0}\n== first publication\n{\"completed\": 23, \"tables\": 46, \"rate\": {\"pairs\": 23, \"per_hour\": 276.0, \"full_window\": true}, \"files\": 7, \"output\": \"/home/Bridgebots/work/publication/gen7-phase1-azure1\"}\npushed 3633fcf Gen5: 23 verified paired deals, common/native bidding\npublisher: active\nstate: 25 of 2814 {'7s-32~5RZ32': 9, '7s-32~6-32': 9, '7s-32~1': 7}\n",
+ "received": "2026-11-12T02:51:17Z",
+ "script_sha256": "8cfca36ae6d16cde9d89e6ad7b093d04769e393e0267e0d4828a0562044c62f4",
+ "started": "2026-11-12T02:51:17Z",
+ "timed_out": false,
+ "timeout_s": 1200
+}

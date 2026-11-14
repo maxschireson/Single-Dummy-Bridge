@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 20.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T03:07:41Z",
+ "id": "20261114T030711Z-218389-loop-hd",
+ "output_bytes": 355,
+ "output_tail": "source fc8202f\nRunning as unit: loop-rungs.service; invocation ID: 5978697da1e14e15b31474d5a8565d17\nactive inactive active 2026-11-14T03:07:21Z the collection is paused for jobs-azure1-hd.txt\n2026-11-14T03:07:21Z start hd-n stu3-nd~stu0-nd seed 131 first 19000 deals 2000 workers 8  (source fc8202f, nets fp32)\nsg8e 751 tables so far\n2026-11-14T03:07:41Z\n",
+ "received": "2026-11-14T03:07:21Z",
+ "script_sha256": "16f9654af302bad572b2e3b9569b61dccc2beaa82c1bc295684d1623295e6836",
+ "started": "2026-11-14T03:07:21Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

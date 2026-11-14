@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:44:30Z",
+ "id": "20261112T114401Z-494752-pf-look",
+ "output_bytes": 645,
+ "output_tail": "preflight passed in 167s:\n   deal 0 71s-32~7s-32: 44s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 541, in the tree's tricks 111, tree consulted 46, moved 1, tree forks 1, gap forks 12 on 2 tables\n   deal 1 71s-32~71s-32: 34s, root tables 1, tables with forks 1, IMPs {'self': None}, searched decisions 247, in the tree's tricks 66, tree consulted 34, moved 3, tree forks 0, gap forks 6 on 1 tables\n   deal 2 71s-32~71s-32: 26s, root tables 1, tables with forks 1, IMPs {'self': None}, searched decisions 353, in the tree's tricks 41, tree consulted 15, moved 0, tree forks 0, gap forks 6 on 1 tables\n",
+ "received": "2026-11-12T11:44:30Z",
+ "script_sha256": "7a827cbaad0aa053a1c2799cef851feb18b7a9f89e4a9c7812270d9409bfc41d",
+ "started": "2026-11-12T11:44:30Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

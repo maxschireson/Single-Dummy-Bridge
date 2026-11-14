@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 38.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:34:34Z",
+ "id": "20261114T073350Z-239255-loop-168-mt1",
+ "output_bytes": 504,
+ "output_tail": "14\n3132 tables; common bidder 6-32; calls not understood: {}\n  every call at least 0.01: 767 tables (24%)\n  every call at least 0.02: 649 tables (21%)\n  every call at least 0.05: 530 tables (17%)\n  every call at least 0.1: 450 tables (14%)\n  every call at least 0.2: 404 tables (13%)\nkept at 0.05: 530 -> /tmp/usbct/fit_*\n\nreal\t0m37.543s\nuser\t0m37.096s\nsys\t0m0.089s\nboard 3 failed (attempt 2): ValueError: Distinct generations required\n{\"pair\": \"8p-32-v41~8p-32-v41\", \"boards\": 0, \"cpu_per_board\": null}\n",
+ "received": "2026-11-14T07:33:56Z",
+ "script_sha256": "0b21183670aaa1882cbc135b7a7abf9e46581425c1e3922f4efeb81b5c4a61c7",
+ "started": "2026-11-14T07:33:56Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

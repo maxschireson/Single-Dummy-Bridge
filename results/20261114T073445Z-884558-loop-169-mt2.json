@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 45.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:35:52Z",
+ "id": "20261114T073445Z-884558-loop-169-mt2",
+ "output_bytes": 879,
+ "output_tail": "15\nbook.json.gz\ndeals.json.gz\nfit_book.json.gz\nfit_deals.json.gz\nfit_tables.jsonl\ntables.jsonl\n4 boards: 0.0 +- 0.0 IMPs/board for g8a; 325 boards/hour; 0 failed\n{\"pair\": \"g8a~g8b\", \"boards\": 4, \"cpu_per_board\": 21.57, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4, \"won\": 0, \"lost\": 0, \"flat\": 4}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4, \"won\": 0, \"lost\": 0, \"flat\": 4}, \"by_systems\": {\"usbc~usbc\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4}}}\nusbc_138206_1_1 5 OPEN human auction 2N PASS PASS PASS | played 2N 2N PASS PASS PASS\nusbc_138206_1_1 5 CLOSED human auction 2N PASS PASS PASS | played 2N 2N PASS PASS PASS\nusbc_138206_1_1 6 CLOSED human auction PASS 1H 2S 3H PASS 4H PASS PASS PASS | played 4H PASS 1H 2S 3H PASS 4H PASS PASS PASS\nusbc_138206_1_1 8 OPEN human auction 2S 2N 3S 3N PASS PASS PASS | played 3N 2S 2N 3S 3N PASS PASS PASS\n",
+ "received": "2026-11-14T07:35:07Z",
+ "script_sha256": "d7ccdced69f08021dbf14a924adef1b681f34eb2cdd01b4c42e27180cd945510",
+ "started": "2026-11-14T07:35:07Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

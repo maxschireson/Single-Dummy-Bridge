@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 21.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:35:44Z",
+ "id": "20261114T083516Z-027444-perf-mailbridge-install",
+ "output_bytes": 234,
+ "output_tail": "active\nNov 14 08:35:23 Bridgebots systemd[1]: Started mailbridge.service - mailbridge: mailbox relay for a Claude session (ops/mailbridge).\nNov 14 08:35:26 Bridgebots python3[371336]: 2026-11-14T08:35:26Z made box key and certificate\n",
+ "received": "2026-11-14T08:35:22Z",
+ "script_sha256": "a6dc45586ac7523cc7926c06e1da6612ae054998767d83ee1463241aa71e1588",
+ "started": "2026-11-14T08:35:22Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

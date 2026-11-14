@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 164.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T19:58:03Z",
+ "id": "20261114T195458Z-673066-cmd",
+ "output_bytes": 698,
+ "output_tail": "19:55:19 regional vCPUs in use: 48 of 48\n== deallocate Bridgebots5\nBridgebots5  Standard_F8as_v6  VM deallocated\n== resize to Standard_F16as_v6\nresized\n== start\n== start Bridgebots6\nName         Size               State\n-----------  -----------------  ----------\nBridgebots   Standard_F8as_v6   VM running\nBridgebots2  Standard_F8as_v6   VM running\nBridgebots3  Standard_F8as_v6   VM running\nBridgebots4  Standard_F8as_v6   VM running\nBridgebots5  Standard_F16as_v6  VM running\nBridgebots6  Standard_F8as_v6   VM running\nName                         Used    Limit\n---------------------------  ------  -------\nStandard Fasv6 Family vCPUs  56      64\nTotal Regional vCPUs         56      64\n19:58:03\n",
+ "received": "2026-11-14T19:55:18Z",
+ "script_sha256": "a617a28e49c62be89cccdd0a56ed6686436c5a0533ad7fe79d9ffe45c93457e0",
+ "started": "2026-11-14T19:55:18Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

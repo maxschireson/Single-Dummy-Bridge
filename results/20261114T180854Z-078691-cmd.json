@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 153.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:11:52Z",
+ "id": "20261114T180854Z-078691-cmd",
+ "output_bytes": 633,
+ "output_tail": "source 352c72b\nRunning as unit: loop-collect.service; invocation ID: 66fd7421e1fe4805a552a9a18662af10\nRunning as unit: loop-rows.service; invocation ID: 8a6fb8021c9a4c6a87bbd6794e65646f\nactive active 2026-11-14T18:09:24Z start sg8s12 g8-active0~g8-passive0 seed 9001 first 722000 deals 2000 workers 8 --episodes --one-room (source 352c72b, nets fp32)\n2026-11-14T18:09:24Z end sg8s12: exit 0\n2026-11-14T18:09:24Z start sg8u1 g8-greedy0~g8-passive0 seed 9001 first 800000 deals 2000 workers 8 --episodes --one-room (source 352c72b, nets fp32)\n9\n 18:11:52 up 2 days, 17:24,  0 user,  load average: 7.55, 3.32, 1.61\n2026-11-14T18:11:52Z\n",
+ "received": "2026-11-14T18:09:19Z",
+ "script_sha256": "cf0d45ae08653a38fc522adc8b95919ad4d20bcf5617b9979fb8f858600a4bb4",
+ "started": "2026-11-14T18:09:19Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

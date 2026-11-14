@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 76.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T19:07:05Z",
+ "id": "20261114T190514Z-420013-cmd",
+ "output_bytes": 885,
+ "output_tail": "== retail prices, Linux pay as you go, eastus (Azure's public price list)\nStandard_F8as_v6: 0.5460 USD an hour (Virtual Machines Fasv6 Series, 1 Hour)\nStandard_F16as_v6: 1.0930 USD an hour (Virtual Machines Fasv6 Series, 1 Hour)\n== before\nName         Size              State\n-----------  ----------------  ----------\nBridgebots   Standard_F8as_v6  VM running\nBridgebots2  Standard_F8as_v6  VM running\nBridgebots3  Standard_F8as_v6  VM running\nBridgebots4  Standard_F8as_v6  VM running\nBridgebots5  Standard_F8as_v6  VM running\nBridgebots6  Standard_F8as_v6  VM running\n== after\nName         Size              State\n-----------  ----------------  --------------\nBridgebots6  Standard_F8as_v6  VM deallocated\nName                         Used    Limit\n---------------------------  ------  -------\nStandard Fasv6 Family vCPUs  48      48\nTotal Regional vCPUs         48      48\n19:07:05\n",
+ "received": "2026-11-14T19:05:48Z",
+ "script_sha256": "109920121b9b504c2887952c0d4910d2b2dca7a708650d737ac694c5463f54a1",
+ "started": "2026-11-14T19:05:48Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

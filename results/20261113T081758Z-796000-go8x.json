@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 40.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:19:04Z",
+ "id": "20261113T081758Z-796000-go8x",
+ "output_bytes": 522,
+ "output_tail": "go8x: active\n08:18:24 load 0.12 0.14 1.41; memory available 29002 MB; plan round8x-v3, tag x3\n08:18:25 gen8-m1-azure1 closed: 215 of 215 boards, all published; arena-gen8, its publisher, gen8-recycle and next8 disabled\n08:18:25 == prepare\ncohort e5c845da95a3: 6000 fresh deals (seed 8380; excluded {'training_families': 50818, 'source_corpus': 215, 'played': 85910}), bots and artifacts from e996b9f56627; pairs {'8x3-32~8s-32': 2, '8x3-32~71s-32': 1, '8x3-32~5RZ32': 1, '8x3-32~1': 1}; bots {'1': '\n08:18:27 == preflight\n",
+ "received": "2026-11-13T08:18:24Z",
+ "script_sha256": "8e84d9b28b3d06ab3ec0d8383f61f42c18ee5a3d85b0323cdf1a13dc000ce396",
+ "started": "2026-11-13T08:18:24Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

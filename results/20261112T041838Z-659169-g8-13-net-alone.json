@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 616.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:29:05Z",
+ "id": "20261112T041838Z-659169-g8-13-net-alone",
+ "output_bytes": 540,
+ "output_tail": "{\"pair\": \"n-v4~n-v0\", \"boards\": 1000, \"cpu_per_board\": 0.61, \"common\": {\"imps_per_board\": 4.156, \"se\": 0.1778, \"boards\": 1000, \"won\": 696, \"lost\": 85, \"flat\": 219}, \"native\": {\"imps_per_board\": 4.156, \"se\": 0.1778, \"boards\": 1000, \"won\": 696, \"lost\": 85, \"flat\": 219}}\n{\"pair\": \"n-v4~n-v2\", \"boards\": 1000, \"cpu_per_board\": 0.62, \"common\": {\"imps_per_board\": 1.196, \"se\": 0.1652, \"boards\": 1000, \"won\": 409, \"lost\": 187, \"flat\": 404}, \"native\": {\"imps_per_board\": 1.196, \"se\": 0.1652, \"boards\": 1000, \"won\": 409, \"lost\": 187, \"flat\": 404}}\n",
+ "received": "2026-11-12T04:18:49Z",
+ "script_sha256": "6a741c1420864a3a79cdba7296133ed0dceef84fb9ad7d5278463702dc666ce1",
+ "started": "2026-11-12T04:18:49Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:42:43Z",
+ "id": "20261112T024001Z-081812-progress",
+ "output_bytes": 372,
+ "output_tail": "units: match active, publish active; load average: 7.16, 6.15, 3.94\n2026-11-12T02:33:03Z pushed transfer/pre7-test-azure1-20261112: 308 episodes\nPRE7 {\"box\": \"azure1\", \"run\": \"g7s-vs-g6f-01\", \"n\": 438, \"sum\": 148, \"sumsq\": 3384, \"won\": 69, \"flat\": 326, \"lost\": 43, \"tables\": 6183, \"last_30min\": 130, \"rate_30min\": 260, \"failures\": 0, \"stop\": false, \"disk_free_gb\": 124.6}\n",
+ "received": "2026-11-12T02:42:43Z",
+ "script_sha256": "84be696663c3bf3dd0058a53bbbc95c18a19c989fd8bf348aaf4518313324493",
+ "started": "2026-11-12T02:42:43Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

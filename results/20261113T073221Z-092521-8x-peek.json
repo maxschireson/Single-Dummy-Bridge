@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:32:35Z",
+ "id": "20261113T073221Z-092521-8x-peek",
+ "output_bytes": 225,
+ "output_tail": "07:32:35\n07:29:11 exclusions: 72fafc4cce9ed62e, 50818 families\n07:29:11 played list: ac5243e11112bf68\n07:31:10 tests test_x8.py: Ran 31 tests in 118.198s OK \n07:31:10 prepare has no --fresh yet\n07:31:10 DONE\nsetup8x inactive\n",
+ "received": "2026-11-13T07:32:35Z",
+ "script_sha256": "a0a2abda0a139023b4f10caed1c28bf6bd7d46f8b85f8e693719822bd479cfdf",
+ "started": "2026-11-13T07:32:35Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

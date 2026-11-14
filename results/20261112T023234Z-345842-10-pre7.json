@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 75.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:34:12Z",
+ "id": "20261112T023234Z-345842-10-pre7",
+ "output_bytes": 741,
+ "output_tail": "resuming /home/Bridgebots/work/runs/g7s-vs-g6f-01 at 308 boards\nmatch unit: active; publisher unit: active\nStarted pre7-match.service - /home/Bridgebots/work/runs/drive.sh /home/Bridgebots/work/runs/g7s-vs-g6f-01 5600 8.\n2026-11-12T02:32:57Z collector pid 14317, 8 workers, STOP after 5600 boards\nStarted pre7-publish.service - /home/Bridgebots/work/venv/bin/python -u /home/Bridgebots/work/tools/publish_test_run.py --run /home/Bridgebots/work/runs/g7s-vs-g6f-01 --branch transfer/pre7-test-azure\n2026-11-12T02:32:57Z publishing /home/Bridgebots/work/runs/g7s-vs-g6f-01 to transfer/pre7-test-azure1-20261112 every 600s\n2026-11-12T02:33:03Z pushed transfer/pre7-test-azure1-20261112: 308 episodes\nboards: 320; load average: 4.09, 1.44, 1.62\n",
+ "received": "2026-11-12T02:32:57Z",
+ "script_sha256": "d40853e4344b203930ab06003e4dd2d32f3e0f2f3e027215429699345d537d4d",
+ "started": "2026-11-12T02:32:57Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

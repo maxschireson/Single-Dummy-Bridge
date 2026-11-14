@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 40.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:52:48Z",
+ "id": "20261113T045154Z-130226-next8-m1",
+ "output_bytes": 525,
+ "output_tail": "gen71-mix-azure1 f37d8d826522: 1256 of 1471 played, all published, no failure, STOP present\nprepnext8: active\n01:44:48 next8 active\n01:44:48 DONE\n04:52:08 load 8.36 7.57 7.66; memory available 25286 MB; tag m1, mode local\n04:52:08 == prepare\ncohort e996b9f56627: 215 deals taken over from cohort f37d8d826522 (1256 of its 1471 were played, 0 unplayed deals from training families left out); pairs {'8s-32~71s-32': 2, '8c-32~71s-32': 1, '8c-32~8s-32': 1, '8s-32~5RZ32': 1, '8s-32~1': 1}; bots {'8s-32': \n04:52:10 == preflight\n",
+ "received": "2026-11-13T04:52:08Z",
+ "script_sha256": "1929be1954e6e26e8628bbf020e55ef5865841a69cae46d463158c89dbac150d",
+ "started": "2026-11-13T04:52:08Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

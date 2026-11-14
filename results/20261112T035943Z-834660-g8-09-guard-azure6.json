@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:00:29Z",
+ "id": "20261112T035943Z-834660-g8-09-guard-azure6",
+ "output_bytes": 314,
+ "output_tail": "Created symlink /etc/systemd/system/timers.target.wants/g8-azure6-stop.timer \u2192 /etc/systemd/system/g8-azure6-stop.timer.\nNEXT                            LEFT LAST PASSED UNIT                 ACTIVATES\nThu 2026-11-12 09:55:00 UTC 5h 54min -         - g8-azure6-stop.timer g8-azure6-stop.service\n\n1 timers listed.\n",
+ "received": "2026-11-12T04:00:29Z",
+ "script_sha256": "5a3a07eae174fbddb8124abc201a86b1b5cacdf4acb1c984cda9dfac73beee72",
+ "started": "2026-11-12T04:00:29Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

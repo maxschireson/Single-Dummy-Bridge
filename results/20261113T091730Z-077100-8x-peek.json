@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:17:44Z",
+ "id": "20261113T091730Z-077100-8x-peek",
+ "output_bytes": 1330,
+ "output_tail": "09:17:44\n   tree in all: {'in_a_stage': 224, 'consulted': 100, 'moved': 6, 'over_budget': 0, 'tree_forks': 0, 'tree_fork_imps': 0, 'mean_seconds': 0.21, 'p95_seconds': 0.43, 'max_seconds': 0.58, 'mean_solves': 93.9, 'p95_solves': 187, 'max_solves': 198}\n08:22:35 == records\n08:22:37 records written; publication checkout on arena-gen8-x3-azure1-feed\n08:22:37 == units\n08:22:37 units written\n08:22:38 collector active with 8 workers, publisher active, feed arena-gen8-x3-azure1-feed\ncohort e5c845da95a3: 30 of 6000 boards; last 10 min 30; collector active, publisher active [published 24 (44s ago)]; STOP False; failures []\n   8x3-32~1: 6 boards, IMPs +23, with a score 6; last 6: cpu-s a board 72.0, tables a board 26.2, audit forks a board 5.2, gap forks a board 17.0\n   8x3-32~5RZ32: 6 boards, IMPs +2, with a score 6; last 6: cpu-s a board 59.6, tables a board 25.5, audit forks a board 3.3, gap forks a board 18.2\n   8x3-32~71s-32: 6 boards, IMPs +14, with a score 6; last 6: cpu-s a board 63.6, tables a board 13.7, audit forks a board 2.2, gap forks a board 9.5\n   8x3-32~8s-32: 12 boards, IMPs -6, with a score 12; last 12: cpu-s a board 67.5, tables a board 13.9, audit forks a board 2.8, gap forks a board 9.2\n08:27:39 DONE\ngo8x=inactive arena-gen8x=active arena-gen8x-publish=active gen8x-recycle=active sidplay=active \n",
+ "received": "2026-11-13T09:17:44Z",
+ "script_sha256": "f3c9220336893f5216e6e25dada56c0154c7b6f714ce9e17ea94fe7cd6e6bf81",
+ "started": "2026-11-13T09:17:44Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

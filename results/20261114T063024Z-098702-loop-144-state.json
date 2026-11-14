@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.3,
+ "exit_code": 1,
+ "finished": "2026-11-14T06:30:51Z",
+ "id": "20261114T063024Z-098702-loop-144-state",
+ "output_bytes": 628,
+ "output_tail": "2026-11-14T05:37:01Z azure1 joins the gate: jobs-azure1-ben.txt, then jobs-azure1-styles.txt\n2026-11-14T06:18:08Z jobs-azure1-ben.txt has ended; BEN (200) servers stopped; back to the collection\n2026-11-14T06:18:08Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source ba98377, nets fp32)\n2026-11-14T06:18:09Z jobs-azure1-styles.txt has ended; back to the collection\n2026-11-14T06:18:09Z start sg8e g8a~g8b seed 9001 first 500000 deals 20000 workers 8 --episodes --one-room (source ba98377, nets fp32)\nunits: loop-collect loop-switch loop-rows \nsource ba98377 | rows unit: rows.sh sg8e \n",
+ "received": "2026-11-14T06:30:51Z",
+ "script_sha256": "bb256dda6ea83c036f6e70ce50bbbe9e91f7d4e5862c3ebb00e7c7fd84fbe73b",
+ "started": "2026-11-14T06:30:51Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

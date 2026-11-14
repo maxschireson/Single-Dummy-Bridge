@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 20.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:49:35Z",
+ "id": "20261112T044852Z-607126-g8-16-wave2",
+ "output_bytes": 601,
+ "output_tail": "x1-8s-v-7s stops at: 866 boards: 0.3868 +- 0.1077 IMPs/board for 8s-32; 1211 boards/hour; 0 failed\n     1\tx1-8s-v-7s 8s-32~7s-32 0 2400 81\n     2\tc0-n-v4-v-v0 n-v4~n-v0 0 4000 83\n     3\tc1-8p-v4-v-v0 8p-32~8p-32-v0 0 2400 83\n     4\t@source c03498c77184eb987d294c635b52b27bcfae028d\n     5\tg2-8x-v-thigh 8x-32~t-high 0 800 72\n     6\tg2-7s-v-thigh 7s-32~t-high 0 800 72\n     7\tg2-8p-v-thigh 8p-32~t-high 0 800 72\nposition 1\n2026-11-12T04:42:50Z start x1-8s-v-7s: 8s-32~7s-32 deals 0+2400 seed 81  (source b6ad822)\n2026-11-12T04:49:15Z start c0-n-v4-v-v0: n-v4~n-v0 deals 0+4000 seed 83  (source b6ad822)\n",
+ "received": "2026-11-12T04:49:15Z",
+ "script_sha256": "a82d9bce7b2bf588e46865bf452df1e3c94bb473efafcd863f54ae5771d24697",
+ "started": "2026-11-12T04:49:15Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

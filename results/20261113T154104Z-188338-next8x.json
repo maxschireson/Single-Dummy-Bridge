@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 45.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T15:42:11Z",
+ "id": "20261113T154104Z-188338-next8x",
+ "output_bytes": 445,
+ "output_tail": "prepnext8x: active\n15:41:26 load 8.23 8.20 8.18; memory available 6704 MB\n15:41:26 == prepare\ncohort bd2e22fed5e3: 6000 fresh deals (seed 8381; excluded {'training_families': 50818, 'source_corpus': 215, 'played': 85910}), bots and artifacts from e996b9f56627; pairs {'8x3-32~8s-32': 2, '8x3-32~71s-32': 1, '8x3-32~5RZ32': 1, '8x3-32~1': 1}; bots {'1': '\nthe new pool's 6000 deals are disjoint from the current pool's 6000\n15:41:30 == preflight\n",
+ "received": "2026-11-13T15:41:26Z",
+ "script_sha256": "28797e2ad87f8f933ff232a268f71998ab05d97f8b82e1aa9f05b65cf4e89692",
+ "started": "2026-11-13T15:41:26Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

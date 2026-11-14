@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 1.8,
+ "exit_code": 128,
+ "finished": "2026-11-13T23:35:18Z",
+ "id": "20261113T233444Z-526187-loop-l3p",
+ "output_bytes": 80,
+ "output_tail": "source 52033bc\nfatal: path 'train-r3/policy.npz' does not exist in 'FETCH_HEAD'\n",
+ "received": "2026-11-13T23:35:16Z",
+ "script_sha256": "bf3537e9fb9cfed074e68096dc3998eba8a7633dafc7d534b82ce59ddb5137f7",
+ "started": "2026-11-13T23:35:16Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

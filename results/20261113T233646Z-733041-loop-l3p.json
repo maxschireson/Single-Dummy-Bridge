@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 22.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:37:13Z",
+ "id": "20261113T233646Z-733041-loop-l3p",
+ "output_bytes": 397,
+ "output_tail": "source 52033bc\nround 3's net in place, sha256 a8cf8a94ebcf29da\nRunning as unit: loop-rungs.service; invocation ID: a7d67e10c32044b7bb91e7f74440a072\nactive inactive inactive active 2026-11-13T23:36:54Z the collection is paused for jobs-azure1-r3.txt\n2026-11-13T23:36:54Z start l3-p stu3-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 52033bc, nets fp32)\n2026-11-13T23:37:13Z\n",
+ "received": "2026-11-13T23:36:51Z",
+ "script_sha256": "bf3537e9fb9cfed074e68096dc3998eba8a7633dafc7d534b82ce59ddb5137f7",
+ "started": "2026-11-13T23:36:51Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

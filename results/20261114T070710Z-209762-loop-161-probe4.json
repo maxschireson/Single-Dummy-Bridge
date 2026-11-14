@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.7,
+ "exit_code": 1,
+ "finished": "2026-11-14T07:07:15Z",
+ "id": "20261114T070710Z-209762-loop-161-probe4",
+ "output_bytes": 1829,
+ "output_tail": "['arr', 'at', 'bd', 'bg', 'bn', 'calc', 'calcTId', 'clpr', 'fe', 'jury', 'live', 'nor', 'orRes', 'orv', 'otid', 'pfe', 'ps', 'pse', 'r', 'room', 's', 'sce', 'scr', 'tid', 'tmDto', 'tname', 'tr', 'tt']\ntname \"Round 16 - Table 1 SEGMENT 3\"\ntid \"OP 1\"\notid \"CL 1\"\ncalcTId \"1\"\ns 0\nr 3\ntt \"TEAM\"\ncalc \"IMP\"\narr \"KNOCK_OUT\"\nat \"SELF\"\nroom \"OPEN\"\nbn 1\nbd {\"N\": \"K432, AK652, K, J65\", \"E\": \"QT65, 873, 954, KT3\", \"S\": \"A87, QT4, T876, AQ9\", \"W\": \"J9, J9, AQJ32, 8742\"}\nbg [{\"d\": \"N\", \"bv\": \"H1\", \"al\": \"f\"}, {\"d\": \"E\", \"bv\": \"P\", \"al\": \"f\"}, {\"d\": \"S\", \"bv\": \"N2\", \"al\": \"t\", \"alDir\": [\"S\"]}, {\"d\": \"W\", \"bv\": \"P\", \"al\": \"f\"}, {\"d\": \"N\", \"bv\": \"H4\", \"al\": \"f\"}, {\"d\": \"E\", \"bv\": \"P\", \"al\": \"f\"}, {\"d\": \"S\", \"bv\": \"P\", \"al\": \"f\"}, {\"d\": \"W\", \"bv\": \"P\", \"al\": \"f\"}]\ntr [\"E,ES5,SS7,WS11,NS13,N\", \"N,NS2,ES10,SS14,WS9,S\", \"S,SS8,WC2,NS3,ES12,E\", \"E,ES6,SH10,WH11,NS4,W\", \"W,WD14,ND13,ED5,SD6,W\", \"W,WH9,NH14,EH3,SH4,N\", \"N,NH2,EH7,SH12,WD2,S\", \"S,SD7,WD3,NH5,ED9,N\", \"N,NH13,EH8,SD8,WD12,N\", \"N,NC5,EC3,SC12,WC4,S\"]\nclpr false\nnor 2\nscr true\nlive false\njury false\norRes {\"line\": \"N\", \"trick\": 9, \"value\": 400, \"unit\": \" IMP\", \"himp\": 44.0, \"vimp\": 81.0, \"hmp\": 0.0, \"vmp\": 2.0, \"hvp\": 2.13, \"vvp\": 17.87, \"uval\": -10.0, \"cdto\": {\"suit\": \"N\", \"level\": 3, \"dec\": \"N\", \"pass\": \"f\"}}\nfe true\npfe true\nsce true\npse false\norv true\n{'tt': 'END_AUCTION', 'payload': {'suit': 'H', 'level': 4, 'dec': 'N', 'pass': 'f'}}\n{'tt': 'CLAIM', 'payload': {'dir': 'N', 'tcount': 9, 'expl': ''}}\n{'tt': 'CLAIM_ACCEPT', 'payload': {'dir': 'N'}}\n{'tt': 'END_GAME', 'payload': {'line': 'N', 'trick': 9, 'value': -50, 'unit': ' IMP', 'himp': 44.0, 'vimp': 81.0, 'hmp': 0.0, 'vmp': 2.0, 'hvp': 2.13, 'vvp': 17.87, 'uval': -10.0, 'cdto': {'suit': 'H', 'level': 4, 'dec': 'N', 'pass': 'f'}}}\n200 5992 usbc_631412_1_1\n200 6001 usbc_631412_2_1\n200 2 usbc_631412_1_2\n200\n",
+ "received": "2026-11-14T07:07:15Z",
+ "script_sha256": "0dfb241fcf24ebdc7ab1f21e13469888a11ac9affe6bf240e1d3221a6b96e792",
+ "started": "2026-11-14T07:07:15Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

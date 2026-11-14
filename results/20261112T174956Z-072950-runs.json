@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T17:50:23Z",
+ "id": "20261112T174956Z-072950-runs",
+ "output_bytes": 418,
+ "output_tail": "g7s-vs-g6f-01 | fa01e3cdd490 | 22508 | 538 | STOP | - | 0 |  | \ngen7-phase1-azure1 | 002cbafd32e1 | 2814 | 828 | STOP | WD | 0 |  | \ngen71-claim5-azure1 | 3e1585609f82 | 2813 | 0 | STOP | WD | 0 |  | \ngen71-mix-azure1 | f37d8d826522 | 1471 | 1256 | STOP | - | 0 | 4818856d | \ngen71-mix2-azure1 | 31a8dd6ce638 | 1478 | 381 | STOP | WD | 0 | 4818856d | \ngen8-azure1 | b9900c30105c | 1097 | 338 | - | - | 0 | 0b8ac2b7 | \n",
+ "received": "2026-11-12T17:50:23Z",
+ "script_sha256": "e1372a92db66f081d90e74ec6537888c46e3b515eb3a8a43390e542a0ce166d1",
+ "started": "2026-11-12T17:50:23Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

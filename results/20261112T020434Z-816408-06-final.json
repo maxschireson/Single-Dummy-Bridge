@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 5.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:04:54Z",
+ "id": "20261112T020434Z-816408-06-final",
+ "output_bytes": 1366,
+ "output_tail": "unit: inactive\nboards 308; after the restart's first minute 281 boards in 1051s = 959 an hour on 8 workers\ncommon: +0.380 +- 0.163 IMPs a board (wins 51, flat 229, losses 28); native: +0.380 +- 0.163\nroot games 616, tables 4390, tables a board 14.3\ndeal indices 0..307, contiguous to 308\n== failures: 0\n== gen7_alpha_report\n    0.1759\n   ],\n   \"tricks_per_fork\": [\n    -0.0062,\n    0.0303\n   ],\n   \"tree_card_better\": 29,\n   \"worse\": 32,\n   \"same\": 264\n  },\n  \"refused_by_budget\": 2,\n  \"by_trick\": {\n   \"tricks 3-4\": {\n    \"forks\": 138,\n    \"deals\": 96,\n    \"imps_per_fork\": [\n     0.0435,\n     0.2611\n    ],\n    \"tricks_per_fork\": [\n     0.0507,\n     0.0473\n    ],\n    \"tree_card_better\": 18,\n    \"worse\": 11,\n    \"same\": 109\n   },\n   \"tricks 5-6\": {\n    \"forks\": 187,\n    \"deals\": 118,\n    \"imps_per_fork\": [\n     -0.2995,\n     0.1846\n    ],\n    \"tricks_per_fork\": [\n     -0.0481,\n     0.0365\n    ],\n    \"tree_card_better\": 11,\n    \"worse\": 21,\n    \"same\": 155\n   }\n  },\n  \"from_root_tables\": {\n   \"forks\": 172,\n   \"deals\": 138,\n   \"imps_per_fork\": [\n    -0.0291,\n    0.2009\n   ],\n   \"tricks_per_fork\": [\n    0.0,\n    0.0369\n   ],\n   \"tree_card_better\": 16,\n   \"worse\": 16,\n   \"same\": 140\n  }\n }\n}\n== board cost\n/home/Bridgebots/work/venv/bin/python: can't open file '/home/Bridgebots/work/sdb-gen7/scripts/gen7_board_cost.py': [Errno 2] No such file or directory\n",
+ "received": "2026-11-12T02:04:49Z",
+ "script_sha256": "7ffabb8341881e0171ec340e08a1b46d83a2bbb56d24c5a64facdd5a73bf12f5",
+ "started": "2026-11-12T02:04:49Z",
+ "timed_out": false,
+ "timeout_s": 1200
+}

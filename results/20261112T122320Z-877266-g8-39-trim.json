@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:23:49Z",
+ "id": "20261112T122320Z-877266-g8-39-trim",
+ "output_bytes": 412,
+ "output_tail": "queue was 19 lines at position 13; now 14 lines; unit active\n@source 5b007c3fd736265787f062d6e41a1e7821f4b657\ng3-8x41-v-6 8x-32-v41~6-32 0 800 73\n782 /home/Bridgebots/work/g8/runs/g3-8x41-v-6/results.jsonl\n2026-11-12T11:27:24Z source now 5b007c3 Rule bidder: pass, not an exception, when the opponents have bid every s\n2026-11-12T11:27:24Z start g3-8x41-v-6: 8x-32-v41~6-32 deals 0+800 seed 73  (source 5b007c3)\n",
+ "received": "2026-11-12T12:23:49Z",
+ "script_sha256": "f9868b85aecdd0447db238a329009e274f150f63cad94a8a37f0ed4dbeb273e4",
+ "started": "2026-11-12T12:23:49Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:41:17Z",
+ "id": "20261112T114113Z-177885-look",
+ "output_bytes": 1715,
+ "output_tail": "11:41:17\ngo71d active; arena-gen71 inactive\n11:39:01 tests took 2s\n11:39:01 == plan\nplan: Gen 7.1 \u00b7 standard self-play, and standard with policy v4.1 against Gen 7 standard, deals v4.1 was not trained on, on azure1 | pairs {'71s-32~71s-32': 1, '71s-32~7s-32': 1} | bots ['71s-32', '7s-32'] | artifacts ['gen7_policy', 'gen7_policy_v41']\n11:39:01 == prepare\ncohort f37d8d826522: 1471 deals taken over from cohort 002cbafd32e1 (828 of its 2814 were played, 515 unplayed deals from training families left out); pairs {'71s-32~71s-32': 1, '71s-32~7s-32': 1}; 7s-32 identity f0a578598673 as in phase 1; 71s-32 identity 7b0\n11:39:03 == preflight\nload 9.16 8.17 5.12; memory available 20340 MB\ng8 units: g8-publish.service=active/running g8-queue.service=active/running \nprocesses not of the Gen 7.1 setup, by CPU:\n97.4     832 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n97.4     832 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n97.3     832 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n97.3     832 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n97.3     832 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n97.2     832 /home/Bridgebots/work/venv/bin/python -u scripts/gen8_match.py --source /home/Bridgebots/work/capsule-gen7-capture/recovery --bots config\n",
+ "received": "2026-11-12T11:41:17Z",
+ "script_sha256": "a4330b2738e798bd42dd8c9e2e79fec32d4a274f4b3889135e61f0a69955fcd6",
+ "started": "2026-11-12T11:41:17Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

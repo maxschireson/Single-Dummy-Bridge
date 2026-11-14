@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T18:54:08Z",
+ "id": "20261113T185347Z-788791-loop-peek",
+ "output_bytes": 2249,
+ "output_tail": "8\nMem:              31          14          12          12          17          17\n/dev/root       123G   25G   99G  21% /\nload average: 0.04, 0.13, 0.16\ncapsule-gen7-capture endtable g8 gen71 gen8 gen8x publication runs sdb-g8p sdb-gen7 sdb-gen7-arena sdb-gen71x sdb-gen8 sdb-gen8x settings sources tools venv \n  arena-gen8x-publish.service loaded active running 8X v3 feed publisher\n  boxctl.service              loaded active running boxctl agent: runs commands queued on GitHub (box azure1)\n  caddy.service               loaded active running Caddy\n  gen8x-recycle.service       loaded active running Restart the 8X collector after its boards in hand when the box runs \n  next8x.service              loaded active running Start the prepared follow-on 8X cohort when the current one has play\n  sidplay.service             loaded active running Sid play server (people against the bridge bot)\n  uuidd.service               loaded active running Daemon for generating UUIDs\n/home/Bridgebots/work/capsule-gen7-capture/recovery\ngen8-s3-azure1 gen8-s7-azure1 gen8-x3-azure1 gen8-x3n-azure1 plan-7s-vs-6f.json report-01.json smoke-01.json trailers.txt \n/home/Bridgebots/work/runs/gen8-x3-azure1: artifacts assets corpus.jsonl dds-cache.sqlite environment.json episodes failures heartbeat.json launch.json manifest.json plan.json preflight.json publisher-status.json receipts runtime-requirements.txt source-indices.json state.json \n3986\n{\"manifest_identity\":\"e5c845da95a3585aafa3905073afc4b79e9b2cf116e9cf8cfa80f5a26a7ac84b\",\"completed\":3986,\"target\":6000,\"contiguous\":3983,\"by_pair\":{\"8x3-32~5RZ32\":797,\"8x3-32~1\":797,\"8x3-32~71s-32\":798,\"8x3-32~8s-32\":1594},\"root_games\":11160,\"tables\":72757,\"failures\":0,\"epoch\":1794587513.8837383,\"complete\":false}\n\n%CPU ELAPSED CMD\n 2.5   37889 /home/Bridgebots/work/venv/bin/python -u ops/publish_gen5.py --run /home/Bridgebots/work/runs/gen8-x3-azure1 --publication /home/Bridgebo\n 0.1   46272 /opt/sidplay/venv/bin/python3 /opt/sidplay/venv/bin/uvicorn sidplay.app:app --app-dir /opt/sidplay/app/play --host 127.0.0.1 --port 8090 \n 0.0  151577 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers\n 0.0  151594 [rcu_sched]\n 0.0  148706 /usr/lib/linux-tools/7.0.0-1017-azure/hv_kvp_daemon -n\n",
+ "received": "2026-11-13T18:54:08Z",
+ "script_sha256": "88ef148e36a4957d253e35c42ec30e591fe5f0690b86874023881b6c334f5ca0",
+ "started": "2026-11-13T18:54:08Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

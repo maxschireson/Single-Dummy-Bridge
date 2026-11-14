@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:30:15Z",
+ "id": "20261114T112958Z-208468-cmd",
+ "output_bytes": 533,
+ "output_tail": "sg8e:1300 sg8s1:2000 sg8s2:2000 sg8s3:2000 sg8s4:2000 sg8s5:2000 sg8s6:1050 sp0e:3583 sp3se:2787 spr0e:941 sps0e:1745 \n      1 sg8e       2 sg8s1       2 sg8s2       2 sg8s3       2 sg8s4       2 sg8s5       3 sp0e       2 sp3se       1 sps0e \ncut.log sp0e-223000-223570.npz sp3se-442000-442774.npz spr0e-240000-240940.npz \n9f18993\nloop-collect.service loop-publish.service loop-rows.service 2026-11-14T11:02:20Z start sg8s6 g8-active0~g8-passive0 seed 9001 first 710000 deals 2000 workers 8 --episodes --one-room (source 9f18993, n\n",
+ "received": "2026-11-14T11:30:15Z",
+ "script_sha256": "af49e1d9d5b40172348b2971f6b3e54b59e2b0d485d5569ee26bbb9c4acb4854",
+ "started": "2026-11-14T11:30:15Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

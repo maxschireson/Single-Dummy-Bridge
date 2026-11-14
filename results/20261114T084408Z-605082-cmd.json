@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:44:28Z",
+ "id": "20261114T084408Z-605082-cmd",
+ "output_bytes": 1437,
+ "output_tail": "  UNIT                LOAD   ACTIVE SUB     DESCRIPTION\n  loop-usbc25.service loaded active running /usr/bin/python3 /home/Bridgebots/work/usbc/src/training/rollout-loop-20261113/usbc/harvest.py /home/Bridgebots/work/loop/pub/usbc --since 2099 --screens /home/Bridgebots/work/usbc/src/training/rollout-loop-20261113/usbc/screens-2025.txt --pause 0.2\n  loop-usbclt.service loaded active running /usr/bin/bash /home/Bridgebots/work/loop/usbclt.sh\n\nLegend: LOAD   \u2192 Reflects whether the unit definition was properly loaded.\n        ACTIVE \u2192 The high-level unit activation state, i.e. generalization of SUB.\n        SUB    \u2192 The low-level unit activation state, values depend on unit type.\n\n2 loaded units listed.\nTo show all installed unit files use 'systemctl list-unit-files'.\nNov 14 08:00:28 Bridgebots systemd[1]: Started loop-usbc25.service - /usr/bin/python3 /home/Bridgebots/work/usbc/src/training/rollout-loop-20261113/usbc/harvest.py /home/Bridgebots/work/loop/pub/usbc --since 2099 --screens /home/Bridgebots/work/usbc/src/training/rollout-loop-20261113/usbc/screens-2025.txt --pause 0.2.\nNov 14 08:02:06 Bridgebots systemd[1]: Stopped loop-usbclt.service - /usr/bin/bash /home/Bridgebots/work/loop/usbclt.sh.\nNov 14 08:02:06 Bridgebots systemd[1]: loop-usbclt.service: Consumed 10min 57.353s CPU time.\nNov 14 08:02:06 Bridgebots systemd[1]: Started loop-usbclt.service - /usr/bin/bash /home/Bridgebots/work/loop/usbclt.sh.\n",
+ "received": "2026-11-14T08:44:28Z",
+ "script_sha256": "642301fc7fd253d2cdd72c6ff366cf9593ec1cdeac46e15408968bba451128d1",
+ "started": "2026-11-14T08:44:28Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 86.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:27:34Z",
+ "id": "20261114T172535Z-672508-sidplay-v3-update",
+ "output_bytes": 1409,
+ "output_tail": "== before\n{\"ok\":true,\"bot\":\"stu4c-put\",\"label\":\"SiD (rollout) Stu R4c\",\"stand_in\":false,\"engine\":\"bundle\",\"open_tables\":0,\"busy\":{\"interactive\":0,\"background\":0,\"analysis\":0},\"decisions\":33,\"analysis\":true,\"uptime\":5855}\n== user and directories\n== code\n== sure-trick search and cell game (play/native/sure.cpp, cells.cpp, for the analyses)\n== python environment\n== double-dummy solver\n== bundle\n== switch\n== health\n{\"ok\":true,\"bot\":\"stu4c-put\",\"label\":\"SiD (rollout) Stu R4c\",\"stand_in\":false,\"engine\":\"bundle\",\"open_tables\":0,\"busy\":{\"interactive\":0,\"background\":0,\"analysis\":0},\"decisions\":0,\"analysis\":true,\"uptime\":4}\n== smoke (public name: secure cookies)\n{\"ok\": true, \"bot\": \"stu4c-put\", \"label\": \"SiD (rollout) Stu R4c\", \"stand_in\": false, \"engine\": \"bundle\", \"open_tables\": 0, \"busy\": {\"interactive\": 0, \"background\": 0, \"analysis\": 0}, \"decisions\": 0, \"analysis\": true, \"uptime\": 4}\n{\"board\": 1, \"contract\": \"4HX\", \"declarer\": \"E\", \"tricks\": 11, \"score\": -690, \"seconds\": 39.2, \"sid\": \"4H\", \"sid_score\": -450, \"imps\": -6, \"with_sid_seconds\": 68.8, \"lost\": 2, \"events\": 1, \"analysis_seconds\": 10.53, \"sid_analysis_seconds\": 4.76, \"with_analysis_seconds\": 74.9}\n{\"ok\": true, \"history_boards\": 1}\n4 you {'auction': True, 'auction_decisions': 6, 'auction_seconds': 0.39, 'seconds': 10.53}\n4 sid {'auction': True, 'auction_decisions': 4, 'auction_seconds': 0.21, 'seconds': 4.76}\nMemoryCurrent=1358761984\n",
+ "received": "2026-11-14T17:26:08Z",
+ "script_sha256": "901bf5e5be30f4ea405821f31ffed9d4f1ba1644f094420d7fe0c39dceb76850",
+ "started": "2026-11-14T17:26:08Z",
+ "timed_out": false,
+ "timeout_s": 3600
+}

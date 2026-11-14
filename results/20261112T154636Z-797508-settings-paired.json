@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:46:56Z",
+ "id": "20261112T154636Z-797508-settings-paired",
+ "output_bytes": 226,
+ "output_tail": "15:46:56\nm1: 1081 boards, +0.137 +- 0.079, flat 834\nm3: 1081 boards, +0.111 +- 0.078, flat 845\nsame 1081 deals: m1 +0.137, m3 +0.111, m1 minus m3 +0.026 +- 0.038; board-by-board correlation 0.88; boards identical in both 1040\n",
+ "received": "2026-11-12T15:46:56Z",
+ "script_sha256": "fa61e87902ae341e04ac52fd101a231f7a5237f707f02bd09faa7df06c40097d",
+ "started": "2026-11-12T15:46:56Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

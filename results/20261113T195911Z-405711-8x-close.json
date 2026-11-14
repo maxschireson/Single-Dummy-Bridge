@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 48.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T20:00:32Z",
+ "id": "20261113T195911Z-405711-8x-close",
+ "output_bytes": 688,
+ "output_tail": "19:59:44\ntmpfs            12G   12G     0 100% /mnt/ddscache\ndrwxr-xr-x 3 root       root              4096 Nov 12 11:42 ..\n-rw-r--r-- 1 Bridgebots Bridgebots 12878745600 Nov 13 16:32 gen8-x3-azure1.sqlite\n-rw-r--r-- 1 Bridgebots Bridgebots       32768 Nov 13 08:22 gen8-x3-azure1.sqlite-shm\n-rw-r--r-- 1 Bridgebots Bridgebots     6127616 Nov 13 16:32 gen8-x3-azure1.sqlite-wal\nreceipts 3986, published 3986\ntmpfs            12G     0   12G   0% /mnt/ddscache\narena-gen8x=failed/disabled arena-gen8x-publish=inactive/disabled gen8x-recycle=inactive/disabled next8x=inactive/disabled sidplay=active/enabled \nMem:              31          16          13           0           1          14\n",
+ "received": "2026-11-13T19:59:44Z",
+ "script_sha256": "6105c8b614a01c7ec6bf9b1835a459878f8ddb79155146e4954b224cc8718aa9",
+ "started": "2026-11-13T19:59:44Z",
+ "timed_out": false,
+ "timeout_s": 150
+}

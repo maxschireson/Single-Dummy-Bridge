@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:26:34Z",
+ "id": "20261112T162614Z-519417-go8-peek",
+ "output_bytes": 799,
+ "output_tail": "16:26:34\ngo8 active\n16:18:31 tests test_gen71*.py: Ran 7 tests in 0.238s OK \n16:19:04 tests test_rule_bidder.py: Ran 13 tests in 32.438s OK \n16:19:55 tests test_bidding_systems.py: Ran 28 tests in 50.819s OK \n16:19:55 tests took 101s\n16:19:55 == finish gen71-mix2-azure1\n16:22:22 finished gen71-mix2-azure1 at 381 boards, all published\n16:22:22 == prepare\ncohort b9900c30105c: 1097 deals taken over from cohort 31a8dd6ce638 (381 of its 1478 were played, 0 unplayed deals from training families left out); pairs {'8s-32~71s-32': 2, '8c-32~71s-32': 1, '8c-32~8s-32': 1, '8s-32~5RZ32': 1, '8s-32~1': 1}; bots {'8s-32': '269fdf1854f4', '8c-32': 'f60c9782f5c8', '71s-32': '7b0f58b4c403', '5RZ32': '54591b0880b1', '1': '5ba471c0a612'}; systems {'8s-32': 'house-gen6', '8c-32': 'rule\n16:22:23 == preflight\n",
+ "received": "2026-11-12T16:26:34Z",
+ "script_sha256": "1975a2d8dca1290d9135cc9fc0c5d9211921a1e8a17ee5c9adfafa5e4df3428e",
+ "started": "2026-11-12T16:26:34Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

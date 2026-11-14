@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure1",
+ "duration_s": 185.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:03:20Z",
+ "id": "20261113T190003Z-118326-loop-setup1",
+ "output_bytes": 1714,
+ "output_tail": "g7 switches: RECYCLE_OFF SWITCH_OFF  STOP\nwhy the collector stopped:\n  File \"/home/Bridgebots/work/sdb-gen8x/ops/gen5_runtime.py\", line 163, in <module>\n    run(a.run.resolve(),a.workers)\n  File \"/home/Bridgebots/work/sdb-gen8x/ops/gen5_runtime.py\", line 131, in run\n    if list((root/'failures').glob('*.json')):raise ValueError('Preserved failure requires inspection')\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Preserved failure requires inspection\npublisher: completed 3986\nnumpy 2.5.4 jax 0.12.0.1\nsource b354072\ne6609785412cb6b0380a\n/home/Bridgebots/work/loop/src/bridge_harness/libbridge_dds.so\n8f87aa8f52ae2c119408\n2f8f6b792ac874f1\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 8, \"cpu_per_board\": 26.83}\n{\"pair\": \"stu0-pra~stu0-prb\", \"boards\": 8, \"cpu_per_board\": 48.88}\npf-one boards 8 cards digest 98816ce14af8b825\npf-oner boards 8 cards digest 956b0cd19fe7f894\nRunning as unit: loop-collect.service; invocation ID: 26ef905d649c478888ada436ecdd1635\nRunning as unit: loop-collect-b.service; invocation ID: ed4de7f3ec004e509068fabfd18477a6\nRunning as unit: loop-publish.service; invocation ID: 12428b56324d4a1b9b76f6543dc9a99c\nRunning as unit: loop-rows.service; invocation ID: d1679b43dfc542d29058307410511140\nactive active active active \n2026-11-13T19:02:20Z start sp0e stu0-pa~stu0-pb seed 9001 first 220000 deals 20000 workers 6 --episodes --one-room (source b354072)\n2026-11-13T19:02:20Z start spr0e stu0-pra~stu0-prb seed 9001 first 240000 deals 20000 workers 2 --episodes --one-room (source b354072)\nMem:              31          16           8          12          18          14\nload average: 7.28, 3.24, 1.35\n2026-11-13T19:03:20Z\n",
+ "received": "2026-11-13T19:00:15Z",
+ "script_sha256": "bc17ab370b57781ce323f2e339bd34f7ea9ffdf30f48d7416008911a4fd299b0",
+ "started": "2026-11-13T19:00:15Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}
