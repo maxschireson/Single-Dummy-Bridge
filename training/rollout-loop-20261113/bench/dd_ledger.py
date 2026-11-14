@@ -12,6 +12,10 @@ down in a cold game or slam".
 Double dummy sees all four hands, so this is hindsight. A card that gives up a trick here may have been right on what
 its player could know, and a bot that itself chooses by double dummy on sampled layouts (Gen 8) is flattered by the
 measure. It says where a bot's tricks go and how two bots differ on the same deals, not what a card was worth.
+
+For a rollout bot the tricks given up are also split by where a double-dummy best card stood at that decision: not among
+the rollouts' candidates (the table net's prior left it out), a candidate the rollouts rated lower, or a card not chosen
+by rollouts at all (a claim, a guard, the net's own card).
 """
 import argparse
 from collections import defaultdict
@@ -64,8 +68,14 @@ def one_file(path):
                     total = lambda t: o.declarer_tricks + (t if declaring else left - t)      # declarer's final tricks
                     before, after = total(best), total(got)
                     turned = (before >= target > after) if declaring else (before < target <= after)
+                    note = a.get('x8') or {}
+                    if note.get('mode') == 'rollout' and note.get('runs'):       # a rollout decision: was a best card among its candidates?
+                        candidates = {card(y) for run in note['runs'] for y in run}
+                        kind = 'a candidate, rated lower' if any(values[y] == best for y in candidates & set(o.legal)) else 'not a candidate'
+                    else:
+                        kind = 'no rollout (%s)' % (note.get('mode') or ('search' if a.get('estimates') else 'other'))
                     rows.append((who.get(a.get('player') or a.get('role'), '?'), 'lead' if not o.history else 'declaring' if declaring else 'defending',
-                                 bucket(len(o.history) // 4 + 1, not o.history), best - got, bool(turned)))
+                                 bucket(len(o.history) // 4 + 1, not o.history), best - got, bool(turned), kind))
                 g.play(x)
             out.append(rows)
     return out
@@ -83,17 +93,21 @@ def main():
         files += found[:a.boards] if a.boards else found
     tables = defaultdict(int)
     lost, cards, turned, sizes = defaultdict(float), defaultdict(int), defaultdict(int), defaultdict(lambda: defaultdict(int))
+    why = defaultdict(float)
     with Pool(a.workers) as pool:
         for per_file in pool.imap_unordered(one_file, files, chunksize=4):
             for rows in per_file:
                 for bot in {r[0] for r in rows}:
                     tables[bot] += 1
-                for bot, role, when, loss, turn in rows:
+                for bot, role, when, loss, turn, kind in rows:
                     for key in ((bot, role, when), (bot, role, 'all'), (bot, 'all', 'all')):
                         lost[key] += loss
                         cards[key] += 1
                         turned[key] += turn
                     sizes[bot][min(int(loss), 3)] += 1
+                    if loss > 0:
+                        why[(bot, 'early' if when in ('lead', 'tricks 1-4') else 'later', kind)] += loss
+                        why[(bot, 'all', kind)] += loss
     print(f'{len(files)} record files; tables by bot: {dict(tables)}')
     print('double-dummy tricks given up A TABLE (hindsight on the deal as it lay), and cards that turned the contract a 100 tables')
     for bot in sorted(tables):
@@ -103,6 +117,10 @@ def main():
         for role in ('lead', 'declaring', 'defending'):
             parts = [f'{when} {lost[(bot, role, when)] / n:.3f}' for when in [b[0] for b in BUCKETS] if cards[(bot, role, when)]]
             print(f'  {role:9s} {lost[(bot, role, "all")] / n:.3f} tricks a table, turned {100 * turned[(bot, role, "all")] / n:.1f} a 100 | ' + ' | '.join(parts))
+        kinds = sorted({k[2] for k in why if k[0] == bot}, key=lambda k: -why[(bot, 'all', k)])
+        if any('candidate' in k for k in kinds):       # a rollout bot: of the tricks given up, where the best card stood
+            print('  of the tricks given up (a table: all, the lead and tricks 1-4, later): ' + '; '.join(
+                f'{k} {why[(bot, "all", k)] / n:.3f}, {why[(bot, "early", k)] / n:.3f}, {why[(bot, "later", k)] / n:.3f}' for k in kinds))
 
 
 if __name__ == '__main__':
