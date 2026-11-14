@@ -2,3 +2,7 @@
 # play only; by deal against b3-ps200 (the same bot with policy v4.1 at the table) and b0-ps200.
 #   b3-pst200   SiD (rollout) Stu R3 with round 3's net at the table too, against BEN (200)
 b3-pst200 stu3-pst~ben200 131 0 256 8 --episodes
+# Max, 04:17 UTC: "We should test with 4.1 everywhere vs Ben, but let's settle the other issues first": policy v4.1 at the
+# table and playing the simulated seats, against BEN (200), after the one-net match.
+#   b41-ps200   SiD (rollout) with policy v4.1 everywhere, against BEN (200)
+b41-ps200 stuv41-ps~ben200 131 0 256 8 --episodes

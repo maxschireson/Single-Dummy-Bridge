@@ -1655,6 +1655,60 @@
    "queue_order": 7
   },
   {
+   "name": "s8-active",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-active~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 13
+  },
+  {
+   "name": "s8-passive",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 14
+  },
+  {
+   "name": "s8-passive0",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8-passive0~8p-32-v41",
+   "seed": 131,
+   "first": 25000,
+   "deals": 500,
+   "records": false,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 15
+  },
+  {
    "name": "h41-p",
    "box": "azure5",
    "branch": "transfer/rollout-loop-azure5-20261113",
@@ -1676,14 +1730,14 @@
     "net": "v2",
     "rung": "pure-rs"
    },
-   "queue_order": 13
+   "queue_order": 16
   },
   {
-   "name": "s8-active",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
+   "name": "s8-high",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
    "role": "collection",
-   "pair": "g8-active~8p-32-v41",
+   "pair": "g8-high~8p-32-v41",
    "seed": 131,
    "first": 25000,
    "deals": 500,
@@ -1697,11 +1751,11 @@
    "queue_order": 14
   },
   {
-   "name": "s8-passive",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
+   "name": "s8-low",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
    "role": "collection",
-   "pair": "g8-passive~8p-32-v41",
+   "pair": "g8-low~8p-32-v41",
    "seed": 131,
    "first": 25000,
    "deals": 500,
@@ -1713,24 +1767,6 @@
     "family": "other"
    },
    "queue_order": 15
-  },
-  {
-   "name": "s8-passive0",
-   "box": "azure5",
-   "branch": "transfer/rollout-loop-azure5-20261113",
-   "role": "collection",
-   "pair": "g8-passive0~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": false,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 16
   },
   {
    "name": "h41-pb",
@@ -1753,42 +1789,6 @@
     "round": 0,
     "net": "v2",
     "rung": "pure-rs"
-   },
-   "queue_order": 14
-  },
-  {
-   "name": "s8-high",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "collection",
-   "pair": "g8-high~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": false,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
-   },
-   "queue_order": 15
-  },
-  {
-   "name": "s8-low",
-   "box": "azure3",
-   "branch": "transfer/rollout-loop-azure3-20261113",
-   "role": "collection",
-   "pair": "g8-low~8p-32-v41",
-   "seed": 131,
-   "first": 25000,
-   "deals": 500,
-   "records": false,
-   "first_bot": {
-    "family": "other"
-   },
-   "second_bot": {
-    "family": "other"
    },
    "queue_order": 16
   },
@@ -1941,6 +1941,27 @@
     "family": "other"
    },
    "queue_order": 17
+  },
+  {
+   "name": "b41-ps200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stuv41-ps~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v4.1",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 18
   },
   {
    "name": "l0-r3",
