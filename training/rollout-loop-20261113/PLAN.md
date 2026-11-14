@@ -308,6 +308,7 @@ for the pipeline end to end, and for whether a net that knows Stu's own side hel
 | 09:25 to 09:45 | train a net on the USBC's adult boards against one on as many bot boards; "you can take a machine"; "this is the big question" | `exp_human.sh` on azure5: the human tables help at every dose (README) |
 | 09:39 | "If we aren't sure we can do a R4a and an R4b" | round 4 in two nets: `stu4` with every human table, `stu4c` without |
 | 09:37 | the USBC analysis waits until this and round 4 are driven | the claims-played-out rescoring is paused at 99 of 270 sessions |
+| 15:39 | "If there is not a clear gain from the human boards that makes it through, I would rather not use them" | `stu4c` is round 4's net unless `stu4` leads it by more than two SEs inside the bot (`h4c-pst`, or the gate's first 512 deals each); then the gate's time goes to `stu4c` alone |
 
 ## What should move, and what would say we are off path (Max asked, 18:41 UTC on 13 November)
 
