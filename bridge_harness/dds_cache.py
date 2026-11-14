@@ -5,6 +5,7 @@ substituted for a sampled world. No policy/auction/contract-level information is
 needed: DD remaining tricks depend only on cards, strain, leader, current trick.
 """
 import hashlib
+import os
 from pathlib import Path
 import sqlite3
 import struct
@@ -51,7 +52,12 @@ class PositionCache:
         self.namespace = hashlib.sha256(b'dds-all-moves-v1\0'+Path(library).read_bytes()).digest()
         self.db = sqlite3.connect(path,timeout=60)
         self.db.execute('PRAGMA journal_mode=WAL')
-        self.db.execute('PRAGMA synchronous=FULL')
+        # FULL unless BRIDGE_DDS_CACHE_SYNC=NORMAL: with WAL, NORMAL syncs at checkpoints only, so a power loss can drop
+        # the last entries (they are solved again) but never corrupts the file. Cards and results are unchanged.
+        sync = os.environ.get('BRIDGE_DDS_CACHE_SYNC', 'FULL').upper()
+        if sync not in ('FULL', 'NORMAL'):
+            raise ValueError('BRIDGE_DDS_CACHE_SYNC is FULL or NORMAL')
+        self.db.execute(f'PRAGMA synchronous={sync}')
         self.db.execute('CREATE TABLE IF NOT EXISTS positions ('
                         'solver BLOB NOT NULL, position BLOB NOT NULL, scores BLOB NOT NULL,'
                         'PRIMARY KEY(solver,position)) WITHOUT ROWID')
