@@ -1,0 +1,12 @@
+positions without an outright claim: BEN defending 835, house defending 742; Gen 9 reader ['ben-replay']
+  BEN defending, 8 cards: committed lines that fail: scorer 4/89 = 0.045 +- 0.022; Gen 9 4/91 = 0.044 +- 0.021
+  BEN defending, 7 cards: committed lines that fail: scorer 4/71 = 0.056 +- 0.027; Gen 9 1/74 = 0.014 +- 0.013
+  BEN defending, pooled: committed lines that fail: scorer 8/160 = 0.050 +- 0.017; Gen 9 5/165 = 0.030 +- 0.013
+  house defending, 8 cards: committed lines that fail: scorer 5/55 = 0.091 +- 0.039; Gen 9 5/55 = 0.091 +- 0.039
+  house defending, 7 cards: committed lines that fail: scorer 5/45 = 0.111 +- 0.047; Gen 9 5/45 = 0.111 +- 0.047
+  house defending, pooled: committed lines that fail: scorer 10/100 = 0.100 +- 0.030; Gen 9 10/100 = 0.100 +- 0.030
+
+(1) failure ratio scorer / Gen 9, BEN defending: 1.65 (95% interval 0.55 to 4.94); prediction: at least 1.5 -> met on the point estimate
+(2a) only one weighting commits: scorer-only lines cover 4/6, Gen 9-only lines cover 10/11; Fisher one-sided p = 0.2721
+(2b) both commit (154): only Gen 9 covers 3, only the scorer covers 1; McNemar exact p = 0.6250
+(3) Gen 9 failure rate, BEN defending 0.030 against house defending 0.100: difference -0.070 +- 0.033; prediction: within 0.03 -> not met on the point estimate
