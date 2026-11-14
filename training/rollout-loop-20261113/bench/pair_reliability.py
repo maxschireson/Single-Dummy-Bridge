@@ -115,8 +115,8 @@ def one(job):
         p.x8 = saved
     t = got['tricks'].astype(np.int64)
     ok = (t >= 0).all(axis=1)
-    if ok.sum() < 8:
-        return dict(skip='too few layouts played')
+    if ok.sum() < 1:
+        return dict(skip=f'no layout played (drawn {len(worlds)})')
     u = x8_player.worth(t[ok], fo, 'tricks')            # the side to play's tricks, each card
     ww = w[ok] / w[ok].sum()
     diff = u[:, 0] - u[:, 1]
@@ -124,12 +124,14 @@ def one(job):
     n = int(ok.sum())
     se = float(math.sqrt(max((ww ** 2 * (diff - panel) ** 2).sum() * n / max(n - 1, 1), 0.)))
     return dict(file=Path(f).name, trick=len(fo.history) // 4 + 1, root_trick=len(o.history) // 4 + 1, declaring=declaring,
-                single=single, panel=round(panel, 4), se=round(se, 4), layouts=n, p_main=p_main, p_other=p_other,
+                single=single, panel=round(panel, 4), se=round(se, 4), layouts=n, drawn=len(worlds), unplayed=int((~ok).sum()), p_main=p_main, p_other=p_other,
                 main_tricks=int(t_main), other_tricks=int(t_other), cpu=round(time.process_time() - started, 3))
 
 
 def report(rows):
     rows = [r for r in rows if 'single' in r]
+    few = np.mean([r['layouts'] < 32 for r in rows])
+    print(f'pairs with under 32 distinct layouts drawn (late in the hand; the panel there is close to every layout the seat allows): {few:.2f}')
     print(f'{len(rows)} pairs re-evaluated; CPU a pair {np.mean([r["cpu"] for r in rows]):.2f} s; layouts a pair {np.mean([r["layouts"] for r in rows]):.0f}')
     print('single = the recorded pair (one layout); panel = mean over fresh layouts from the fork seat\'s own information; for the side to play')
     print(f'{"":22s} {"pairs":>6s} {"single=0":>8s} {"same sign":>9s} {"corr":>6s} {"slope":>6s} {"reliab.":>7s} | {"mean single":>11s} {"mean panel":>10s} {"panel SE":>8s} | {"|panel|>2SE":>11s}')
