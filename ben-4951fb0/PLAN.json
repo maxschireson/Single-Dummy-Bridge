@@ -1,0 +1,24 @@
+{
+  "purpose": "BEN development comparison requested by Max; common bidder, paired seats and fresh deal families",
+  "source": "4951fb0b40adfcf85fe5cfc1b929f71f0ebc50e2",
+  "pilot": {
+    "first": 7000,
+    "deals": 8
+  },
+  "screen": {
+    "first": 8000,
+    "deals": 256,
+    "chunks": 8,
+    "chunk_size": 32
+  },
+  "seed": 2026111401,
+  "workers": 8,
+  "arms": [
+    "rx2-control",
+    "rx2-recursive32"
+  ],
+  "opponent": "rx-ben64",
+  "training_excluded": true,
+  "deadline": "2026-11-15T02:59:00Z",
+  "no_promotion": true
+}

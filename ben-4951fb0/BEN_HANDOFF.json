@@ -1,0 +1,31 @@
+{
+  "parent": 357583,
+  "match": 363665,
+  "status": "ready",
+  "started": "2026-11-14T22:11:46Z",
+  "finished": "2026-11-14T22:24:56Z",
+  "summary": {
+    "pair": "rx-guarantee~rx-control",
+    "boards": 512,
+    "cpu_per_board": 33.75,
+    "common": {
+      "imps_per_board": 0.1309,
+      "se": 0.1646,
+      "boards": 512,
+      "won": 111,
+      "lost": 93,
+      "flat": 308
+    },
+    "native": {
+      "imps_per_board": 0.1309,
+      "se": 0.1646,
+      "boards": 512,
+      "won": 111,
+      "lost": 93,
+      "flat": 308
+    },
+    "failures": 0,
+    "boards_per_hour": 744
+  },
+  "combined_deferred": true
+}

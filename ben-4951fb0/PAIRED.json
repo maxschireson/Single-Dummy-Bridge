@@ -1,0 +1,23 @@
+{
+  "updated": "2026-11-14T22:25:04Z",
+  "families": 0,
+  "recursive_minus_flat": {
+    "boards": 0,
+    "imps_per_board": null,
+    "se": null
+  },
+  "arms": {
+    "flat128": {
+      "boards": 0,
+      "imps_per_board": null,
+      "se": null
+    },
+    "recursive32": {
+      "boards": 0,
+      "imps_per_board": null,
+      "se": null
+    }
+  },
+  "interpretation": "same-family paired difference of IMP margins against BEN64; development only; not direct head-to-head IMP score",
+  "planned_families": 256
+}
