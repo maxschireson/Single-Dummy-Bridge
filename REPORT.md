@@ -8,3 +8,4 @@ Development-only; these small samples do not establish strength.
 | smoke-guarantee | 16 | 0.0625 ± 0.9375 | 29.43 | 0 |
 | smoke-reader | 16 | 0.4375 ± 0.2882 | 29.21 | 0 |
 | smoke-recursive32 | 16 | -1.0625 ± 0.7554 | 45.1 | 0 |
+| smoke-selective32 | 16 | -0.75 ± 0.8292 | 44.2 | 0 |

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T21:05:40Z",
+  "updated": "2026-11-14T21:07:41Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
     {
@@ -97,6 +97,30 @@
       },
       "failures": 0,
       "boards_per_hour": 282
+    },
+    {
+      "name": "smoke-selective32",
+      "pair": "rx-selective32~rx-control",
+      "boards": 16,
+      "cpu_per_board": 44.2,
+      "common": {
+        "imps_per_board": -0.75,
+        "se": 0.8292,
+        "boards": 16,
+        "won": 2,
+        "lost": 4,
+        "flat": 10
+      },
+      "native": {
+        "imps_per_board": -0.75,
+        "se": 0.8292,
+        "boards": 16,
+        "won": 2,
+        "lost": 4,
+        "flat": 10
+      },
+      "failures": 0,
+      "boards_per_hour": 284
     }
   ]
 }
