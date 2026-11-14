@@ -1,0 +1,1 @@
+nproc; uptime; ls /home/Bridgebots/work/loop/pub/usbc | head -3; ls /home/Bridgebots/work/loop/pub/usbc/*.json.gz | wc -l; cd /home/Bridgebots/work/usbc/src && git log -1 --oneline && git remote -v | head -1
