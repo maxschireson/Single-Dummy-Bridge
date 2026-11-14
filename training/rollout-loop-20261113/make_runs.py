@@ -19,7 +19,7 @@ BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transf
 ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
          ('pf-', 'preflight'))
 RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-pa': 'pure', '-pb': 'pure', '-pl': 'pure-sl',
-        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pst': 'pure-rs-t', '-p2': 'pure-rs-p2', '-pg': 'pure-rs-top', '-nd': 'net-d', '-px': 'pure-rs-split', '-pu': 'pure-blind', '-pux': 'pure-blind-split', '-pm': 'pure-rs-mix', '-put': 'pure-blind-t', '-psti': 'pure-rs-t-imps', '-psta': 'pure-rs-t', '-pstb': 'pure-rs-t', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
+        '-pr': 'pure-rl', '-pra': 'pure-rl', '-prb': 'pure-rl', '-ps': 'pure-rs', '-psa': 'pure-rs', '-psb': 'pure-rs', '-pst': 'pure-rs-t', '-p2': 'pure-rs-p2', '-pg': 'pure-rs-top', '-nd': 'net-d', '-px': 'pure-rs-split', '-pu': 'pure-blind', '-pux': 'pure-blind-split', '-pm': 'pure-rs-mix', '-put': 'pure-blind-t', '-psu': 'pure-blind-rs', '-psti': 'pure-rs-t-imps', '-psta': 'pure-rs-t', '-pstb': 'pure-rs-t', '-pt': 'pure-t', '-pv': 'pure-v', '-n': 'net', '-ns': 'net-s'}
 RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, blend at trust 0.25 at tricks 3 to 6, rollouts alone from trick 7",
              'b50': 'the blend at tricks 3 to 6 at trust 0.5', 'r6': 'rollouts alone from trick 6', 'r3': 'rollouts alone from trick 3',
              'pure': "the net's opening lead, rollouts alone from the second card on; no double dummy",
@@ -34,6 +34,7 @@ RUNG_TEXT = {'stu': "Stu's own stages: search at the lead and tricks 1 to 2, ble
              'pure-rs-split': ("pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as "
                                "the likeliest, the other side among those at least a quarter as likely"),
              'pure-rs-t-imps': 'pure-rs-t with the rollouts choosing by IMPs in place of mean tricks',
+             'pure-blind-rs': 'pure-rs, told nothing about who sits against it',
              'pure-blind-t': "pure-rs-t (the round's net at the table too), told nothing about who sits against it",
              'pure-rs-mix': 'pure-rs, playing a random one of its candidates within 0.05 tricks of the best, defending too',
              'pure-blind': ("pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown "
@@ -82,7 +83,7 @@ def bot(name):
         return dict(family='stu', round=0, net='v2', rung='stu')
     if name == 'stuv41-ps':
         return dict(family='stu', round=0, net='v4.1', rung='pure-rs')
-    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-psti|-psta|-pstb|-pst|-ps|-p2|-pg|-px|-pux|-put|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
+    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-psti|-psta|-pstb|-pst|-ps|-p2|-pg|-px|-pux|-put|-psu|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
     if m:
         return dict(family='stu', round=int(m.group(1)), net='v1' if m.group(2) else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
                     rung=RUNG[m.group(3) or ''])
@@ -117,7 +118,7 @@ def main():
                       ('azure1', 'jobs-azure1-styles.txt'), ('azure5', 'jobs-azure5-v41-styles.txt'),
                       ('azure6', 'jobs-azure6-mix.txt'), ('azure2', 'jobs-azure2-onenet.txt'), ('azure3', 'jobs-azure3-ben5.txt'),
                       ('azure6', 'jobs-azure6-ben.txt'), ('azure2', 'jobs-azure2-ben.txt'),
-                      ('azure5', 'jobs-azure5-ben.txt'), ('azure1', 'jobs-azure1-ben.txt'), ('azure3', 'jobs-azure3-ben6.txt')):
+                      ('azure5', 'jobs-azure5-ben.txt'), ('azure1', 'jobs-azure1-ben.txt'), ('azure3', 'jobs-azure3-ben6.txt'), ('azure3', 'jobs-azure3-ben7.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')
             if stopped:                             # a run taken out of the chain: listed and marked, not run

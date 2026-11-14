@@ -27,6 +27,7 @@
   "pure-rs-top": "pure-rs, the simulated seats playing the net's most probable card",
   "pure-rs-split": "pure-rs, the simulated seats split by side: its own side drawn among the cards at least half as likely as the likeliest, the other side among those at least a quarter as likely",
   "pure-rs-t-imps": "pure-rs-t with the rollouts choosing by IMPs in place of mean tricks",
+  "pure-blind-rs": "pure-rs, told nothing about who sits against it",
   "pure-blind-t": "pure-rs-t (the round's net at the table too), told nothing about who sits against it",
   "pure-rs-mix": "pure-rs, playing a random one of its candidates within 0.05 tricks of the best, defending too",
   "pure-blind": "pure (the net's lead), told nothing about who sits against it: the simulated opponents are the net's unknown player, their cards read at the weight of an opponent never met and as a side that may play any equal card",
@@ -3095,7 +3096,8 @@
    "second_bot": {
     "family": "other"
    },
-   "queue_order": 26
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
   },
   {
    "name": "b3-pst200g",
@@ -3116,7 +3118,176 @@
    "second_bot": {
     "family": "other"
    },
+   "stopped": "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)",
+   "queue_order": null
+  },
+  {
+   "name": "bu3-pst200a",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 26
+  },
+  {
+   "name": "bu3-ps200a",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-psu~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
    "queue_order": 27
+  },
+  {
+   "name": "bu3-pst200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 28
+  },
+  {
+   "name": "bu3-ps200b",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-psu~ben200",
+   "seed": 131,
+   "first": 256,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 29
+  },
+  {
+   "name": "bu3-pst200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 30
+  },
+  {
+   "name": "bu3-ps200c",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-psu~ben200",
+   "seed": 131,
+   "first": 512,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 31
+  },
+  {
+   "name": "bu3-pst200d",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 1024,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 32
+  },
+  {
+   "name": "bu3-pst200e",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "other",
+   "pair": "stu3-put~ben200",
+   "seed": 131,
+   "first": 1536,
+   "deals": 512,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-blind-t"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "queue_order": 33
   },
   {
    "name": "l0-r3",
