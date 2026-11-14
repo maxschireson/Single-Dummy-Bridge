@@ -1,6 +1,6 @@
 {
   "schema": "collection-instruction-watch-v1",
-  "checked_epoch": 1794626794.8356133,
+  "checked_epoch": 1794630786.3771188,
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "reviewed_file_blobs": {
     "AGENTS.md": "baa9c33d0731279db16654ea23d2a1ae28046fcc",
@@ -112,29 +112,29 @@
   "health": {
     "state.json": {
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "completed": 4062,
+      "completed": 4195,
       "target": 16036,
-      "contiguous": 4061,
+      "contiguous": 4195,
       "by_pair": {
-        "8s-32~71s-32": 1354,
-        "8s-32~1": 677,
-        "8s-32~5RZ32": 676,
-        "8c-32~8s-32": 678,
-        "8c-32~71s-32": 677
+        "8s-32~71s-32": 1398,
+        "8s-32~1": 699,
+        "8s-32~5RZ32": 699,
+        "8c-32~8s-32": 699,
+        "8c-32~71s-32": 700
       },
-      "root_games": 13540,
-      "tables": 167943,
+      "root_games": 13984,
+      "tables": 173381,
       "failures": 0,
-      "epoch": 1794626787.9018095,
+      "epoch": 1794630780.4574628,
       "complete": false
     },
     "heartbeat.json": {
-      "epoch": 1794626787.7624211,
-      "completed": 4061,
+      "epoch": 1794630780.118203,
+      "completed": 4194,
       "in_flight": [
-        4059,
-        4061,
-        4063
+        4194,
+        4195,
+        4196
       ],
       "workers": 4,
       "ben_workers": 1,
@@ -142,15 +142,15 @@
       "stopping": false
     },
     "watchdog-status.json": {
-      "epoch": 1794626749.3167958,
+      "epoch": 1794630769.650657,
       "collector": "running",
       "publisher": "running",
       "ben": "ready"
     },
     "publisher-status.json": {
-      "epoch": 1794626768.9964082,
+      "epoch": 1794630738.8642616,
       "status": "published",
-      "completed": 4060
+      "completed": 4193
     },
     "process.json": {
       "pid": 201787,
@@ -167,7 +167,7 @@
   },
   "unresolved_failures": 0,
   "writer_and_watchdog_locks": "held",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, cleanup and known successor source references remain unchanged. Board and registry newly confirm a live Gen X Stu cohort owned by will/Gen9 on Azure4. The prior explicit instruction to continue19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/Gen X Stu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks.",
   "coordination_handoff": {
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -180,23 +180,17 @@
     "prompt_updated_for_current_descriptor": true,
     "cadence_unchanged": "hourly"
   },
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T02:29:10Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T03:26:34Z",
   "reviewed_discussions": [
     {
       "number": 22,
-      "disposition": "Gen9 queue reports its separate live Gen X Stu Azure4 cohort; no new comments or instruction for this cloud stream",
+      "disposition": "Gen9 development queue only; no new comments or instruction for this cloud collector",
       "new_comments": 0
     }
   ],
-  "observed_notices": [
-    {
-      "notice": "will 2026-11-14 03:02 UTC and Arena registry gen9genxstuazure4",
-      "classification": "Separate Gen X Stu round-3 cohort running on Azure4 since02:45 under Max's authority to will/Gen9",
-      "action": "Other producer's deployment and registration. Retain this stream's frozen Gen8 comparisons, actors, source, manifest, corpus and family accounting; no host takeover or Gen X Stu adoption."
-    }
-  ],
-  "registry_disposition": "Changed only by adding another producer's Gen X Stu Azure4 source and deployment notice; own active Gen8 source, collector update and both permanently retired pins unchanged and verified",
-  "previous_checked_epoch": 1794623350.7860358,
+  "observed_notices": [],
+  "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
+  "previous_checked_epoch": 1794626794.8356133,
   "main_snapshot_unchanged": true,
   "operational_snapshot_unchanged": true,
   "processes": {
@@ -217,11 +211,11 @@
     ".writer.lock": "held",
     ".watchdog.lock": "held"
   },
-  "heartbeat_age": 7.073192119598389,
-  "publisher_age": 25.839205026626587,
-  "free_bytes": 19042766848,
+  "heartbeat_age": 6.258915901184082,
+  "publisher_age": 47.51285719871521,
+  "free_bytes": 18177359872,
   "new_applicable_instructions": [],
-  "registry_revision": "d7f52ac569dc0dcf39ce06e21795b4d81b2e0cb2",
+  "registry_revision": "b90a4a8efc2ef192be02d5d97f246179cb5f9a02",
   "successor_cleanup_revision": "a4858f53c6d10d6deccefa698f5ae5bc129dc3ee",
   "historical_gen71_snapshot_unchanged": true,
   "future_cohort_requirements": [
@@ -340,7 +334,7 @@
     "authority": "Issue #24 comment 6847322760, g9 under Max's explicit delegation on 2026-11-13 07:48 UTC.",
     "action": "Recorded for future authorized promotions. This collection stream has no active promotion controller or authorized promotion action; do not revive the historical Gen7.1 gate or change the frozen mix."
   },
-  "watchdog_age": 45.51881742477417,
+  "watchdog_age": 16.72646188735962,
   "future_selfplay_review": {
     "notice_revision": "6c447e6921220477de7e00c3cef1816fea07e430",
     "notice": "loop 2026-11-13 12:05 UTC",
@@ -371,7 +365,7 @@
       "disposition": "Research branch only; bf16 changes some first-card choices. Any authorized adoption requires draining and a separate immutable validated successor."
     }
   },
-  "coordination_snapshot_unchanged": false,
+  "coordination_snapshot_unchanged": true,
   "genx_stu_notice_review": {
     "branch": "feature/gen9-genx-stu",
     "revision": "9bba86b6eaba468f724a9917ae821cc196f082d1",
