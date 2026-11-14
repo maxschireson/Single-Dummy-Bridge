@@ -1,5 +1,5 @@
 # g9-cohort-azure4 on azure4
 
-Results of box job `g9-cohort-azure4` (G9-D9, owner dave), published by tools/boxq.py on team/gen9. Source `feature/gen9-cohort` at `46b7e004`. A transfer branch: never merged into source.
+Results of box job `g9-cohort-azure4` (G9-D9, owner dave), published by tools/boxq.py on team/gen9. Source `feature/gen9-cohort-sync` at `7e0edac7`. A transfer branch: never merged into source.
 
-Last published 2026-11-14T08:09:37Z: 3539 of 10000 boards, state running.
+Last published 2026-11-14T08:20:00Z: 3554 of 10000 boards, state running.
