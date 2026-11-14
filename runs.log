@@ -203,3 +203,5 @@
 2026-11-14T07:40:56Z start s8-passive g8-passive~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)
 2026-11-14T08:03:55Z end s8-passive: exit 0
 2026-11-14T08:03:55Z start s8-high g8-high~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)
+2026-11-14T08:27:15Z end s8-high: exit 0
+2026-11-14T08:27:15Z start s8-low g8-low~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)
