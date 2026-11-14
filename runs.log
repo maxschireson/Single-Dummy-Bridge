@@ -369,3 +369,5 @@
 2026-11-14T19:43:48Z end sg8t3: exit 0
 2026-11-14T19:43:48Z start sg8t4 g8-greedy0~g8-low0 seed 9001 first 736000 deals 2000 workers 8 --episodes --one-room (source a470efe, nets fp32)
 2026-11-14T19:53:28Z the collection stops: the box is resized to Standard_F16as_v6 (Max, 19:52 UTC: go B)
+2026-11-14T19:58:31Z the box is Standard_F16as_v6 (16 cores, 64 GB); the width test starts over
+2026-11-14T19:58:31Z width test begins: v2's recipe at 1,536 wide on the pool's rows, 16 cores (the collection is paused)
