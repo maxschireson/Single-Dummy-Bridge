@@ -1,0 +1,38 @@
+{
+ "id": "e9-25",
+ "box": "azure4",
+ "experiment": "E9-25",
+ "owner": "g9",
+ "priority": 3,
+ "cores": 1,
+ "source": {
+  "branch": "feature/gen9",
+  "commit": "adae5fbb"
+ },
+ "argv": [
+  "bash",
+  "-c",
+  "set -e; cd {src}; g++ -O2 -march=native -std=c++17 -o experiments/e9_25/cells/cells experiments/e9_25/cells/cells.cpp; mkdir -p {out}/shards; for b in 1 2 3 4 5 6 7 8; do br=arena-gen8-azure3-ben64-$b-feed; git fetch -q origin $br; for f in $(git ls-tree -r --name-only FETCH_HEAD | grep '/boards-[0-9]*[.]json$'); do git show FETCH_HEAD:$f > {out}/shards/$br-$(basename $f); done; done; {python} -I experiments/e9_25/e925_positions.py experiments/e9_25/cells {out}/positions.jsonl 8,7 {out}/shards/*.json > {out}/positions.log; for k in ben_defends house_defends; do for c in 8 7; do {python} -I experiments/e9_25/e925_study.py {out}/positions.jsonl {out}/$k-$c.jsonl $c $k --cells experiments/e9_25/cells --repo {src} --scorer {home}/work/capsule-gen7-capture/recovery/artifacts/gen6/scorer.npz --ben {home}/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras --ben-sha b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3 --limit 750; done; done; {python} experiments/e9_25/e925_report.py {out} > {out}/report.txt"
+ ],
+ "env": {
+  "GIT_SSH_COMMAND": "ssh -i /home/bridgebots/.ssh/boxctl_github -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20"
+ },
+ "progress": {
+  "results": "ben_defends-8.jsonl",
+  "target": 750
+ },
+ "preemptible": true,
+ "publish": [
+  "positions.log",
+  "ben_defends-8.jsonl",
+  "ben_defends-7.jsonl",
+  "house_defends-8.jsonl",
+  "house_defends-7.jsonl",
+  "report.txt"
+ ],
+ "notes": "E9-25 (registered from E9-24): floors of conditional claims against BEN 64 defenders, the scorer's weights against Gen 9's replay of BEN's own bidding net (ReplayReader on GIB-BBO-8742, identity checked), house-defended positions of the same feeds as control; experiments/e9_25 on feature/gen9 (9bb9aed). Builds cells (baa062c copy); fetches the eight arena-gen8-azure3-ben64 feeds' board files; at most 750 positions per population and card count (1,500 per population, the registration's cap). One core; resumable (the study skips positions done). BEN's net: {home}/work/g9/ben/models/TF2models/GIB-BBO-8742_2026-10-23-E30.keras (will, 10:28: the file BEN 64 bids with on azure4; the Gen 8 feeds' BEN on azure3 names the same file in its conf, not hashed). Needs h5py in {python}. | 14 Nov, g9: source adae5fbb (feature/gen9), whose BenLstmBidder also reads BEN's output layer under layers/time_distributed/layer; the 02:47 UTC run failed on it. Same commands and paths.",
+ "submitted": "2026-11-13T12:36:00Z",
+ "by": "g9",
+ "retry": 1,
+ "state": "queued"
+}
