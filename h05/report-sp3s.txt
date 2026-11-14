@@ -1,0 +1,17 @@
+2500 pairs drawn from sp3s
+pairs with under 32 distinct layouts drawn (late in the hand; the panel there is close to every layout the seat allows): 0.51
+2500 pairs re-evaluated; CPU a pair 0.75 s; layouts a pair 45
+single = the recorded pair (one layout); panel = mean over fresh layouts from the fork seat's own information; for the side to play
+                        pairs single=0 same sign   corr  slope reliab. | mean single mean panel panel SE | |panel|>2SE
+all                      2500     0.61      0.74   0.50   0.31   0.357 |      +0.188     +0.191    0.096 |        0.30
+declaring side           1347     0.58      0.74   0.54   0.34   0.371 |      +0.238     +0.239    0.092 |        0.34
+defending side           1153     0.64      0.74   0.43   0.26   0.329 |      +0.131     +0.136    0.102 |        0.24
+32+ layouts drawn        1230     0.51      0.69   0.41   0.20   0.206 |      +0.162     +0.164    0.121 |        0.34
+under 32 layouts         1270     0.70      0.83   0.66   0.58   0.711 |      +0.214     +0.218    0.072 |        0.25
+single label not 0        979     0.00      0.74   0.50   0.27   0.269 |      +0.481     +0.422    0.133 |        0.54
+fork at tricks 1-2         48     0.31      0.61   0.50   0.13   0.062 |      +0.021     +0.096    0.110 |        0.27
+fork at tricks 3-4        204     0.40      0.62   0.20   0.06   0.085 |      +0.093     +0.138    0.121 |        0.33
+fork at tricks 5-6        322     0.52      0.69   0.38   0.16   0.146 |      +0.205     +0.150    0.133 |        0.32
+fork at tricks 7-8        495     0.54      0.70   0.41   0.23   0.281 |      +0.200     +0.192    0.133 |        0.35
+fork at tricks 9-10       618     0.63      0.77   0.59   0.48   0.592 |      +0.178     +0.206    0.117 |        0.32
+fork at tricks 11-13      813     0.74      0.89   0.80   0.74   0.821 |      +0.216     +0.215    0.038 |        0.23
