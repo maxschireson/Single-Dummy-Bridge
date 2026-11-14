@@ -37,4 +37,11 @@ python3 experiments/e9_25/e925_report.py OUT_DIR
 - **Positions.** Two board files of `arena-gen8-azure3-ben64-1-feed` gave 350 native tables and 642 positions: 337 with
   BEN defending, 305 with house bots defending.
 - **Study.** A dry run on 3 positions, without BEN, completed.
-- **Not yet run.** BEN's replay has not run here: the net is not in the sandbox.
+- **BEN's replay (14 Nov).** The first box run (02:47 UTC) failed loading BEN's net: `BenLstmBidder` read the output
+  layer under the house bidders' name (`layers/dense`), and BEN saves the same 40-way softmax Dense inside
+  TimeDistributed (`layers/time_distributed/layer`). Fixed in `bridge_harness/system_bidders.py`, with
+  `tests/test_ben_lstm_layout.py`. Checked here with BEN's file fetched from BEN's public repository (SHA-256 matches
+  the pin above; the net is not kept in this repository): the other layers and settings are the house bidders'
+  (193 inputs, three 256-unit LSTMs, batch-norm epsilon 0.001); on 2,000 random deals BEN's net opens 1NT only on 15 to 17
+  points, passes as dealer only with 11 or fewer, and opens as the house bidder does on 99.2% of deals; the study ran
+  on 3 positions with the BEN replay.

@@ -83,7 +83,12 @@ class BenLstmBidder:
                 gamma, beta, mean, var = (g(f'layers/{n}/vars/{i}') for i in range(4))
                 scale = gamma / np.sqrt(var + 1e-3)
                 self.bn.append((scale.astype(np.float32), (beta - mean * scale).astype(np.float32)))
-            self.wd, self.bd = g('layers/dense/vars/0'), g('layers/dense/vars/1')
+            # The output layer: a Dense in the house bidders; BEN's own TF2 bidders (GIB-BBO-8742) wrap the same
+            # 40-way softmax Dense in TimeDistributed, which Keras saves under another path. Same weights, same maths.
+            out = next((p for p in ('layers/dense/vars', 'layers/time_distributed/layer/vars') if f'{p}/0' in f), None)
+            if out is None:
+                raise KeyError(f'{path}: no output layer at layers/dense or layers/time_distributed/layer')
+            self.wd, self.bd = g(f'{out}/0'), g(f'{out}/1')
         self.w_hand, self.w_ctx = self.lstm[0][0][:33], self.lstm[0][0][33:]
         self.units = self.lstm[0][1].shape[0]
 
