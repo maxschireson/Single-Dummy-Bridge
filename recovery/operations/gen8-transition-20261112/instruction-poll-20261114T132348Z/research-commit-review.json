@@ -1,0 +1,46 @@
+{
+  "poll_start": "2026-11-14T13:23:48Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
+  "commits": [
+    {
+      "sha": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
+      "date": "2026-11-14T12:50:58Z",
+      "message": "README: the human-boards experiment's full-size and rollout results\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "2dde3490d3e4a9518e4be550d784c951ad1a235f",
+      "date": "2026-11-14T12:33:56Z",
+      "message": "Round 4's gate: stu4 plays the first 512 deals before the control's turn (the control is trained second)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Stu round4 gate ordering and dated full-size human-training experiment results.",
+  "disposition": "Stu4 plays its first512 BEN-gate deals before stu4c because the control trains second; only Stu Azure3 jobs/runs change. Updated human-experiment README reports full-size/mixed-net results and uncertain rollout translation;22269 tables represent3569 deals and are not independent arena boards. Neither result nor scheduling adopts Stu4/stu4c as this producer's actor or changes its disabled gate. Keep strict frozen792c4cb Gen8, original exclusions/corpus and three normal workers. No local BEN, training, model promotion, self-play, source/settings change or peer operation. Future new cohorts exclude complete training-family membership of ALL released models; preserve the current immutable list/proofs.",
+  "evidence": [
+    {
+      "sha": "614ef1c9f68665b55e04a5b35bca450ac8fb7177",
+      "message": "README: the human-boards experiment's full-size and rollout results\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "2dde3490d3e4a9518e4be550d784c951ad1a235f"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/README.md"
+      ]
+    },
+    {
+      "sha": "2dde3490d3e4a9518e4be550d784c951ad1a235f",
+      "message": "Round 4's gate: stu4 plays the first 512 deals before the control's turn (the control is trained second)\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "1a7116c902a116e40ff3034f969136a0cf67b4bf"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/jobs-azure3-ben8.txt",
+        "training/rollout-loop-20261113/runs.json"
+      ]
+    }
+  ],
+  "research_plan_blob": "1890a83d08bb1fe26fc6a077dc2cbf66f7aca92b",
+  "research_plan_status": "Work in progress, research only.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}
