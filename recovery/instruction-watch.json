@@ -143,16 +143,16 @@
     "previous_collector_pid": 283196,
     "verified_resume_completed": 5852
   },
-  "checked_epoch": 1794684284.8020704,
-  "coordination_blob": "571b7e0216775ed6070cec186907fd7c6ef4d52c",
+  "checked_epoch": 1794688343.0104637,
+  "coordination_blob": "fa4c327ab8c5316e1c88f5e254e7a8098346d2e7",
   "coordination_handoff": {
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "path": "box/coordination:BOARD.md",
     "purpose": "Feed branch and final Gen7.1 count posted as explicitly requested by the operator16:24 instruction"
   },
-  "coordination_revision": "7742771e21c985d6d11cda18183db3ff54c628e5",
-  "coordination_snapshot_unchanged": true,
+  "coordination_revision": "b9dc3599b211d99669c8ac4f93e3733d6df2f58b",
+  "coordination_snapshot_unchanged": false,
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
   "family_accounting": {
     "checked_epoch": 1794502076.0413842,
@@ -176,7 +176,7 @@
     "total": 25000,
     "training_overlap": 0
   },
-  "free_bytes": 17700495360,
+  "free_bytes": 16982614016,
   "future_cohort_requirements": [
     "Exclude released-policy training-family union or later authorized exclusions.",
     "Block new seeded pools against every published corpus; do not take over or reassign another producer's families.",
@@ -265,12 +265,12 @@
   "health": {
     "heartbeat.json": {
       "ben_workers": 1,
-      "completed": 5957,
-      "epoch": 1794684276.154418,
+      "completed": 6091,
+      "epoch": 1794688336.1276135,
       "in_flight": [
-        5957,
-        5958,
-        5959
+        6089,
+        6092,
+        6093
       ],
       "started_epoch": 1794678764.074319,
       "stopping": false,
@@ -285,26 +285,26 @@
       "pid": 79982
     },
     "publisher-status.json": {
-      "completed": 5957,
-      "epoch": 1794684270.569811,
+      "completed": 6091,
+      "epoch": 1794688319.9172053,
       "status": "published"
     },
     "state.json": {
       "by_pair": {
-        "8c-32~71s-32": 993,
-        "8c-32~8s-32": 992,
-        "8s-32~1": 993,
-        "8s-32~5RZ32": 993,
-        "8s-32~71s-32": 1987
+        "8c-32~71s-32": 1016,
+        "8c-32~8s-32": 1015,
+        "8s-32~1": 1016,
+        "8s-32~5RZ32": 1015,
+        "8s-32~71s-32": 2030
       },
       "complete": false,
-      "completed": 5958,
-      "contiguous": 5957,
-      "epoch": 1794684276.3499527,
+      "completed": 6092,
+      "contiguous": 6092,
+      "epoch": 1794688336.3726046,
       "failures": 0,
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "root_games": 19858,
-      "tables": 245929,
+      "root_games": 20308,
+      "tables": 251398,
       "target": 16036
     },
     "watchdog-process.json": {
@@ -314,21 +314,52 @@
     "watchdog-status.json": {
       "ben": "ready",
       "collector": "running",
-      "epoch": 1794684280.3984933,
+      "epoch": 1794688300.7663848,
       "publisher": "running"
     }
   },
-  "heartbeat_age": 8.647652387619019,
+  "heartbeat_age": 6.882850170135498,
   "historical_gen71_revision": "50990002b64833073b04e1bad025241109033ad3",
   "historical_gen71_snapshot_unchanged": true,
   "historical_provenance": "recovery/history-index.json",
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T18:30:16Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T19:24:44Z",
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "main_snapshot_unchanged": true,
   "new_applicable_instructions": [],
   "normal_workers_active": 3,
   "notification": "suppressed_no_material_change",
-  "observed_notices": [],
+  "observed_notices": [
+    {
+      "disposition": "Stu efficiency review requested from loop; proposed actions explicitly named/scope-limited, existing frozen runs untouched.",
+      "epoch_utc": "2026-11-14T20:06:00Z",
+      "source": "box/coordination BOARD.md"
+    },
+    {
+      "disposition": "Other owner claims P01/P03 sandbox work and P08 written plan after loop review; no live box or deployment.",
+      "epoch_utc": "2026-11-14T20:10:00Z",
+      "source": "box/coordination BOARD.md"
+    },
+    {
+      "disposition": "DraftPR36 checkpoint; synthetic tests completed, exactR4c validation/input manifests still needed. No collector or recipe change.",
+      "epoch_utc": "2026-11-14T20:16:00Z",
+      "source": "box/coordination BOARD.md"
+    },
+    {
+      "disposition": "Other owner'sPR37 proposes harvesting existing Stu internal pairs, distinct from arena trajectory forks. H01-H06 require lead assignment; no action for this stream.",
+      "epoch_utc": "2026-11-14T20:18:00Z",
+      "source": "box/coordination BOARD.md"
+    },
+    {
+      "disposition": "Stu efficiency owner offers extra P04/P10 execution slices pending ownership transfer; already approvedP01/P03/P08 remain with that owner.",
+      "epoch_utc": "2026-11-14T20:22:00Z",
+      "source": "box/coordination BOARD.md"
+    },
+    {
+      "disposition": "Codex-rollout reserves Azure6 for Max-authorized mechanism experiments, subject to fresh inventory/drain and six-hour batch; explicitly claims no other box and no production adoption. This cloud stream is outside that allocation.",
+      "epoch_utc": "2026-11-14T20:29:00Z",
+      "source": "box/coordination BOARD.md"
+    }
+  ],
   "operational_branch": "feature/gen8-prototype-20261112",
   "operational_revision": "695078457205693f48a24c355681aef47ca21935",
   "operational_snapshot_unchanged": true,
@@ -350,7 +381,7 @@
     "physical_root_tables": 36,
     "tree_consultations": 705
   },
-  "previous_checked_epoch": 1794681016.2307725,
+  "previous_checked_epoch": 1794684284.8020704,
   "processes": {
     "process.json": {
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 ",
@@ -365,19 +396,66 @@
       "pid": 79983
     }
   },
-  "publisher_age": 14.232259273529053,
+  "publisher_age": 23.093258380889893,
   "registry_blob": "3e289c39830e8a7beab36b12465e34171dde5ca9",
   "registry_commit": "81aa28dd04bd8c4d1afff0b9b210448e40157f7c",
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
   "registry_key": "gen6selfplay19bbdce5",
-  "registry_revision": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/GenXStu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks. No runtime changes, failure clearing or operator restart.",
+  "registry_revision": "39a480b72197110990f88077a3285db6076e3cf7",
+  "result": "No applicable instruction changed. Main and adopted Gen8 notices/plan, earlier Gen7.1 notices, cleanup, known deployment source references and Arena registry remain pinned. New coordination/PR35-37 work is explicitly scoped to Stu sandbox/training, loop-owned Azure scheduling, perf'sBridgebots7 allocation and another owner'sAzure6 experiment track. PR33 remains a separate public app. No general-arena migration, model/fork/worker change or instruction for19bbdce5. The prior explicit instruction to continue19bbdce5 remains handled. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks. No runtime changes, failure clearing or operator restart.",
   "retired_processes": [],
   "reviewed_discussions": [
     {
       "disposition": "Gen9 development queue only; no new comments or instruction for this cloud collector",
       "new_comments": 0,
       "number": 22
+    },
+    {
+      "disposition": "Public sidplay app branch; no general-arena collector instruction.",
+      "head": "d28a44d5de03a6407ff89ff8b3e2ed33ca34e794",
+      "inline_comments": 0,
+      "new_comments": 0,
+      "number": 33,
+      "reviews": 0,
+      "state": "open_unmerged",
+      "type": "pull_request"
+    },
+    {
+      "comment_ids": [
+        6883488008,
+        6883518768,
+        6883597796,
+        6883672738
+      ],
+      "disposition": "Loop-owner review scopes Stu-only efficiency actions: P01/P03 sandbox handoff, P02 perf onBridgebots7, P04/P09/P10 loop, P08 written plan, P05-P07 deferred. Any loop box/recipe change booked with loop; no deployment into19bbdce5. P09 Stu release/BEN policy does not alter this stream's historical gates or current recipe. Existing frozen actors and failures retained.",
+      "document_blob": "9124c2f31c22a0e0a90713c14f7cc17139e5f66f",
+      "head": "f93d1ceafce93e911c7dacab1170121fa9deaf22",
+      "inline_comments": 0,
+      "number": 35,
+      "reviews": 0,
+      "state": "open_unmerged",
+      "type": "pull_request"
+    },
+    {
+      "disposition": "Stu trainer epoch-zero patch handoff and written Mac plan; exactR4c acceptance pending, loop owns integration next cut. No collection/source/model change for this stream.",
+      "head": "132177d0cf5d5d5b7f14a79ec3b8f61c01aac9b7",
+      "inline_comments": 0,
+      "new_comments": 0,
+      "number": 36,
+      "reviews": 0,
+      "state": "draft_open_unmerged",
+      "type": "pull_request"
+    },
+    {
+      "disposition": "Stu internal-rollout pair harvesting/frontier curriculum recommendations H01-H06 await lead decisions/ownership/budget. No raw episode takeover, training, fork increase or deployment in19bbdce5.",
+      "document_blob": "2958b54408faafd3089fefbc05ba29eca8b825be",
+      "head": "30a665bb6057e8011c8d3f2843a38181b53c3198",
+      "inline_comments": 0,
+      "new_comments": 0,
+      "number": 37,
+      "reviews": 0,
+      "state": "open_unmerged",
+      "type": "pull_request"
     }
   ],
   "reviewed_file_blobs": {
@@ -441,6 +519,6 @@
     }
   },
   "unresolved_failures": [],
-  "watchdog_age": 4.403577089309692,
+  "watchdog_age": 42.24407887458801,
   "writer_and_watchdog_locks": "held"
 }
