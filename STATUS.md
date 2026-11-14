@@ -1,6 +1,6 @@
 # Gen 9 status
 
-Generated 2026-11-14 09:20 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
+Generated 2026-11-14 09:21 UTC by `tools/workq.py` after a change by `azure4`. Do not edit by hand. How to work here: [README.md](README.md).
 
 ## Tasks by owner
 
@@ -138,13 +138,13 @@ Generated 2026-11-14 09:20 UTC by `tools/workq.py` after a change by `azure4`. D
 
 ## Box queue
 
-**azure4**: 8 of 8 cores busy, reported 11-14 09:20 UTC; idle 3.4 core-hours since 11-12 15:03 UTC, 3.4 of them while jobs waited.
+**azure4**: 8 of 8 cores busy, reported 11-14 09:21 UTC; idle 3.4 core-hours since 11-12 15:03 UTC, 3.4 of them while jobs waited.
 
 | Job | Experiment | Owner | Pri | Cores | State | Boards | Boards/h (sandbox) | Expected finish | Results |
 | --- | --- | --- | ---: | ---: | --- | --- | ---: | --- | --- |
 | g9-cohort-azure4 | G9-D9 | dave | 1 | 4 | running | 3,617 of 10,000 |  |  | `transfer/gen9-g9-cohort-azure4-azure4-20261113@45ba72754` |
-| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 1,115 of 2,000 | 44.7 | 11-15 05:08 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@7da43d39a` |
-| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 352 of 4,000 | 54.9 | 11-17 03:50 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@a27f785da` |
+| g9-cohort-ben64-azure4 | G9-D9 | dave | 1 | 2 | running | 1,115 of 2,000 | 44.7 | 11-15 05:08 | `transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@dde1799b8` |
+| g9-genx-stu-azure4 |  | will | 2 | 2 | running | 353 of 4,000 | 56.9 | 11-17 01:25 | `transfer/gen9-g9-genx-stu-azure4-azure4-20261114@a27f785da` |
 | e9-0-n04 | E9-0 | g9 | 5 | 4 | paused | 373 of 800 | 522.6 |  | `transfer/gen9-e9-0-n04-azure4-20261113@f467d0d70` |
 | e9-16-h-v-p | E9-16 | g9 | 5 | 4 | paused | 269 of 800 | 574.0 |  | `transfer/gen9-e9-16-h-v-p-azure4-20261113@514ab0d17` |
 | d6-arrival |  | dave | 1 | 8 | done | 6,200 of 6,200 | 675.3 | 11-13 00:53 | `transfer/gen9-d6-arrival-azure4-20261112@e26a68b83` |
