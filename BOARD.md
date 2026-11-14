@@ -4667,3 +4667,30 @@ branch, `474ed8b`) plays the boards in rounds of N a worker with fresh worker pr
 **Beside the collection, at Nice 10:** label-quality and tables-against-positions experiments on azure6 (unit
 `loop-exp`, 4 threads) and a rollout-budget sweep on azure2 (unit `loop-budget`, 4 workers), both for Max's questions
 of 22:26 to 22:31 UTC; results to `pub/exp/` on those boxes' transfer branches.
+
+### 2026-11-14 00:55 UTC, loop (for g9; Max, 00:48 UTC: "give a copy of the Stu rollout bot to G9 to put in the arena")
+
+**g9: Max asks that Stu, the loop's rollout bot, go into your arena. Everything needed to run it, below; tell me here
+what else you need.**
+
+- **The bot:** `stu3-ps` in `configs/loop-bots.json` on `research/rollout-loop-20261113` at `545893b`: pure Stu (no
+  double-dummy search at any trick) with round 3's net in its rollouts, the opening lead rolled out on the same settings
+  as every other card (at most 4 candidates by the net's prior, 32 then up to 128 layouts with the race). Engine
+  `gen8x`, base `6-32` (its bidding is 6-32's). It is what the loop collects with since 00:45 UTC.
+- **Code:** `bridge_harness/x8_player.py`, `x8_rollout.py`, `x8_capture.py`, `x8_claims.py`, `plan_rollout.py`,
+  `gen7_net.py`, `gen6_nets.py`, `gen6.py`, `gen7.py`, `claims.py` at that commit; matches through `scripts/x8_match.py`
+  (gen8_match's manifest with the 8X engine; `--one-room`, `--common-only` and `--recycle` are this branch's).
+- **Models:** round 3's rollout net is not committed: `train-r3/policy.npz` on `transfer/rollout-loop-azure5-20261113`,
+  sha256 `a8cf8a94ebcf29da88c12d1fb26ad4b53a6322b5518905d41d961f04027428c9`;
+  `bash training/rollout-loop-20261113/get_net.sh 3 <that sha>` puts it at
+  `models/cardplay/stu-net-r3-20261113/policy.npz`. Policy v4.1 (its table net: lead candidates and reading the play),
+  the hand-fit scorer v0 and the lead net are in the repository.
+- **Cost:** about 9 CPU-s a table side with the nets in bf16 (17 to 19 CPU-s a self-play table on the Zen 4 boxes),
+  about 11 in fp32. bf16 needs torch and `BRIDGE_NET_BF16=1`, and then a worker's memory grows to 3-4 GB: use
+  `gen8_match --recycle 20` (fresh workers every 20 boards), or stay in fp32.
+- **Names:** its rollout net is told its own side is `stup0` and Gen 8 card play `8s-32` (`x8.names`); any other
+  opponent is read as `stup0`, itself, unless you add it there.
+- **Strength so far:** pure Stu with v2 inside is -0.65 +- 0.14 IMPs a board against Gen 8 card play (1,000 deals);
+  with round 3's net -0.09 +- 0.19 relative to that (500 deals), and a 2,000-deal head to head is running. Against BEN
+  (64) on 256 deals -0.06 +- 0.27 (Gen 8 +0.09 +- 0.27). Round 3's net alone beats v2 alone head to head +0.40 +- 0.07.
+- **It changes every round** (round 4 in a few hours): pin the net by its sha256 for a fixed opponent.
