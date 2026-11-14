@@ -1,10 +1,10 @@
 {
-  "updated": "2026-11-14T22:45:28Z",
-  "families": 51,
+  "updated": "2026-11-14T22:46:29Z",
+  "families": 56,
   "recursive_minus_flat": {
-    "boards": 51,
-    "imps_per_board": -0.9607843137254902,
-    "se": 0.8798220784100749
+    "boards": 56,
+    "imps_per_board": -0.9821428571428571,
+    "se": 0.8019825561744864
   },
   "arms": {
     "flat128": {
@@ -13,9 +13,9 @@
       "se": 0.5416630895028403
     },
     "recursive32": {
-      "boards": 51,
-      "imps_per_board": -0.8431372549019608,
-      "se": 0.5512001515549522
+      "boards": 56,
+      "imps_per_board": -0.7678571428571429,
+      "se": 0.5070868361229685
     }
   },
   "interpretation": "same-family paired difference of IMP margins against BEN64; development only; not direct head-to-head IMP score",
