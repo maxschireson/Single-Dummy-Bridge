@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T22:31:53Z",
+  "updated": "2026-11-14T22:32:54Z",
   "purpose": "development-only; no adoption decision",
   "runs": [
     {
@@ -91,58 +91,58 @@
     {
       "name": "extended-recursive32",
       "pair": "rx2-recursive32~rx2-control",
-      "boards": 167,
-      "cpu_per_board": 56.35,
+      "boards": 176,
+      "cpu_per_board": 56.13,
       "common": {
-        "imps_per_board": -0.3413,
-        "se": 0.3319,
-        "boards": 167,
-        "won": 36,
-        "lost": 48,
-        "flat": 83
+        "imps_per_board": -0.3864,
+        "se": 0.322,
+        "boards": 176,
+        "won": 37,
+        "lost": 52,
+        "flat": 87
       },
       "native": {
-        "imps_per_board": -0.3413,
-        "se": 0.3319,
-        "boards": 167,
-        "won": 36,
-        "lost": 48,
-        "flat": 83
+        "imps_per_board": -0.3864,
+        "se": 0.322,
+        "boards": 176,
+        "won": 37,
+        "lost": 52,
+        "flat": 87
       },
       "failures": 0,
       "unfinished": 8,
-      "attempts": 175,
+      "attempts": 184,
       "interpretation": "development only; not a strength or equal-time decision",
       "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
       "attempt_work": {
-        "wall_seconds": 9772.631799199,
-        "worker_cpu_seconds": 9417.323516496,
-        "solver_cpu_seconds": 332.505884,
-        "inclusive_cpu_seconds": 9749.829400496
+        "wall_seconds": 10257.000304869998,
+        "worker_cpu_seconds": 9885.535681519,
+        "solver_cpu_seconds": 347.578669,
+        "inclusive_cpu_seconds": 10233.114350519
       },
       "actors": {
         "rx2-recursive32": {
           "work": {
-            "solver_cpu_seconds": 195.15520300000003,
-            "solver_wall_seconds": 204.80981936516764,
-            "solver_calls": 574038.0,
-            "solver_hits": 20072.0,
+            "solver_cpu_seconds": 203.98294100000004,
+            "solver_wall_seconds": 214.14520298717252,
+            "solver_calls": 600572.0,
+            "solver_hits": 20946.0,
             "solver_timeouts": 9.0,
-            "wall_seconds": 6662.402294481113,
-            "worker_cpu_seconds": 6445.655809675995,
-            "inclusive_cpu_seconds": 6640.811012676003,
-            "initialization_seconds": 34.38084917100332
+            "wall_seconds": 6991.356216718068,
+            "worker_cpu_seconds": 6764.786005538996,
+            "inclusive_cpu_seconds": 6968.768946539002,
+            "initialization_seconds": 34.71787820400368
           },
           "recursive": {
-            "opportunities": 4668967.0,
-            "calls": 20939.0,
-            "cache_hits": 660.0,
-            "changed": 44131.0,
-            "net_rows": 5841806.0,
-            "child_wall_seconds": 4513.904965471979,
-            "argmax_different": 36669.0,
-            "applied_rows": 85408.0,
-            "budget_rejected": 873412.0
+            "opportunities": 4931514.0,
+            "calls": 22071.0,
+            "cache_hits": 681.0,
+            "changed": 46559.0,
+            "net_rows": 6172308.0,
+            "child_wall_seconds": 4732.448847602004,
+            "argmax_different": 38660.0,
+            "applied_rows": 89983.0,
+            "budget_rejected": 921910.0
           },
           "precisions": [
             [
@@ -153,15 +153,15 @@
         },
         "rx2-control": {
           "work": {
-            "solver_cpu_seconds": 128.74599899999998,
-            "solver_wall_seconds": 141.7317076898662,
-            "solver_calls": 891342.0,
-            "solver_hits": 118044.0,
+            "solver_cpu_seconds": 134.57599899999997,
+            "solver_wall_seconds": 148.18041455286857,
+            "solver_calls": 932420.0,
+            "solver_hits": 124269.0,
             "solver_timeouts": 8.0,
-            "wall_seconds": 3054.3640256519466,
-            "worker_cpu_seconds": 2915.1667391499986,
-            "inclusive_cpu_seconds": 3043.9127381499975,
-            "initialization_seconds": 6.625039617998482
+            "wall_seconds": 3208.3531527229534,
+            "worker_cpu_seconds": 3062.767882537999,
+            "inclusive_cpu_seconds": 3197.343881537998,
+            "initialization_seconds": 6.948962338998172
           },
           "recursive": {},
           "precisions": [
