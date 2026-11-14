@@ -1,0 +1,1 @@
+W=$HOME/work/loop; systemctl list-units --plain --no-legend "loop-*" | awk "{print \$1, \$3, \$4}"; tail -n 4 $W/pub.log 2>/dev/null | cut -c1-160; ls -la $W/pub/train-r4c/ 2>/dev/null | head; tail -n 3 $W/runs.log | cut -c1-160; uptime | cut -c1-80; date -u +%T
