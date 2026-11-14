@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "seed": 9001,
+  "first": 1000000000,
+  "boards": 2,
+  "failed": 0,
+  "rows": 83,
+  "families": [
+    "0b5cacd7a9b9dcf12ace32dfb69070f45b63cd7879ad7a9ad32f47eeb4e1fe9f",
+    "7f17fd6263c6be5a96d937bf1551ad20c99996e54b9f79bbcd21b53520fc7e88"
+  ],
+  "arrays_equal": true,
+  "source_commit": "5addd826af8b10d7343df51ada528a7327d059b6",
+  "capsule_commit": "8833c62f83687293ad6b3ebfa10b58d1a25961f7",
+  "files": {
+    "loop/pub/rows/high-index-1000000000.npz": "bece755a9390b1781777c2cdbc6d798c281dfcd73fb46694a15820bfc8bb8b71",
+    "loop/pub/rows-cut/high-index-1000000000-1000000001.npz": "bece755a9390b1781777c2cdbc6d798c281dfcd73fb46694a15820bfc8bb8b71",
+    "loop/runs/high-index/episodes/1000000000.json.gz": "b62b365b12fedd7ce060dae5eb852cdc7d7dfdf2f89477050ccd7c3e2b575e04",
+    "loop/runs/high-index/episodes/1000000001.json.gz": "4799dce41b7e58701ffd1db3a4886a3a765a27654f8419222cc22afdc6fd76f6"
+  },
+  "row_script_adjustment": "Only W path redirected to isolated sandbox. BLOCK=2. Episode mtimes aged180s to satisfy exporter settled-file filter. rows.sh stopped by timeout20 after block publication; exit124 expected because it normally loops forever. Original builder and x8_match code unmodified.",
+  "after_block": "high-index: nothing past block end 1000000002\n",
+  "match_log": "g8-greedy0 v g8-passive0: 2 boards to play (0 done), 1 workers\n2 boards: None +- None IMPs/board for g8-greedy0; 222 boards/hour; 0 failed\n{\"pair\": \"g8-greedy0~g8-passive0\", \"boards\": 2, \"cpu_per_board\": 16.07}\n",
+  "cut_log": "2026-11-14T21:44:24Z cut high-index 1000000000-1000000001: 2 boards, {\"episodes\": 2, \"deals\": 2, \"unique_families\": 2, \"examples\": 83, \"train\": 43, \"validation\": 40, \"test\": 0, \"rows_with_u, 28 KB\n",
+  "rows_log": "2026-11-14T21:44:27Z rows high-index block 1000000000: 2 boards, {\"episodes\": 2, \"deals\": 2, \"unique_families\": 2, \"examples\": 83, \"train\": 43, \"validation\": 40, \"test\": 0, \"rows_with_u, 28 KB\n"
+}
