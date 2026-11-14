@@ -1,0 +1,23 @@
+{
+ "pair": "stu3-put~ben200",
+ "boards": 50,
+ "cpu_per_board": 29.55,
+ "common": {
+  "imps_per_board": 0.32,
+  "se": 0.6574,
+  "boards": 50,
+  "won": 17,
+  "lost": 11,
+  "flat": 22
+ },
+ "native": {
+  "imps_per_board": 0.32,
+  "se": 0.6574,
+  "boards": 50,
+  "won": 17,
+  "lost": 11,
+  "flat": 22
+ },
+ "failures": 0,
+ "boards_per_hour": 45
+}
