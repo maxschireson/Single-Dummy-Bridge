@@ -405,6 +405,49 @@ baseline against BEN (200) finished at -0.09 +- 0.09 (2,047 deals); round 4's ga
 bots (15:50), **stu4c is round 4's net**. stu4's gate blocks c to e are dropped (commented in place in the running job
 file at 16:36 UTC, same length, so the chain's offsets do not move); azure3 plays stu4c alone through its 2,048 deals.
 
+## The rollouts' values against the table (`bench/value_check.py`; Max, 17:11 UTC on 14 November: "Should we experiment with different rollout mechanisms?")
+
+For every rollout decision in recorded tables: declarer's tricks the rollouts expected with the card played (and the
+chance they gave the contract, from the kept layouts) against declarer's tricks at that table. Standard errors by table.
+A read-only pass over the records (seconds a thousand tables).
+
+| Records | Declaring: expected minus took | Defending | The lead | Contract's chance minus share made: declaring, defending |
+| --- | --- | --- | --- | --- |
+| R3 blind against BEN (200), the gate's 2,039 deals (`bu3-pst200a` to `e`) | +0.074 +- 0.014 | -0.180 +- 0.013 | -0.152 +- 0.026 | +0.034 +- 0.006, -0.069 +- 0.005 |
+| stu4 the same, 510 deals | +0.102 +- 0.029 | -0.175 +- 0.025 | -0.132 +- 0.055 | +0.043 +- 0.012, -0.063 +- 0.011 |
+| stu4c the same, 382 deals | +0.070 +- 0.031 | -0.129 +- 0.032 | -0.059 +- 0.062 | +0.032 +- 0.013, -0.062 +- 0.013 |
+| R3's self-play (`sp3s`, 2,500 tables; the two ids) | +0.086 +- 0.017, +0.090 +- 0.018 | -0.137 +- 0.016, -0.147 +- 0.016 | -0.119 +- 0.034, -0.106 +- 0.034 | +0.024, +0.029 +- 0.008; -0.028, -0.037 +- 0.007 |
+| R0's self-play (`sps0`, 779 tables; the two ids) | +0.094 +- 0.031, +0.090 +- 0.029 | -0.153 +- 0.027, -0.141 +- 0.029 | -0.145 +- 0.061, -0.132 +- 0.060 | +0.028, +0.034 +- 0.013; -0.036, -0.035 +- 0.011 |
+
+- **The values are optimistic for the side deciding**: declaring the rollouts expect about 0.07 to 0.10 tricks more than
+  declarer then takes, defending 0.13 to 0.18 fewer than declarer then takes, at the lead 0.11 to 0.15 fewer. Against BEN
+  and in self-play, with round 0's net and round 3's and both of round 4's: the rounds have not moved it.
+- By stage against BEN (R3): declaring +0.01 at trick 1, +0.03 at trick 2, +0.06 at tricks 3-4, +0.10 at 5-8 and 9-13;
+  defending -0.20, -0.24, -0.23, -0.20 and -0.10. It does not vanish with few cards left.
+- **Contract odds against BEN**: when the defending bot's rollouts give declarer 50%, BEN makes 63% (tricks 1-4) and 69%
+  (later); 30% is 43% and 47%; 70% is 80% and 83%. When the declaring bot's rollouts give itself 50% it makes 46% (tricks
+  1-4) and 38% (later); 70% is 65% and 56%. In self-play the defending side's gap is about half of that (50% is 55-58%
+  early, 57-63% later); declaring the same as against BEN.
+- **Not sampling noise**: the optimism grows with how clear the choice was (R3 against BEN; the card played ahead of the
+  next candidate by under 0.05 tricks, 0.05-0.2, 0.2-0.5, 0.5 and more): declaring +0.036, +0.081, +0.135, +0.093;
+  defending +0.110, +0.215, +0.269, +0.226 (each +- 0.01 to 0.02). A winner's curse on noisy means would be largest for
+  the close choices. (And 128 layouts are saturated, `bench/budget.py` above.)
+- A level error common to every candidate changes no choice; this says the values are wrong in a way that favours the
+  card chosen, not what it costs in IMPs.
+
+**The oracle test** (`bench/oracle_layout.py`, azure1, 05:48 UTC on 14 November; R3 pure Stu's 1,459 rollout decisions to
+trick 4 on 120 boards of `l3-p`, each card rated by double dummy on the deal as it lay): the recorded card gives up 0.0569
+tricks a decision, the bot's card on layouts drawn again 0.0589 (it plays the recorded card again at 57% of the
+decisions), and its card when every layout rolled out IS the deal 0.0288 (below "again" by 0.0302 +- 0.0067; declaring
+0.0285, defending 0.0291). So about half of the early tricks go with not knowing the cards and half remain when they
+are known: the simulated play itself.
+
+**Reading (untested):** the simulated seats draw their cards from the net's probabilities, mistakes included (`seat:
+draw`, no cut), and the real players, BEN or the bot, make fewer; a line that needs a mistake is rated above its worth.
+The engine's stage already has the settings to test it (`seat` top or draw, `power`, `cut`, and `seat_other`,
+`power_other`, `cut_other` for the side not deciding); at the table the two tried (top card, power 2) were within
++-0.17 of the plain draw over 1,000 deals each, which cannot see 0.1.
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
