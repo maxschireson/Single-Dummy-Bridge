@@ -255,6 +255,26 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8f",
+   "box": "azure5",
+   "branch": "transfer/rollout-loop-azure5-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 520000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
    "queue_order": 3
   },
   {
@@ -610,6 +630,26 @@
     "rung": "pure-rs"
    },
    "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8i",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 580000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "tables_a_board": 1,
    "queue_order": 12
   },
   {
@@ -711,6 +751,26 @@
     "round": 3,
     "net": "stu3",
     "rung": "pure-rs"
+   },
+   "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8g",
+   "box": "azure6",
+   "branch": "transfer/rollout-loop-azure6-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 540000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
    },
    "tables_a_board": 1,
    "queue_order": 1
@@ -982,6 +1042,26 @@
     "round": 3,
     "net": "stu3",
     "rung": "pure-rs"
+   },
+   "tables_a_board": 1,
+   "stopped": "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)",
+   "queue_order": null
+  },
+  {
+   "name": "sg8h",
+   "box": "azure2",
+   "branch": "transfer/rollout-loop-azure2-20261113",
+   "role": "collection",
+   "pair": "g8a~g8b",
+   "seed": 9001,
+   "first": 560000,
+   "deals": 20000,
+   "records": true,
+   "first_bot": {
+    "family": "other"
+   },
+   "second_bot": {
+    "family": "other"
    },
    "tables_a_board": 1,
    "queue_order": 1

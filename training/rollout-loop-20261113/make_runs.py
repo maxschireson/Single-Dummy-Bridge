@@ -126,7 +126,9 @@ def main():
             if stopped:
                 runs[-1]['stopped'] = ("at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)"
                                        if not name.startswith(('sps', 'sp3')) else "at 00:45 UTC on 14 November, for round 3's net in the rollouts"
-                                       if name.startswith('sps') else "02:50 UTC on 14 November: the box makes Gen 8 card play's self-play records instead")
+                                       if name.startswith('sps') else "02:50 UTC on 14 November: the box makes Gen 8 card play's self-play records instead"
+                                       if name == 'sp3se' else "05:20 UTC on 14 November: Gen 8 card play's self-play records instead, until round 4's bot "
+                                       "is chosen (round 3's net may play better at the table too than inside only; the BEN gate decides)")
     for line in (HERE / 'jobs-azure3-later.txt').read_text().splitlines():      # taken out of the queue: listed, marked, not run
         if not line.strip() or line.startswith('#'):
             continue
