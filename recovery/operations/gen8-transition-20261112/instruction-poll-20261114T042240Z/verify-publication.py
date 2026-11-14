@@ -26,7 +26,8 @@ for p in CASE.iterdir():
     if p.is_file() and p.name not in ['publication-proof.json','github-watch-readback.json']:
         paths['recovery/operations/'+str(p.relative_to(CONTROL))]=p
 capture=json.loads((CASE/'live-capture-sample.json').read_text())
-for row in capture['samples']:
+rotation=json.loads((CASE/'cache-rotation-diagnosis.json').read_text())
+for row in capture['samples']+rotation['post_rotation_samples']:
     idx=row['index']
     for folder,suffix in [('receipts','.json'),('episodes','.json.gz')]:
         name=f'{idx:06d}'+suffix

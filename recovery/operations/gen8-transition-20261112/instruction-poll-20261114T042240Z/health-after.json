@@ -236,5 +236,8 @@
     ],
     "actual_capture_observed": true,
     "new_launch_or_setting_change": false
-  }
+  },
+  "same_pids_as_initial_check": true,
+  "cache_rotation_diagnosed_in_this_poll": true,
+  "cache_rotation_diagnosis": "/workspace/work/gen6-fast-selfplay-stream/gen8-transition-20261112/instruction-poll-20261114T042240Z/cache-rotation-diagnosis.json"
 }

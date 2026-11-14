@@ -1,0 +1,17 @@
+{
+  "poll_start": "2026-11-14T04:22:40Z",
+  "collector_pid": 223844,
+  "frozen_net_and_scorer_have_no_bf16_path": true,
+  "frozen_dds_cache_has_no_new_sync_flag": true,
+  "supervisor_unchanged": true,
+  "all_current_lock_owners_match_processes": true,
+  "source_and_scientific_files_verified": true,
+  "local_memory_bytes": 8064176128,
+  "local_memory_limit": "17179869184",
+  "source_hashes": {
+    "bridge_harness/gen7_net.py": "32be1745db52a4fa4e1ba043606c822f2060acfcb9fa9fdde668c25b49f06ff0",
+    "bridge_harness/gen6_nets.py": "4b5e55b84f5002331e0b21825c958003b73f70560c80c7515e288433bde2b799",
+    "bridge_harness/dds_cache.py": "b9f5c0cb1b9160918fa5f84b10abb69b7f574c96ba17f8544c059e4794cc7597"
+  },
+  "scope": "Only the existing DDS cache guard reloaded this cohort; unchanged scientific source, styles, models, names, audit/capture settings, 3 normal workers and 0 BEN. No manual restart or failure clearance."
+}
