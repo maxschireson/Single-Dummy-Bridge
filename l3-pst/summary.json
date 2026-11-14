@@ -1,0 +1,23 @@
+{
+ "pair": "stu3-pst~8p-32-v41",
+ "boards": 150,
+ "cpu_per_board": 33.11,
+ "common": {
+  "imps_per_board": -0.74,
+  "se": 0.3905,
+  "boards": 150,
+  "won": 27,
+  "lost": 58,
+  "flat": 65
+ },
+ "native": {
+  "imps_per_board": -0.74,
+  "se": 0.3905,
+  "boards": 150,
+  "won": 27,
+  "lost": 58,
+  "flat": 65
+ },
+ "failures": 0,
+ "boards_per_hour": 831
+}
