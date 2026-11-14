@@ -142,7 +142,11 @@
      "stu3-psa": 1.0,
      "stu3-psb": 1.0,
      "stuS-ps": 1.0,
-     "stuM-ps": 1.0
+     "stuM-ps": 1.0,
+     "stu3-pst": 1.0,
+     "stu3-p2": 1.0,
+     "stu3-pg": 1.0,
+     "stu0-p2": 1.0
     }
    },
    "x8": {
@@ -194,6 +198,7 @@
       "8z-v41",
       "stu0-b50",
       "stu0-p",
+      "stu0-p2",
       "stu0-pa",
       "stu0-pb",
       "stu0-pl",
@@ -225,14 +230,17 @@
       "stu2-pt",
       "stu2-pv",
       "stu3-p",
+      "stu3-p2",
       "stu3-pa",
       "stu3-pb",
+      "stu3-pg",
       "stu3-pr",
       "stu3-pra",
       "stu3-prb",
       "stu3-ps",
       "stu3-psa",
       "stu3-psb",
+      "stu3-pst",
       "stuM-ps",
       "stuS-ps"
      ],
@@ -260,6 +268,7 @@
       "8z-v41",
       "stu0-b50",
       "stu0-p",
+      "stu0-p2",
       "stu0-pa",
       "stu0-pb",
       "stu0-pl",
@@ -291,14 +300,17 @@
       "stu2-pt",
       "stu2-pv",
       "stu3-p",
+      "stu3-p2",
       "stu3-pa",
       "stu3-pb",
+      "stu3-pg",
       "stu3-pr",
       "stu3-pra",
       "stu3-prb",
       "stu3-ps",
       "stu3-psa",
       "stu3-psb",
+      "stu3-pst",
       "stuM-ps",
       "stuS-ps"
      ]
@@ -312,7 +324,23 @@
     }
    },
    "table_opponent": "8p-32-v41",
-   "identity": "e9b03676872bc29ff0cf589ace32004e33e5a44cd3b6151eaf1e55d348135105"
+   "identity": "3cd863c2aa3ff9be2c5f7269c326d25a75f0aeeb110353c218ee4fa7d34bed91"
+  },
+  "3": {
+   "id": "v3",
+   "belief_kind": "public",
+   "samples": 32,
+   "near_tie": 0.125,
+   "exploration": 0.0,
+   "artifact_sha256": {
+    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
+    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
+    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
+   },
+   "belief": "artifacts/v3/belief.npz",
+   "policy": "artifacts/v3/policy.npz",
+   "bidding": "assets/bidding/dds-40000.keras",
+   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
   },
   "6-32": {
    "id": "6-32",
@@ -364,22 +392,6 @@
    "lead_belief": "artifacts/gen6/lead_belief.npz",
    "scorer": "artifacts/gen6/scorer.npz",
    "identity": "153867b49e318a27ad2924cf769e0259374e0279ea5833053c89448980590def"
-  },
-  "3": {
-   "id": "v3",
-   "belief_kind": "public",
-   "samples": 32,
-   "near_tie": 0.125,
-   "exploration": 0.0,
-   "artifact_sha256": {
-    "belief": "bb46241ed4270ac171354ca9b7d5146bf532f50fc08370c5a5ee07461bbceedb",
-    "policy": "8c62c88b0f2041ce78273e072d0b5530598255cc39b482826901ff1660e064f5",
-    "bidding": "680470163f198802a5522d90f7ae4a1394fea3ca02ca4398f65c14eccb4934b3"
-   },
-   "belief": "artifacts/v3/belief.npz",
-   "policy": "artifacts/v3/policy.npz",
-   "bidding": "assets/bidding/dds-40000.keras",
-   "identity": "33daf91a758c31cf344e40d53a0f8ac456d7fdfc0299475b5af7ec6783388d5a"
   },
   "8p-32-v41": {
    "id": "8p-32-v41",
@@ -497,9 +509,9 @@
   "max_forks": 0
  },
  "target": 1073741824,
- "identity": "42573b0e15d0cdab6ec40e76679681dbdfd845cf77a03cb29f03d9a6e76871d5",
+ "identity": "1cd994cbaaaa96868d97e8f254ce3f6990443bff6463c50de76bb4a96972fe46",
  "source": "/home/bridgebots/work/loop/capsule/recovery",
  "first": 500,
  "deals": 500,
- "source_commit": "3dc875b3342671cfa8f1e95ea19c4d065ea7fbd1"
+ "source_commit": "fc8202fc96158f249b5ff14b3d0a2e959dbb5c7f"
 }
