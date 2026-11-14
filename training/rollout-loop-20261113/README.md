@@ -393,6 +393,18 @@ Together the two test sets give stu4 about -0.0007 +- 0.0003 a decision over the
 smaller than the -0.0013 to -0.0017 of the small version, where the human rows were a larger share. Round 3's blind
 baseline against BEN (200) finished at -0.09 +- 0.09 (2,047 deals); round 4's gate began on azure3 at 14:55 UTC.
 
+| Round 4's two nets (`jobs-azure5-r4.txt`, seed 131) | IMPs a deal for the first |
+| --- | --- |
+| stu4 against stu4c, nets alone | +0.03 +- 0.03 (8,000) |
+| stu4 against round 3's net, nets alone | +0.10 +- 0.06 (4,000) |
+| stu4c against round 3's net, nets alone | +0.09 +- 0.05 (4,000) |
+| stu4 against stu4c, each inside the one-net rollout bot | **-0.10 +- 0.17** (500) |
+| Blind against BEN (200), first 512 deals: stu4; R3 on the same deals -0.10 | -0.28 +- 0.19 (paired against R3 -0.19 +- 0.20) |
+
+**No gain from the human tables reaches the bot**, so by Max's rule (15:39 UTC) and his preference for a net trained only on
+bots (15:50), **stu4c is round 4's net**. stu4's gate blocks c to e are dropped (commented in place in the running job
+file at 16:36 UTC, same length, so the chain's offsets do not move); azure3 plays stu4c alone through its 2,048 deals.
+
 ## BEN at its upstream play sampling (`ben200`, `ben_session.sh`; Max, 23:31 UTC on 13 November)
 
 lorserker/ben's defaults are sample_hands_play 200 and min_sample_hands_play 20; the arena's lanes run 64 and 64.
