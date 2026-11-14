@@ -1,0 +1,74 @@
+{
+  "before_revision": "7d0011c835218b41d31a5d75b02816bbdc0db5e9",
+  "after_revision": "72354d9fd6949c211da1af3c973ab6ff3756d8b4",
+  "states": {
+    "7d0011c835218b41d31a5d75b02816bbdc0db5e9": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 4273,
+      "target": 18283,
+      "contiguous": 4272,
+      "by_pair": {
+        "8s-32~1": 712,
+        "8c-32~71s-32": 712,
+        "8c-32~8s-32": 712,
+        "8s-32~71s-32": 1425,
+        "8s-32~5RZ32": 712
+      },
+      "root_games": 14242,
+      "tables": 175702,
+      "failures": 0,
+      "epoch": 1794640572.737344,
+      "complete": false
+    },
+    "72354d9fd6949c211da1af3c973ab6ff3756d8b4": {
+      "manifest_identity": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
+      "completed": 4274,
+      "target": 18283,
+      "contiguous": 4274,
+      "by_pair": {
+        "8s-32~1": 712,
+        "8c-32~71s-32": 713,
+        "8c-32~8s-32": 712,
+        "8s-32~71s-32": 1425,
+        "8s-32~5RZ32": 712
+      },
+      "root_games": 14246,
+      "tables": 175756,
+      "failures": 0,
+      "epoch": 1794640642.1303482,
+      "complete": false
+    }
+  },
+  "heartbeats": {
+    "7d0011c835218b41d31a5d75b02816bbdc0db5e9": {
+      "epoch": 1794640564.3417802,
+      "completed": 4273,
+      "in_flight": [
+        4272
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794627629.231109,
+      "stopping": true
+    },
+    "72354d9fd6949c211da1af3c973ab6ff3756d8b4": {
+      "epoch": 1794640639.7672658,
+      "completed": 4274,
+      "in_flight": [
+        4274,
+        4275,
+        4276
+      ],
+      "workers": 3,
+      "ben_workers": 0,
+      "started_epoch": 1794640629.5807047,
+      "stopping": false
+    }
+  },
+  "exact_draining_stop_token": "Gen8: intentional drain for disposable DDS cache rotation.\n",
+  "final_state_contiguous": 4274,
+  "final_receipt_markers": 4274,
+  "heartbeat_note": "The pre-drain snapshot retains in-flight index 4272. The final-count snapshot at 4274 already has the newly started collector heartbeat. Neither heartbeat was rewritten to imply a different lifecycle.",
+  "old_collector_exited": true,
+  "current_writer_owner": 246161
+}
