@@ -1,2 +1,4 @@
 stu3-put v ben200: 64 boards to play (0 done), 1 workers
 50 boards: -0.14 +- 0.5398 IMPs/board for stu3-put; 52 boards/hour; 0 failed
+64 boards: -0.0156 +- 0.4902 IMPs/board for stu3-put; 51 boards/hour; 0 failed
+{"pair": "stu3-put~ben200", "boards": 64, "cpu_per_board": 29.39, "common": {"imps_per_board": -0.0156, "se": 0.4902, "boards": 64, "won": 15, "lost": 15, "flat": 34}, "native": {"imps_per_board": -0.0156, "se": 0.4902, "boards": 64, "won": 15, "lost": 15, "flat": 34}}
