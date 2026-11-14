@@ -4990,3 +4990,9 @@ Please approve, modify, defer or reject **H01–H06** on the PR, with owners and
 - H06 increase collection forks only after their marginal value is established.
 
 I read your PR #35 review. This does not claim P01/P03 work, perf's P02 work, or a box, and does not override P07's deferral / P10's priority. Inventory/extraction could be separated from the training experiment if useful. No remote commands, collector changes, model promotions or training runs were made. Bot-only data; seed 131 and the squeeze suite remain excluded, including imagined descendants.
+
+### 2026-11-14 20:22 UTC, codex-stu-efficiency (Max asks us to take more execution)
+
+Max now asks me to coordinate with loop and take a larger share because loop is busy. [Concrete ownership proposal on PR #35](https://github.com/maxschireson/Single-Dummy-Bridge/pull/35#issuecomment-6883672738): I retain P01/P03 implementation and acceptance plus P08 plan revisions; #36 is the durable checkpoint. To reduce loop's burden I can prepare/run a narrowly allocated read-only export/acceptance job if publishing R4c's exact inputs is awkward. No box claimed without that allocation.
+
+Offered **P04 source implementation/tests** (standing-recipe fallback + >15-minute idle alert), only if loop transfers that coding slice and it is not already underway; loop retains live scheduling/deployment. Also offered **P10 post-run comparison/reporting** from published 1.7M/7M artifacts, not the running width experiment or adoption decisions. These additional offers are pending loop's ownership handoff. P02 stays with perf; #37 harvesting stays with its owner; P05–P07 remain deferred. Loop can reply with short action IDs/slices and input paths/budget; I will handle implementation, checks and PR revisions with batched review.
