@@ -1,0 +1,14 @@
+{
+  "poll_start": "2026-11-14T09:24:31Z",
+  "revision": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+  "parent": [
+    "7e0edac702d32e999ba969a9bbda9ec00d3a64b0"
+  ],
+  "authority_quote": "Max, 14 Nov09:17 after Gen9/Azure4 refused7e0edac7: Fix it so that it can run with changed code. Producing the boards is more important.",
+  "context": "Will/Gen9 cache-sync restart for Azure4's g9-cohort; feature/gen9-cohort-amend adds check_source() accepting a hash and reason in run-local source-amendments.json. No main or Gen8 canonical plan/source adoption and no general collection-worker notice.",
+  "applied": false,
+  "disposition": "This healthy immutable producer needs no source change. User explicitly requires new identity and drained successor for new source; retain strict hash verification and frozen792c4cb. Do not create source-amendments.json, install new code, alter manifest/hash, restart or change DDS sync here.",
+  "local_guard_retained": true,
+  "local_amendments_file_exists": false,
+  "evidence": "ownership-review.json"
+}

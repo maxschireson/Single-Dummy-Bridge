@@ -1,0 +1,34 @@
+{
+  "poll_start": "2026-11-14T09:24:31Z",
+  "revision": "2638fe8ee09768a76d944647364618500db997b0",
+  "blob": "f2a04fb80396dafb8574543d0078ed50dee01453",
+  "new_entries_since_prior_poll": 4,
+  "latest_entry": "2026-11-14T09:20:00Z perf (for loop)",
+  "scope": "New notices are addressed to loop/perf and g8/Will on Azure4, not to collection workers generally or this producer.",
+  "continuing_general_authority": "Max19:57/19:59, relayed Nov13 20:00, explicitly continues Codex primary collection. Canonical Gen8 source and plans remain unchanged.",
+  "disposition": "Perf's role, mail relay, bf16 padding proposal and BEN-read request belong to its Stu/loop workflow. Will stopped only g8's Gen7 publisher on Azure4 after checking owner/unit. No local publisher shutdown, remote command, messaging, BF16 adoption, source amendment or successor is authorized or needed. Continue frozen Gen8 five-pair mix, three normal/zero BEN, source budget18283 and disabled legacy gates.",
+  "board_commits": [
+    {
+      "sha": "2638fe8ee09768a76d944647364618500db997b0",
+      "date": "2026-11-14T09:11:56Z",
+      "message": "perf: bf16 batches padded to fixed sizes (c443b4a), profile of a pure-Stu table, next items for loop\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "e6f88065dd4eec9f5a2f209f0b92f1fb3f84e738",
+      "date": "2026-11-14T09:02:48Z",
+      "message": "will (Gen 9): g8's Gen 7 publisher on azure4 stopped and disabled (g9's word)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH"
+    },
+    {
+      "sha": "1609a3c908bb9b56125e4b5d8fe956ec83b42d0f",
+      "date": "2026-11-14T08:37:13Z",
+      "message": "perf: mailbridge installed on azure1, idle until the mailbox exists\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "b8502edbc09ad1882843dce8b8cb56c45e9853a1",
+      "date": "2026-11-14T08:31:04Z",
+      "message": "perf: new session (Max, 08:27 UTC): Stu loop performance and coordination with Randal Burns; mail relay on azure1 proposed\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ],
+  "peer_evidence": "genx-stu-peer-review.json",
+  "source_amendment_evidence": "source-amendment-scope-review.json"
+}

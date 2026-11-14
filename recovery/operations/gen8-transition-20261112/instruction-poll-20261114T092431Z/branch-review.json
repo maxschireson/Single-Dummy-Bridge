@@ -1,0 +1,160 @@
+{
+  "poll_start": "2026-11-14T09:24:31Z",
+  "total": 342,
+  "new_branches": {
+    "feature/gen9-cohort-amend": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+    "mail/coord": "8b4236cd25506261fa135fbb35da2d3ec1838e1e",
+    "perf/stu-20261114": "c443b4a503155ea561d3030c3a5fb6895c6b4ecd"
+  },
+  "removed_branches": [],
+  "changed_refs": {
+    "arena-gen6-chatgpt-feed": {
+      "before": "79abe1b5459b61deae90f65bbe03bf65c4218eda",
+      "after": "37ac0178763117eb5270117c1702436cf9332dae"
+    },
+    "arena-gen7-phase1-azure4-feed": {
+      "before": "e361bca86ef8b5c5774ab071f88f12e387ec9cf6",
+      "after": "9aec8a61381496bede23433c9614b8fdaeb728b6"
+    },
+    "arena-gen8-19bbdce5-20261112-feed": {
+      "before": "d8a4d46fde65d0a2592b7e81f05f4064bec7ccba",
+      "after": "9748183d1465f4878a6f95988b87f15873d5f31d"
+    },
+    "arena-gen8-candidate-codex-20261112-feed": {
+      "before": "0143adc8e4753121a13ccfd3eccc77d92659f520",
+      "after": "5c424bbb512816a635bf1330df68d54254ed98ab"
+    },
+    "arena-gen8-independent-feed": {
+      "before": "cbbb44dfeb409dd1b3fb4d3ffed59130a1b0b5ec",
+      "after": "7af2242446d6eb7c6f63058a6b6605b4b456c6a4"
+    },
+    "arena-gen9-azure4-ben64-feed": {
+      "before": "2f68bc532669f2af8b14f7d46b91a14f91e63dc3",
+      "after": "23a7e16197b3a7d9434976fb7fbedd7324e4e572"
+    },
+    "arena-gen9-azure4-feed": {
+      "before": "5e70b22a18501e233575b0c1c8c1214707ef7154",
+      "after": "fcaa8bc5df4f5f68473d3051e4d25dbc5891a293"
+    },
+    "arena-gen9-genx-stu-azure4-feed": {
+      "before": "53a061759046f8f5a27cbbe62e50823810566609",
+      "after": "9f786e12c630e252a1ebc5479ccee00c1931d0a0"
+    },
+    "box/azure1/control": {
+      "before": "880dfd42b5da8857c6d052d778dd242019565773",
+      "after": "897a74c1235ffd16152f9d7ddd99ff3dda34007b"
+    },
+    "box/azure1/status": {
+      "before": "a0125c7dd0c034faeb32a05e010fde695e87f4b2",
+      "after": "c299d5f38e19bcdfdd05d38667ac4aefb88f75a4"
+    },
+    "box/azure2/status": {
+      "before": "8e1a2895b39748f523e77f95f34196aeb3332f7a",
+      "after": "314603d43eac0236534e391183de47907d0e0034"
+    },
+    "box/azure3/control": {
+      "before": "519cb55166461c99f92e599ea542e3869e77c3d2",
+      "after": "e15375c306b409856d3ab2b3a64afa2e3c635784"
+    },
+    "box/azure3/status": {
+      "before": "763b8a24026f69e8d4ed3050586dff958d09dafb",
+      "after": "9f31de85d250c745047dcf37e7605a2b00e18054"
+    },
+    "box/azure4/control": {
+      "before": "7913eea75abaadc0aada9756ce76402c1fa7cf6b",
+      "after": "ed12de15abc3a083887ee66e087894bec5469155"
+    },
+    "box/azure4/status": {
+      "before": "775245098b417c707964ba34c46b5a2a3f030c5d",
+      "after": "cf34e677a80679661daeb0064768d287265c8eeb"
+    },
+    "box/azure5/status": {
+      "before": "e79dbf8a1b57ddd704ca2f7c2d7939928f0d4644",
+      "after": "f8560d11665855b124edc3eb5c1ed0c2af85d128"
+    },
+    "box/azure6/status": {
+      "before": "cc56f2b211928a416d4760b74c15eb693a41725a",
+      "after": "99ef262ef3ea7399326fdaefa140f953025b4742"
+    },
+    "box/coordination": {
+      "before": "319d2b4fa6ad33e39e158812ea0c3f3ba01c74f6",
+      "after": "2638fe8ee09768a76d944647364618500db997b0"
+    },
+    "gh-pages": {
+      "before": "3bd2760b43cf339076be4d5551af1826ac40d62c",
+      "after": "72606a9c7d2fd5bf0a504b7711ca1f4170db54bc"
+    },
+    "research/rollout-loop-20261113": {
+      "before": "cf390dad7acfd554d9cdb146872ab89f77fba1d5",
+      "after": "59609cf7363385d33b4811f7fdf908cf67b52d16"
+    },
+    "team/gen9": {
+      "before": "fb1908b2f9a52cfab0d4fab53dbc967ed3d8511e",
+      "after": "7cc5742216b713ae359b8658cfbd89e99f94969f"
+    },
+    "transfer/gen9-e9-0-n04-azure4-20261113": {
+      "before": "d251969d68f2c43989f9f5a48c45f53e1022ed77",
+      "after": "f467d0d703c37786ec779a1fdc7d4502664e2d94"
+    },
+    "transfer/gen9-e9-25-azure4-20261114": {
+      "before": "022d3126d453d24816d4d6d023c87ebe2513dba8",
+      "after": "c3033825438a2b432e58f7d2a0548aa7600f92eb"
+    },
+    "transfer/gen9-g9-cohort-azure4-azure4-20261113": {
+      "before": "7e579ef434ef6a08b82608d07a4e049587e2cb97",
+      "after": "1b9c7f7ae75dca8c6fa2016fba8568cf8f808463"
+    },
+    "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113": {
+      "before": "008238565fc0a01ebdf36c577eeee5d0771c76bf",
+      "after": "dde1799b8a766a35d6f452aaa2969ffb05f1c058"
+    },
+    "transfer/gen9-g9-genx-stu-azure4-azure4-20261114": {
+      "before": "9f3a181f0dad85117bcacb2e213ee533a61cc7bf",
+      "after": "a27f785daf26ae2e5686b2df004659b98e478b07"
+    },
+    "transfer/rollout-loop-azure1-20261113": {
+      "before": "5b1d1f9a82ed83a0d1f4c015721151721bbb5e51",
+      "after": "b71eed5528c43b9246901d61c386645c5ee312ad"
+    },
+    "transfer/rollout-loop-azure2-20261113": {
+      "before": "bc9d2a0e866494444b98ad95f2523198555dc9aa",
+      "after": "4841e946bfd70696c60ab6e07d053c8c03cfb288"
+    },
+    "transfer/rollout-loop-azure3-20261113": {
+      "before": "2ce1c6df25c8fc2e63b24026d7b2b2496b394a72",
+      "after": "abc4bdcd4f5c2d44d0f6c9bfb1d001d83f54f731"
+    },
+    "transfer/rollout-loop-azure5-20261113": {
+      "before": "9ca98b4196bccc4ab4d06e2b7056fdbf7fa85d19",
+      "after": "9886b764dbe3738958c3443bf2a7c58aef11b0eb"
+    },
+    "transfer/rollout-loop-azure6-20261113": {
+      "before": "af74475445e18aaeafec09cba1c175687a77b69a",
+      "after": "29975c8f9401e122e563515210e63e5632a3b5cb"
+    }
+  },
+  "complete": true,
+  "reviewed_new_branches": [
+    {
+      "branch": "feature/gen9-cohort-amend",
+      "revision": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+      "kind": "Scoped Gen9/Azure4 source amendment after cache-sync restart refused",
+      "applied": false,
+      "evidence": "source-amendment-scope-review.json"
+    },
+    {
+      "branch": "perf/stu-20261114",
+      "revision": "c443b4a503155ea561d3030c3a5fb6895c6b4ecd",
+      "kind": "Stu profiling/bf16 research sandbox, proposals offered to loop",
+      "applied": false,
+      "evidence": "performance-scope-review.json"
+    },
+    {
+      "branch": "mail/coord",
+      "revision": "8b4236cd25506261fa135fbb35da2d3ec1838e1e",
+      "kind": "Encrypted perf-session mailbox channel, not collection authority",
+      "applied": false,
+      "evidence": "mail-channel-review.json"
+    }
+  ]
+}

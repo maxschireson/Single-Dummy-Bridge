@@ -1,0 +1,21 @@
+{
+  "poll_start": "2026-11-14T09:24:31Z",
+  "branch": "perf/stu-20261114",
+  "revision": "c443b4a503155ea561d3030c3a5fb6895c6b4ecd",
+  "applied": false,
+  "scope": "Sandbox profiling/bf16 padding offered to the Stu loop owner, who decides adoption. Not a general collector update.",
+  "claims": "Six-board sandbox benchmark: same312cards, bf16 CPU26.0 to13.9s/board and peak memory2.3 to1.4GB; not measured on Zen4. FP32 unaffected. Fork batching, scorer lookups and BEN request cache are proposed next work.",
+  "disposition": "Frozen FP32 source retained; no torch/BF16, padding switch, benchmarking, worker recycling, BEN job/cache or source change. Do not grant Azure3 slots or send Randal/Max messages.",
+  "commits": [
+    {
+      "sha": "c443b4a503155ea561d3030c3a5fb6895c6b4ecd",
+      "date": "2026-11-14T09:11:29Z",
+      "message": "bf16 nets: pad batches to fixed sizes (gen7_net.bucket) so oneDNN stops building kernels for every new size\n\nWith BRIDGE_NET_BF16=1 the rollouts' changing batch sizes made oneDNN build a kernel\nfor each new shape and grow its cache. Padding each bf16 call (Bf16Forward and the\nFitScorer's bf16 layers) to about 25 fixed sizes and cutting the padding off: in the\nsandbox (Sapphire Rapids) self-play goes from 26.0 to 13.9 CPU-s a board and a worker's\npeak memory from 2.3 to 1.4 GB, the same cards on 6 boards, outputs bit-identical.\nNot yet measured on the Zen 4 boxes. BRIDGE_NET_BUCKETS=0 turns it off.\n\ntraining/perf-20261114: profile of a pure-Stu table and the bench scripts.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "2bf10e5c495783590c327a62e79368c5e89db2ab",
+      "date": "2026-11-14T08:34:54Z",
+      "message": "mailbridge: a mailbox for a Claude session, relayed by a box through an encrypted channel branch\n\nmailbridge.py runs on the box (IMAP poll and SMTP send each minute, allow-listed\nrecipients); client.py runs in the session; branch mail/coord carries CMS\nsign-then-encrypt blobs because the repository is public. Tested end to end with\ntests/test_mailbridge.py against a local bare repository and a fake transport;\nthe Gmail transport is untested until the live box.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ]
+}

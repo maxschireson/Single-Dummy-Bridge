@@ -1,0 +1,23 @@
+{
+  "poll_start": "2026-11-14T09:24:31Z",
+  "branch": "mail/coord",
+  "revision": "8b4236cd25506261fa135fbb35da2d3ec1838e1e",
+  "readme_blob": "6b47b9ee54a345d5013a1dfaf2d0780f135b9549",
+  "status_blob": "b4ad822106493dc20801925d92f040985a878e18",
+  "status": {
+    "version": "1.0",
+    "box": "azure1",
+    "state": "waiting for the mailbox secret",
+    "last_cycle": "2026-11-14T08:35:29Z",
+    "last_error": null,
+    "time": "2026-11-14T08:35:29Z",
+    "sent_total": 0,
+    "last_uid": 0
+  },
+  "scope": "Channel for perf session's own mailbox, never merge into source. Only README and non-sensitive service status read.",
+  "collection_authority": false,
+  "certificates_or_secrets_read": false,
+  "messages_sent": false,
+  "service_commands_executed": false,
+  "disposition": "No email/relay setup or operation in this stream."
+}

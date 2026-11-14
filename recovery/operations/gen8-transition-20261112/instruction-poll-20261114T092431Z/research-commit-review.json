@@ -1,0 +1,141 @@
+{
+  "poll_start": "2026-11-14T09:24:31Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "59609cf7363385d33b4811f7fdf908cf67b52d16",
+  "commits": [
+    {
+      "sha": "59609cf7363385d33b4811f7fdf908cf67b52d16",
+      "date": "2026-11-14T09:13:47Z",
+      "message": "USBC: a claim counts as the remaining cards played without error (Max): play them out along a double-dummy line, adding their danger at no loss; lt3 files replace lt2\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "ca9e717bf6f5ce3c686ce247221423d8fa2d9053",
+      "date": "2026-11-14T09:08:58Z",
+      "message": "USBC: a claim's count is declarer's total whoever claims (defender claims were scored as 1-11 trick errors); score mid-trick claims; repair old files in analyze; pooled table by early/KO stage\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "1fff613f426237e021690079f4bfd209a2f2f4c1",
+      "date": "2026-11-14T08:49:29Z",
+      "message": "USBC: tricks lost per average board (danger curve, same-deal field, blend), validated within adult categories\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "0bcbf71b76b43b7bc433916bccee90ac85250eb3",
+      "date": "2026-11-14T08:37:03Z",
+      "message": "USBC analyze: 2025 events named from USBF's folders and table names; junior knockouts by their players' age groups; by category and stage; the spread between players beyond luck; tables told apart by their players (a session holds many matches)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    },
+    {
+      "sha": "86265dd62af60b3038121b9327838340b1413d79",
+      "date": "2026-11-14T08:32:02Z",
+      "message": "USBC bots: twins for self-play (1, 4b, 5RZ32, 6-32, Gen 7.1, SiD blind), make_tests --sample (fitting tables by category in turn), bot_lost_tricks.py (bots scored by the humans' code)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "USBC test-only bot twins, normalization and claim scoring; separate Stu bf16 performance work and an Azure4 Gen9 source-amendment mechanism.",
+  "disposition": "USBC scripts add bot twins and revise human/bot claim and danger scoring for held-out tests; they do not reopen old Gen1/Gen5 anchor cohorts, schedule local self-play, alter arena scoring or permit training on USBC. The perf session's bf16 padding is a sandbox proposal for the Stu owner, with no path in this frozen FP32 runtime. Max09:17's fix for the failed Gen9/Azure4 cache-source restart is scoped to that job; no general collector transition is issued and this stream retains the user's explicit new-source/new-identity rule. No local source amendment, guard weakening, model/settings change, data import, training, external message or peer command.",
+  "evidence": [
+    {
+      "sha": "59609cf7363385d33b4811f7fdf908cf67b52d16",
+      "message": "USBC: a claim counts as the remaining cards played without error (Max): play them out along a double-dummy line, adding their danger at no loss; lt3 files replace lt2\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "ca9e717bf6f5ce3c686ce247221423d8fa2d9053"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/analyze.py",
+        "training/rollout-loop-20261113/usbc/lost_tricks.py"
+      ]
+    },
+    {
+      "sha": "ca9e717bf6f5ce3c686ce247221423d8fa2d9053",
+      "message": "USBC: a claim's count is declarer's total whoever claims (defender claims were scored as 1-11 trick errors); score mid-trick claims; repair old files in analyze; pooled table by early/KO stage\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "1fff613f426237e021690079f4bfd209a2f2f4c1"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/analyze.py",
+        "training/rollout-loop-20261113/usbc/lost_tricks.py",
+        "training/rollout-loop-20261113/usbc/pooled_phase.py"
+      ]
+    },
+    {
+      "sha": "1fff613f426237e021690079f4bfd209a2f2f4c1",
+      "message": "USBC: tricks lost per average board (danger curve, same-deal field, blend), validated within adult categories\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "0bcbf71b76b43b7bc433916bccee90ac85250eb3"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/norm_avg.py"
+      ]
+    },
+    {
+      "sha": "0bcbf71b76b43b7bc433916bccee90ac85250eb3",
+      "message": "USBC analyze: 2025 events named from USBF's folders and table names; junior knockouts by their players' age groups; by category and stage; the spread between players beyond luck; tables told apart by their players (a session holds many matches)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "86265dd62af60b3038121b9327838340b1413d79"
+      ],
+      "files": [
+        "training/rollout-loop-20261113/usbc/analyze.py"
+      ]
+    },
+    {
+      "sha": "86265dd62af60b3038121b9327838340b1413d79",
+      "message": "USBC bots: twins for self-play (1, 4b, 5RZ32, 6-32, Gen 7.1, SiD blind), make_tests --sample (fitting tables by category in turn), bot_lost_tricks.py (bots scored by the humans' code)\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "cf390dad7acfd554d9cdb146872ab89f77fba1d5"
+      ],
+      "files": [
+        "configs/loop-bots.json",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/usbc/analyze.py",
+        "training/rollout-loop-20261113/usbc/bot_lost_tricks.py",
+        "training/rollout-loop-20261113/usbc/make_tests.py"
+      ]
+    },
+    {
+      "sha": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+      "message": "Arena runtime: a run goes on after a harness change listed in its folder's source-amendments.json\n\nMax, 14 Nov 09:17 UTC, after the Gen 9 cohort refused 7e0edac7 (\"Pinned generation source changed\"): \"Fix it\nso that it can run with changed code. Producing the boards is more important.\"\n\nbridge_harness/mixed_arena.py: verify_generation's source check is check_source(). The pinned source passes as\nbefore. A different source passes only if the run folder's source-amendments.json lists its sha256 with a\nreason, and the accepting entry is printed to stderr. Anything else is refused, and the message names the\nrefused source's full hash, so the entry can be written from the log.\n\nUnchanged: the manifest identity, the runtime files (ops/gen5_runtime.py, ops/prepare_gen7_alpha.py), the bot\nidentities and artifacts, and the corpus are all still checked. Records are still validated against the\nmanifest identity and the bots' versions.\n\nThis is feature/gen9-cohort-sync (7e0edac7, the cache's sync switch) plus this commit.\ntests/test_source_amendments.py: 5 tests. tests/test_dds_cache_sync.py and tests/test_gen9_cohort.py pass.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCeTswS4ptZevoA7dH",
+      "parents": [
+        "7e0edac702d32e999ba969a9bbda9ec00d3a64b0"
+      ],
+      "files": [
+        "bridge_harness/mixed_arena.py",
+        "tests/test_source_amendments.py"
+      ]
+    },
+    {
+      "sha": "c443b4a503155ea561d3030c3a5fb6895c6b4ecd",
+      "message": "bf16 nets: pad batches to fixed sizes (gen7_net.bucket) so oneDNN stops building kernels for every new size\n\nWith BRIDGE_NET_BF16=1 the rollouts' changing batch sizes made oneDNN build a kernel\nfor each new shape and grow its cache. Padding each bf16 call (Bf16Forward and the\nFitScorer's bf16 layers) to about 25 fixed sizes and cutting the padding off: in the\nsandbox (Sapphire Rapids) self-play goes from 26.0 to 13.9 CPU-s a board and a worker's\npeak memory from 2.3 to 1.4 GB, the same cards on 6 boards, outputs bit-identical.\nNot yet measured on the Zen 4 boxes. BRIDGE_NET_BUCKETS=0 turns it off.\n\ntraining/perf-20261114: profile of a pure-Stu table and the bench scripts.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "2bf10e5c495783590c327a62e79368c5e89db2ab"
+      ],
+      "files": [
+        "bridge_harness/gen6_nets.py",
+        "bridge_harness/gen7_net.py",
+        "tests/test_bf16_buckets.py",
+        "training/perf-20261114/README.md",
+        "training/perf-20261114/bench/ab_run.sh",
+        "training/perf-20261114/bench/bf16_bench.py",
+        "training/perf-20261114/bench/bucket_bench.py",
+        "training/perf-20261114/bench/cmp_plays.py",
+        "training/perf-20261114/bench/fold.py",
+        "training/perf-20261114/bench/fwd_bench.py",
+        "training/perf-20261114/bench/instrument.py"
+      ]
+    },
+    {
+      "sha": "2bf10e5c495783590c327a62e79368c5e89db2ab",
+      "message": "mailbridge: a mailbox for a Claude session, relayed by a box through an encrypted channel branch\n\nmailbridge.py runs on the box (IMAP poll and SMTP send each minute, allow-listed\nrecipients); client.py runs in the session; branch mail/coord carries CMS\nsign-then-encrypt blobs because the repository is public. Tested end to end with\ntests/test_mailbridge.py against a local bare repository and a fake transport;\nthe Gmail transport is untested until the live box.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "cf390dad7acfd554d9cdb146872ab89f77fba1d5"
+      ],
+      "files": [
+        "ops/mailbridge/README.md",
+        "ops/mailbridge/client.py",
+        "ops/mailbridge/install.sh",
+        "ops/mailbridge/mailbridge.py",
+        "tests/test_mailbridge.py"
+      ]
+    }
+  ],
+  "research_plan_blob": "ff27cd3668e90d4e86544e420911254df9b36eec",
+  "future_exclusions": "Any future new owned cohort requires complete pinned exclusions for ALL released-model training families and existing corpus safeguards. Preserve current immutable v4.1 exclusions and original proofs; USBC stays test-only, never trained on."
+}
