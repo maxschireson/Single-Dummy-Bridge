@@ -12,3 +12,5 @@ stu3-ps v stu0-ps: 1000 boards to play (0 done), 8 workers
 550 boards: -0.0364 +- 0.1763 IMPs/board for stu3-ps; 643 boards/hour; 0 failed
 600 boards: 0.0717 +- 0.167 IMPs/board for stu3-ps; 644 boards/hour; 0 failed
 650 boards: -0.0231 +- 0.1615 IMPs/board for stu3-ps; 645 boards/hour; 0 failed
+700 boards: -0.0329 +- 0.1579 IMPs/board for stu3-ps; 645 boards/hour; 0 failed
+750 boards: -0.06 +- 0.1521 IMPs/board for stu3-ps; 646 boards/hour; 0 failed
