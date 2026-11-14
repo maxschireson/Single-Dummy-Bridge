@@ -15284,7 +15284,7 @@
  },
  "stu3-psta": {
   "base": "6-32",
-  "label": "Stu round 3 ladder (round 3's net inside and at the table, its own side read as stup0): pure with the opening lead from rollouts on the settings of every other card (under a second id, for self-play records)",
+  "label": "Stu round 3 ladder (round 3's net inside and at the table, its own side read as stup0): pure with the opening lead from rollouts on the settings of every other card; its defenders too play a random one of their equal cards (under a second id, for self-play records)",
   "engine": "gen8x",
   "policy_role": "gen8x",
   "gen7_policy": "models/cardplay/stu-net-r3-20261113/policy.npz",
@@ -15564,7 +15564,8 @@
      "stuM-ps",
      "stuS-ps",
      "stuv41-ps"
-    ]
+    ],
+    "defender": true
    },
    "names": {
     "self": "stup0",
@@ -15587,7 +15588,7 @@
  },
  "stu3-pstb": {
   "base": "6-32",
-  "label": "Stu round 3 ladder (round 3's net inside and at the table, its own side read as stup0): pure with the opening lead from rollouts on the settings of every other card (under a second id, for self-play records)",
+  "label": "Stu round 3 ladder (round 3's net inside and at the table, its own side read as stup0): pure with the opening lead from rollouts on the settings of every other card; its defenders too play a random one of their equal cards (under a second id, for self-play records)",
   "engine": "gen8x",
   "policy_role": "gen8x",
   "gen7_policy": "models/cardplay/stu-net-r3-20261113/policy.npz",
@@ -15867,7 +15868,8 @@
      "stuM-ps",
      "stuS-ps",
      "stuv41-ps"
-    ]
+    ],
+    "defender": true
    },
    "names": {
     "self": "stup0",

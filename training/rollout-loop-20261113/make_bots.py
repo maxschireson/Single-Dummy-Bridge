@@ -299,9 +299,12 @@ def main():
     bots['stu0-pst']['label'] = bots['stu0-ps']['label'].replace('Stu round 0 ladder: ', 'Stu round 0 ladder, rollout net v2 inside and at the table: ')
     # The one-net bot under two ids, for its self-play as training data (Max, 05:24 UTC on 14 November: two boxes of Gen 8
     # self-play, two of Stu's, one for tests; 05:10: "Simpler to have one not two").
+    # Max, 05:37 UTC: "The sooner we begin injecting a little noise into the training data the better": its defenders, as its
+    # declarer already does, play a random one of their equal cards (touching cards), which costs nothing.
     for twin in ('stu3-psta', 'stu3-pstb'):
         bots[twin] = copy.deepcopy(bots['stu3-pst'])
-        bots[twin]['label'] = bots['stu3-pst']['label'] + ' (under a second id, for self-play records)'
+        bots[twin]['x8']['mix'] = dict(bots[twin]['x8']['mix'], defender=True)
+        bots[twin]['label'] = bots['stu3-pst']['label'] + "; its defenders too play a random one of their equal cards (under a second id, for self-play records)"
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
     for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
         b = copy.deepcopy(bots[base])

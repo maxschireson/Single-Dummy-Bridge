@@ -72,6 +72,7 @@ MOVED = {n: MOVE_NOTE for n in ('s8-greedy', 's8-patient', 's8-greedy0', 's8-hig
                                 'h41-p', 'h41-pb', 'h3-pm', 'l3-put', 'l3-pstb', 'l3-psb')}
 MOVED['h3-px'] = "05:30 UTC on 14 November: dropped (sharper seats did nothing: h3-p2, h3-pg)"
 MOVED['sg8h'] = MOVED['sg8g'] = "05:30 UTC on 14 November: the box makes the one-net Stu R3's self-play records instead"
+MOVED['sg8e'] = MOVED['sg8f'] = "05:40 UTC on 14 November: Gen 8's self-play records from here are played by its personalities (sg8s, sg8t)"
 MOVED['sg8i'] = "05:30 UTC on 14 November: azure3 is the test box; Gen 8 records only when its tests are done (sg8j)"
 
 
