@@ -1,0 +1,1 @@
+systemctl list-units "loop-usb*" --all --no-pager 2>/dev/null | head; systemctl --user list-units "loop-usb*" --all --no-pager 2>/dev/null | head; journalctl -u loop-usbc25 -n 3 --no-pager 2>/dev/null; journalctl -u loop-usbclt -n 3 --no-pager 2>/dev/null
