@@ -152,15 +152,15 @@
     "previous_collector_pid": 303174,
     "verified_resume_completed": 6204
   },
-  "checked_epoch": 1794691859.3150413,
-  "coordination_blob": "b4a3844a1e45395919b3c900c85520270a153121",
+  "checked_epoch": 1794695565.7522748,
+  "coordination_blob": "ddd6704b7c6ff1620daa2f78b06d60546d3ecce0",
   "coordination_handoff": {
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
     "commit": "93d6286c206ec6f64db8dd38f06214c85ae130a4",
     "path": "box/coordination:BOARD.md",
     "purpose": "Feed branch and final Gen7.1 count posted as explicitly requested by the operator16:24 instruction"
   },
-  "coordination_revision": "9e480765ddee4953499629fa0c4a16515a582064",
+  "coordination_revision": "63e67311af160fbd4bd07e0724c86ea78c9bde2e",
   "coordination_snapshot_unchanged": false,
   "current_manifest": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
   "family_accounting": {
@@ -185,7 +185,7 @@
     "total": 25000,
     "training_overlap": 0
   },
-  "free_bytes": 18401497088,
+  "free_bytes": 17573613568,
   "future_cohort_requirements": [
     "Exclude released-policy training-family union or later authorized exclusions.",
     "Block new seeded pools against every published corpus; do not take over or reassign another producer's families.",
@@ -274,12 +274,12 @@
   "health": {
     "heartbeat.json": {
       "ben_workers": 1,
-      "completed": 6204,
-      "epoch": 1794691855.353554,
+      "completed": 6330,
+      "epoch": 1794695557.7024307,
       "in_flight": [
-        6204,
-        6205,
-        6206
+        6330,
+        6331,
+        6332
       ],
       "started_epoch": 1794690533.9279895,
       "stopping": false,
@@ -294,26 +294,26 @@
       "pid": 79982
     },
     "publisher-status.json": {
-      "completed": 6204,
-      "epoch": 1794691853.5217624,
+      "completed": 6328,
+      "epoch": 1794695543.6930094,
       "status": "published"
     },
     "state.json": {
       "by_pair": {
-        "8c-32~71s-32": 1034,
-        "8c-32~8s-32": 1034,
-        "8s-32~1": 1034,
-        "8s-32~5RZ32": 1034,
-        "8s-32~71s-32": 2068
+        "8c-32~71s-32": 1055,
+        "8c-32~8s-32": 1055,
+        "8s-32~1": 1055,
+        "8s-32~5RZ32": 1055,
+        "8s-32~71s-32": 2111
       },
       "complete": false,
-      "completed": 6204,
-      "contiguous": 6204,
-      "epoch": 1794691815.3459659,
+      "completed": 6331,
+      "contiguous": 6331,
+      "epoch": 1794695557.8584323,
       "failures": 0,
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "root_games": 20680,
-      "tables": 256024,
+      "root_games": 21102,
+      "tables": 261148,
       "target": 16036
     },
     "watchdog-process.json": {
@@ -323,15 +323,15 @@
     "watchdog-status.json": {
       "ben": "ready",
       "collector": "running",
-      "epoch": 1794691849.8824785,
+      "epoch": 1794695510.2022638,
       "publisher": "running"
     }
   },
-  "heartbeat_age": 3.961487293243408,
+  "heartbeat_age": 8.049844026565552,
   "historical_gen71_revision": "50990002b64833073b04e1bad025241109033ad3",
   "historical_gen71_snapshot_unchanged": true,
   "historical_provenance": "recovery/history-index.json",
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T20:32:23Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T21:30:59Z",
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "main_snapshot_unchanged": true,
   "new_applicable_instructions": [],
@@ -339,24 +339,21 @@
   "notification": "suppressed_no_material_change",
   "observed_notices": [
     {
-      "disposition": "Azure host allocation table now gives Azure2/Azure6 to codex-rollout research, Azure1/5/7 to loop P10 training and Azure3 to loop's bench then perf. 'No box collects' describes that Azure fleet, not an instruction to stop this cloud stream.",
-      "period_utc": "2026-11-14T20:40Z/21:35Z",
+      "disposition": "New research traffic coordinator/control and named-owner handoffs, P03 draft/P04 acceptance and H05 measurement/deadline remain Stu-only work. No role or compute reassigned to19bbdce5.",
+      "period_utc": "2026-11-14T21:29Z/22:22Z",
       "source": "box/coordination BOARD.md"
     },
     {
-      "disposition": "P02 perf Zen4 benchmark moved fromAzure7 toAzure3 after recorded double-booking; waits for owner's explicit release. P10 post-run reporting transferred to perf. P01/P03/P04/P08 and H/R scopes remain with named owners.",
-      "period_utc": "2026-11-14T20:40Z/21:35Z",
-      "source": "box/coordination BOARD.md"
+      "disposition": "Max's persona-capability request offered to loop/g9 upstream owners; explicitly no existing bot changes, no new job names, unmerged research base. No new adopted general-arena mix/config/cutover.",
+      "source": "box/coordination BOARD.md 21:47 and PR42"
     },
     {
-      "disposition": "Other owners preserved/drained Azure6 sp4tb2551 and Azure2 sp4t4000 into separate bounded experiments; original publishing/row exports retained. No change to19bbdce5 ownership.",
-      "period_utc": "2026-11-14T20:52Z/21:02Z",
-      "source": "box/coordination BOARD.md"
+      "disposition": "V1 validation anchor approved/built for Stu/P10; reserved2483 families excluded from Stu round5+ training and replay. This is not a new training-family union for current releasedv4.1; immutable current34092-family exclusions remain verified. No training here.",
+      "source": "box/coordination BOARD.md 21:45/21:55/22:22"
     },
     {
-      "disposition": "Other producer's recursive/selective prototype no-go and coordinator review-pause accepted. Preserve diagnostic evidence and use separate corrected successor; current frozen Gen8 path is unaffected.",
-      "period_utc": "2026-11-14T21:00Z/21:23Z",
-      "source": "issues/39 and PR38/41/43 comments"
+      "disposition": "Old other-producer experiment paused/preserved; corrected accepted driver gets fresh research identities, then explicit Max authority for largerR4c/BEN screens within Azure2/6 caps. No production promotion or own-stream changes.",
+      "source": "box/coordination BOARD.md 21:38/21:47/22:20"
     }
   ],
   "operational_branch": "feature/gen8-prototype-20261112",
@@ -380,7 +377,7 @@
     "physical_root_tables": 36,
     "tree_consultations": 705
   },
-  "previous_checked_epoch": 1794688343.0104637,
+  "previous_checked_epoch": 1794691859.3150413,
   "processes": {
     "process.json": {
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 ",
@@ -395,13 +392,21 @@
       "pid": 79983
     }
   },
-  "publisher_age": 5.793278932571411,
+  "publisher_age": 22.05926537513733,
   "registry_blob": "3e289c39830e8a7beab36b12465e34171dde5ca9",
   "registry_commit": "81aa28dd04bd8c4d1afff0b9b210448e40157f7c",
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
   "registry_key": "gen6selfplay19bbdce5",
-  "registry_revision": "a3affd42e98e94f7899649942e61edee1ed5f3d7",
-  "result": "No applicable instruction changed. Main/adopted Gen8, earlier Gen7.1, cleanup, known deployment branches and Arena registry remain pinned. New coordination, issue39 and PR35-43 decisions concern named Stu research/training/host owners. The recursive-prototype pause applies to unadopted7c79acf; this stream uses frozen ops/gen5_runtime identity/failure guards and has no recursive Stu driver. No helper, training, host or source takeover. Existing frozen watchdog completed planned DDS-cache rotation at6163 after graceful drain; resumed collector, source/models/manifest/corpus/exclusion union, publisher and ownership locks verified healthy. No runtime changes, failure clearing or operator restart.",
+  "registry_revision": "5cf597563e7921f3871d80e1dcd78c8961868f4d",
+  "research_dashboard_review": {
+    "blob": "73f758a7f43e3ce12101095289f9460ff0bdcfc7",
+    "disposition": "Reported Stu research state and handoff queue; allocation authority remains BOARD. Specialty ownership retained; dated/missing telemetry never substitutes for fresh local health. No writes or messages performed.",
+    "issue": 44,
+    "mentions_owned_stream": false,
+    "path": "ops/research-dashboard/control.json",
+    "revision": "63e67311af160fbd4bd07e0724c86ea78c9bde2e"
+  },
+  "result": "No applicable instruction changed. Main/adopted Gen8 and earlier Gen7.1, cleanup, known deployment branches and Arena registry remain pinned. New coordination/PR decisions concern named Stu owners' experiments/training/data/host work, V1 validation and a separate research traffic dashboard. Persona capability is an upstream loop/g9 request with no existing actors/jobs changed; no adopted general-arena schedule or migration instruction for19bbdce5. Current frozen source/models/manifest/corpus/training exclusions and fresh healthy collector/watchdog/publisher/ownership locks verified. No runtime changes, failure clearing or operator restart.",
   "retired_processes": [],
   "reviewed_discussions": [
     {
@@ -411,146 +416,152 @@
     },
     {
       "comment_ids": [
-        6884084913,
-        6884088233,
-        6884107942,
-        6884132293,
-        6884142423,
-        6884161252,
-        6884192108,
-        6884228523,
-        6884403002
+        6884502925,
+        6884719771,
+        6884846965,
+        6884859899,
+        6884867105,
+        6884970837,
+        6885116524,
+        6885148047
       ],
-      "disposition": "Canonical already-assigned helperA/B and coordinator rollout-research handoff. No additional helper spawned/claimed. Coordinator6884403002 queues Azure6 old-arm stop and preserves diagnostic data; Azure2 independent arms unaffected. Different ownership/runtime from19bbdce5.",
+      "disposition": "Existing codex-rollout and assigned helpers' technical thread. Corrected researchsmokes and explicit largerR4c/BEN screens are on owned Azure2/6, not19bbdce5. Latest identity/population ablation request is a research priority, no released actor change.",
       "number": 39,
       "type": "issue"
     },
     {
-      "comments": [
-        6883836024,
-        6883949020,
-        6883959957,
-        6883984724,
-        6884073925,
-        6884089024
+      "comment_ids": [
+        6884588304,
+        6884656387,
+        6884687062,
+        6884707529,
+        6884847144,
+        6884934769,
+        6885100092
       ],
-      "disposition": "Integrated P/H/R plan and revised named ownership concern Stu/loop research and Azure hosts only. P10 reporting transferred to perf; no workload reassignment or adoption in19bbdce5.",
-      "draft": false,
-      "head": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+      "disposition": "Stu research traffic coordinator addresses named loop/perf/rollout/harvest/efficiency owners and preserves specialty monitors. No checkpoint/message/dashboard edit assigned to this stream; no extra compute or ownership.",
+      "number": 44,
+      "type": "issue"
+    },
+    {
+      "base": "main",
+      "comment_ids": [],
+      "disposition": "Public sidplay app now uses per-board personas; separate Azure1 app deployment only, no current arena job change.",
+      "head": "26cc9e3025509a8f68c5ae1ba734187b3a23401a",
       "inline": 0,
-      "merged": false,
+      "number": 33,
+      "reviews": 0,
+      "state": "open_unmerged",
+      "type": "pull_request"
+    },
+    {
+      "base": "main",
+      "comment_ids": [
+        6884709152
+      ],
+      "disposition": "Updated integrated Stu P/H/R plan remains scoped to named owners; current R4c/BEN research panels frozen separately, no production promotion. P03 exactR4c acceptance inputs requested from loop.",
+      "head": "33043e614a87fc2b0b165b1b931e9f9e13c996b0",
+      "inline": 0,
       "number": 35,
       "reviews": 0,
       "state": "open_unmerged",
       "type": "pull_request"
     },
     {
-      "comments": [
-        6883836201,
-        6884002891
+      "base": "main",
+      "comment_ids": [
+        6884701374,
+        6884732942,
+        6884907722
       ],
-      "disposition": "RealR4c trainer epoch-zero acceptance passed; loop owns applying training patch next cut. No current collector/model/source change.",
-      "draft": true,
-      "head": "6d9901dcc7d69a3da9174afb315cc13523897d30",
-      "inline": 0,
-      "merged": false,
-      "number": 36,
-      "reviews": 0,
-      "state": "draft_open_unmerged",
-      "type": "pull_request"
-    },
-    {
-      "comments": [
-        6883836401,
-        6883981793,
-        6884017685,
-        6884192341
-      ],
-      "disposition": "H01 loop inventory; H02 offline extractor and H03-H05 design explicitly assigned to codex-stu-harvest; H05 execution booked by loop; H06 deferred. No harvesting/training/fork change here.",
-      "draft": false,
+      "disposition": "Loop ran bounded H05 reliability study and proposed H03 arm; H02 extraction and H03/H04 designs remain harvest-owned with23:00 checkpoint deadline. No assignment to this collection stream.",
       "head": "30a665bb6057e8011c8d3f2843a38181b53c3198",
       "inline": 0,
-      "merged": false,
       "number": 37,
       "reviews": 0,
       "state": "open_unmerged",
       "type": "pull_request"
     },
     {
-      "comments": [
-        6884071223,
-        6884092883,
-        6884132484,
-        6884142638,
-        6884149904,
-        6884192520,
-        6884228735,
-        6884372034
+      "base": "main",
+      "comment_ids": [
+        6884597877
       ],
-      "disposition": "Codex-rollout owns Azure2/Azure6 mechanism experiments. Loop and coordinator accept no-go on old7c79acf recursive/selective arms; new identity, strict checks and native-SURE/BF16 gates required there. No recursive Stu experiment exists in current frozen Gen8 source.",
-      "draft": true,
-      "head": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+      "disposition": "Other owner corrected Stu driver4951fb0/d82f9a7, native acceptance and fresh research identities. Max explicitly extends Azure6 R4c and Azure2 BEN development screens within their caps; old recursive/selective evidence stays invalid. No adoption here.",
+      "head": "4951fb0b40adfcf85fe5cfc1b929f71f0ebc50e2",
       "inline": 0,
-      "merged": false,
       "number": 38,
       "reviews": 0,
       "state": "draft_open_unmerged",
       "type": "pull_request"
     },
     {
-      "comments": [
-        6884371475
+      "base": "main",
+      "comment_ids": [
+        6884512062,
+        6884687290,
+        6884691611,
+        6884722227
       ],
-      "disposition": "Opt-in Stu fallback/idle helper not deployed; loop requires busy allowlist, rotating pairs and large-index checks before installation. Seed9001 high-index bands reserved for Azure1-7 only; own corpus unaffected.",
-      "draft": false,
-      "head": "65fe6aeb73390b53d2e8f50747bd3ff424e38ba6",
+      "disposition": "P04 busy markers/pair rotation/high-index acceptance passed in sandbox; loop retains integration, recipes and operator first-job/publisher check. Do not install fallback or extend this owned target.",
+      "head": "ac1f12d2bcecdc74ab86b261cd776f0bdcea7900",
       "inline": 0,
-      "merged": false,
       "number": 40,
       "reviews": 0,
       "state": "open_unmerged",
       "type": "pull_request"
     },
     {
-      "comments": [
-        6884371650
+      "base": "main",
+      "comment_ids": [
+        6884681153
       ],
-      "disposition": "HelperA allocation/frontier design accepted for codex-rollout research; promotion remains loop's. No delegation or work claimed by this collection stream.",
-      "draft": false,
+      "disposition": "Pure allocator follow-up and matched random/S1 design still assigned to existing helperA; no extra helper/delegation or research claimed here.",
       "head": "f2c865707193b910ef7a5ee617be5a014faaca64",
       "inline": 0,
-      "merged": false,
       "number": 41,
       "reviews": 0,
       "state": "open_unmerged",
       "type": "pull_request"
     },
     {
-      "comments": [
-        6884372234
+      "base": "research/rollout-loop-20261113",
+      "comment_ids": [
+        6885100270
       ],
-      "disposition": "Bidding-style/persona feature targets loop research branch, approved for its next update; no existing bot sets bid_style. Styled common auctions need one actual common bidder; this frozen unstyled stream unchanged.",
-      "draft": false,
-      "head": "8d7a9968e0012dd0492157ebe98700dc2a370e7e",
+      "disposition": "Personality capability offered to loop and g9 for upstream integration; no existing bot changes and no job list names new variable bots. Population identifier vocabulary/disclosure ablations remain research, not a general collector cutover.",
+      "head": "109a21c74730749bb6c6bfe16cac78bf04120bd9",
       "inline": 0,
-      "merged": false,
       "number": 42,
       "reviews": 0,
       "state": "open_unmerged",
       "type": "pull_request"
     },
     {
-      "comments": [
-        6884371830
+      "base": "main",
+      "comment_ids": [
+        6884597714,
+        6884614070,
+        6884650761,
+        6884699372
       ],
-      "disposition": "HelperB no-go scoped to7c79acf recursive/selective experiment on Stu5addd826/30e30af. Cache scheduling, imported gen8_match resume, external-SURE timing and retry issues belong to that research path. Owned ops/gen5_runtime enforces record/archive identity and preserves failures; immutable run/source verified.",
-      "draft": false,
+      "disposition": "Mode-specific native/BF16 acceptance completed by other coordinator; independent re-review remains requested. Original diagnosed prototype remains historical/invalid for inference. Current frozen Gen8 runtime is unaffected.",
       "head": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c",
       "inline": 0,
-      "merged": false,
       "number": 43,
       "reviews": 0,
       "state": "open_unmerged",
+      "type": "pull_request"
+    },
+    {
+      "base": "main",
+      "comment_ids": [],
+      "disposition": "Draft P03 per-record row cache partial checkpoint; fullR4c parity and shard reuse outstanding; unrelated dataset builder, no deployment or collection change.",
+      "head": "dd0da240356926114ce1c15b1a4e27d2efd00a81",
+      "inline": 0,
+      "number": 45,
+      "reviews": 0,
+      "state": "draft_open_unmerged",
       "type": "pull_request"
     }
   ],
@@ -574,10 +585,12 @@
   "schema": "collection-instruction-watch-v1",
   "scoped_stu_research_review": {
     "coordinator_pause_comment": 6884403002,
-    "disposition": "Reviewed scoped experiment diagnosis. No affected Stu recursive path adopted in this frozen Gen8 stream; no local failures, identity guard remains active. Do not take over Azure boxes, experiments, helper or training assignments.",
+    "corrected_other_driver": "4951fb0b40adfcf85fe5cfc1b929f71f0ebc50e2",
+    "disposition": "Stu research decisions remain with assigned owners. No adoption, host takeover, training, failure clearing or restart here; current source/model/manifest and identity/failure guards verified.",
+    "latest_status": "Other owner accepted native regressions on d82f9a7 and opened fresh smokes, then Max explicitly authorized larger R4c/BEN research screens. Original7c79acf remains invalid; no production promotion. No changes to this frozen Gen8 stream.",
     "no_go_prototype": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
-    "plan_blob": "f3e9a3d600bd90618227ed97f6eb9c2ad7b012a3",
-    "plan_revision": "e5431532c4c4a2b1f8c7137e4852374ca26c27dd",
+    "plan_blob": "e0490036c1d81d26e3d75deaee9e4f2f5630c9b0",
+    "plan_revision": "33043e614a87fc2b0b165b1b931e9f9e13c996b0",
     "review_blob": "15236abfc70493845fc02f3ef68b45a2ecf20e61",
     "review_revision": "dde2afef73a1fe9ea19fb4dfca9b8f5d277dc98c"
   },
@@ -624,6 +637,6 @@
     }
   },
   "unresolved_failures": [],
-  "watchdog_age": 9.432562828063965,
+  "watchdog_age": 55.55001091957092,
   "writer_and_watchdog_locks": "held"
 }
