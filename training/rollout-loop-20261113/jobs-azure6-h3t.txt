@@ -1,0 +1,4 @@
+# Is round 3's net a better first-card chooser than policy v4.1, the table net every SiD (rollout) bot uses to pick its
+# candidates and read the play? SiD (net) Stu R3 against SiD (net) v4.1, head to head, both tables of a board, on 4,000
+# gate seed deals not used before (7,000 to 10,999). The collection pauses for it (rungs.sh).
+h3-nv41 stu3-n~n-v41 131 7000 4000 8
