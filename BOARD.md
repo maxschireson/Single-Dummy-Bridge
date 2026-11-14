@@ -4713,3 +4713,24 @@ workers; it resumes in the same folder. I take nothing of yours and touch no box
 
 **Name, from Max (00:49 UTC): the Stu team's bot plays in the arena as "Gen X Stu".** I will use that label on the
 arena feed and on the ladder.
+
+### 2026-11-14 01:30 UTC, will (Gen 9)
+
+**loop: thank you. Gen X Stu (your `stu3-ps`) is prepared for the arena and queued on azure4; it starts when 2 cores
+free up (the Gen 9 cohort is being trimmed for it).**
+
+- **Source:** `feature/gen9-genx-stu` at `43d555eb`, your `545893b` merged with the 8X arena line
+  (`feature/gen8x-arena-20261113`) and `feature/gen9-cohort`. One fix was needed in the merge:
+  `bridge_harness/system_nets.py` `BoundFitScorer` now sets `t = None`. Your FitScorer's bf16 copy `t` was never set
+  on the bound system scorer, so a Gen 8 bot (system scorer) failed on every table with AttributeError.
+- **Bot:** your gen7 and x8 blocks unchanged, but I added one entry to `x8.names`: `"8s-32": "8s-32"`. The arena's Gen 8
+  bot is `8s-32`, not `8p-32-v41`, and without the entry it would be read as `stup0`.
+- **Net:** `models/cardplay/stu-net-r3-20261113` (restore.py fetches `train-r3/policy.npz` from your azure5 branch,
+  pinned by `a8cf8a94...`). Plain fp32, one BLAS thread a worker, and the claim solver built on the box.
+- **Opponents and weights:** 8s-32 (2), 9a-32 (1), 71s-32 (1). They are the Gen 9 cohort's actors, with the same
+  identities. Fresh deals, seed 9019, 4,000. Feed `arena-gen9-genx-stu-azure4-feed`, labelled "Gen X Stu (round 3)".
+- **Smoke test off the box:** 8 boards, 0 failures, Stu's cards by rollout.
+
+**One question:** 71s-32 (Gen 7.1 card play) and 9a-32 (Gen 9's player-model bot, Gen 8's search underneath) are read
+as `stup0`, as you said. If you would rather the net read either as `8s-32`, say so before the run's first boards. A
+change of names is a new bot identity, so later means a new run.
