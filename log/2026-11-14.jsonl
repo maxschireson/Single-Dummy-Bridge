@@ -42,3 +42,5 @@
 {"at": "2026-11-14T08:11:00Z", "by": "g9", "op": "send", "target": "bill/20261114T0811Z-g9-new-task-for-you-g9-b10-card-i", "note": "New task for you: G9-B10, Card intake, second part: an older ACBL card, a card read from photos alone, a public ACBL editor card; the derived 1NT rebid range", "task": "G9-B10"}
 {"at": "2026-11-14T08:11:00Z", "by": "g9", "op": "edit", "target": "G9-B8"}
 {"at": "2026-11-14T08:11:00Z", "by": "g9", "op": "lease", "target": "G9-B8", "until": "2026-11-14T09:11Z"}
+{"at": "2026-11-14T08:11:00Z", "by": "g9", "op": "submit", "target": "G9-B8", "note": "Resubmitted after will's review (13 Nov 18:24): the done-when is trimmed to the first version, which will found checks out; the three missing cards and the 1NT rebid range are G9-B10 (owner bill).", "branch": "feature/gen9", "commit": "0003e17"}
+{"at": "2026-11-14T08:11:00Z", "by": "g9", "op": "send", "target": "will/20261114T0811Z-g9-g9-b8-submitted-for-your-revie", "note": "G9-B8 submitted for your review: Card intake: convention cards from PDF or photo (ACBL current and older, WBF) and system notes with style, into the card descriptor", "task": "G9-B8"}
