@@ -450,6 +450,34 @@ The engine's stage already has the settings to test it (`seat` top or draw, `pow
 
 ## Round 4 adopted; the gate, the rows and the net's size (14 November, 17:27 to 18:45 UTC)
 
+**The seat bench** (`bench/seat_variants.py`, azure3, 18:22 to 19:38 UTC): one rollout decision in 8 of round 3's 2,047 blind gate
+deals against BEN (200), 7,872 decisions on 3,660 tables, every setting on the same layouts, every candidate on every layout.
+The side deciding's optimism (tricks, against the table's result) and the double-dummy tricks given up by the card each
+setting chooses, minus the plain draw's (hindsight; SE by table):
+
+| Simulated seats | Optimism | DD given up minus the plain draw: all, tricks 1-4, 5-13 | Plays another card |
+| --- | --- | --- | --- |
+| draw (as played) | +0.085 +- 0.012 | 0.0283 (the card), 0.0424, 0.0192 | |
+| the same with other draws (control) | +0.085 | -0.0003 +- 0.0014, -0.0010 +- 0.0026, +0.0002 +- 0.0017 | 37.8% |
+| top card | +0.083 | +0.0010 +- 0.0017, -0.0010 +- 0.0031, +0.0023 +- 0.0020 | 32.3% |
+| draw, power 2 | +0.085 | -0.0004 +- 0.0014, +0.0006 +- 0.0027, -0.0010 +- 0.0016 | 29.3% |
+| draw, never under a quarter of the likeliest | +0.086 | +0.0005 +- 0.0016, -0.0006 +- 0.0031, +0.0013 +- 0.0016 | 29.1% |
+| the other side top, its own drawn | -0.028 | +0.0011 +- 0.0015, +0.0010 +- 0.0028, +0.0013 +- 0.0017 | 30.9% |
+| its own side top, the other drawn | +0.197 | +0.0004 +- 0.0016, +0.0006 +- 0.0030, +0.0002 +- 0.0018 | 30.8% |
+
+- The optimism is not the draws: with every seat on its top card it is the same. Setting the two sides differently moves its
+  level (to -0.03 or +0.20) and not the choices.
+- No setting chooses better cards: every one is within 0.003 of the plain draw, at every stage (an interim reading of -0.010
+  for the top card at tricks 1-4, on 1,245 decisions, did not hold up).
+- The control plays another card at 38% of the decisions with the same layouts and other draws inside the rollouts, and gives
+  up the same: most of these decisions are between cards the rollouts cannot tell apart.
+- So the levers inside today's simulated play are spent; what is left is the quality of the simulated play itself (the net).
+
+**The width test's first epoch** (stopped at the resize, 19:26 UTC; the net kept): on the same held-out rows, v2's epoch 1
+log-loss 0.5756, exact 0.7614, tricks given up 0.0268; 1,536 wide 0.5724, 0.7630, 0.0275 (v2's epoch 5: 0.5093, 0.7888, 0.0213).
+Level after one epoch of five, with the rate still high.
+
+
 **Adopted without the full gate** (Max, 17:27: "Too much time testing relative to learning"; 17:34: "I think we should likely
 adopt. I also don't know if it's even worth the long test; maybe we only do that every few releases?"; 17:57: "New collections
 should flip"). stu4c plays the one-net self-play on azure2 (`sp4t`, from 17:41) and azure6 (`sp4tb`, 17:43). The BEN gate was
