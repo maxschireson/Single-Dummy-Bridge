@@ -61,7 +61,7 @@ held-out full-bot IMP improvement per labeling/training hour. These are differen
 measurements; a difficult or uncertain position is not automatically valuable for
 either. A single imagined-layout fork is not a strong posterior-search label.
 
-**Execution checkpoint — 21:42 UTC:** Max authorized Azure6 and Azure2, initially
+**Execution checkpoint — 21:49 UTC:** Max authorized Azure6 and Azure2, initially
 six hours each, and assigned helpers A/B through [#39](https://github.com/maxschireson/Single-Dummy-Bridge/issues/39).
 A's [#41](https://github.com/maxschireson/Single-Dummy-Bridge/pull/41) and B's
 [#43](https://github.com/maxschireson/Single-Dummy-Bridge/pull/43) exposed genuine
@@ -76,19 +76,23 @@ driver rejects nonempty output directories, retains a first-attempt failure ledg
 without automatic retry, isolates claim solvers per actor/room/child decision, and
 records per-actor inclusive wall/worker/native CPU, cache/timeouts and actual
 precision. Old whole-match Python CPU excludes native solver work and is not an
-equal-time measure. Real R4c/BF16/native-SURE acceptance is queued on Azure6 before
-fresh `rx2-*` correctness smokes; no larger depth screen automatically follows.
+equal-time measure. Real R4c/BF16/native-SURE acceptance passed at 21:46 UTC: baseline/null/zero action,
+value and RNG parity on four views plus a real child search. The 25 new tests pass
+on Azure BF16; all 34 existing X8 tests pass in their intended FP32 mode with native
+SURE. Three original fixtures that assume FP32 failed under forced BF16; those
+logs remain preserved. Fresh `rx2-*` correctness smokes started at 21:48:37 UTC
+(unit stu-rollout-v2-smokes, source d82f9a7); no larger depth screen automatically follows.
 
 A is implementing the matched random-versus-S1 allocation control with common
 window/candidate quotas. B independently re-reviews the corrected source.
 Azure2's separate sham/reader/guarantee/combined mechanism screens continue as
-development diagnostics; reader at 450 boards is +0.073 ±0.182 IMP/board, inconclusive.
+development diagnostics; reader completed 512 boards at +0.115 ±0.167 IMP/board, inconclusive.
 The 32-board sham is all ties. No adoption claim is made.
 
 [Azure6 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure6-20261114)
 and [Azure2 progress](https://github.com/maxschireson/Single-Dummy-Bridge/tree/transfer/stu-rollout-experiments-azure2-20261114)
 retain manifests, provenance, summaries, records and episode locations; v2 acceptance
-will be under Azure6's `v2/`. Collections drained cleanly (2,551 Azure6 and 4,000
+is under Azure6's `v2/`; current smoke output is `v2/runs-v2-d82f9a7/`. Collections drained cleanly (2,551 Azure6 and 4,000
 Azure2 rows/episodes preserved); publishing/row export stayed alive. Frozen runtime
 and R4c model remain separate from main-based #38. The original six-hour deadlines
 remain approximately 02:52 and 02:59 UTC; fixes do not reset the budget.
