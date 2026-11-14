@@ -85,14 +85,17 @@ def usbf_screens(c):
     return screens
 
 
-def sessions(c, since):
+def sessions(c, since, extra=()):
     out = {}
     for m in c.get(f'{VG}/api/archive/miniSessions') or []:
         sid, text = m['miniSessionId'], ' '.join(str(m.get(k) or '') for k in ('namePlus', 'eventName', 'tournamentName', 'name'))
         if sid.startswith('usbc_') and m.get('type') == 'TEAM' and m.get('startDateTime', '')[:7] >= since \
                 and any(w in text for w in EVENTS) and not any(w in text for w in NOT_USBF):
             out[sid] = m
-    for screen, page in usbf_screens(c).items():
+    screens = usbf_screens(c)
+    for sid in extra:                                   # screen ids given by hand (--screens)
+        screens.setdefault(str(sid), 'given')
+    for screen, page in screens.items():
         for s in range(1, 13):
             found = False
             for mini in range(1, 5):
@@ -142,12 +145,14 @@ def main():
     p.add_argument('--since', default='2021-01')
     p.add_argument('--pause', type=float, default=0.25)
     p.add_argument('--limit', type=int, default=0)
+    p.add_argument('--screens', help='a file of vugraph screen ids (usbc/<id>) to take besides those found')
     p.add_argument('--discover-only', action='store_true', help='find the sessions, write OUT/sessions.json and stop')
     p.add_argument('--part', default='0/1', help='K/N: this box takes the sessions whose place in the sorted list is K modulo N')
     a = p.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     c = Client(a.pause)
-    found = sessions(c, a.since)
+    extra = Path(a.screens).read_text().split() if a.screens else ()
+    found = sessions(c, a.since, extra)
     (a.out / 'sessions.json').write_text(json.dumps(found, indent=1))
     if a.discover_only:
         print(f'{len(found)} sessions; from USBF pages: {sum(1 for m in found.values() if m.get("from_usbf_page"))}', flush=True)
