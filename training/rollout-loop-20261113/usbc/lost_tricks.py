@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Tricks lost against double dummy, card by card, in the USBC records (harvest.py), for every player.
 
-  python3 lost_tricks.py RECORDS_DIR OUT.jsonl.gz [--workers 2]
+  python3 lost_tricks.py RECORDS_DIR OUT_DIR [--workers 2]
 
 TEST DATA ONLY. For every card a player chose (two or more legal cards), the deal as it lay is solved double dummy before
 the card: `loss` is the tricks the card gave up against the best card (declarer's own and dummy's cards are declarer's
@@ -10,7 +10,7 @@ decisions). With it, how dangerous the position was, for normalizing across boar
   `rand`  the mean loss of a legal card chosen at random,  `max`  the most a card could lose,  `crit`  some card loses.
 A claim is one more decision: the claimed total against the double-dummy total at that point. A shortfall is the
 claimer's loss; an excess (a generous claim accepted) is the other side's, split between its two players.
-One output row per table: its facts and its decisions [trick, seat, role, loss, rand, max, legal]; role is L (opening
+One file a session (OUT_DIR/<session>.lt.json.gz), one row per table: its facts and its decisions [trick, seat, role, loss, rand, max, legal]; role is L (opening
 lead), D (declarer, own or dummy's card), F (defender), CD/CF (a claim's shortfall/excess, declaring/defending side).
 """
 import argparse, glob, gzip, hashlib, json, os, sys
@@ -131,20 +131,19 @@ def one_file(path):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('records', type=Path)
-    p.add_argument('out', type=Path)
+    p.add_argument('out', type=Path, help='a folder: one OUT/<session>.lt.json.gz a session, written once')
     p.add_argument('--workers', type=int, default=2)
     a = p.parse_args()
-    done = set()
-    if a.out.exists():
-        with gzip.open(a.out, 'rt') as f:
-            done = {json.loads(l)['file'] for l in f if l.startswith('{"file"')}
-    files = [f for f in sorted(glob.glob(str(a.records / 'usbc_*.json.gz'))) if os.path.basename(f) not in done]
-    with Pool(a.workers) as pool, gzip.open(a.out, 'at') as f:
+    a.out.mkdir(parents=True, exist_ok=True)
+    files = [f for f in sorted(glob.glob(str(a.records / 'usbc_*.json.gz')))
+             if not (a.out / os.path.basename(f).replace('.json.gz', '.lt.json.gz')).exists()]
+    with Pool(a.workers) as pool:
         for name, rows in pool.imap_unordered(one_file, files):
-            f.write(json.dumps(dict(file=name, tables=len(rows))) + '\n')
-            for r in rows:
-                f.write(json.dumps(r, separators=(',', ':')) + '\n')
-            f.flush()
+            path = a.out / name.replace('.json.gz', '.lt.json.gz')
+            with gzip.open(str(path) + '.tmp', 'wt') as f:
+                for r in rows:
+                    f.write(json.dumps(r, separators=(',', ':')) + '\n')
+            os.replace(str(path) + '.tmp', path)
             print(name, len(rows), 'tables', flush=True)
 
 
