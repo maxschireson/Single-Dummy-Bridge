@@ -19,4 +19,7 @@ l0b-p stu0-p~8p-32-v41 131 500 500 8 --episodes
 # From round 3's cut (23:00 UTC on 13 November; Max, 22:19 UTC: "My instinct is to just go pure rollout"): pure rollout on
 # all eight workers: the opening lead rolled out on the settings of every other card (stu0-ps), one bot for round 4's
 # data, every table with a rated lead. The run before it is kept below as #stopped (chain.sh skips it; make_runs.py lists it).
-sps0 stu0-psa~stu0-psb 9001 260000 20000 8 --episodes --one-room
+#stopped sps0 stu0-psa~stu0-psb 9001 260000 20000 8 --episodes --one-room
+# From 00:45 UTC on 14 November: round 3's net in the rollouts (stu3-psa~stu3-psb; head to head round 3's net alone beat
+# v2 alone +0.40 +- 0.07 and round 2's +0.19 +- 0.06 on 4,000 deals each), the lead still rolled out as every other card.
+sp3s stu3-psa~stu3-psb 9001 360000 20000 8 --episodes --one-room

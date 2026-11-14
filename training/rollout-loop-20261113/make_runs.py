@@ -103,7 +103,8 @@ def main():
             if '--one-room' in options:             # one table a board, no IMPs (a collection run between two ids of one bot)
                 runs[-1]['tables_a_board'] = 1
             if stopped:
-                runs[-1]['stopped'] = "at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)"
+                runs[-1]['stopped'] = ("at round 3's cut, 23:00 UTC on 13 November, for pure rollout (the lead rolled out as every other card)"
+                                       if not name.startswith('sps') else "at 00:45 UTC on 14 November, for round 3's net in the rollouts")
     for line in (HERE / 'jobs-azure3-later.txt').read_text().splitlines():      # taken out of the queue: listed, marked, not run
         if not line.strip() or line.startswith('#'):
             continue
