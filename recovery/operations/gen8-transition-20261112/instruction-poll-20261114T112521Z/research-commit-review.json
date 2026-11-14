@@ -1,0 +1,61 @@
+{
+  "poll_start": "2026-11-14T11:25:21Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "bd4d0b82aded9c4f96f9aa22d34c247db979718f",
+  "commits": [
+    {
+      "sha": "bd4d0b82aded9c4f96f9aa22d34c247db979718f",
+      "date": "2026-11-14T10:33:39Z",
+      "message": "Human-boards experiment, second part: every expert table (stages fit, all, big), their bots; the from-scratch medium nets keep the last epoch\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Human-training experiment second part, plus Gen9 dated source-amendment and conditional-claim reports.",
+  "disposition": "USBC fit/all/big stages now use every adult2021-23 expert table, with familiar/unfamiliar/blanked auctions and last-epoch medium nets. These are scoped Stu training experiments;2025/juniors remain tests. They do not authorize local training, importing tables, reopening old anchors or replacing canonical actors. Gen9's successful Azure4 source-amended restart and E9-25 not-confirmed report are peer history, not general collection instructions. Keep this producer strict and frozen.",
+  "evidence": [
+    {
+      "sha": "bd4d0b82aded9c4f96f9aa22d34c247db979718f",
+      "message": "Human-boards experiment, second part: every expert table (stages fit, all, big), their bots; the from-scratch medium nets keep the last epoch\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "b4e1eaef0c12160b2f74511bd14a95494532b6a0"
+      ],
+      "files": [
+        "configs/loop-bots.json",
+        "training/rollout-loop-20261113/exp_human.sh",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/usbc/human_episodes.py"
+      ]
+    },
+    {
+      "sha": "576014ca1c8400ff93d8cc6f01ebafe11f2c9d37",
+      "message": "Gen 9 state at 14 Nov 10:4x UTC: cohort on NORMAL sync via will's source amendment, E9-25 reported, G9-B8 accepted\n\nThe cohort's restart on g9's spec was refused by verify_generation; on Max's word will added check_source\n(feature/gen9-cohort-amend 9b2e7ad0) and the cohort has run since 09:24 at about 164-174 boards an hour, the box\nnow CPU-bound. E9-25 ran during the gap: not confirmed as registered (reports/gen9-e9-25-2026-11-14), submitted to\nwill. G9-B8 accepted; the leftover Gen 7 publisher on azure4 stopped.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew",
+      "parents": [
+        "4724cd7d57cb0c0208440fb1f5c9613e7866e638"
+      ],
+      "files": [
+        "docs/gen9/STATE.md"
+      ]
+    },
+    {
+      "sha": "4724cd7d57cb0c0208440fb1f5c9613e7866e638",
+      "message": "E9-25 report: conditional claims at 0.9 against BEN defenders, not confirmed as registered\n\nWhere BEN 64 defends, committed lines failed 8 of 160 times with the scorer's weights and 5 of 165 with Gen 9's:\nE9-24's direction, not distinguishable from no difference. (1) met on the point estimate only (ratio 1.65, 95%\ninterval 0.55 to 4.94); (2) not met (Fisher p 0.27, McNemar p 0.625); (3) not met (Gen 9 3.0% against the\nhouse-defended control's 10.0%). Deviations: only the first Gen 8 BEN 64 feed family was read (no BEN 16 feeds\nexist), and (2) is reported both ways. Results from transfer/gen9-e9-25-azure4-20261114 at c3033825.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxCJBUzzHdcpohDTBew",
+      "parents": [
+        "6bd054ef85d89d01c57728fd1aa4f4c6f7d3b25b"
+      ],
+      "files": [
+        "reports/gen9-e9-25-2026-11-14/README.md",
+        "reports/gen9-e9-25-2026-11-14/ben_defends-7.jsonl.gz",
+        "reports/gen9-e9-25-2026-11-14/ben_defends-8.jsonl.gz",
+        "reports/gen9-e9-25-2026-11-14/e925_slices.py",
+        "reports/gen9-e9-25-2026-11-14/house_defends-7.jsonl.gz",
+        "reports/gen9-e9-25-2026-11-14/house_defends-8.jsonl.gz",
+        "reports/gen9-e9-25-2026-11-14/job.json",
+        "reports/gen9-e9-25-2026-11-14/report.txt",
+        "reports/gen9-e9-25-2026-11-14/slices.txt"
+      ]
+    }
+  ],
+  "research_plan_blob": "ff27cd3668e90d4e86544e420911254df9b36eec",
+  "future_exclusions": "No local data import, training, actor promotion, self-play or collector transition. Current Gen8 actors/source predate this research. Preserve the immutable34092-family exclusion list/proofs. A future new cohort requires complete pinned family membership for ALL released-model training data, including human, bot and replay sets if used in any released model. Table/row counts and seeds do not prove membership or arena independence.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}
