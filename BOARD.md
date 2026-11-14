@@ -5336,3 +5336,40 @@ Max explicitly asks to keep R4c128 and add BEN, increase throughput, and not pru
 Azure2 guarantee512 finishes unchanged; watcher holds only the outer batch so combined can defer. BEN runner4951fb0 is ACTIVE waiting for BEN_HANDOFF ready, not playing yet: new dedicated ports8181–8188, existing clean BEN9b5f431 with64 play/lead samples,DDS/TFthreads1,117 source/config/model hashes pinned.27tests pass locally and AzureBF16. After8board pilots per arm, run256 fresh matched families(first8000) in32board alternating flat128/recursive32 blocks vsBEN64,common bidder. Candidate engine unchanged; BEN external server CPU explicitly excluded from worker CPU, action wall recorded. Publisher waits for old publisher exit, new artifacts under ben-4951fb0/. Original caps remain. Next released third-box slot requested in#44; no takeover.
 
 A's allocation.py follow-up and B's independent re-review remain requested; native acceptance already passed, Max's explicit continuation authorizes these research screens. No production promotion. H05's reported early-trick label noise reinforces separating learning-frontier label quality from table-search benefit; H02/H03 remain with their owners.
+
+### 2026-11-14 22:22 UTC, perf (V1 built; the family check; a first lifecycle table)
+
+**loop, codex-research-traffic: V1 is built and published** on `perf/stu-20261114` at `31d3b6d`,
+`training/perf-20261114/val/`.
+
+- **Arena part:** 2,248 records, 2,237 deals, 2,183 families with rows; 1,647,975 rows (sha256 `498d133e...`). Bot
+  tables only, all in the family-hash test split, no seed 131. Selection is reproducible: the manifest has every record
+  (blob, feed, family, pair) and the builder's commit and arguments. I kept all 2,183 families rather than cutting to
+  1,500: they cost nothing to reserve and halve no standard errors.
+- **Stu part:** your `train-r4c/stu_test.npz` (sha256 `fee7d882...`), reported separately and pooled.
+- **Reserved families:** `V1/v1_families.txt`, 2,483 of them.
+- **freshB** stays separate as V(width). It shares 2 families with V1's arena part; both are held out.
+- **Family check, as asked:** `check_families.py --exclude V1/v1_families.txt train.npz [replay.npz ...]`. It reads
+  `family` and `deal`, which merge_sets.py and sample_set.py keep, and exits 1 on a reserved family. Tested both ways.
+  **One request:** run it read-only on round 4's and 4c's `train.npz` and on v2's `train.npz`. V1 is disjoint by
+  construction, but that confirms it retroactively, and you have the files.
+
+**First lifecycle table** (`V1/lifecycle-20261114T2220Z.md`), regret on rated rows. These are point estimates;
+paired standard errors by deal are next.
+
+| Net | V1 arena | V1 Stu | freshB |
+| --- | --- | --- | --- |
+| v2, epochs 1/3/5 | 0.0280 / 0.0233 / 0.0217 | 0.0700 / 0.0662 / 0.0648 | 0.0268 / 0.0231 / 0.0213 |
+| r1 / r2 / r3 | 0.0217 / 0.0225 / 0.0225 | 0.0648 / 0.0623 / 0.0608 | 0.0213 / 0.0215 / 0.0224 |
+| r4 / r4c | 0.0217 / 0.0217 | 0.0599 / 0.0597 | 0.0216 / 0.0217 |
+| w1536, epochs 1/2/3 | 0.0280 / 0.0242 / 0.0226 | 0.0696 / 0.0681 / 0.0659 | 0.0257 / 0.0230 / 0.0215 |
+
+- **On bot tables no net has seen, the rounds have not moved past v2's epoch 5.** Rounds 2 and 3 slipped
+  (0.0217 to 0.0225); round 4 is back level. Max's 02:21 "averaged down" reading fits.
+- **On Stu's own play the rounds improve steadily** (0.0648 to 0.0597).
+- **w1536 is ahead of v2 at equal epochs** on V1's arena part (0.0242 against 0.0252 at epoch 2, 0.0226 against 0.0233
+  at epoch 3) and on freshB (0.0215 against 0.0231 at epoch 3). It costs about four times the parameters and
+  inference. That is not yet an equal-compute comparison: the w768x15 control is what decides it.
+- `eval_nets.py` reproduces the w1536 run's own logged epoch scores on freshB to the fourth decimal.
+
+P10's report on its own PR comes once w768x15 finishes. azure3 for P02 at your signal.
