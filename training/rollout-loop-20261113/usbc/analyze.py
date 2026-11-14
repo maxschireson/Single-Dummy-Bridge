@@ -37,12 +37,30 @@ def category(event, text):
 
 def stage(event):
     s = event or ''
-    for name, pat in (('Final', r'(?<!Semi)(?<!Quarter)Final'), ('Semifinal', r'Semi'), ('Quarterfinal', r'Quarter'), ('Round of 16', r'Round of 16|R16'),
+    for name, pat in (('Final', r'(?<!Semi)(?<!Quarter)Final'), ('Semifinal', r'Semi'), ('Quarterfinal', r'Quarter'), ('Round of 16', r'Round of 16|Round 16|R16'),
                       ('Round of 32', r'Round of 32'), ('Round robin', r'Round Robin|RR\b|Qualif'), ('Knockout', r'Knockout|KO'),
                       ('USA2 stage', r'USA2 Stage'), ('Playoff', r' vs ')):
         if re.search(pat, s, re.I):
             return name
     return 'Other'
+
+
+# The 2025 USBCs come from USBF's bracket sheets, not the archive list, so their sessions carry no event name: the folder each
+# vugraph screen was linked from says which event it was (USBC2025_USA1 Open, USBC2025_USA2 Open's second trials, MUSBC Mixed,
+# SUSBC Senior), and the table name says the stage.
+SCREENS_2025 = {**{s: 'Open USA1' for s in ('631043', '631044', '631045', '631046')},
+                **{s: 'Open USA2' for s in ('631287', '631292', '631297', '631302', '631307')},
+                **{s: 'Mixed USA1' for s in ('631312', '631317', '631322', '631327')},
+                **{s: 'Mixed USA2' for s in ('631332', '631337', '631340', '631343', '631346', '631349')},
+                **{s: 'Senior USA1' for s in ('631412', '631417', '631422')},
+                **{s: 'Senior USA2' for s in ('631427', '631432', '631437', '631442')}}
+
+
+def name_2025(r):
+    screen = r['sid'].split('_')[1]
+    if screen not in SCREENS_2025:
+        return None
+    return f"{SCREENS_2025[screen]} {r.get('tname') or ''}".strip()
 
 
 def load(dirs):
@@ -53,13 +71,29 @@ def load(dirs):
                 r = json.loads(line)
                 if 'error' in r or not r.get('decisions'):
                     continue
+                if name_2025(r):
+                    r['event'], r['text'], r['start'] = name_2025(r), name_2025(r) + ' USBC 2025', r.get('start') or '2025-04-01'
                 r['year'] = (r.get('start') or '????')[:4]
                 r['category'] = category(r.get('event') or '', r.get('text') or '')
                 r['stage'] = stage(r.get('event') or '')
                 tables.append(r)
+    junior = collections.defaultdict(collections.Counter)      # a junior's age group, from the round robins it played
+    for r in tables:
+        if r['category'] in ('Junior U16', 'Junior U21', 'Junior U26', 'Junior RONA'):
+            for n in (r.get('names') or {}).values():
+                if n:
+                    junior[' '.join(n.lower().split())][r['category']] += 1
+    for r in tables:                                            # concurrent junior knockouts: by their players' age group
+        if r['category'] == 'Junior knockout':
+            votes = collections.Counter()
+            for n in (r.get('names') or {}).values():
+                if n and junior.get(' '.join(n.lower().split())):
+                    votes[junior[' '.join(n.lower().split())].most_common(1)[0][0]] += 1
+            if votes:
+                r['category'] = votes.most_common(1)[0][0] + ' (KO)'
     seen, out = set(), []
     for r in tables:                                            # the same table fetched twice (two boxes) counts once
-        key = (r['sid'], r['board'], r.get('room'))
+        key = (r['sid'], r['board'], r.get('room'), tuple((r.get('names') or {}).get(x) for x in 'NESW'))   # a session has many matches
         if key not in seen:
             seen.add(key)
             out.append(r)
@@ -157,7 +191,7 @@ def main():
               f'{F.get("tricks", 0):.3f} {F.get("plays", 0):.3f} {F.get("imps", 0):.2f} | {L.get("tricks", 0):.3f} {L.get("imps", 0):.2f} | '
               f'{D.get("danger", 0):.3f} {F.get("danger", 0):.3f} {L.get("danger", 0):.3f}')
     # 1b. pooled: by category (all years and stages) and by stage (all categories), with standard errors
-    for title, keyf in (('category', lambda t: t['category']), ('stage', lambda t: t['stage']), ('category and year', lambda t: (t['category'], t['year']))):
+    for title, keyf in (('category', lambda t: t['category']), ('category and stage', lambda t: (t['category'], t['stage'])), ('category and year', lambda t: (t['category'], t['year']))):
         print(f'\n1b. By {title}: per board in the role, mean +- standard error; danger share (tricks lost over a random card\'s)')
         grp = collections.defaultdict(list)
         for k, u in enumerate(U):
@@ -170,6 +204,25 @@ def main():
                     m, se, n = stat(v[:, 0])
                     parts.append(f'{role} {m:.3f} +- {se:.3f} ({n}) share {v[:, 0].sum() / max(v[:, 1].sum(), 1e-9):.3f} imps {v[:, 2].mean():.2f}')
             print(f'  {str(key):28s} ' + ' | '.join(parts))
+    # 1c. how much players differ within a category: the spread of player means, and the part of it that is not luck
+    print('\n1c. Players within a category (20+ boards in the role): SD of player means; the part beyond luck (observed variance less the average'
+          ' sampling variance); per role, tricks lost a board')
+    for cat in sorted({t['category'] for t in tables}):
+        parts = []
+        for role in ('declarer', 'defense', 'lead'):
+            per = collections.defaultdict(list)
+            for u in U:
+                if u[1] == role and u[3] and tables[u[0]]['category'] == cat:
+                    per[u[3]].append(u[5])
+            xs = [np.array(v) for v in per.values() if len(v) >= 20]
+            if len(xs) >= 5:
+                means = np.array([x.mean() for x in xs])
+                noise = np.mean([x.var(ddof=1) / len(x) for x in xs])
+                obs = means.var(ddof=1)
+                true = math.sqrt(max(obs - noise, 0.))
+                parts.append(f'{role} {len(xs)} players, mean {means.mean():.3f}, SD {math.sqrt(obs):.3f}, beyond luck {true:.3f}')
+        if parts:
+            print(f'  {cat:18s} ' + ' | '.join(parts))
     # 2. per player: raw, vs field, vs danger; split-half reliability; across events
     print(f'\n2. Players with at least {a.min_boards} boards in the role: which measure is steadiest')
     report = {}
