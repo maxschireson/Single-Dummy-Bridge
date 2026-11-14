@@ -82,6 +82,8 @@ def main():
     ap.add_argument('--source', required=True)
     ap.add_argument('--bots', default=str(ROOT / 'configs/loop-bots.json'))
     ap.add_argument('--min-call', type=float, default=.05)
+    ap.add_argument('--sample', type=int, default=0, help='also a sample of this many fitting tables, by category in turn (sample_*)')
+    ap.add_argument('--seed', type=int, default=14)
     a = ap.parse_args()
     a.out.mkdir(parents=True, exist_ok=True)
     b, name = bidder(a.source, a.bots)
@@ -131,6 +133,31 @@ def main():
     with open(a.out / 'fit_tables.jsonl', 'w') as f:
         for j, k in enumerate(keep):
             f.write(json.dumps(dict(rows[k], fit_index=j)) + '\n')
+    if a.sample:                                                     # a sample of the fitting tables, taking the categories in turn
+        import random, re
+        rng = random.Random(a.seed)
+        cat = lambda r: next((n for n, p in (('Junior', r'Junior|U2\d|U16|RONA'), ("Women's", r'Women|Palmer'), ('Senior', r'Senior'),
+                                             ('Mixed', r'Mixed'), ('Open', r'.')) if re.search(p, r.get('event') or '')), 'Open')
+        pools = {}
+        for k in keep:
+            pools.setdefault(cat(rows[k]), []).append(k)
+        for v in pools.values():
+            rng.shuffle(v)
+        pick, order = [], sorted(pools)
+        while len(pick) < a.sample and any(pools.values()):
+            for c in order:
+                if pools[c] and len(pick) < a.sample:
+                    pick.append(pools[c].pop())
+        with gzip.open(a.out / 'sample_deals.json.gz', 'wt') as f:
+            json.dump(dict(first=0, deals=[deals[k] for k in pick]), f)
+        with gzip.open(a.out / 'sample_book.json.gz', 'wt') as f:
+            json.dump(dict(seed=20260414, first=0, tables=[['usbc', 'usbc']], keys=[keys[k] for k in pick], table_of=[0] * len(pick),
+                           auctions=[auctions[k] for k in pick]), f)
+        with open(a.out / 'sample_tables.jsonl', 'w') as f:
+            for j, k in enumerate(pick):
+                f.write(json.dumps(dict(rows[k], sample_index=j, category=cat(rows[k]))) + '\n')
+        import collections
+        print('sample:', len(pick), dict(collections.Counter(cat(rows[k]) for k in pick)))
     mins = np.array([r['min_call'] for r in rows])
     print(f'{len(rows)} tables; common bidder {name}; calls not understood: {unknown}')
     for t in (.01, .02, .05, .1, .2):

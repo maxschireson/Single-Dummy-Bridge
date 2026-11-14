@@ -27,7 +27,8 @@ ROLE = {'D': 'declarer', 'CD': 'declarer', 'F': 'defense', 'CF': 'defense', 'L':
 
 def category(event, text):
     s = f'{event} {text}'
-    for name, pat in (('Junior U16', r'U-?16'), ('Junior U21', r'U-?21'), ('Junior U26', r'U-?26'), ('Junior', r'Junior|JUSBC|Seamon|Amer'),
+    for name, pat in (('Junior U16', r'U-?16'), ('Junior U21', r'U-?21'), ('Junior U26', r'U-?26'), ('Junior RONA', r'RONA'),
+                      ('Junior knockout', r'(Junior|JUSBC|Seamon|Amer).*Knockout|Knockout.*(Junior|JUSBC)'), ('Junior', r'Junior|JUSBC|Seamon|Amer'),
                       ("Women's", r"Women|Palmer|WUSBC"), ('Senior', r'Senior|SUSBC'), ('Mixed', r'Mixed|MUSBC'), ('Open', r'Open|USBC')):
         if re.search(pat, s, re.I):
             return name
@@ -37,7 +38,8 @@ def category(event, text):
 def stage(event):
     s = event or ''
     for name, pat in (('Final', r'(?<!Semi)(?<!Quarter)Final'), ('Semifinal', r'Semi'), ('Quarterfinal', r'Quarter'), ('Round of 16', r'Round of 16|R16'),
-                      ('Round of 32', r'Round of 32'), ('Round robin', r'Round Robin|RR\b|Qualif'), ('Knockout', r'Knockout|KO')):
+                      ('Round of 32', r'Round of 32'), ('Round robin', r'Round Robin|RR\b|Qualif'), ('Knockout', r'Knockout|KO'),
+                      ('USA2 stage', r'USA2 Stage'), ('Playoff', r' vs ')):
         if re.search(pat, s, re.I):
             return name
     return 'Other'
@@ -154,6 +156,20 @@ def main():
         print(f'{key[0]:12s} {key[1]:4s} {key[2]:13s} | {D.get("tricks", 0):.3f} {D.get("plays", 0):.3f} {D.get("imps", 0):.2f} {D.get("turned", 0):.3f} ({D.get("n", 0):5d}) | '
               f'{F.get("tricks", 0):.3f} {F.get("plays", 0):.3f} {F.get("imps", 0):.2f} | {L.get("tricks", 0):.3f} {L.get("imps", 0):.2f} | '
               f'{D.get("danger", 0):.3f} {F.get("danger", 0):.3f} {L.get("danger", 0):.3f}')
+    # 1b. pooled: by category (all years and stages) and by stage (all categories), with standard errors
+    for title, keyf in (('category', lambda t: t['category']), ('stage', lambda t: t['stage']), ('category and year', lambda t: (t['category'], t['year']))):
+        print(f'\n1b. By {title}: per board in the role, mean +- standard error; danger share (tricks lost over a random card\'s)')
+        grp = collections.defaultdict(list)
+        for k, u in enumerate(U):
+            grp[keyf(tables[u[0]])].append(k)
+        for key in sorted(grp, key=str):
+            parts = []
+            for role in ('declarer', 'defense', 'lead'):
+                v = np.array([[U[k][5], U[k][9], U[k][7]] for k in grp[key] if U[k][1] == role], float)
+                if len(v) > 1:
+                    m, se, n = stat(v[:, 0])
+                    parts.append(f'{role} {m:.3f} +- {se:.3f} ({n}) share {v[:, 0].sum() / max(v[:, 1].sum(), 1e-9):.3f} imps {v[:, 2].mean():.2f}')
+            print(f'  {str(key):28s} ' + ' | '.join(parts))
     # 2. per player: raw, vs field, vs danger; split-half reliability; across events
     print(f'\n2. Players with at least {a.min_boards} boards in the role: which measure is steadiest')
     report = {}
