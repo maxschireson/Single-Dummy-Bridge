@@ -1,0 +1,39 @@
+# azure7 (Bridgebots7, Standard_F8as_v6, created 20:10 UTC on 14 November on Max's word: "Go B"; 20:18: "put it to work on whatever
+# is most productive"). First the width study's compute control (rollout net v2's recipe, 768 wide, 15 epochs on the pool: exp-width/w768x15),
+# then Gen 8's self-play, the six personality pairs in turn, one table a board, deals 960,000 to 1,031,999 of seed 9001.
+sg8w1 g8-greedy0~g8-passive0 9001 960000 2000 8 --episodes --one-room
+sg8w2 g8-patient0~g8-active0 9001 962000 2000 8 --episodes --one-room
+sg8w3 g8-high0~g8-low0 9001 964000 2000 8 --episodes --one-room
+sg8w4 g8-greedy0~g8-low0 9001 966000 2000 8 --episodes --one-room
+sg8w5 g8-patient0~g8-high0 9001 968000 2000 8 --episodes --one-room
+sg8w6 g8-active0~g8-passive0 9001 970000 2000 8 --episodes --one-room
+sg8w7 g8-greedy0~g8-passive0 9001 972000 2000 8 --episodes --one-room
+sg8w8 g8-patient0~g8-active0 9001 974000 2000 8 --episodes --one-room
+sg8w9 g8-high0~g8-low0 9001 976000 2000 8 --episodes --one-room
+sg8w10 g8-greedy0~g8-low0 9001 978000 2000 8 --episodes --one-room
+sg8w11 g8-patient0~g8-high0 9001 980000 2000 8 --episodes --one-room
+sg8w12 g8-active0~g8-passive0 9001 982000 2000 8 --episodes --one-room
+sg8w13 g8-greedy0~g8-passive0 9001 984000 2000 8 --episodes --one-room
+sg8w14 g8-patient0~g8-active0 9001 986000 2000 8 --episodes --one-room
+sg8w15 g8-high0~g8-low0 9001 988000 2000 8 --episodes --one-room
+sg8w16 g8-greedy0~g8-low0 9001 990000 2000 8 --episodes --one-room
+sg8w17 g8-patient0~g8-high0 9001 992000 2000 8 --episodes --one-room
+sg8w18 g8-active0~g8-passive0 9001 994000 2000 8 --episodes --one-room
+sg8w19 g8-greedy0~g8-passive0 9001 996000 2000 8 --episodes --one-room
+sg8w20 g8-patient0~g8-active0 9001 998000 2000 8 --episodes --one-room
+sg8w21 g8-high0~g8-low0 9001 1000000 2000 8 --episodes --one-room
+sg8w22 g8-greedy0~g8-low0 9001 1002000 2000 8 --episodes --one-room
+sg8w23 g8-patient0~g8-high0 9001 1004000 2000 8 --episodes --one-room
+sg8w24 g8-active0~g8-passive0 9001 1006000 2000 8 --episodes --one-room
+sg8w25 g8-greedy0~g8-passive0 9001 1008000 2000 8 --episodes --one-room
+sg8w26 g8-patient0~g8-active0 9001 1010000 2000 8 --episodes --one-room
+sg8w27 g8-high0~g8-low0 9001 1012000 2000 8 --episodes --one-room
+sg8w28 g8-greedy0~g8-low0 9001 1014000 2000 8 --episodes --one-room
+sg8w29 g8-patient0~g8-high0 9001 1016000 2000 8 --episodes --one-room
+sg8w30 g8-active0~g8-passive0 9001 1018000 2000 8 --episodes --one-room
+sg8w31 g8-greedy0~g8-passive0 9001 1020000 2000 8 --episodes --one-room
+sg8w32 g8-patient0~g8-active0 9001 1022000 2000 8 --episodes --one-room
+sg8w33 g8-high0~g8-low0 9001 1024000 2000 8 --episodes --one-room
+sg8w34 g8-greedy0~g8-low0 9001 1026000 2000 8 --episodes --one-room
+sg8w35 g8-patient0~g8-high0 9001 1028000 2000 8 --episodes --one-room
+sg8w36 g8-active0~g8-passive0 9001 1030000 2000 8 --episodes --one-room

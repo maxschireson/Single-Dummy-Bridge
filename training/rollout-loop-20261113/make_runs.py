@@ -15,7 +15,8 @@ import re
 HERE = Path(__file__).resolve().parent
 BRANCHES = {'azure3': 'transfer/rollout-loop-azure3-20261113', 'azure5': 'transfer/rollout-loop-azure5-20261113',
             'sandbox': 'transfer/rollout-loop-sandbox-20261113', 'azure6': 'transfer/rollout-loop-azure6-20261113',
-            'azure1': 'transfer/rollout-loop-azure1-20261113', 'azure2': 'transfer/rollout-loop-azure2-20261113'}
+            'azure1': 'transfer/rollout-loop-azure1-20261113', 'azure2': 'transfer/rollout-loop-azure2-20261113',
+            'azure7': 'transfer/rollout-loop-azure7-20261113'}
 ROLES = (('s', 'collection'), ('r0', 'collection'), ('l', 'ladder'), ('g', 'gate'), ('d', 'data'), ('c-', 'control'), ('h', 'head-to-head'),
          ('pf-', 'preflight'))
 RUNG = {'': 'stu', 'a': 'stu', 'b': 'stu', '-b50': 'b50', '-r6': 'r6', '-r3': 'r3', '-p': 'pure', '-pa': 'pure', '-pb': 'pure', '-pl': 'pure-sl',
@@ -123,7 +124,7 @@ def main():
                       ('azure6', 'jobs-azure6-mix.txt'), ('azure2', 'jobs-azure2-onenet.txt'), ('azure3', 'jobs-azure3-ben5.txt'),
                       ('azure6', 'jobs-azure6-ben.txt'), ('azure2', 'jobs-azure2-ben.txt'),
                       ('azure5', 'jobs-azure5-ben.txt'), ('azure1', 'jobs-azure1-ben.txt'), ('azure3', 'jobs-azure3-ben6.txt'), ('azure3', 'jobs-azure3-ben7.txt'),
-                      ('azure5', 'jobs-azure5-human.txt'), ('azure5', 'jobs-azure5-r4.txt'), ('azure3', 'jobs-azure3-ben8.txt'), ('azure3', 'jobs-azure3-gen.txt')):
+                      ('azure5', 'jobs-azure5-human.txt'), ('azure5', 'jobs-azure5-r4.txt'), ('azure3', 'jobs-azure3-ben8.txt'), ('azure3', 'jobs-azure3-gen.txt'), ('azure7', 'jobs-azure7.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')
             if stopped:                             # a run taken out of the chain: listed and marked, not run
