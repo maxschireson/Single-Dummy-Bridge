@@ -4798,3 +4798,39 @@ checked that the unit's MainPID was 5704 and that its arguments named gen7-phase
 - **Its last push:** `9aec8a6` at 09:01:58, 829 verified paired deals, to `arena-gen7-phase1-azure4-feed`.
 - **What is left:** the run folder and the publication checkout are untouched. Nothing else on the box was changed.
 - **To bring it back:** `sudo systemctl enable --now arena-gen7-publish.service`.
+
+### 2026-11-14 09:20 UTC, perf (for loop: a bf16 speedup, the same cards)
+
+**loop: with `BRIDGE_NET_BF16=1`, oneDNN builds a kernel for every new batch size, and the rollouts' batch sizes change
+from call to call. Padding each bf16 call to one of about 25 fixed sizes, then cutting the padding off, nearly doubles
+self-play speed in my sandbox and plays the same cards.** Commit `c443b4a` on `perf/stu-20261114`: `gen7_net.bucket`,
+`Bf16Forward.__call__` and the `FitScorer` bf16 layers; `BRIDGE_NET_BUCKETS=0` turns it off. It touches nothing in
+fp32, and it applies cleanly on your head `ca9e717` (you have not changed those two files since `cf390da`).
+
+| stu3-psa~stu3-psb self-play, 6 boards, one worker, sandbox (Sapphire Rapids) | CPU-s a board | peak worker memory |
+| --- | --- | --- |
+| fp32 | 23.1 | |
+| bf16 as the boxes run it | 26.0 | 2.3 GB |
+| bf16 padded | 13.9 | 1.4 GB |
+
+- Same 312 cards in both bf16 runs (`training/perf-20261114/bench/cmp_plays.py`); the outputs are bit-identical
+  padded or not (`tests/test_bf16_buckets.py`). Synthetic test, 3,000 calls of 1 to 700 rows: 12,000 against 41,000
+  rows/s, kernel cache +1.1 GB against +0.16 GB.
+- **Not measured on Zen 4.** The sandbox has AMX, the boxes do not, so the box gain will be smaller. But it fits
+  what you saw there: bf16 gave 1.8x on the forward pass at a fixed 512 rows and only 23.6 to 20.3 CPU-s a table
+  end to end, and workers grew to 3-4 GB. If you want it measured before you adopt it: two workers on one bf16 box
+  (azure2 or azure6), 20 boards with `BRIDGE_NET_BUCKETS=0` and 20 with it on, both checked with `cmp_plays.py`.
+  Either you run it, or you give me 2 cores for about an hour and I run it through boxctl and post the numbers here.
+- The Gen 8 self-play runs (`sg8*`) are fp32 and unaffected.
+
+**Profile of a pure-Stu table** (`training/perf-20261114/README.md`): rollouts 63% of CPU, the net's forward pass
+about 52% in the main batches. **Fork continuations** (`x8_rollout._finish`) take 10%, because they run 2 rows a call:
+half of all net calls, each paying for a full read of the weights. Layout reading takes 34% (hand-fit scorer 22%,
+the net's reading of the play 13%).
+
+**What I take next, in my sandbox, unless you object:** (1) run the fork copies inside the main rollout batches from
+the step they are taken. They are then at the same ply as the main rows. They get their own random stream so the
+main rows' draws do not change, and no claims, as now. Expected about 8-10% of a table. (2) The scorer's first layer
+as table lookups (about 3%). (3) For the gate: how many of BEN's requests repeat across runs on the same deals, so a
+request cache could skip them. For that I would like to run a read-only script over two BEN runs' episodes on
+azure3 (`b3-ps200-*` against `b3-pst200-*`): about a minute of one core. May I?
