@@ -1,18 +1,18 @@
 {
   "status": "verified_pinned_publication",
   "poll_start": "2026-11-14T01:27:36Z",
-  "verified_epoch": 1794619946.1190603,
-  "revision": "3c8b2f1b6d85fcf82e8b5f590471182713da8a4b",
+  "verified_epoch": 1794620016.42541,
+  "revision": "ef256da6701bc3111175358b38e7656b8093e33e",
   "remote_ref_matches": true,
   "publisher_status": {
     "status": "published",
-    "epoch": 1794619944.6392057,
-    "completed": 3653,
-    "commit": "3c8b2f1b6d85fcf82e8b5f590471182713da8a4b",
+    "epoch": 1794620011.7159586,
+    "completed": 3655,
+    "commit": "ef256da6701bc3111175358b38e7656b8093e33e",
     "branch": "arena-gen8-candidate-codex-20261112-feed"
   },
-  "published_completed": 3653,
-  "published_receipt_markers": 3653,
+  "published_completed": 3655,
+  "published_receipt_markers": 3655,
   "active_out_of_order_completion_supported": true,
   "manifest": "cd98b72481222d28d189df7dfd8ae81cbc193e493e26193a4de486ae38ce3235",
   "exact_byte_files": {
@@ -122,9 +122,9 @@
       "bytes": 640
     },
     "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T012736Z/finalize-watch.py": {
-      "sha256": "d6c4f48d95bc4cbedd784c60b96c6578b0cb939cecde0768c0963dba0462e2be",
-      "git_blob": "e13eb6dee6e4d202eb987a48898b1e74369138f4",
-      "bytes": 8537
+      "sha256": "c9cb2ad3bbe4d1010a0b8f370e0900ae4a14d0802678d41a62ae14327a01cef3",
+      "git_blob": "40ccc9a32138c149021988e070f62aa610b5def7",
+      "bytes": 8545
     },
     "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T012736Z/poll-health.py": {
       "sha256": "712936c8c26dc94fb01c193f9cd9054bd92f1395c89713f21764533b23afbe07",
@@ -140,6 +140,16 @@
       "sha256": "90894501a70643a3aeedcf8a29c66e0f021ecc1b13dc97cc97c6dc1c9a1e0695",
       "git_blob": "39aa7da5af2d2230a6897d5052677f8c4a544afe",
       "bytes": 1141
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T012736Z/metadata-finalization-review.json": {
+      "sha256": "f5ba9696bd5e18479d229b7cf2aad8e261edaf54ddbe51e6e78f4141ce20f773",
+      "git_blob": "1a9b0c65961756226ee3a98229c3d08e7d1ccb33",
+      "bytes": 693
+    },
+    "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T012736Z/branch-review.json": {
+      "sha256": "da62cf524465b6d8d910da618816eb14b570e357686e88a7246b8fb92f73b8f3",
+      "git_blob": "c066a0f8cea9325d3e47738298d4d48122820bdd",
+      "bytes": 5079
     },
     "recovery/operations/gen8-transition-20261112/instruction-poll-20261114T012736Z/collector-environment-review.json": {
       "sha256": "56fc9e608ee0bf717ace60e237b0b59991bc151e7a33817d82ffe89dd930224f",
@@ -232,5 +242,5 @@
   "actual_gap_guess_samples_published": true,
   "shared_ui_mutated": false,
   "registry_mutated": false,
-  "attempts": 7
+  "attempts": 6
 }
