@@ -835,3 +835,9 @@
 2026-11-14T17:44:44Z start bu4c-pst200c-6 stu4c-put~ben200 seed 131 first 832 deals 64 workers 1 --common-only --episodes (source 830661d, nets fp32)
 2026-11-14T17:44:44Z start bu4c-pst200c-7 stu4c-put~ben200 seed 131 first 896 deals 64 workers 1 --common-only --episodes (source 830661d, nets fp32)
 2026-11-14T17:44:44Z start bu4c-pst200c-8 stu4c-put~ben200 seed 131 first 960 deals 64 workers 1 --common-only --episodes (source 830661d, nets fp32)
+2026-11-14T18:15:46Z the BEN gate stops at 698 deals of stu4c (adopted; Max, 17:27 and 17:57 UTC); the seat bench, then Gen 8's self-play
+2026-11-14T18:15:46Z seat bench begins (bench/seat_variants.py on round 3's gate records, one decision in 8)
+2026-11-14T18:16:39Z seat bench ended: exit 0; 72 decisions
+2026-11-14T18:16:39Z start sg8v1 g8-greedy0~g8-passive0 seed 9001 first 880000 deals 2000 workers 8 --episodes --one-room (source 7768d38, nets fp32)
+2026-11-14T18:21:59Z the collection waits for the seat bench (fixed, source 42caf93)
+2026-11-14T18:21:59Z seat bench begins (bench/seat_variants.py on round 3's gate records, one decision in 8)
