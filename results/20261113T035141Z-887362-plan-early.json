@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 163.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T03:54:47Z",
+ "id": "20261113T035141Z-887362-plan-early",
+ "output_bytes": 1108,
+ "output_tail": "latest: /home/bridgebots/work/plan/rnet2w/warm/policy_epoch3.npz\n123142 rows, 144 deals, bots ['1', '5RZ32', '71s-32', '8c-32', '8s-32', 'ben', 'ben64']\nv41          log-loss 0.5876  exact 0.8456  tricks given up 0.0278  from trick 7 0.5109/0.0271  T 0.93\nv1ft         log-loss 0.6346  exact 0.8076  tricks given up 0.0235  from trick 7 0.5588/0.0218  T 1.56\nepoch1       log-loss 0.5403  exact 0.7788  tricks given up 0.0233  from trick 7 0.4746/0.0218  T 0.98  ids blank 0.6198\nepoch2       log-loss 0.5275  exact 0.7825  tricks given up 0.0223  from trick 7 0.4620/0.0203  T 1.0  ids blank 0.6104\nepoch3       log-loss 0.5240  exact 0.7838  tricks given up 0.0221  from trick 7 0.4589/0.0204  T 1.02  ids blank 0.6086\nv41 71s-32:0.469/0.0264 8c-32:0.459/0.0291 8s-32:0.470/0.0279 ben64:1.756/-\nv1ft 71s-32:0.409/0.0219 8c-32:0.392/0.0234 8s-32:0.411/0.0245 ben64:3.149/-\nepoch1 71s-32:0.490/0.0218 8c-32:0.474/0.024 8s-32:0.486/0.0239 ben64:1.082/-\nepoch2 71s-32:0.473/0.021 8c-32:0.461/0.0225 8s-32:0.475/0.023 ben64:1.069/-\nepoch3 71s-32:0.470/0.0204 8c-32:0.459/0.0221 8s-32:0.471/0.0229 ben64:1.054/-\n",
+ "received": "2026-11-13T03:52:04Z",
+ "script_sha256": "9d0d57e6d048a95078a1c0d54cf411da10245dea9dc4b124ce4d43cdbeb8ffa8",
+ "started": "2026-11-13T03:52:04Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

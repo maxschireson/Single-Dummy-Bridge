@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 5.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:51:58Z",
+ "id": "20261112T075130Z-356318-pool2048",
+ "output_bytes": 768,
+ "output_tail": "  g8-reading-0.service     loaded active running /bin/bash /home/bridg\n  g8-reading-1.service     loaded active running /bin/bash /home/bridg\n  g8-reading-2.service     loaded active running /bin/bash /home/bridg\n  g8-reading-3.service     loaded active running /bin/bash /home/bridg\n  g8-reading2048-4.service loaded active running /bin/bash /home/bridg\n  g8-reading2048-5.service loaded active running /bin/bash /home/bridg\n  g8-reading2048-6.service loaded active running /bin/bash /home/bridg\n  g8-reading2048-7.service loaded active running /bin/bash /home/bridg\n219\n07:51:58\n   1073 79.4 /home/bridgebots/work/venv/bin/python scripts/gen7_compare_nets.py /home/brid\n== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B\n",
+ "received": "2026-11-12T07:51:52Z",
+ "script_sha256": "9ec2e17699c2e6034b4282454afd16f153db5a681d048f67f41a94ba8d1e4354",
+ "started": "2026-11-12T07:51:52Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:46:58Z",
+ "id": "20261114T214641Z-955556-cmd",
+ "output_bytes": 301,
+ "output_tail": "fee7d882734ac44c627d8362f9b6b15b2ab7e013dc8f10349530e5292bde09cd\n12419 rows; ['state', 'order', 'legal', 'ctx', 'auction', 'shown', 'gap', 'owner', 'meta', 'deal', 'family', 'deal_split', 'bank_length', 'bank_hon', 'bank_log_weight', 'meta_columns', 'bot_names']\ndeal 300 distinct\nfamily 300 distinct\n",
+ "received": "2026-11-14T21:46:58Z",
+ "script_sha256": "0e2433ac79a905e7b26c84233327e4a88acdcc3e5bbf1a3a4f5824a027d97ad7",
+ "started": "2026-11-14T21:46:58Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

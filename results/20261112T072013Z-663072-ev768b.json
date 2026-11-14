@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:20:17Z",
+ "id": "20261112T072013Z-663072-ev768b",
+ "output_bytes": 1420,
+ "output_tail": "07:20:17\nneartie pushed 07:12:47\nreading bench paused for the 768-wide scoring 07:17:25\nfreshF done: {\"deals_in\": 144, \"deals_kept\": 144, \"dropped_as_seen\": 0, \"examples\": 65888} 07:19:09\n13 /home/bridgebots/work/p41/logs/eval_w768e5.log\n== temperatures fitted on B\nrows 218537 | log-loss at T=1 0.6576 | best T 1.042 log-loss 0.6571\nwritten /home/bridgebots/work/p41/runs/w768e5/policy_epoch1_T.npz | largest logit difference on 8,192 rows 5.7220458984375e-06\nrows 218537 | log-loss at T=1 0.6269 | best T 1.074 log-loss 0.6255\nwritten /home/bridgebots/work/p41/runs/w768e5/policy_epoch2_T.npz | largest logit difference on 8,192 rows 6.67572021484375e-06\nrows 218537 | log-loss at T=1 0.6094 | best T 1.106 log-loss 0.6070\nwritten /home/bridgebots/work/p41/runs/w768e5/policy_epoch3_T.npz | largest logit difference on 8,192 rows 4.76837158203125e-06\nrows 218537 | log-loss at T=1 0.5996 | best T 1.140 log-loss 0.5953\nwritten /home/bridgebots/work/p41/runs/w768e5/policy_epoch4_T.npz | largest logit difference on 8,192 rows 7.62939453125e-06\nrows 218537 | log-loss at T=1 0.6008 | best T 1.201 log-loss 0.5939\nwritten /home/bridgebots/work/p41/runs/w768e5/policy_epoch5_T.npz | largest logit difference on 8,192 rows 4.76837158203125e-06\n== every fresh set but B together: {\"parts\": 4, \"deals\": 1387, \"unique_families\": 1387, \"examples\": 591450, \"deals_by_hash_split\": [0, 1387, 0]}\n== v4, three epochs, five epochs\n",
+ "received": "2026-11-12T07:20:17Z",
+ "script_sha256": "72a4238fa9d2d5c73c4e7148bddeea6e7dd3adfbb3429addfc4c72609c5aa640",
+ "started": "2026-11-12T07:20:17Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

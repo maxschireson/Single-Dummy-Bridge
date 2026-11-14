@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 30.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:04:32Z",
+ "id": "20261114T120337Z-598530-cmd",
+ "output_bytes": 359,
+ "output_tail": "2026-11-14T06:40:39Z arena-gen9-azure4-ben64-feed: 1004 records, 1004 not in v2's set\n21200\n0\nRunning as unit: loop-arena.service; invocation ID: c825784c819141429f6162663ff4969e\nactive\n2026-11-14T12:04:03Z v2's episodes: 75811\n2026-11-14T12:04:27Z arena-gen9-azure4-feed: fetch failed\n2026-11-14T12:04:31Z arena-gen9-azure4-ben64-feed: fetch failed\n12:04:32\n",
+ "received": "2026-11-14T12:04:02Z",
+ "script_sha256": "870d8ea1a35b078ca1267e8586114d82d2036a66425529dd5cb6858eaf6df68a",
+ "started": "2026-11-14T12:04:02Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T03:22:34Z",
+ "id": "20261113T032206Z-717290-plan-peek",
+ "output_bytes": 1363,
+ "output_tail": "2026-11-13T02:23:47Z built sx: {\"episodes\": 6160, \"deals\": 6150, \"unique_families\": 5976, \"examples\": 3075489, \"train\": 2487948, \"validation\": 282323, \"test\": 305218}\n2026-11-13T02:29:28Z built sx021902: {\"episodes\": 8651, \"deals\": 8628, \"unique_families\": 8627, \"examples\": 2387726, \"train\": 1896369, \"validation\": 237694, \"test\": 253663}\n2026-11-13T02:32:22Z set: {\"parts\": 18, \"deals\": 75409, \"bots\": [\"1\", \"2\", \"3\", \"4b\", \"5-32\", \"5R192\", \"5R32\", \"5RZ192\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben32\", \"ben64\"], \"unique_families\": 61003, \"examples\": 30381099, \"d\n2026-11-13T02:32:55Z freshB: {\"deals_in\": 247, \"deals_kept\": 144, \"dropped_as_seen\": 103, \"examples\": 123142}\n2026-11-13T02:32:55Z warm start from /home/bridgebots/work/plan/nets/w768e5_epoch5.npz (lr 5e-4, 3 epochs)\nepoch 2 step 50000 of 59338, 2722 s\nepoch 2 step 52000 of 59338, 2771 s\n{\"epoch\": 1, \"seconds\": 1547, \"train_ce\": 0.5815, \"train_gap\": 0.0335, \"train_owner\": 0.5531, \"val\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.5403, \"uniform_nll\": 1.2695, \"tie_nll\": 0.7885, \"agree\": 0.7788, \"in_best\": 0.9192, \"regret\": 0.0233, \"regret_gap_head\": 0.0217, \"regret_random\": 0.2075, \"regret_lowest\": 0.2281}, \"tempe\nMem:              31          16           0           0          14          14\n 03:22:34 up 23:30,  0 user,  load average: 5.14, 5.30, 5.50\n",
+ "received": "2026-11-13T03:22:34Z",
+ "script_sha256": "d05e8f560690ecdcf165e1b7462326884f06ae40dfecd18795fdc2ff1a442741",
+ "started": "2026-11-13T03:22:34Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

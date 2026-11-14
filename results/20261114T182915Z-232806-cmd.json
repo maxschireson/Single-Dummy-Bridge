@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:29:45Z",
+ "id": "20261114T182915Z-232806-cmd",
+ "output_bytes": 1230,
+ "output_tail": "state.npy         1.580 GB  stored=True\norder.npy         1.580 GB  stored=True\nlegal.npy         1.580 GB  stored=True\nctx.npy           2.795 GB  stored=True\nauction.npy       4.618 GB  stored=True\nshown.npy         4.618 GB  stored=True\ngap.npy           3.160 GB  stored=True\nowner.npy         1.580 GB  stored=True\nmeta.npy          1.337 GB  stored=True\ndeal.npy          0.122 GB  stored=True\nfamily.npy        0.019 GB  stored=True\ndeal_split.npy    0.000 GB  stored=True\nbot_names.npy     0.000 GB  stored=True\nbank_length.npy    0.000 GB  stored=True\nbank_hon.npy      0.000 GB  stored=True\nbank_log_weight.npy    0.000 GB  stored=True\nmeta_columns.npy    0.000 GB  stored=True\ntotal 22.99 GB\ntotal 5422528\ndrwxr-xr-x  6 bridgebots bridgebots       4096 Nov 14 02:54 .\ndrwxr-xr-x 22 bridgebots bridgebots       4096 Nov 14 14:47 ..\ndrwxr-xr-x  2 bridgebots bridgebots       4096 Nov 14 02:44 mix-512\n-rw-r--r--  1 bridgebots bridgebots       3720 Nov 14 02:44 mix-512.log\ndrwxr-xr-x  2 bridgebots bridgebots       4096 Nov 14 03:04 mix-768\n-rw-r--r--  1 bridgebots bridgebots       3725 Nov 14 03:04 mix-768.log\n-rw-r--r--  1 bridgebots bridgebots 2776656379 Nov 14 02:30 mix.npz\n/dev/root       123G  101G   23G  83% /\n",
+ "received": "2026-11-14T18:29:45Z",
+ "script_sha256": "3637d624ca2ed9a5733eaf21e5060a8c54f4d268f15fb47fc408105414bbb8a7",
+ "started": "2026-11-14T18:29:45Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:36:35Z",
+ "id": "20261112T073603Z-934765-st1",
+ "output_bytes": 525,
+ "output_tail": "07:36:35\nreading bench paused for the 768-wide scoring 07:17:25\nfreshF done: {\"deals_in\": 144, \"deals_kept\": 144, \"dropped_as_seen\": 0, \"examples\": 65888} 07:19:09\neval w768e5 done 07:34:01\nreading bench resumed 07:34:02\npush w768e5 done 07:34:25\n== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B\n18\n81\n{\"table\": 104, \"family\": \"6fe6043d1876\", \"decisions\": 42, \"seconds\": 30.4, \"solve_seconds\": 9.6, \"elapsed\": 1535}\n 07:36:35 up  3:44,  0 user,  load average: 11.26, 6.69, 5.85\n",
+ "received": "2026-11-12T07:36:35Z",
+ "script_sha256": "91ea1b36f08067d3b1d6dc98b3fb18e5ea405d49f85235adcba7bff45697f941",
+ "started": "2026-11-12T07:36:35Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T00:21:59Z",
+ "id": "20261114T002113Z-790752-loop-h3",
+ "output_bytes": 322,
+ "output_tail": "source 59fdfd7\nRunning as unit: loop-rungs.service; invocation ID: 10dd37417f384a4e9442cd0de9fcd72a\nactive inactive 2026-11-14T00:21:39Z the collection is paused for jobs-azure5-h3.txt\n2026-11-14T00:21:39Z start h3-n stu3-n~stu0-n seed 131 first 1000 deals 4000 workers 8  (source 59fdfd7, nets fp32)\n2026-11-14T00:21:59Z\n",
+ "received": "2026-11-14T00:21:38Z",
+ "script_sha256": "6253e18e338d11ed3c25df5f223c37e04eb9879d953151a4e6533d8e8be08c97",
+ "started": "2026-11-14T00:21:38Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

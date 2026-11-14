@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:49:33Z",
+ "id": "20261112T134847Z-172361-plan-13-jobs",
+ "output_bytes": 182,
+ "output_tail": "queue: active; publisher: active; jobs listed: 4; position 0\n2026-11-12T13:49:24Z start ceilT712b (source 43ab390): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --world\n",
+ "received": "2026-11-12T13:49:13Z",
+ "script_sha256": "8e93debe7c6d0fc8c53fbebac3dc92929afc4064e82cc6682fb25a04853c4b32",
+ "started": "2026-11-12T13:49:13Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

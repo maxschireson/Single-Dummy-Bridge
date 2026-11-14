@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:03:41Z",
+ "id": "20261114T100301Z-480213-cmd",
+ "output_bytes": 391,
+ "output_tail": "Running as unit: loop-human2.service; invocation ID: b280129b82f94d7d94ad5dfb43ea1b7b\nactive active 2026-11-14T10:03:21Z start xh-mf-n stumf-n~stubf-n seed 131 first 30000 deals 8000 workers 4  (source b4e1eae, nets fp32)\n2026-11-14T09:50:48Z stage e1; source b4e1eae; threads 8\n2026-11-14T09:52:20Z net mf: sha256 effbe5da946a0dee\n2026-11-14T10:01:03Z stage mini; source b4e1eae; threads 8\n",
+ "received": "2026-11-14T10:03:21Z",
+ "script_sha256": "1644473123c2e1ffe860cc0d8d4aaa242265373aca9bc1b5b35ea39b8c3b719b",
+ "started": "2026-11-14T10:03:21Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

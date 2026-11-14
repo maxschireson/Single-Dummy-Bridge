@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:32:44Z",
+ "id": "20261112T063230Z-899603-check768",
+ "output_bytes": 1154,
+ "output_tail": "06:32:44\nep 2000 of 25858, 73 s\nepoch 1 step 4000 of 25858, 138 s\nepoch 1 step 6000 of 25858, 188 s\nepoch 1 step 8000 of 25858, 237 s\nepoch 1 step 10000 of 25858, 286 s\nepoch 1 step 12000 of 25858, 334 s\nepoch 1 step 14000 of 25858, 381 s\nepoch 1 step 16000 of 25858, 429 s\nepoch 1 step 18000 of 25858, 477 s\n\nw512c1 stopped and removed (not asked for) 06:01:05\nw512e5 exit 0 06:16:48\nfreshE done: {\"deals_in\": 1194, \"deals_kept\": 611, \"dropped_as_seen\": 583, \"examples\": 265124} 06:20:03\neval w512e5 done 06:26:53\npush w512e5 done 06:27:05\nw768e5 was restarted by the daily unattended upgrade at 06:23:48 (needrestart); it runs again from the start. needrestart set to list-only 06:28:40\n  p41-eval-w768e5.service loaded active running /bin/bash /home/bridgebots/work/p41src/training/policy-v4.1-20261112/eva\n  p41-w768e5.service      loaded active running /bin/bash -c \"/home/bridgebots/work/venv/bin/python scripts/train_gen7_p\n 06:32:44 up  2:40,  0 user,  load average: 6.78, 6.98, 8.78\n               total        used        free      shared  buff/cache   available\nMem:              31           7           7           0          16          23\n",
+ "received": "2026-11-12T06:32:44Z",
+ "script_sha256": "1cb034aadad246fa28de2adc2bf34f2b4487c7bd4a36c5921fa6278cd8c5b2e4",
+ "started": "2026-11-12T06:32:44Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

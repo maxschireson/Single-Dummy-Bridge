@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:45:54Z",
+ "id": "20261114T214527Z-257600-cmd",
+ "output_bytes": 853,
+ "output_tail": "drwxr-xr-x  2 bridgebots bridgebots     20480 Nov 14 14:47 held\n-rw-r--r--  1 bridgebots bridgebots   9506132 Nov 14 14:54 stu_held.npz\n-rw-r--r--  1 bridgebots bridgebots   9519740 Nov 14 14:54 stu_test.npz\ndrwxr-xr-x  2 bridgebots bridgebots     20480 Nov 14 14:47 test\n-rw-r--r--  1 bridgebots bridgebots 102638668 Nov 14 14:54 val.npz\nstu_test.npz 12419 rows ['state', 'order', 'legal', 'ctx', 'auction', 'shown', 'gap', 'owner']\nfee7d882734ac44c627d8362f9b6b15b2ab7e013dc8f10349530e5292bde09cd\nbefore.log\ninputs.json\nmetrics.json\nmetrics_before.json\nnet.log\npolicy.npz\npolicy.sha256\nstu_test.npz\nstu_test.npz.sha256\ntest-policy-r3.json\ntimeline.log\nval.npz\n  loop-publish.service loaded active running /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure5\n780 /home/bridgebots/work/loop/pub/h05/pairs-sp3s.jsonl\n",
+ "received": "2026-11-14T21:45:53Z",
+ "script_sha256": "a7317ad34d5937cb10d37b3000980e88faba8be655f4f6522153babb799d5bfa",
+ "started": "2026-11-14T21:45:53Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

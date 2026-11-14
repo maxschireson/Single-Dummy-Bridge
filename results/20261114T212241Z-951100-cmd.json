@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:22:45Z",
+ "id": "20261114T212241Z-951100-cmd",
+ "output_bytes": 225,
+ "output_tail": "w1536 epoch 1 sec 1975 train_ce 0.6597 | nll 0.5727 exact 0.7639 tricks 0.0257 gap-head 0.0249\nw1536 epoch 2 sec 3965 train_ce 0.5974 | nll 0.5472 exact 0.7728 tricks 0.023 gap-head 0.0241\nepoch 3 step 24000 of 59338, 4774 s\n",
+ "received": "2026-11-14T21:22:45Z",
+ "script_sha256": "39c0a389c8ad35822f13bbd8081f447edc455575f0948e3c160ebe0e08d9fde3",
+ "started": "2026-11-14T21:22:45Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

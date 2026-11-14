@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:32:28Z",
+ "id": "20261113T013208Z-920565-plan-peek5",
+ "output_bytes": 324,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 6889746 Nov 13 01:28 /home/bridgebots/work/plan/nets/w768e5_epoch5.npz\n2026-11-13T01:28:54Z start; source 40adc36\n/dev/root       123G   28G   96G  23% /\n2026-11-13T01:30:58Z fetched 60753 episodes\n1500 episodes 624859 examples\n 01:32:28 up 21:40,  0 user,  load average: 8.43, 8.45, 8.28\n",
+ "received": "2026-11-13T01:32:28Z",
+ "script_sha256": "3bb96eb6d4320204607d12511b0ea99d4c9f9903627d2dbc3fe0222ccf40cf6f",
+ "started": "2026-11-13T01:32:28Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

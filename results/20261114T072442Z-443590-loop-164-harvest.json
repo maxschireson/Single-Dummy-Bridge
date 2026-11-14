@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 40.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:25:47Z",
+ "id": "20261114T072442Z-443590-loop-164-harvest",
+ "output_bytes": 207,
+ "output_tail": "Running as unit: loop-usbc.service; invocation ID: 00b5ea04f7ef48bd903b33343d024cbd\nactive\nactive inactive loop-arena.service loop-collect.service loop-publish.service loop-usbc.service 2026-11-14T07:25:47Z\n",
+ "received": "2026-11-14T07:25:07Z",
+ "script_sha256": "e1acaead7af76d3fbc4f994ab9a961e2100cd6a806f91f3d29f1c101d3bde0ff",
+ "started": "2026-11-14T07:25:07Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

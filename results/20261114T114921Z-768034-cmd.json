@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:49:38Z",
+ "id": "20261114T114921Z-768034-cmd",
+ "output_bytes": 369,
+ "output_tail": "2026-11-14T10:44:12Z stage fit; source bd4d0b8; threads 4\n2026-11-14T10:59:15Z stage all; source bd4d0b8; threads 8\n2026-11-14T11:40:17Z start xh-m10B-n stum10B-n~stum10-n seed 131 first 30000 deals 4000 workers 4  (source bd4d0b8, nets fp32)\n/dev/root       123G   99G   25G  80% /\n2.0G\t/home/bridgebots/work/loop/exp-human 3.1G\t/home/bridgebots/work/loop/r3 11:49:38\n",
+ "received": "2026-11-14T11:49:38Z",
+ "script_sha256": "1826dc0a403ce8425852a83df17ef00b8b88a0899ae72f48ea10bba4c52f5824",
+ "started": "2026-11-14T11:49:38Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

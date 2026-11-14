@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:07:16Z",
+ "id": "20261114T140647Z-151729-cmd",
+ "output_bytes": 1810,
+ "output_tail": "sample: 500 of 543 records of the BEN feed, 2100 of 22524 of the others\n{\"episodes\": 2600, \"deals\": 2597, \"unique_families\": 2590, \"examples\": 1719627, \"train\": 1368924, \"validation\": 177964, \"test\": 172739, \"rows_with_unrated_cards\": 5409}\nrows 1719627 | by deciding bot: 8s-32 563834, 71s-32 313691, 8c-32 232321, 9a-32 187050, 5RZ32 136822, 1 129983, 8x3-32 92723, ben64 43825, stup0 16718, ben 2136, 7s-32 265, 6-32 259\n2026-11-14T14:03:04Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\n2026-11-14T14:03:04Z spr0 2164 tables; sp0 5669 tables; sps0 779 tables; sp3s 3166 tables; sg8t1 727 tables; 68 row files from the other boxes and the arena\n2026-11-14T14:04:19Z FAILED: round2.sh r4: 2026-11-14T14:03:17Z sp0: 5669 records 2026-11-14T14:03:19Z sps0: 779 records 2026-11-14T14:03:24Z sp3s: 3166 records 2026-11-14T14:03:26Z sg8t1: 728 records 2026-11-14T14:03:26Z records: 11906 to train on, 300 held o\n{\"episodes\": 2600, \"deals\": 2597, \"unique_families\": 2590, \"examples\": 1719627, \"train\": 1368924, \"validation\": 177964, \"test\": 172739, \"rows_with_unrated_cards\": 5409}\nrows 1719627 | by deciding bot: 8s-32 563834, 71s-32 313691, 8c-32 232321, 9a-32 187050, 5RZ32 136822, 1 129983, 8x3-32 92723, ben64 43825, stup0 16718, ben 2136, 7s-32 265, 6-32 259\n2026-11-14T14:03:04Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\n2026-11-14T14:03:24Z sp3s: 3166 records\n2026-11-14T14:03:26Z sg8t1: 728 records\n2026-11-14T14:03:26Z records: 11906 to train on, 300 held out, 300 for the test\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\nfailed active   24G\n 14:07:16 up 2 days, 10:15,  0 user,  load average: 9.64, 20.89, 32.36\npub last commit 2026-11-14 12:59:29 +0000\n  Transient: yes\n     Active: active (running) since Fri 2026-11-13 08:43:13 UTC; 1 day 5h ago\n",
+ "received": "2026-11-14T14:07:16Z",
+ "script_sha256": "fccff1ca0c42fffdb4fb63a995c7287cbba92fc9ddd93e9032ec4b6e0a24d50d",
+ "started": "2026-11-14T14:07:16Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

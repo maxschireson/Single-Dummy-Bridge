@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 3.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T22:13:38Z",
+ "id": "20261112T221328Z-373506-plan-34-sure",
+ "output_bytes": 470,
+ "output_tail": "source 6032cd5 Ending table: copies on all six Azure boxes\n/usr/bin/g++\ng++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\n-rwxr-xr-x 1 bridgebots bridgebots 56240 Nov 12 22:13 /home/bridgebots/work/plan/bin/sure_cpp\n{\"left\": 13, \"cards\": {\"12\": 0}, \"seconds\": 0.000012, \"search_seconds\": 0.000012, \"nodes_above\": 0, \"nodes_below\": 0, \"probes\": 0, \"table_new\": 0, \"tt_hits\": 0, \"cell_misses\": 0, \"replay_left\": 0}\n8\n 22:13:38 up 18:21,  0 user,  load average: 4.23, 4.95, 6.27\n",
+ "received": "2026-11-12T22:13:35Z",
+ "script_sha256": "329abd04ff47735f465a5affefe21ae8b0b4c46685a6a3938cb7b345862fa428",
+ "started": "2026-11-12T22:13:35Z",
+ "timed_out": false,
+ "timeout_s": 700
+}

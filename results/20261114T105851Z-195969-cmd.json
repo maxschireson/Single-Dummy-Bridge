@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 40.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:59:56Z",
+ "id": "20261114T105851Z-195969-cmd",
+ "output_bytes": 452,
+ "output_tail": "Running as unit: loop-human4.service; invocation ID: 56a18f294683439791489b1894d6fbc6\nactive active active 2026-11-14T10:59:15Z stage all; source bd4d0b8; threads 8\n2026-11-14T10:59:18Z set human_unfit: 516807 rows\n2026-11-14T10:43:38Z MATCH xh-hs-n stuhs-n~stubs-n: +0.944 +- 0.093 IMPs a deal for the first bot (4000 deals)\n2026-11-14T10:44:12Z MATCH xh-s10h-n6 stus10h-n~stus10-n: +0.206 +- 0.114 IMPs a deal for the first bot (2000 deals)\n10:59:55\n",
+ "received": "2026-11-14T10:59:15Z",
+ "script_sha256": "1874ea00dde37aeb495b4e06871c017660eebfc617db550a4d5ea7d1646fb140",
+ "started": "2026-11-14T10:59:15Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

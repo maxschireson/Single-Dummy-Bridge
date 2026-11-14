@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:04:02Z",
+ "id": "20261114T110345Z-574132-cmd",
+ "output_bytes": 881,
+ "output_tail": "/home/bridgebots/work/loop/exp-human/s10h.npz: 454954 rows of 11477 deals (train 9227, validation 1183, test 1067); rows by bot {'stup0': 410008, 'usbc': 44946}\n/home/bridgebots/work/loop/exp-human/m10F.npz: 933658 rows of 14775 deals (train 11877, validation 1516, test 1382); rows by bot {'1': 14985, '2': 4692, '3': 27\n/home/bridgebots/work/loop/exp-human/m10A.npz: 1450465 rows of 33203 deals (train 26706, validation 3224, test 3273); rows by bot {'1': 14985, '2': 4692, '3': 2\n/home/bridgebots/work/loop/exp-human/m10B.npz: 1450465 rows of 33203 deals (train 26706, validation 3224, test 3273); rows by bot {'1': 14985, '2': 4692, '3': 2\n\"epoch\": 1, \"seconds\": 177\n2026-11-14T10:44:12Z end xh-s10h-n6: exit 0\n2026-11-14T10:52:39Z start xh-m10F-n stum10F-n~stum10-n seed 131 first 30000 deals 4000 workers 4  (source bd4d0b8, nets fp32)\nxh-m10h4-p 127 xh-m10F-n 3641 11:04:01\n",
+ "received": "2026-11-14T11:04:01Z",
+ "script_sha256": "a90f3acbbe16076850e541cfe620ec9ed310e7376ecf9642eeaa5e421bade609",
+ "started": "2026-11-14T11:04:01Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

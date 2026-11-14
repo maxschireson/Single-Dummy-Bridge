@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:37:14Z",
+ "id": "20261114T153651Z-878315-cmd",
+ "output_bytes": 256,
+ "output_tail": "h4c-n +0.028 +- 0.034 (8000)\nh43-n +0.099 +- 0.056 (4000)\nh4c3-n +0.064 +- 0.057 (3534)\n2026-11-14T15:32:24Z end h43-n: exit 0\n2026-11-14T15:32:24Z start h4c3-n stu4c-n~stu3-n seed 131 first 30000 deals 4000 workers 8  (source a470efe, nets fp32)\n15:37:14\n",
+ "received": "2026-11-14T15:37:14Z",
+ "script_sha256": "721d1e6888afaf2f46c70fe6301c62cc4e66788b45050fb70bcddcee154acba6",
+ "started": "2026-11-14T15:37:14Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

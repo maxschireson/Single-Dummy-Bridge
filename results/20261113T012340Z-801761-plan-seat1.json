@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:23:47Z",
+ "id": "20261113T012340Z-801761-plan-seat1",
+ "output_bytes": 355,
+ "output_tail": "total 6584\ndrwxr-xr-x 2 bridgebots bridgebots    4096 Nov 13 01:23 .\ndrwxr-xr-x 3 bridgebots bridgebots    4096 Nov 13 01:23 ..\n-rw-r--r-- 1 bridgebots bridgebots 3365906 Nov 13 01:23 ft.npz\n-rw-r--r-- 1 bridgebots bridgebots 3365906 Nov 13 01:23 scratch.npz\nwaiting now: seat1 | match5 | rbc2a | rbc2b\nhttps://github.com/maxschireson/Single-Dummy-Bridge\n",
+ "received": "2026-11-13T01:23:46Z",
+ "script_sha256": "ba9c6372988cae455a79ce1151cc34203dd18f535c623d9f2f6c293640751bf2",
+ "started": "2026-11-13T01:23:46Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

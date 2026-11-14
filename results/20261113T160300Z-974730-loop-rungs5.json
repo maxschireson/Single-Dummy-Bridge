@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 60.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T16:04:13Z",
+ "id": "20261113T160300Z-974730-loop-rungs5",
+ "output_bytes": 535,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 7013852 Nov 13 16:02 /home/bridgebots/work/loop/src/models/cardplay/stu-net-r2-202611\nsource 3435a1b\nsp0 1041 tables\nspr0 1060 tables\nRunning as unit: loop-rungs.service; invocation ID: 1a3f80aa87ea4f6cbcf76fa31d4ebda1\nactive active \n2026-11-13T16:03:13Z the collection is paused for jobs-azure5-r2.txt\n2026-11-13T16:03:13Z start l2b-p stu2-p~8p-32-v41 seed 131 first 500 deals 200 workers 8 --episodes (source 3435a1b)\nstu2-p v 8p-32-v41: 200 boards to play (0 done), 8 workers\n2026-11-13T16:04:13Z\n",
+ "received": "2026-11-13T16:03:12Z",
+ "script_sha256": "6838195667735ce09172be33a64309d47f04efbfae2c0fa450d616dcf353af2d",
+ "started": "2026-11-13T16:03:12Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

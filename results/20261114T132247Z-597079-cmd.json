@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:00:44Z",
+ "id": "20261114T132247Z-597079-cmd",
+ "output_bytes": 90,
+ "output_tail": "14:00:44\ninactive\n 14:00:44 up 2 days, 10:08,  0 user,  load average: 11.15, 38.73, 41.55\n",
+ "received": "2026-11-14T14:00:44Z",
+ "script_sha256": "66ed9e0e47ce2b1017b40f13a53d36db7e18544c00e408839ce21c5349fdb8a6",
+ "started": "2026-11-14T14:00:44Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

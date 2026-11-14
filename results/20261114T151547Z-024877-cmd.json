@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:16:08Z",
+ "id": "20261114T151547Z-024877-cmd",
+ "output_bytes": 279,
+ "output_tail": "\"epoch\": 4, \"seconds\": 938\ntricks 9-13   8008  0.0626  0.0613  -0.0013 +- 0.0008\nall          32596  0.0643  0.0633  -0.0010 +- 0.0003\n2026-11-14T15:16:05Z round 4's nets are trained; the nets-alone matches and the collection follow (rungs.sh jobs-azure5-r4.txt)\nactive\n15:16:08\n",
+ "received": "2026-11-14T15:16:08Z",
+ "script_sha256": "d23363763314e8b088bff20788791d23e2644ba34cb79dbc79278b1d035dc03c",
+ "started": "2026-11-14T15:16:08Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

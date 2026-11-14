@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 23.8,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:48:07Z",
+ "id": "20261112T134721Z-012806-plan-11-setup",
+ "output_bytes": 349,
+ "output_tail": "checkout: 43ab390 Ceiling: skip passed-out boards; fork pairs as a learning set\npolicy v4.1 sha256 starts cb3fcfd5c5587373\npolicy files in the checkout: 5\ndds library: 1266008 bytes\n{\"episodes\": 1561, \"tip\": \"cb3a31ca58\"}\n{\"pairs\": 9, \"files\": 4, \"seconds\": 4}\npython 3.12.3 numpy 2.5.4\nsetup done on azure5: 8 cores, load average: 0.97, 0.32, 0.16\n",
+ "received": "2026-11-12T13:47:43Z",
+ "script_sha256": "1087b43443131b593e2d6ffcfa68f9d7b701b9efc51c5432da6dd36804c9117c",
+ "started": "2026-11-12T13:47:43Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

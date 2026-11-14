@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T17:10:04Z",
+ "id": "20261112T170953Z-145584-plan-33-fullsha",
+ "output_bytes": 220,
+ "output_tail": "running: ceilLead | waiting now: @source 0f0f4f895449ccfe2fc917c73e3b503d709a9c0f | ceilT12b $PY scripts/plan_ceiling.py --episodes $P/data/fres | ceilTies $PY scripts/plan_ceiling.py --episodes $P/data/fres\nposition 12\n",
+ "received": "2026-11-12T17:10:04Z",
+ "script_sha256": "5b19ada93adb169b7a01d450febd102e688cc2aa57ab8d19cfcb896f80650ef2",
+ "started": "2026-11-12T17:10:04Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

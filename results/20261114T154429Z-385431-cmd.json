@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:44:57Z",
+ "id": "20261114T154429Z-385431-cmd",
+ "output_bytes": 242,
+ "output_tail": "h4c3-n +0.092 +- 0.054 (4000)\nh4c-pst -0.935 +- 0.408 (62)\n2026-11-14T15:37:52Z end h4c3-n: exit 0\n2026-11-14T15:37:52Z start h4c-pst stu4-pst~stu4c-pst seed 131 first 36000 deals 500 workers 8 --episodes (source a470efe, nets fp32)\n15:44:57\n",
+ "received": "2026-11-14T15:44:57Z",
+ "script_sha256": "995d5f102dd8af91e7d9edb25b92587fb9e372f47f76c977fcd699820c59aea4",
+ "started": "2026-11-14T15:44:57Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

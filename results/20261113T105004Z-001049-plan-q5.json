@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:58:06Z",
+ "id": "20261113T105004Z-001049-plan-q5",
+ "output_bytes": 343,
+ "output_tail": "pos 39 of 40 lines\n2026-11-13T08:33:34Z end rbc2a: exit 0\n2026-11-13T08:33:34Z start rbc2b (source 0d1db2b): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net\n-rw-r--r-- 1 bridgebots bridgebots 0 Nov 13 08:33 /home/bridgebots/work/plan/runs/rbc2b.log\n0\n 10:58:06 up 1 day,  7:06,  0 user,  load average: 9.21, 11.11, 12.03\n",
+ "received": "2026-11-13T10:58:06Z",
+ "script_sha256": "280fcde76efa29ecbeefa8676f03a234dcac43e1b41882673b82566e03cbea69",
+ "started": "2026-11-13T10:58:06Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

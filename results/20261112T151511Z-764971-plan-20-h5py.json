@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 4.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:15:29Z",
+ "id": "20261112T151511Z-764971-plan-20-h5py",
+ "output_bytes": 100,
+ "output_tail": "h5py 3.16.0 numpy 2.5.4 /home/bridgebots/work/plan/pylib/numpy/__init__.py\nqueue source now 2f00276\n",
+ "received": "2026-11-12T15:15:24Z",
+ "script_sha256": "e482f04e6e10e6859b937e0340f05306ad2664387756f4a2778fbe38353e4abd",
+ "started": "2026-11-12T15:15:24Z",
+ "timed_out": false,
+ "timeout_s": 1000
+}

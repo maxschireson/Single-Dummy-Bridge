@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:29:28Z",
+ "id": "20261114T112915Z-325032-cmd",
+ "output_bytes": 734,
+ "output_tail": "m10B 1450465 1: 1.1963/0.5058/0.0673 2: 1.2241/0.5072/0.0665 3: 1.2295/0.5075/0.0661 4: 1.2293/0.5081/0.0660\n2026-11-14T11:11:51Z net m10A: sha256 4a8ee344bc813358\n2026-11-14T11:24:12Z net m10B: sha256 c4480687d1397d3f\n2026-11-14T11:21:33Z end xh-m10h4-n: exit 0\n2026-11-14T11:21:33Z start xh-m10h-n stum10h-n~stum10-n seed 131 first 30000 deals 6000 workers 4  (source bd4d0b8, nets fp32)\n2026-11-14T11:24:12Z start xh-m10A-n stum10A-n~stum10-n seed 131 first 30000 deals 4000 workers 4  (source bd4d0b8, nets fp32)\n/home/bridgebots/.boxctl/scripts/20261114T112915Z-325032-cmd.sh: line 8: /home/bridgebots/work/loop/runs/xh-hs-p/results.jsonl: No such file or directory\nxh-m10h4-p 214 xh-hs-p  xh-m10h-n 3863 xh-m10A-n 1220 11:29:28\n",
+ "received": "2026-11-14T11:29:27Z",
+ "script_sha256": "87c7b37851207a4585929ba8fc2984770a58c4cf1cae85d888591a659f34db1a",
+ "started": "2026-11-14T11:29:27Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

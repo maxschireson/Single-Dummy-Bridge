@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 243.9,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:13:27Z",
+ "id": "20261114T140857Z-444509-cmd",
+ "output_bytes": 923,
+ "output_tail": "checked\n2026-11-14T13:55:00Z\n  24G\nsource a470efe\nRunning as unit: loop-r4.service; invocation ID: 94f25ffc454b43899b61dc6a41b39ec6\nactive inactive active {\"episodes\": 2600, \"deals\": 2597, \"unique_families\": 2590, \"examples\": 1719627, \"train\": 1368924, \"validation\": 177964, \"test\": 172739, \"rows_with_unrated_cards\": 5409}\nrows 1719627 | by deciding bot: 8s-32 563834, 71s-32 313691, 8c-32 232321, 9a-32 187050, 5RZ32 136822, 1 129983, 8x3-32 92723, ben64 43825, stup0 16718, ben 2136, 7s-32 265, 6-32 259\n2026-11-14T14:11:41Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\n2026-11-14T14:11:41Z spr0 2164 tables; sp0 5669 tables; sps0 779 tables; sp3s 3166 tables; sg8t1 923 tables; 68 row files from the other boxes and the arena\n2026-11-14T14:12:01Z sp3s: 3166 records\n2026-11-14T14:12:02Z sg8t1: 923 records\n2026-11-14T14:12:02Z records: 12101 to train on, 300 held out, 300 for the test\n2026-11-14T14:13:27Z\n",
+ "received": "2026-11-14T14:09:23Z",
+ "script_sha256": "103a7f857b39239399906212acfce88aafec83cdb10629c7775f8f6f64a9cc51",
+ "started": "2026-11-14T14:09:23Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

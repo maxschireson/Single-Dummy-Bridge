@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 16.8,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:52:12Z",
+ "id": "20261114T205133Z-317994-cmd",
+ "output_bytes": 254,
+ "output_tail": "Running as unit: loop-serve.service; invocation ID: 956f9a306b884c7dba32ec79e8b6d6ad\nactive\nddaad247b91ef815c0dd0cbe5b65bb63af956617e36173719b37fa451a8e237c  train.npz\n511d1d8cade0564e96a5919b39957d90b33216ffd3bc3dd61abfc5b5deb995db  freshB.npz\n20:52:12\n",
+ "received": "2026-11-14T20:51:55Z",
+ "script_sha256": "cb03c865b6bc8acd9fdc1296d34cbd8767c58152aecdcdc58f7cc78fc9cd88bf",
+ "started": "2026-11-14T20:51:55Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

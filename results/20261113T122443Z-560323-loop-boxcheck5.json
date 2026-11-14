@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 763.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:37:34Z",
+ "id": "20261113T122443Z-560323-loop-boxcheck5",
+ "output_bytes": 1530,
+ "output_tail": "l0b-p at 500 boards\n2026-11-13T12:30:42Z end l0b-p: exit 0\n2026-11-13T12:30:42Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 8 --episodes --one-room (source e760e5e)\n{\"pair\": \"stu0-p~8p-32-v41\", \"boards\": 64, \"cpu_per_board\": 42.77, \"common\": {\"imps_per_board\": -0.3906, \"se\": 0.4963, \"boards\": 64, \"won\": 11, \"lost\": 15, \"flat\": 38}, \"native\": {\"imps_per_board\": -0\nx0-p: 373 s wall\nboards compared 64 | same IMPs 64 | same decision counts (rollouts, claims, moved, claim questions) 63\nmean here -0.391 there -0.391\nboards that differ (index, here, azure3): []\ncpu a board here 42.8 there 47.5\nhere candidate totals: {'rollout': 2239, 'claim': 324, 'moved': 777, 'guaranteed': 205, 'guarantee_moved': 0, 'odds': 351, 'rollouts': 348172, 'net_rows': 9227862, 'asked': 343573, 'ended': 35082, 'floored': 589.7}\nazure3 candidate totals: {'rollout': 2239, 'claim': 324, 'moved': 777, 'guaranteed': 205, 'guarantee_moved': 0, 'odds': 351, 'rollouts': 348172, 'net_rows': 9227790, 'asked': 343577, 'ended': 35083, 'floored': 589.7}\nsource e760e5e\n22979d652302b7b7c02b  /home/bridgebots/work/loop/bin/sure_cpp\n8f87aa8f52ae2c119408  /home/bridgebots/work/loop/src/models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz\nRunning as unit: loop-collect.service; invocation ID: 1f0276957b364dc5880bd63066a1e086\nactive active \n2026-11-13T12:37:04Z end l0b-p: exit 0\n2026-11-13T12:37:04Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 8 --episodes --one-room (source e760e5e)\n2026-11-13T12:37:34Z\n",
+ "received": "2026-11-13T12:24:50Z",
+ "script_sha256": "1a0cdb7059c1eae04872d3ef648758190ecf6b5b5b62ee5c7115c451117223f4",
+ "started": "2026-11-13T12:24:50Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:58:04Z",
+ "id": "20261113T195735Z-227321-loop-pyspy",
+ "output_bytes": 337,
+ "output_tail": "chain worker parent 202331 child 202332:  0.0      83 [sh] <defunct>\nCaused by:\n    0: No such file or directory (os error 2)\n    1: No such file or directory (os error 2)\nTraceback (most recent call last):\n  File \"<stdin>\", line 3, in <module>\nFileNotFoundError: [Errno 2] No such file or directory: '/tmp/spy.txt'\n2026-11-13T19:58:04Z\n",
+ "received": "2026-11-13T19:58:02Z",
+ "script_sha256": "45c7db9279731795b95368a01dca1c8f063d1348e3719b2c112972e392d2d570",
+ "started": "2026-11-13T19:58:02Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

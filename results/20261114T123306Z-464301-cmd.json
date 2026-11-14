@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:33:22Z",
+ "id": "20261114T123306Z-464301-cmd",
+ "output_bytes": 1413,
+ "output_tail": "\u25cf loop-arena.service - /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/round4_arena.sh /home/bridgebots/work/loop/r4arena 45000\n     Loaded: loaded (/run/systemd/transient/loop-arena.service; transient)\n  Transient: yes\n     Active: active (running) since Sat 2026-11-14 12:17:11 UTC; 16min ago\n   Main PID: 372088 (bash)\n      Tasks: 3 (limit: 35468)\n     Memory: 4.9G (peak: 4.9G)\n        CPU: 14min 38.613s\n     CGroup: /system.slice/loop-arena.service\n             \u251c\u2500372088 /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/round4_arena.sh /home/bridgebots/work/loop/r4arena 45000\n             \u251c\u2500372504 /home/bridgebots/work/loop/venv/bin/python - /home/bridgebots/work/loop/r4arena 45000 0.017\n             \u2514\u2500372505 tee -a /home/bridgebots/work/loop/r4arena/arena.log\n\nNov 14 12:17:16 Bridgebots5 bash[372188]: 2026-11-14T12:17:16Z arena-gen8-19bbdce5-20261112-feed: 5126 records, 4010 not in v2's set\n 372088       16:10 00:00:00  10 /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/round4_arena.sh /home/bridgebots/work/loop/r4arena 45000\n 372504       16:00 00:14:35  10 /home/bridgebots/work/loop/venv/bin/python - /home/bridgebots/work/loop/r4arena 45000 0.017\n 372505       16:00 00:00:00  10 tee -a /home/bridgebots/work/loop/r4arena/arena.log\n24571\n7.0G\n0\n24578 /home/bridgebots/work/loop/r4arena/new.txt\n",
+ "received": "2026-11-14T12:33:22Z",
+ "script_sha256": "13dac3e0f7ac5a42109106a813f1229a22c2545fc9cf84ebce10b992489a310f",
+ "started": "2026-11-14T12:33:22Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

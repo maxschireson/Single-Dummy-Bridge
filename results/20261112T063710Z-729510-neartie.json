@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:37:19Z",
+ "id": "20261112T063710Z-729510-neartie",
+ "output_bytes": 1745,
+ "output_tail": "06:37:19\n\nebots bridgebots       4096 Nov 12 06:20 .\nebots bridgebots       4096 Nov 12 06:18 ..\nebots bridgebots      10253 Nov 12 03:59 fetch1.json\nebots bridgebots      10175 Nov 12 04:28 fetchB.json\nebots bridgebots      10400 Nov 12 05:00 fetchC.json\nebots bridgebots      10393 Nov 12 05:18 fetchD.json\nebots bridgebots      10401 Nov 12 06:18 fetchE.json\nebots bridgebots  391391033 Nov 12 06:20 freshALL_E.npz\nebots bridgebots  162807149 Nov 12 04:29 freshB.npz\nebots bridgebots  207203230 Nov 12 04:29 freshB_raw.npz\nebots bridgebots  134323464 Nov 12 05:01 freshC.npz\nebots bridgebots  193981750 Nov 12 05:18 freshCD.npz\nebots bridgebots  165749164 Nov 12 05:01 freshC_raw.npz\nebots bridgebots   59711740 Nov 12 05:18 freshD.npz\nebots bridgebots   76221393 Nov 12 05:18 freshD_raw.npz\nebots bridgebots  197462737 Nov 12 06:20 freshE.npz\nebots bridgebots  237000672 Nov 12 06:20 freshE_raw.npz\nebots bridgebots 9859941618 Nov 12 04:28 gen7_v41_train.npz\nebots bridgebots   38667966 Nov 12 04:34 pairsA.npz\nebots bridgebots     931830 Nov 12 04:34 pairsB.npz\nebots bridgebots     724646 Nov 12 05:05 pairsC.npz\nebots bridgebots     333318 Nov 12 05:20 pairsD.npz\n/home/bridgebots/work/p41/runs/: bench infer result_head result_head_final w512 w512e5 w768 w768e5  /home/bridgebots/work/p41/runs/result_head_final: result_head.json result_head.npz \nRunning as unit: p41-neartie.service; invocation ID: aed9a6ba176344cea9f3abcad314f27f\n\n{\"epoch\": 1, \"seconds\": 669, \"train_ce\": 0.7048, \"train_gap\": 0.0472, \"train_owner\": 0.5762, \"val\": {\"n\": 218537, \"nll\": 0.6576, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7291, \"in_best\": 0.8964, \"regret\": 0.0331, \"regret_gap_head\": 0.0275, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n",
+ "received": "2026-11-12T06:37:18Z",
+ "script_sha256": "a88108bd34c9ef37d70279d12d5c65044bf81620feee4548e4ab29c92e6d6397",
+ "started": "2026-11-12T06:37:18Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

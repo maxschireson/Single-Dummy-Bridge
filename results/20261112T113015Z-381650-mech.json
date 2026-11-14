@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:30:36Z",
+ "id": "20261112T113015Z-381650-mech",
+ "output_bytes": 1954,
+ "output_tail": "Running as unit: g8-mech.service; invocation ID: 1ea7430b3c3447358207525ebb76b6df\n{\n \"all\": {\n  \"pairs\": 2613,\n  \"deals\": 799,\n  \"realized_cost_of_b\": [\n   0.3869,\n   0.0175\n  ],\n  \"b_did_better\": 0.07,\n  \"hindsight\": [\n   0.0785,\n   0.0071\n  ],\n  \"pimc\": {\n   \"prefers_b\": 0.023,\n   \"gain\": [\n    -0.0019,\n    0.0021\n   ],\n   \"over_pimc\": [\n    0.0,\n    0.0\n   ],\n   \"cost_of_b_when_preferred\": 0.082\n  },\n  \"pimc_k\": {\n   \"prefers_b\": 0.038,\n   \"gain\": [\n    0.0008,\n    0.0027\n   ],\n   \"over_pimc\": [\n    0.0,\n    0.0\n   ],\n   \"cost_of_b_when_preferred\": -0.02\n  },\n  \"tree_0_plain1\": {\n   \"prefers_b\": 0.038,\n   \"gain\": [\n    -0.0004,\n    0.0026\n   ],\n   \"over_pimc\": [\n    -0.0011,\n    0.001\n   ],\n   \"cost_of_b_when_preferred\": 0.01,\n   \"seconds\": 0.019,\n   \"lines\": 2.0,\n   \"net_rows\": 0.0,\n   \"solves\": 15.8\n  },\n  \"mix_0_plain1\": {\n   \"prefers_b\": 0.043,\n   \"gain\": [\n    -0.0069,\n    0.0027\n   ],\n   \"over_pimc\": [\n    -0.005,\n    0.0018\n   ],\n   \"cost_of_b_when_preferred\": 0.161\n  },\n  \"tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1\": {\n   \"prefers_b\": 0.169,\n   \"gain\": [\n    -0.0073,\n    0.0059\n   ],\n   \"over_pimc\": [\n    -0.008,\n    0.0058\n   ],\n   \"cost_of_b_when_preferred\": 0.043,\n   \"seconds\": 0.074,\n   \"lines\": 23.9,\n   \"net_rows\": 98.9,\n   \"solves\": 59.7\n  },\n  \"mix_3_breadth3_mass0.98_path0.5_path_solves3000_plain1\": {\n   \"prefers_b\": 0.169,\n   \"gain\": [\n    -0.0126,\n    0.0058\n   ],\n   \"over_pimc\": [\n    -0.0107,\n    0.0059\n   ],\n   \"cost_of_b_when_preferred\": 0.075\n  },\n  \"tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1\": {\n   \n848\nbench_v0 dict ['settings', 'rows'] 2613 pairs 799 deals ['pimc', 'pimc_k', 'tree_0_plain1', 'tree_3_breadth3_mass0.98_net2_path0.5_path_solves3000_plain1', 'tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1']\nbench_l32 dict ['settings', 'rows'] 2613 pairs 799 deals ['pimc', 'pimc_k', 'tree_0_plain1', 'tree_3_breadth3_mass0.98_path0.5_path_solves3000_plain1']\n",
+ "received": "2026-11-12T11:30:36Z",
+ "script_sha256": "58cafa1a014f5359b58b022bbfad34b675f17472375296fedc2d3f1ba5791273",
+ "started": "2026-11-12T11:30:36Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

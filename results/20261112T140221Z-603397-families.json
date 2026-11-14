@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:02:51Z",
+ "id": "20261112T140221Z-603397-families",
+ "output_bytes": 486,
+ "output_tail": "34029 families f1c54e7e26de98c40f248dc75bddf10df067592e7ca95ce9c4f5890e59ebb1ff\ntotal 1240\ndrwxr-xr-x  3 bridgebots bridgebots    4096 Nov 12 14:02 .\ndrwxr-xr-x 14 bridgebots bridgebots    4096 Nov 12 14:02 ..\ndrwxr-xr-x  8 bridgebots bridgebots    4096 Nov 12 14:02 .git\n-rw-r--r--  1 bridgebots bridgebots     417 Nov 12 14:02 README.md\n-rw-r--r--  1 bridgebots bridgebots 1252264 Nov 12 14:02 v41_training_families.txt.gz\n 14:02:51 up 10:10,  0 user,  load average: 8.14, 7.62, 4.82\n",
+ "received": "2026-11-12T14:02:49Z",
+ "script_sha256": "84005359d02b3b18820bd528a2cf8ca42df1bbb6f75e3d54eb97f784e800d3ed",
+ "started": "2026-11-12T14:02:49Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

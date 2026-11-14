@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:34:47Z",
+ "id": "20261113T083442Z-488085-loop-hold-plan-queue",
+ "output_bytes": 385,
+ "output_tail": "plan-queue main pid: 53065 (bash /home/bridgebots/work/plan/queue.sh)\n    PID STAT ELAPSED COMMAND\n  53065 Ts     67568 bash /home/bridgebots/work/plan/queue.sh\nqueue.pos 39; last log: 2026-11-13T08:33:34Z start rbc2b (source 0d1db2b): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net\nchildren still running: 9 plan_reading_bound.py processes\n2026-11-13T08:34:47Z\n",
+ "received": "2026-11-13T08:34:46Z",
+ "script_sha256": "f140d1e7b5db05c6338da6c4a8ae5c00f0e099371e73169f669ce93c6478a6cc",
+ "started": "2026-11-13T08:34:46Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

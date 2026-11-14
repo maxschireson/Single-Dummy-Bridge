@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:38:04Z",
+ "id": "20261112T143735Z-193965-plan-17-cheap",
+ "output_bytes": 167,
+ "output_tail": "running: rbs2 | waiting now: @source rbs4 rbs5 rbs3 ceilT12 wide3 ceil16c\nposition 3; 2026-11-12T14:31:12Z start rbs2 (source b0230a0): $PY scripts/plan_reading_bound\n",
+ "received": "2026-11-12T14:38:04Z",
+ "script_sha256": "1220fa5b73f4f35e0588bfda4038bb4cc284f411ea9282793159a68c79666e65",
+ "started": "2026-11-12T14:38:04Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:02:59Z",
+ "id": "20261114T120233Z-057808-cmd",
+ "output_bytes": 728,
+ "output_tail": "2026-11-14T12:01:57Z MATCH xh-hs-p stuhs-pst~stubs-pst: -0.008 +- 0.318 IMPs a deal for the first bot (250 deals)\n2026-11-14T11:54:51Z net hA: sha256 228544464cae3224\n2026-11-14T12:00:06Z net bA: sha256 39e3c819c1bbb527\n\"epoch\": 6, \"seconds\": 300\n\"epoch\": 2, \"seconds\": 155\nhA 630296 1: 1.5277/0.4229/0.0878 2: 1.5226/0.4318/0.0822 3: 1.5643/0.4385/0.0790 4: 1.6641/0.4406/0.0771 5: 1.6620/0.4424/0.0752 6: 1.7069/0.4422/0.0754\nbA 920187 1: 1.3495/0.4351/0.0922 2: 1.3666/0.4504/0.0877 3: 1.4043/0.4637/0.0819 4: 1.4026/0.4658/0.0810 5: 1.4326/0.4682/0.0789 6: 1.4459/0.4683/0.0787\n2026-11-14T12:01:57Z start xh-hf-p stuhf-pst~stubf-pst seed 131 first 30000 deals 250 workers 8  (source bd4d0b8, nets fp32)\nxh-hs-p 250\n12:02:59\n",
+ "received": "2026-11-14T12:02:59Z",
+ "script_sha256": "bdfdc7137248d3d438ce8cde2dd978854be9ff1562b1690f5205c1c1f4bcba4c",
+ "started": "2026-11-14T12:02:59Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

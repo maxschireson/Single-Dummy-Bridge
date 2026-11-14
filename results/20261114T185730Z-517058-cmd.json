@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.8,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:58:00Z",
+ "id": "20261114T185730Z-517058-cmd",
+ "output_bytes": 802,
+ "output_tail": "boxctl.service                               enabled         enabled\nlxd-agent.service                            static          -\nwalinuxagent-network-setup.service           enabled         enabled\nwalinuxagent.service                         enabled         enabled\nboxctl.service                                                                                                                              \nloop-publish: ActiveState=active UnitFileState=transient Transient=yes \nloop-rows: ActiveState=inactive UnitFileState= Transient=no \nloop-width: ActiveState=active UnitFileState=transient Transient=yes \nRestart=on-failure\nRestartSec=1min\nExecStart=\nExecStart=\"/usr/bin/bash\" \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh\" \"azure5\"\nepoch 1 step 22000 of 59338, 1032 s\n",
+ "received": "2026-11-14T18:58:00Z",
+ "script_sha256": "4ceb9896559555394d5009b13afb1814a27343dfe82620d15ee658f36205b0fb",
+ "started": "2026-11-14T18:58:00Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

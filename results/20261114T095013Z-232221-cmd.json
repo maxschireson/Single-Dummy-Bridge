@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 52.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:51:33Z",
+ "id": "20261114T095013Z-232221-cmd",
+ "output_bytes": 1517,
+ "output_tail": "sg8t1 so far: 711 tables\nsource b4e1eae\n2026-11-14T09:50:46Z stage sets; source b4e1eae; threads 8\n2026-11-14T09:50:47Z set human: 44946 rows\n2026-11-14T09:50:47Z set bot: 63993 rows\n2026-11-14T09:50:48Z set mixed: 108939 rows\n2026-11-14T09:50:48Z set stu_eval: 41108 rows\n2026-11-14T09:50:48Z set stu_eval_usbc: 41108 rows\nnet    rows      | held-out SiD rows by epoch: log-loss / exact card / tricks its first card gives up | round 3's net there\n2026-11-14T09:50:48Z done: sets\nRunning as unit: loop-human.service; invocation ID: 820af9fa57d54ded880602ea2ea0166e\nunits: loop-collect=inactive loop-human=active loop-publish=active \n2026-11-14T09:50:48Z stage e1; source b4e1eae; threads 8\n2026-11-14T09:51:15Z net hf: sha256 3a75dd11b9b454e7\n{\"epoch\": 3, \"seconds\": 12, \"train_ce\": 0.8718, \"train_gap\": 0.0, \"train_owner\": 0.649, \"val\": {\"n\": 41108, \"searched\": 32596, \"nll\": 1.3099, \"uniform_nll\": 1.3989, \"tie_nll\": 0.3458, \"agree\": 0.4825, \"in_best\": 0.6201, \"rated_pick\": 0.9929, \"regret\"\n{\"epoch\": 4, \"seconds\": 17, \"train_ce\": 0.8622, \"train_gap\": 0.0, \"train_owner\": 0.6484, \"val\": {\"n\": 41108, \"searched\": 32596, \"nll\": 1.3136, \"uniform_nll\": 1.3989, \"tie_nll\": 0.3458, \"agree\": 0.4822, \"in_best\": 0.62, \"rated_pick\": 0.9929, \"regret\":\n{\"done\": \"/home/bridgebots/work/loop/exp-human/hf\", \"selected_epoch\": 1, \"validation\": {\"n\": 41108, \"searched\": 32596, \"nll\": 1.2067, \"uniform_nll\": 1.3989, \"tie_nll\": 0.3458, \"agree\": 0.4948, \"in_best\": 0.6212, \"rated_pick\": 0.9949, \"regret\": 0.0641\n2026-11-14T09:51:33Z\n",
+ "received": "2026-11-14T09:50:41Z",
+ "script_sha256": "e6c3d24d2a0aa00a7ca53ba06fd031c11f920d4125b4f6c0d12d80de0f6efd32",
+ "started": "2026-11-14T09:50:41Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

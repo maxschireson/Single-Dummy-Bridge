@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 4155.4,
+ "exit_code": 1,
+ "finished": "2026-11-14T14:00:07Z",
+ "id": "20261114T125041Z-425665-cmd",
+ "output_bytes": 2603,
+ "output_tail": "source 2dde349\n  26G\nazure3: 3 row files, 7 MB\nazure3: cut sp0b-83000-84098.npz\nazure3: cut sp3sb-380000-380273.npz\nazure3: cut spr0b-120000-120961.npz\nazure3: cut sps0b-280000-280826.npz\nazure6: 14 row files, 29 MB\nazure6: cut sp0c-144000-145173.npz\nazure6: cut sp3sc-400000-400449.npz\nazure6: cut sp3tb-627000-628098.npz skipped, a block from 627000 on is published\nazure6: cut spr0c-161000-161198.npz\nazure6: cut sps0c-301000-302162.npz\nazure2: 11 row files, 23 MB\nazure2: cut sp0d-183000-183873.npz\nazure2: cut sp3sd-420000-420514.npz\nazure2: cut sp3t-607000-607359.npz\nazure2: cut spr0d-200000-200945.npz\nazure2: cut sps0d-321000-322127.npz\nazure1: 20 row files, 40 MB\nazure1: cut sg8e-501000-501300.npz\nazure1: cut sg8s7-713000-713740.npz\nazure1: cut sp0e-223000-223570.npz\nazure1: cut sp3se-442000-442787.npz\nazure1: cut spr0e-240000-240940.npz\nazure1: cut sps0e-341000-341744.npz\nsps0c-300000.npz: bot names read through alias.txt\nsps0d-320000.npz: bot names read through alias.txt\nsps0e-340000.npz: bot names read through alias.txt\n8 files that are no board records set aside (odd/)\n{\"episodes\": 23067, \"deals\": 23024, \"unique_families\": 22021, \"examples\": 17612115, \"train\": 14065520, \"validation\": 1778623, \"test\": 1767972, \"rows_with_unrated_cards\": 57651}\nrows 17612115 | by deciding bot: 8s-32 6182128, 71s-32 3238073, 8c-32 2414433, 9a-32 1708385, 5RZ32 1417579, 1 1402766, 8x3-32 970006, stup0 182243, ben64 68963, ben 26257, 7s-32 1023, 6-32 259\n2026-11-14T13:42:39Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\nspr0 2164 tables; sp0 5669 tables; sps0 779 tables; sp3s 3166 tables; sg8t1 711 tables; 68 row files from the other boxes and the arena\nround2.sh r4 failed\n\nTraceback (most recent call last):\n  File \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/sample_set.py\", line 66, in <module>\n    main()\n  File \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/sample_set.py\", line 58, in main\n    np.savez(a.out, **out)\n  File \"/home/bridgebots/work/loop/venv/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py\", line 673, in savez\n    _savez(file, args, kwds, False, allow_pickle=allow_pickle)\n  File \"/home/bridgebots/work/loop/venv/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py\", line 790, in _savez\n    zipf.close()\n  File \"/usr/lib/python3.12/zipfile/__init__.py\", line 1975, in close\n    self._fpclose(fp)\n  File \"/usr/lib/python3.12/zipfile/__init__.py\", line 2075, in _fpclose\n    fp.close()\nOSError: [Errno 28] No space left on device\nRunning as unit: loop-collect.service; invocation ID: f4289d161fa247a090c52cfb6c2ad094\n",
+ "received": "2026-11-14T12:50:52Z",
+ "script_sha256": "32f835e321127a200a0fe71a411f74cc3b89028f3b30bfdcf5257a574413ce38",
+ "started": "2026-11-14T12:50:52Z",
+ "timed_out": false,
+ "timeout_s": 14400
+}

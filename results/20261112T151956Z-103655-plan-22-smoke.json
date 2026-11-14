@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 99.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:21:45Z",
+ "id": "20261112T151956Z-103655-plan-22-smoke",
+ "output_bytes": 389,
+ "output_tail": "pr75-32-v41 v 7s-32-v41: 2 boards to play (0 done), 2 workers\n2 boards: 0.5 +- 0.5 IMPs/board for pr75-32-v41; 75 boards/hour; 0 failed\n{\"pair\": \"pr75-32-v41~7s-32-v41\", \"boards\": 2, \"cpu_per_board\": 77.69, \"common\": {\"imps_per_board\": 0.5, \"se\": 0.5, \"boards\": 2, \"won\": 1, \"lost\": 0, \"flat\": 1}, \"native\": {\"imps_per_board\": 0.5, \"se\": 0.5, \"boards\": 2, \"won\": 1, \"lost\": 0, \"flat\": 1}}\n",
+ "received": "2026-11-12T15:20:06Z",
+ "script_sha256": "1df225d02f03a3068fd805e9a62bfee5d1a5ad0aa7b02c7fcd00a2b10e8ebd9f",
+ "started": "2026-11-12T15:20:06Z",
+ "timed_out": false,
+ "timeout_s": 1000
+}

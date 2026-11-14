@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 15.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:36:42Z",
+ "id": "20261114T103610Z-553824-cmd",
+ "output_bytes": 1141,
+ "output_tail": "source bd4d0b8\n2026-11-14T10:36:27Z net s10 replaced by its last epoch (6): sha256 7c7bc3902cdc1a74; the match xh-s10h-n (epochs 1 and 2) is void\n2026-11-14T10:36:27Z net s10h replaced by its last epoch (6): sha256 91d48bc14f4f5cbb; the match xh-s10h-n (epochs 1 and 2) is void\nRunning as unit: loop-human3.service; invocation ID: bbc05d5997c04cf4b1e6f3ed4a309b3d\nactive active active 2026-11-14T10:19:30Z MATCH xh-mf-n stumf-n~stubf-n: +0.082 +- 0.040 IMPs a deal for the first bot (8000 deals)\n2026-11-14T10:25:04Z MATCH xh-m10h4-n stum10h4-n~stum10-n: +0.185 +- 0.073 IMPs a deal for the first bot (2000 deals)\n2026-11-14T10:34:24Z MATCH xh-s10h-n stus10h-n~stus10-n: +1.744 +- 0.131 IMPs a deal for the first bot (2000 deals)\n2026-11-14T10:36:02Z MATCH xh-hf-n stuhf-n~stubf-n: +0.137 +- 0.045 IMPs a deal for the first bot (8000 deals)\n2026-11-14T10:36:02Z end xh-hf-n: exit 0\n2026-11-14T10:36:02Z start xh-hs-n stuhs-n~stubs-n seed 131 first 30000 deals 4000 workers 4  (source b4e1eae, nets fp32)\n2026-11-14T10:36:27Z start xh-s10h-n6 stus10h-n~stus10-n seed 131 first 30000 deals 2000 workers 4  (source bd4d0b8, nets fp32)\n10:36:42\n",
+ "received": "2026-11-14T10:36:26Z",
+ "script_sha256": "12f8bf6b732431564921eb0188587cf9b42ba5e027f0ef9c19d94feac610b4e1",
+ "started": "2026-11-14T10:36:26Z",
+ "timed_out": false,
+ "timeout_s": 150
+}

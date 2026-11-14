@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:45:29Z",
+ "id": "20261114T114527Z-009144-cmd",
+ "output_bytes": 1235,
+ "output_tail": "2026-11-14T10:25:04Z stage scratch; source b4e1eae; threads 8\n2026-11-14T10:44:12Z stage fit; source bd4d0b8; threads 4\n2026-11-14T10:59:15Z stage all; source bd4d0b8; threads 8\n/home/bridgebots/work/loop/exp-human/s10h.npz: 454954 rows of 11477 deals (train 9227, validation 1183, test 1067); rows by bot {'stup0': 410008, 'usbc': 44946}; with the rollouts' values 70%\n/home/bridgebots/work/loop/exp-human/m10F.npz: 933658 rows of 14775 deals (train 11877, validation 1516, test 1382); rows by bot {'1': 14985, '2': 4692, '3': 2790, '4b': 5070, '5-32': 3672, '5R192': 1\n/home/bridgebots/work/loop/exp-human/m10A.npz: 1450465 rows of 33203 deals (train 26706, validation 3224, test 3273); rows by bot {'1': 14985, '2': 4692, '3': 2790, '4b': 5070, '5-32': 3672, '5R192': \n/home/bridgebots/work/loop/exp-human/m10B.npz: 1450465 rows of 33203 deals (train 26706, validation 3224, test 3273); rows by bot {'1': 14985, '2': 4692, '3': 2790, '4b': 5070, '5-32': 3672, '5R192': \n2026-11-14T11:40:17Z end xh-m10A-n: exit 0\n2026-11-14T11:40:17Z start xh-m10B-n stum10B-n~stum10-n seed 131 first 30000 deals 4000 workers 4  (source bd4d0b8, nets fp32)\nxh-hs-p 43  11:45:29 up 2 days,  7:53,  0 user,  load average: 12.86, 13.48, 14.98\n11:45:29\n",
+ "received": "2026-11-14T11:45:29Z",
+ "script_sha256": "e5e4c7b066c9a7ea38f45bc6b68139edb628b37faed701ea949105df3853a424",
+ "started": "2026-11-14T11:45:29Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

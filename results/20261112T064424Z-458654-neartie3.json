@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 70.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:45:54Z",
+ "id": "20261112T064424Z-458654-neartie3",
+ "output_bytes": 603,
+ "output_tail": "Running as unit: p41-neartie-bots.service; invocation ID: b1e18b59de6341c5a06da21ccf325895\nneartie pushed 06:42:36\nneartie bot 0 exit 0 06:44:53\nneartie bot 2 exit 0 06:45:01\nneartie pushed 06:45:02\n{\"epoch\": 2, \"seconds\": 1166, \"train_ce\": 0.6137, \"train_gap\": 0.0378, \"train_owner\": 0.5572, \"val\": {\"n\": 218537, \"nll\": 0.6269, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7464, \"in_best\": 0.9058, \"regret\": 0.0271, \"regret_gap_head\": 0.0245, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n2 step 24000 of 25858, 1126 s\nepoch 3 step 2000 of 25858, 1208 s\nepoch 3 step 4000 of 25858, 1250 s\n",
+ "received": "2026-11-12T06:44:44Z",
+ "script_sha256": "ff032eaa0df3b03aa6a412d412963f719ae22c2b364bdc2f502fa12d6765d1fc",
+ "started": "2026-11-12T06:44:44Z",
+ "timed_out": false,
+ "timeout_s": 150
+}

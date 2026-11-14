@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 49.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:01:36Z",
+ "id": "20261114T133618Z-361294-cmd",
+ "output_bytes": 684,
+ "output_tail": "2026-11-14T14:00:10Z start s8-passive0 g8-passive0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 2dde349, nets fp32)\n2026-11-14T14:00:10Z end s8-passive0: exit 0\n2026-11-14T14:00:10Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source 2dde349, nets fp32)\n  25G\nMem:              31           1          27           0           3          30\n23067\n48\n19\nsource 05cf9ae\nRunning as unit: loop-r4.service; invocation ID: 226f88f1ad604d3cbd8d7fb56b104603\nactive inactive active 2026-11-14T14:00:50Z round 4 begins; source 05cf9ae; arena sample 500,2100; replay x0.3333; disk free 25 GB\n2026-11-14T14:01:36Z\n",
+ "received": "2026-11-14T14:00:47Z",
+ "script_sha256": "dfb1ff8e844a03fe0c3cc96148c3fbf641d3cca86ee038512979622e0c38aa18",
+ "started": "2026-11-14T14:00:47Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

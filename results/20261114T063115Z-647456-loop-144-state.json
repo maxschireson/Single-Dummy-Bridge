@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 1,
+ "finished": "2026-11-14T06:31:48Z",
+ "id": "20261114T063115Z-647456-loop-144-state",
+ "output_bytes": 499,
+ "output_tail": "2026-11-14T04:38:10Z jobs-azure5-hd.txt has ended; back to the collection\n2026-11-14T05:31:35Z jobs-azure5-v41-styles.txt has ended; back to the collection\n2026-11-14T05:31:41Z azure5 joins the gate: jobs-azure5-ben.txt, then jobs-azure5-v41-styles.txt\n2026-11-14T06:09:57Z jobs-azure5-ben.txt has ended; BEN (200) servers stopped; back to the collection\n2026-11-14T06:09:57Z jobs-azure5-v41-styles.txt has ended; back to the collection\nunits: loop-collect loop-switch \nsource ba98377 | rows unit: \n",
+ "received": "2026-11-14T06:31:48Z",
+ "script_sha256": "bb256dda6ea83c036f6e70ce50bbbe9e91f7d4e5862c3ebb00e7c7fd84fbe73b",
+ "started": "2026-11-14T06:31:48Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

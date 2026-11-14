@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.4,
+ "exit_code": 1,
+ "finished": "2026-11-13T20:22:13Z",
+ "id": "20261113T202206Z-630823-loop-proposal2",
+ "output_bytes": 914,
+ "output_tail": "    return X8Player(spec, root, reference)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src-lc/bridge_harness/x8_player.py\", line 337, in __init__\n    self.rollout_net = PolicyNet(root / spec['rollout_policy'], self.scorer) if spec.get('rollout_policy') else self.net\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src-lc/bridge_harness/gen7_net.py\", line 326, in __init__\n    with np.load(path) as z:\n         ^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/venv/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py\", line 454, in load\n    fid = stack.enter_context(open(os.fspath(file), \"rb\"))\n                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/bridgebots/work/loop/capsule/recovery/models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz'\n",
+ "received": "2026-11-13T20:22:11Z",
+ "script_sha256": "213ecbad2c3681389e899c5794fb16451ba061048ab3d50697c52d789353c7b8",
+ "started": "2026-11-13T20:22:11Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

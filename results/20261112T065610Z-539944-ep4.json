@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:56:15Z",
+ "id": "20261112T065610Z-539944-ep4",
+ "output_bytes": 1617,
+ "output_tail": "06:56:15\n{\"epoch\": 2, \"seconds\": 1166, \"train_ce\": 0.6137, \"train_gap\": 0.0378, \"train_owner\": 0.5572, \"val\": {\"n\": 218537, \"nll\": 0.6269, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7464, \"in_best\": 0.9058, \"regret\": 0.0271, \"regret_gap_head\": 0.0245, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n{\"epoch\": 3, \"seconds\": 1698, \"train_ce\": 0.571, \"train_gap\": 0.0343, \"train_owner\": 0.5502, \"val\": {\"n\": 218537, \"nll\": 0.6094, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7515, \"in_best\": 0.9099, \"regret\": 0.0253, \"regret_gap_head\": 0.0215, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\nep 6000 of 25858, 1818 s\nepoch 4 step 8000 of 25858, 1855 s\n\n6\n{\"epoch\": 4, \"seconds\": 2546, \"train_ce\": 0.5634, \"train_gap\": 0.0332, \"train_owner\": 0.5503, \"val\": {\"n\": 218537, \"nll\": 0.6006, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7562, \"in_best\": 0.9108, \"regret\": 0.0251, \"regret_gap_head\": 0.0206, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n{\"epoch\": 5, \"seconds\": 3122, \"train_ce\": 0.5434, \"train_gap\": 0.0318, \"train_owner\": 0.5474, \"val\": {\"n\": 218537, \"nll\": 0.5973, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7576, \"in_best\": 0.912, \"regret\": 0.0247, \"regret_gap_head\": 0.0201, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n{\"done\": \"/home/bridgebots/work/p41/runs/w512e5\", \"selected_epoch\": 5, \"validation\": {\"n\": 218537, \"nll\": 0.5973, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7576, \"in_best\": 0.912, \"regret\": 0.0247, \"regret_gap_head\": 0.0201, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}, \"parity\": 6.67572021484375e-06, \"auction_us\n",
+ "received": "2026-11-12T06:56:15Z",
+ "script_sha256": "6dc468ee6b19c41a7791ae8710637521219af7bff008ca1170d51ae52ce5ca83",
+ "started": "2026-11-12T06:56:15Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T00:46:20Z",
+ "id": "20261114T004541Z-835208-loop-switch3",
+ "output_bytes": 381,
+ "output_tail": "source e87d09a\nRunning as unit: loop-collect.service; invocation ID: c7b5635fe0ad49e996ab9f209fb95c30\nbox azure5: active inactive active \n2026-11-14T00:46:00Z end l0b-p: exit 0\n2026-11-14T00:46:00Z start sp3s stu3-psa~stu3-psb seed 9001 first 360000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets bf16, --recycle 20)\nsps0 779 tables (final)\n2026-11-14T00:46:20Z\n",
+ "received": "2026-11-14T00:45:59Z",
+ "script_sha256": "74239d3ed9baba5a94d9d445f6a3d1db59cf568cecf5fa3e7ef611f6cd7f756b",
+ "started": "2026-11-14T00:45:59Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

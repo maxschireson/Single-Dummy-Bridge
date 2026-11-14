@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:39:55Z",
+ "id": "20261114T093947Z-048515-cmd",
+ "output_bytes": 1500,
+ "output_tail": "09:39:55\nloop-collect.service loaded active running /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/chain.sh /home/bridgebots/work/\nloop-publish.service loaded active running /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure5\n2026-11-14T09:11:05Z end s8-greedy0: exit 0\n2026-11-14T09:11:05Z start s8-passive0 g8-passive0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)\n2026-11-14T09:32:30Z end s8-passive0: exit 0\n2026-11-14T09:32:30Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source 9f18993, nets fp32)\n 09:39:55 up 2 days,  5:47,  0 user,  load average: 8.25, 8.12, 8.07\nREADME.md\nb0-pst200-1\nb0-pst200-1.log\nb0-pst200-2\nb0-pst200-2.log\nb0-pst200-3\nb0-pst200-3.log\nb0-pst200-4\nb0-pst200-4.log\nb0-pst200-5\nb0-pst200-5.log\nb0-pst200-6\nb0-pst200-6.log\nb0-pst200-7\nb0-pst200-7.log\nb0-pst200-8\nb0-pst200-8.log\nexp-strong\nh3-n\nh3-n.log\nh3-pg\nh3-pg.log\nh3-pib\nh3-pib.log\nh32-n\nh32-n.log\nl0b-p\nl0b-p.log\nl0b-stu0\nl0b-stu0.log\nl0c-n\nl0c-n.log\nl2b-p\nl2b-p.log\nl2b-pv\nl2b-pv.log\nl3-n\nl3-n.log\nl3a-n\nl3a-n.log\neps_before.txt\neps_new.txt\nfetch.json\nfetchB.json\nfreshB.npz\nfreshB_raw.npz\ntrain.npz\n9f18993 Stu: the gate is blind (Max, 06:22 UTC). The one-net and two-net bots blind (stu3-put, stu3-psu) against BEN (200) on the same 1,024 deals, then the one-net bot blind until round 4's cut (jobs-azure3-ben7.txt); the non-blind blocks stop\n",
+ "received": "2026-11-14T09:39:55Z",
+ "script_sha256": "8f06fa7bfa1295f1130a412f362b391be199c4e0c778e93d22065c9c3415b4a6",
+ "started": "2026-11-14T09:39:55Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

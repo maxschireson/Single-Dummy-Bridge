@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 30.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:31:17Z",
+ "id": "20261113T053030Z-970653-plan-seat2b",
+ "output_bytes": 825,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 05:30 policy_epoch5.npz\n-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 05:30 policy_epoch3.npz\nwaiting now: @source 9e6c3d940b26e9d684f37bbd0cb28efbf72af89c | seat2 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6s | @source 0d1db2bb9944abc83f0bc6de64d2e47299c2bf44 | match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scri | rbc2a $PY scripts/plan_reading_bound.py --episodes $P/data/f | rbc2b $PY scripts/plan_reading_bound.py --episodes $P/data/f\nposition 33\n2026-11-13T05:30:47Z end match5: exit 143\n2026-11-13T05:30:47Z source now 9e6c3d9 scripts/score_rollout_nets.py: policy and rollout nets on one held-out s\n2026-11-13T05:30:47Z start seat2 (source 9e6c3d9): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets \"$NETS,v2s=$P/nets/v2/poli\n217\n",
+ "received": "2026-11-13T05:30:46Z",
+ "script_sha256": "5098fd96cf57d497848a7f50f49446bca4734b51cbfc08babf99a36685690d85",
+ "started": "2026-11-13T05:30:46Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

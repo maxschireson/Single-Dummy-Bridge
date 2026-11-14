@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 333.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:42:42Z",
+ "id": "20261114T183649Z-803355-cmd",
+ "output_bytes": 666,
+ "output_tail": "2026-11-14T17:51:01Z end sg8t2: exit 0\n2026-11-14T17:51:01Z start sg8t3 g8-high0~g8-low0 seed 9001 first 734000 deals 2000 workers 8 --episodes --one-room (source a470efe, nets fp32)\nRunning as unit: loop-width.service; invocation ID: 8b2c7d1983814f91b2033fcb4c052960\nwidth: active\ndata in memory 14.15 GB, 30381099 examples\n75409 training deals, 30381099 training examples, 123142 held-out examples from freshB.npz (144 deals)\nepoch 1 step 2000 of 59338, 95 s\nepoch 1 step 4000 of 59338, 189 s\nMem:              31          16           0           0          15          15\n 18:42:42 up 2 days, 14:50,  0 user,  load average: 6.79, 6.33, 7.26\n2026-11-14T18:42:42Z\n",
+ "received": "2026-11-14T18:37:09Z",
+ "script_sha256": "7a0ca17d0472c08c06b57c62c680d9d63ff0d0d49e4e4ab96f8d404d645bc133",
+ "started": "2026-11-14T18:37:09Z",
+ "timed_out": false,
+ "timeout_s": 420
+}

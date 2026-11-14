@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 9.9,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:42:18Z",
+ "id": "20261114T214152Z-129714-cmd",
+ "output_bytes": 1630,
+ "output_tail": "source 4631362\n40 pairs drawn from sp3s\npairs with under 32 distinct layouts drawn (late in the hand; the panel there is close to every layout the seat allows): 0.55\n40 pairs re-evaluated; CPU a pair 0.76 s; layouts a pair 44\nsingle = the recorded pair (one layout); panel = mean over fresh layouts from the fork seat's own information; for the side to play\n                        pairs single=0 same sign   corr  slope reliab. | mean single mean panel panel SE | |panel|>2SE\nall                        40     0.62      0.67   0.40   0.16   0.127 |      +0.025     +0.182    0.100 |        0.28\n\nreal\t0m9.509s\nuser\t0m30.221s\nsys\t0m1.607s\n12 1 1 0 0 0.0 0.0\n11 3 3 0 0 0.0 0.0\n8 66 66 0 1 0.6016 0.0971\n5 73 73 0 0 0.875 0.1984\n8 6 6 0 1 0.0001 0.0002\n9 68 68 0 0 0.2656 0.0759\n9 13 13 0 1 0.375 0.2392\n8 29 29 0 0 0.0078 0.1555\n10 10 10 0 0 -0.0041 0.0059\n5 61 61 0 -2 0.1484 0.2595\n4 100 100 0 1 0.4297 0.1339\n9 35 35 0 0 0.3352 0.1335\n4 93 93 0 -1 0.0625 0.0966\n7 26 26 0 -1 0.3438 0.2483\n7 128 128 0 0 -0.0312 0.0292\n5 94 94 0 1 0.4375 0.1279\n9 25 25 0 0 -0.0078 0.0083\n12 3 3 0 0 0.0 0.0\n12 2 2 0 0 0.0 0.0\n12 2 2 0 0 0.0 0.0\n10 20 20 0 0 -0.0 0.0\n11 10 10 0 0 0.329 0.3369\n12 1 1 0 0 0.0 0.0\n7 126 126 0 0 0.1484 0.0556\n7 15 15 0 0 -0.0078 0.0143\n11 10 10 0 0 0.7424 0.2507\n5 82 82 0 -2 -0.0547 0.1553\n4 74 74 0 -2 -0.1484 0.0854\n5 67 67 0 1 -0.0391 0.1281\n11 1 1 0 0 0.0 0.0\n5 80 80 0 -1 0.375 0.2367\n8 24 24 0 0 -0.0938 0.1329\n11 20 20 0 1 1.0 0.0\n6 119 119 0 2 0.6641 0.0797\n11 20 20 0 1 1.0 0.0\n3 120 120 0 0 0.0859 0.1152\n4 63 63 0 0 0.0703 0.1351\n11 1 1 0 0 0.0 0.0\n8 68 68 0 0 -0.0703 0.0959\n10 3 3 0 0 -0.5414 0.378\n",
+ "received": "2026-11-14T21:42:08Z",
+ "script_sha256": "a47cecb9afc02a34885d54abe72ea2ed9f346ce9dc53c02556bf3dfb95564a0e",
+ "started": "2026-11-14T21:42:08Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

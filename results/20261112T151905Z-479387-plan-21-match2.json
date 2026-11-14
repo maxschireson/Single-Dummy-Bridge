@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:19:34Z",
+ "id": "20261112T151905Z-479387-plan-21-match2",
+ "output_bytes": 230,
+ "output_tail": "running: ceilT12 | waiting now: @source rbc2 match2 rbc1 wide3 ceil16c\nposition 8; 2026-11-12T15:15:44Z start ceilT12 (source 2f00276): $PY scripts/plan_ceiling.py\ncapsule manifest bots 13 roster ['6-32', '6-256', '5RZ32', 'ben']\n",
+ "received": "2026-11-12T15:19:33Z",
+ "script_sha256": "33c0e028facf2f56e5cccb4f763cb6d7c79129cce0a5f541c8c6f07589576d18",
+ "started": "2026-11-12T15:19:33Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

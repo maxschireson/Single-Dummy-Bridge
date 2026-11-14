@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:57:42Z",
+ "id": "20261114T095728Z-034249-cmd",
+ "output_bytes": 1807,
+ "output_tail": "2026-11-14T09:55:45Z MATCH xh-hf-n stuhf-n~stubf-n: +0.182 +- 0.088 IMPs a deal for the first bot (2000 deals)\n2026-11-14T09:50:48Z stage e1; source b4e1eae; threads 8\nhf {'n': 41108, 'searched': 32596, 'nll': 1.3136, 'agree': 0.4822, 'in_best': 0.62, 'rated_pick': 0.9929, 'regret': 0.0645, 'regret_gap_head': 0.0668, 'regret_random': 0.1597}\n   r3 {'nll': 1.5439, 'agree': 0.5011, 'in_best': 0.6124, 'rated_pick': 0.9983, 'regret': 0.0694}\n   by phase (selected epoch) {'lead': (0.0621, 998), 'tricks 1-4': (0.0566, 12270), 'tricks 5-8': (0.0747, 11320), 'tricks 9-13': (0.061, 8008)}\nbf {'n': 41108, 'searched': 32596, 'nll': 1.0472, 'agree': 0.5134, 'in_best': 0.6206, 'rated_pick': 0.9967, 'regret': 0.0645, 'regret_gap_head': 0.0661, 'regret_random': 0.1597}\n   r3 {'nll': 1.2976, 'agree': 0.5125, 'in_best': 0.6181, 'rated_pick': 0.9991, 'regret': 0.0659}\n   by phase (selected epoch) {'lead': (0.0658, 998), 'tricks 1-4': (0.0581, 12270), 'tricks 5-8': (0.0745, 11320), 'tricks 9-13': (0.0598, 8008)}\nmf {'n': 41108, 'searched': 32596, 'nll': 1.0682, 'agree': 0.5135, 'in_best': 0.6238, 'rated_pick': 0.9955, 'regret': 0.0638, 'regret_gap_head': 0.0661, 'regret_random': 0.1597}\n   r3 {'nll': 1.2976, 'agree': 0.5125, 'in_best': 0.6181, 'rated_pick': 0.9991, 'regret': 0.0659}\n   by phase (selected epoch) {'lead': (0.0613, 998), 'tricks 1-4': (0.0567, 12270), 'tricks 5-8': (0.0746, 11320), 'tricks 9-13': (0.0597, 8008)}\nhs-score {'n': 41108, 'searched': 32596, 'nll': 1.5393, 'agree': 0.3963, 'in_best': 0.5307, 'rated_pick': 0.9324, 'regret': 0.1011, 'regret_gap_head': 0.1593, 'regret_random': 0.1597}\nbs-score {'n': 41108, 'searched': 32596, 'nll': 1.293, 'agree': 0.4013, 'in_best': 0.5205, 'rated_pick': 0.9332, 'regret': 0.1061, 'regret_gap_head': 0.1237, 'regret_random': 0.1597}\n09:57:42\n",
+ "received": "2026-11-14T09:57:42Z",
+ "script_sha256": "2247a573d3b3820deac317e880544a2c6787f714ba46fa0392a3dd615cacf36e",
+ "started": "2026-11-14T09:57:42Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

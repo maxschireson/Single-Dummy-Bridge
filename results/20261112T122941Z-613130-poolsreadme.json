@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:29:49Z",
+ "id": "20261112T122941Z-613130-poolsreadme",
+ "output_bytes": 151,
+ "output_tail": "4bb0d15 README: where the report and the script are\nab98863 Gen 8 reading bench: the stored layouts and solves of the 530-table run (12 November 2026)\n",
+ "received": "2026-11-12T12:29:47Z",
+ "script_sha256": "00eee173722ae3b12aef3fa5e5a1ad7e3adf4459b2829b1c2704b4b9227ebf98",
+ "started": "2026-11-12T12:29:47Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:11:26Z",
+ "id": "20261112T071117Z-747057-ep5b",
+ "output_bytes": 1694,
+ "output_tail": "07:11:26\nneartie pushed 07:06:19\nw768e5 exit 0 07:10:40\nreading bench starts 07:10:41\n6\n{\"epoch\": 4, \"seconds\": 2190, \"train_ce\": 0.5339, \"train_gap\": 0.0316, \"train_owner\": 0.5442, \"val\": {\"n\": 218537, \"nll\": 0.5996, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7579, \"in_best\": 0.9128, \"regret\": 0.0236, \"regret_gap_head\": 0.0201, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n{\"epoch\": 5, \"seconds\": 2732, \"train_ce\": 0.5087, \"train_gap\": 0.0301, \"train_owner\": 0.5409, \"val\": {\"n\": 218537, \"nll\": 0.6008, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7591, \"in_best\": 0.913, \"regret\": 0.0234, \"regret_gap_head\": 0.0192, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n{\"done\": \"/home/bridgebots/work/p41/runs/w768e5\", \"selected_epoch\": 4, \"validation\": {\"n\": 218537, \"nll\": 0.5996, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7579, \"in_best\": 0.9128, \"regret\": 0.0236, \"regret_gap_head\": 0.0201, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}, \"parity\": 3.814697265625e-06, \"auction_use\n\n  g8-reading-0.service    loaded active running /bin/bash /home/bridge\n  g8-reading-1.service    loaded active running /bin/bash /home/bridge\n  g8-reading-2.service    loaded active running /bin/bash /home/bridge\n  g8-reading-3.service    loaded active running /bin/bash /home/bridge\n  g8-reading-4.service    loaded active running /bin/bash /home/bridge\n  g8-reading-5.service    loaded active running /bin/bash /home/bridge\n  g8-reading-6.service    loaded active running /bin/bash /home/bridge\n  g8-reading-7.service    loaded active running /bin/bash /home/bridge\n  p41-eval-w768e5.service loaded active running /bin/bash /home/bridge\n== temperatures fitted on B\n",
+ "received": "2026-11-12T07:11:26Z",
+ "script_sha256": "bdeb4dc45d73d2348ca7edfc4fc62a3d78f47f4b6c5e1f5d35663eb5ae72beba",
+ "started": "2026-11-12T07:11:26Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

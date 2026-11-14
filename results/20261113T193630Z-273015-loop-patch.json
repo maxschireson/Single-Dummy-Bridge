@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:37:22Z",
+ "id": "20261113T193630Z-273015-loop-patch",
+ "output_bytes": 408,
+ "output_tail": "source ecb813a\nRunning as unit: loop-collect.service; invocation ID: 3944a558b75a4d95b09684ac4e2a3981\nRunning as unit: loop-collect-b.service; invocation ID: c72a20b8007646be87f28b6619bdcf18\nbox azure5: active active \n2026-11-13T19:37:02Z end l0b-p: exit 0\n2026-11-13T19:37:02Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 6 --episodes --one-room (source ecb813a)\n2026-11-13T19:37:22Z\n",
+ "received": "2026-11-13T19:37:01Z",
+ "script_sha256": "0fca4035e7da278e23baef988a024cb920983711d6f1631347eb74ad4e0df98b",
+ "started": "2026-11-13T19:37:01Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

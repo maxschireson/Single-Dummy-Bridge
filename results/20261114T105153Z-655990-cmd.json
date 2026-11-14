@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:52:02Z",
+ "id": "20261114T105153Z-655990-cmd",
+ "output_bytes": 503,
+ "output_tail": "2026-11-14T10:43:38Z MATCH xh-hs-n stuhs-n~stubs-n: +0.944 +- 0.093 IMPs a deal for the first bot (4000 deals)\n2026-11-14T10:44:12Z MATCH xh-s10h-n6 stus10h-n~stus10-n: +0.206 +- 0.114 IMPs a deal for the first bot (2000 deals)\n2026-11-14T10:43:38Z end xh-hs-n: exit 0\n2026-11-14T10:44:12Z end xh-s10h-n6: exit 0\n/home/bridgebots/.boxctl/scripts/20261114T105153Z-655990-cmd.sh: line 8: /home/bridgebots/work/loop/runs/xh-m10F-n/results.jsonl: No such file or directory\nxh-m10h4-p 79 xh-m10F-n  10:52:02\n",
+ "received": "2026-11-14T10:52:02Z",
+ "script_sha256": "c5879dbc23b11eaa0cf19105a9687f6cca00325da7b0f0a4911b928d80004637",
+ "started": "2026-11-14T10:52:02Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

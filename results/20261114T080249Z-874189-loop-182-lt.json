@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 5.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:03:19Z",
+ "id": "20261114T080249Z-874189-loop-182-lt",
+ "output_bytes": 447,
+ "output_tail": "Running as unit: loop-usbclt.service; invocation ID: f26d4ea30e46492990088ccd899b58f6\nactive active 2026-11-14T08:02:28Z usbc_238139_3_1 Senior USA1 Semifinal 3/4: 30 boards, 120 tables (10621 requests so far)\n2026-11-14T08:02:54Z usbc_238144_2_1 Senior USA2 Stage 1 2/4: 30 boards, 120 tables (10752 requests so far)\n2026-11-14T08:03:08Z usbc_238149_1_1 Senior USA1 Final 1/4: 30 boards, 60 tables (10823 requests so far)\n69\n2026-11-14T08:03:19Z\n",
+ "received": "2026-11-14T08:03:13Z",
+ "script_sha256": "af43a1c751364311bf5ed0235bc0eaa78b8e509c800ffddfd60dd166dcd5303d",
+ "started": "2026-11-14T08:03:13Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

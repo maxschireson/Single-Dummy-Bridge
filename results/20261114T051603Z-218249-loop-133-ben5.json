@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 5.2,
+ "exit_code": 2,
+ "finished": "2026-11-14T05:16:39Z",
+ "id": "20261114T051603Z-218249-loop-133-ben5",
+ "output_bytes": 284,
+ "output_tail": "Running as unit: loop-next.service; invocation ID: b495d0a50a0b4fa5953cacbf18b46abe\nunits: rungs inactive rungs2 active next active\n2026-11-14T04:38:55Z start h3-pib stu3-psti~stu3-pst seed 131 first 17500 deals 500 workers 8 --episodes (source 68fb9ca, nets fp32)\nh3-pib boards: 356\n",
+ "received": "2026-11-14T05:16:34Z",
+ "script_sha256": "178ecdc657914ef3ebdcd2fc27cf41d69415d0f92f16e48c085b59815d065171",
+ "started": "2026-11-14T05:16:34Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

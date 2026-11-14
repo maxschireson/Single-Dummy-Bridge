@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 40.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:01:37Z",
+ "id": "20261112T160027Z-931895-plan-28-leads",
+ "output_bytes": 582,
+ "output_tail": "waiting now: @source ceilLead match2 rbc2a rbc2b rbc1 wide3 ceil16c\nposition 12\n2026-11-12T15:25:52Z start rbc2 (source f80593e): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp --net models/cardplay/gen7-policy-v4\n2026-11-12T16:00:57Z end rbc2: exit 143\n2026-11-12T16:00:58Z source now 1cae1f1 Ceiling: opening leads (ply 0) as an option, and a ply cap\n2026-11-12T16:00:58Z start ceilLead (source 1cae1f1): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp --worlds 16 --leads --max-ply 0 --from\n 16:01:37 up 12:09,  0 user,  load average: 8.14, 8.13, 8.09\n",
+ "received": "2026-11-12T16:00:56Z",
+ "script_sha256": "e95e4f21e0f5c5f10d8ab1f97d05406ba26b118ead5d1a64a0d208eca4298c3e",
+ "started": "2026-11-12T16:00:56Z",
+ "timed_out": false,
+ "timeout_s": 260
+}

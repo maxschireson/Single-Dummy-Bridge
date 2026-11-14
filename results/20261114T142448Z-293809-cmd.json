@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:25:14Z",
+ "id": "20261114T142448Z-293809-cmd",
+ "output_bytes": 1708,
+ "output_tail": "2026-11-14T14:18:42Z with 68 more row files from other boxes\n{\"deals\": 3972, \"of\": 75409, \"examples\": 1591633, \"asked\": 1591348, \"seed\": 1, \"rows_by_bot\": {\"1\": 49437, \"2\": 14356, \"3\": 14458, \"4b\": 15980, \"5-32\": 16096, \"5R192\": 2370, \"5R32\": 63522, \"5RZ192\": 942, \"5RZ32\": 95593, \"6-256\": 13110, \"6-32\": 701307, \"71s-32\": 212380, \"7s-32\": 159157, \"8c-32\": 56406, \"8s-32\": 131893, \"ben\": 110\n2026-11-14T14:19:23Z with 2 row files that draw no replay\n{\"parts\": 72, \"deals\": 102811, \"bots\": [\"1\", \"2\", \"3\", \"4b\", \"5-32\", \"5R192\", \"5R32\", \"5RZ192\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"8x3-32\", \"9a-32\", \"ben\", \"ben32\", \"ben64\", \"stup0\", \"usbc\"], \"unique_families\": 84020, \"examples\": 6996453, \"deals_by_hash_split\": [82397, 10161, 10253]}\n{\"parts\": 2, \"deals\": 444, \"bots\": [\"1\", \"5RZ32\", \"71s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben64\", \"stup0\"], \"unique_families\": 444, \"examples\": 135543, \"deals_by_hash_split\": [240, 179, 25]}\n\"epoch\": 1, \"seconds\": 251\ndata in memory 3.26 GB, 6996453 examples 102811 training deals, 6996453 training examples, 135543 held-out examples from val.npz (444 deals) {\"epoch\": 0, \"val\": {\"n\": 135543, \"searched\": 110242, \"nll\": 0.5588, \"uniform_nll\": 1.2813, \"tie_nll\": 0.751, \"agree\": 0.7705, \"in_best\": 0.8972, \"rated_pick\": 0.9996, \"regret\": 0.0253, \"regret_gap_head\": 0.0233, \"regret_random\": 0.2032, \"regret_lowest\": 0.2233}, \"select\": {\"bot\": \"stup0\", \"key\": \"nll\", \"value\": 1.0505, \"rest_nll\": 0.5093}} epoch 1 step 200\n\n1204349644 r4/replay.npz\n9506132 r4/stu_held.npz\n9519740 r4/stu_test.npz\n380236590 r4/stu_train.npz\n5315795503 r4/train.npz\n102638668 r4/val.npz\nactive\n  17G\n 14:25:14 up 2 days, 10:33,  0 user,  load average: 4.11, 5.77, 14.29\n",
+ "received": "2026-11-14T14:25:14Z",
+ "script_sha256": "c7e7eca3533440d1a8814754d1c35dbd37ffc36d3fc3d145b44bb3d96e7e67e6",
+ "started": "2026-11-14T14:25:14Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

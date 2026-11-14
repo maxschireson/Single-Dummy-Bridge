@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 53.8,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:11:37Z",
+ "id": "20261113T021026Z-966038-plan-rnet2w-resume",
+ "output_bytes": 1610,
+ "output_tail": "waiting now: @source bc8524160b5ae833ea3cc1f6eb55d290b85171ad | rnet2wr RESUME=1 W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz L | seat1 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets \" | @source 0d1db2bb9944abc83f0bc6de64d2e47299c2bf44 | match6 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_m | match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_m | rbc2a $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp  | rbc2b $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp \n2026-11-13T02:04:28Z built s11: {\"episodes\": 3797, \"deals\": 3783, \"unique_families\": 3733, \"examples\": 1583765, \"train\":\n2026-11-13T02:07:14Z built s12: {\"episodes\": 3797, \"deals\": 3791, \"unique_families\": 3739, \"examples\": 1558912, \"train\":\n2026-11-13T02:10:07Z built s13: {\"episodes\": 3797, \"deals\": 3791, \"unique_families\": 3736, \"examples\": 1579424, \"train\":\ns00 s00.npz s01 s01.npz s02 s02.npz s03 s03.npz s04 s04.npz s05 s05.npz s06 s06.npz s07 s07.npz s08 s08.npz s09 s09.npz s10 s10.npz s11 s11.npz s12 s12.npz s13 s13.npz s14 s15 \nposition 25\n2026-11-13T02:10:43Z source now bc85241 Rollout net v2 chain: the arena-gen71-* feeds (missed by arena-gen7-*), \n2026-11-13T02:10:43Z start rnet2wr (source bc85241): RESUME=1 W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz LR=5e-4 EPOCHS=3 SCORER=$P/nets/hand\n/dev/root       123G   53G   71G  44% /\n2026-11-13T02:10:58Z fetched 66913 episodes\n2026-11-13T02:10:58Z resume: keeping the parts in /home/bridgebots/work/plan/rnet2w/shards\n2026-11-13T02:11:04Z resume: 6160 newly fetched episodes as part sx\n",
+ "received": "2026-11-13T02:10:43Z",
+ "script_sha256": "3ebe9861f001bc7350ec6a053c8cf2b2f676b47698e9eca3a2470b2fd65dad99",
+ "started": "2026-11-13T02:10:43Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

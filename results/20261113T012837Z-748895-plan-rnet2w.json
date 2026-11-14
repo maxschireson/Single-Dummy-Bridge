@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 60.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:29:53Z",
+ "id": "20261113T012837Z-748895-plan-rnet2w",
+ "output_bytes": 920,
+ "output_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'numpy'\nlrwxrwxrwx 1 bridgebots bridgebots 90 Nov 13 01:28 /home/bridgebots/work/plan/nets/hand_fit_v0.npz -> /home/bridgebots/work/p41src/models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz\n/dev/root       123G   28G   96G  23% /\nMem:              31           5           3           0          22          25\nwaiting now: @source | rnet2w | seat1 | @source | match6 | match5 | rbc2a | rbc2b\nposition 23\n2026-11-13T01:28:53Z end match6: exit 143\n2026-11-13T01:28:54Z source now 40adc36 Rollout net v2 chain: settings for a warm start on another box (W, RUN, \n2026-11-13T01:28:54Z start rnet2w (source 40adc36): W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz LR=5e-4 EPOCHS=3 SCORER=$P/nets/hand_fit_v0.np\n987\n2026-11-13T01:28:54Z start; source 40adc36\n/dev/root       123G   28G   96G  23% /\n",
+ "received": "2026-11-13T01:28:52Z",
+ "script_sha256": "d2ff4eb5802920d3f1d78a2f017a2a6a9d59c5ad9c9123190371e92716a8ed8e",
+ "started": "2026-11-13T01:28:52Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

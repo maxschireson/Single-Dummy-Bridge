@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:53:51Z",
+ "id": "20261112T075323Z-477633-restore",
+ "output_bytes": 1350,
+ "output_tail": "0\n{\"table\": 4, \"family\": \"9cd3cd42c4ef\", \"decisions\": 40, \"seconds\": 40.0, \"solve_seconds\": 7.7, \"elapsed\": 40}\n{\"table\": 5, \"family\": \"9cd3cd42c4ef\", \"decisions\": 41, \"seconds\": 63.3, \"solve_seconds\": 30.7, \"elapsed\": 63}\n{\"table\": 6, \"family\": \"10e7ae896678\", \"decisions\": 40, \"seconds\": 82.8, \"solve_seconds\": 44.6, \"elapsed\": 83}\n{\"table\": 7, \"family\": \"a10f60885e43\", \"decisions\": 39, \"seconds\": 68.5, \"solve_seconds\": 33.5, \"elapsed\": 69}\n  g8-reading-0.service  loaded active running /bin/bash /home/bridgebo\n  g8-reading-1.service  loaded active running /bin/bash /home/bridgebo\n  g8-reading-2.service  loaded active running /bin/bash /home/bridgebo\n  g8-reading-3.service  loaded active running /bin/bash /home/bridgebo\n  g8-readingm-4.service loaded active running /bin/bash /home/bridgebo\n  g8-readingm-5.service loaded active running /bin/bash /home/bridgebo\n  g8-readingm-6.service loaded active running /bin/bash /home/bridgebo\n  g8-readingm-7.service loaded active running /bin/bash /home/bridgebo\n6\n{\"table\": 212, \"family\": \"8339cf5fe7dd\", \"decisions\": 40, \"seconds\": 38.1, \"solve_seconds\": 8.1, \"elapsed\": 2426}\n5\n{\"table\": 173, \"family\": \"03feba5982cf\", \"decisions\": 41, \"seconds\": 19.3, \"solve_seconds\": 4.1, \"elapsed\": 2394}\n07:53:51\n== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B\n",
+ "received": "2026-11-12T07:53:31Z",
+ "script_sha256": "bf4516a8805de829cffdde5bfbaf405a38705ee1eac06713b6ace09144d3801e",
+ "started": "2026-11-12T07:53:31Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

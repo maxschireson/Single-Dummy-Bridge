@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:22:58Z",
+ "id": "20261114T122232Z-905513-cmd",
+ "output_bytes": 395,
+ "output_tail": "2026-11-14T12:14:22Z start xh-sAh-n stusAh-n~stubA-n seed 131 first 30000 deals 4000 workers 4  (source c7d78f1, nets fp32)\n2026-11-14T12:17:19Z arena-gen8-s1-azure1-feed: 720 records, 720 not in v2's set\n2026-11-14T12:17:20Z arena-gen8-s3-azure1-feed: 1468 records, 0 not in v2's set\n2026-11-14T12:17:20Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\nactive\nxh-hf-p 101\n12:22:58\n",
+ "received": "2026-11-14T12:22:58Z",
+ "script_sha256": "79e45b0ddb77cb89e37f289e88a6485a5518bc7d45137833c34cb808322bf451",
+ "started": "2026-11-14T12:22:58Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

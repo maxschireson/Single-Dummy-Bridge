@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T08:01:38Z",
+ "id": "20261112T080126Z-258302-after2",
+ "output_bytes": 1769,
+ "output_tail": "Running as unit: g8-after-reading2.service; invocation ID: de4ca03a3b4f4c28a75918a2bdbf165f\n5:                               [--layouts 8] [--from-trick 3] [--to-trick 13] [--pairs 2000] [--workers 2] [--out rows.json]\n16:cost of B is known. Each pair's position is rebuilt, Gen 6's own layouts are drawn again, and A and\n19:  pimc     plain PIMC on all those layouts (Gen 6 again, with a fresh draw)\n20:  pimc_k   plain PIMC on the --layouts of them that go into the tree\n21:  tree_N   the tree (bridge_harness/gen7_tree.py) to the end of N tricks on the same --layouts\n27:thing measured against the fresh PIMC draw on identical layouts, which removes the luck of the draw\n85:def searching_reply(p, layouts=8, pool=64):\n86:    \"\"\"What a small PIMC from the seat's own view plays: uniform card-fit layouts weighted by the hand-fit scorer,\n17:  card                  (same cards played so far): the card with the best average over those layouts.\n19:                        With a handful of layouts this is weaker than it sounds: the other seats'\n21:                        layouts still look alike (measured: 1.4 of 8, 2.6 of 32, over two tricks),\n27:The tree is walked once for all layouts together, carrying for each layout the probability of the\n30:Layouts stay together only while the same cards are played in them, and sampled layouts give the\n08:01:38\n== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B\n591450 decisions, 1387 deals\nw512         gives up 0.0249 | exact 0.749 | top 3 0.991 | kept 0.98 2.72 0.90 2.04 | log-loss 0.6126\nw768e5       gives up 0.0237 | exact 0.758 | top 3 0.992 | kept 0.98 2.71 0.90 2.02 | log-loss 0.5927 || from w512: -0.0012 [-0.0020, -0.0006], cut 5.0% [2.3%, 7.8%]\n\n== the same on B\n",
+ "received": "2026-11-12T08:01:37Z",
+ "script_sha256": "1cd2772f04740718c0e606441bc814ad175e74ba3ff1193fafdf373758a3f991",
+ "started": "2026-11-12T08:01:37Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

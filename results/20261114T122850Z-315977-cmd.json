@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:29:08Z",
+ "id": "20261114T122850Z-315977-cmd",
+ "output_bytes": 709,
+ "output_tail": "2026-11-14T12:17:19Z arena-gen8-m1-azure1-feed: 215 records, 215 not in v2's set\n2026-11-14T12:17:19Z arena-gen8-s1-azure1-feed: 720 records, 720 not in v2's set\n2026-11-14T12:17:20Z arena-gen8-s3-azure1-feed: 1468 records, 0 not in v2's set\n2026-11-14T12:17:20Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\nactive\nNov 14 12:17:19 Bridgebots5 bash[372335]: 2026-11-14T12:17:19Z arena-gen8-s1-azure1-feed: 720 records, 720 not in v2's set\nNov 14 12:17:20 Bridgebots5 bash[372356]: 2026-11-14T12:17:20Z arena-gen8-s3-azure1-feed: 1468 records, 0 not in v2's set\nNov 14 12:17:20 Bridgebots5 bash[372378]: 2026-11-14T12:17:20Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\n12:29:08\n",
+ "received": "2026-11-14T12:29:08Z",
+ "script_sha256": "30e4d15459dae272dc0f35254da50fcfc66ac271a26a0b56341acd0dc54b93ce",
+ "started": "2026-11-14T12:29:08Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

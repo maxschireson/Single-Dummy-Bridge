@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:43:26Z",
+ "id": "20261114T144322Z-780220-cmd",
+ "output_bytes": 899,
+ "output_tail": "2026-11-14T12:25:59Z MATCH xh-sAh-n stusAh-n~stubA-n: +0.786 +- 0.078 IMPs a deal for the first bot (4000 deals)\n2026-11-14T12:49:40Z MATCH xh-hf-p stuhf-pst~stubf-pst: +0.272 +- 0.278 IMPs a deal for the first bot (250 deals)\nxh-sAh-hA 3034\n\"epoch\": 3, \"seconds\": 873\n2026-11-14T14:11:41Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\n2026-11-14T14:11:41Z spr0 2164 tables; sp0 5669 tables; sps0 779 tables; sp3s 3166 tables; sg8t1 923 tables; 68 row files from the other boxes and the arena\n{\"parts\": 72, \"deals\": 102811, \"bots\": [\"1\", \"2\", \"3\", \"4b\", \"5-32\", \"5R192\", \"5R32\", \"5RZ192\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"8x3-32\", \"9a-32\", \"ben\", \"ben32\", \"ben64\n{\"parts\": 2, \"deals\": 444, \"bots\": [\"1\", \"5RZ32\", \"71s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben64\", \"stup0\"], \"unique_families\": 444, \"examples\": 135543, \"deals_by_hash_split\": [240, 179, 25]}\nactive\n",
+ "received": "2026-11-14T14:43:26Z",
+ "script_sha256": "aa0c67bc63ee1e7edc64079bf0cc90b326cb26ea21870d45822bec0520428e7d",
+ "started": "2026-11-14T14:43:26Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

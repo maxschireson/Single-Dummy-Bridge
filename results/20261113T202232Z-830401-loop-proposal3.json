@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 225.8,
+ "exit_code": 0,
+ "finished": "2026-11-13T20:26:31Z",
+ "id": "20261113T202232Z-830401-loop-proposal3",
+ "output_bytes": 853,
+ "output_tail": "580 decisions from 30 boards\ntricks 1-1:  78 decisions | classes mean    38859 | scoring them all 1.29 s | uniform-proposal efficiency: median 0.075, 10th pct 0.011, min 0.0026\ntricks 2-2: 109 decisions | classes mean    21450 | scoring them all 0.71 s | uniform-proposal efficiency: median 0.067, 10th pct 0.009, min 0.0015\ntricks 3-4: 204 decisions | classes mean     5877 | scoring them all 0.19 s | uniform-proposal efficiency: median 0.091, 10th pct 0.021, min 0.0016\ntricks 5-6: 189 decisions | classes mean     1153 | scoring them all 0.04 s | uniform-proposal efficiency: median 0.143, 10th pct 0.022, min 0.0012\n  M = 2048: effective size median 190, 10th pct 30, decisions under 512: 78%\n  M = 4096: effective size median 381, 10th pct 59, decisions under 512: 61%\n  M = 8192: effective size median 761, 10th pct 119, decisions under 512: 38%\n",
+ "received": "2026-11-13T20:22:45Z",
+ "script_sha256": "32b04ef8a8a8d18d05fb48e9d0d116c919f8bdf89957241164bd5cdca8c12ca0",
+ "started": "2026-11-13T20:22:45Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

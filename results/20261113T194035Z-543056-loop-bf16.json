@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 76.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:42:15Z",
+ "id": "20261113T194035Z-543056-loop-bf16",
+ "output_bytes": 2526,
+ "output_tail": "source c04692e\ntorch 2.15.0+cpu | mkldnn True\n['PyTorch built with:', '  - GCC 13.3', '  - C++ Version: 202002']\nload average: 8.20, 8.32, 8.34\n24576 held-out rows from val.npz; 19937 with the rollouts' or search's values; torch 2.15.0+cpu; oneDNN bf16 True\n\nrollout-net-v2-20261113/policy_epoch5.npz  (512 rows a call, one thread)\n  numpy fp32      15765 rows/s  1.00x\n  torch fp32      17714 rows/s  1.12x | first card same 100.00% | log-prob change mean 0.0000 max 0.000 | TV mean 0.0000 | tricks given up 0.0233 (fp32 0.0231)\n  torch bf16      33486 rows/s  2.12x | first card same  99.69% | log-prob change mean 0.0155 max 0.288 | TV mean 0.0023 | tricks given up 0.0232 (fp32 0.0231)\n  torch mixed     31429 rows/s  1.99x | first card same  99.70% | log-prob change mean 0.0139 max 0.273 | TV mean 0.0022 | tricks given up 0.0233 (fp32 0.0231)\n\nstu-net-r2-20261113/policy.npz  (512 rows a call, one thread)\n  numpy fp32      17725 rows/s  1.00x\n  torch fp32      15701 rows/s  0.89x | first card same 100.00% | log-prob change mean 0.0000 max 0.000 | TV mean 0.0000 | tricks given up 0.0233 (fp32 0.0230)\n  torch bf16      29526 rows/s  1.67x | first card same  99.76% | log-prob change mean 0.0144 max 0.281 | TV mean 0.0022 | tricks given up 0.0233 (fp32 0.0230)\n  torch mixed     29177 rows/s  1.65x | first card same  99.76% | log-prob change mean 0.0129 max 0.307 | TV mean 0.0021 | tricks given up 0.0233 (fp32 0.0230)\n\ngen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz  (512 rows a call, one thread)\n  numpy fp32      29162 rows/s  1.00x\n  torch fp32      30193 rows/s  1.04x | first card same 100.00% | log-prob change mean 0.0000 max 0.000 | TV mean 0.0000 | tricks given up 0.0295 (fp32 0.0295)\n  torch bf16      52678 rows/s  1.81x | first card same  99.75% | log-prob change mean 0.0123 max 0.199 | TV mean 0.0021 | tricks given up 0.0295 (fp32 0.0295)\n  torch mixed     49702 rows/s  1.70x | first card same  99.78% | log-prob change mean 0.0106 max 0.211 | TV mean 0.0019 | tricks given up 0.0295 (fp32 0.0295)\nonednn_verbose,v1,info,cpu,isa:Intel AVX-512 with Intel DL Boost and bfloat16 support\nonednn_verbose,v1,primitive,exec,cpu,matmul,brg_matmul:avx512_core_bf16,undef,src:bf16::blocked:ab::f0 wei:bf16::blocked:ab::f0 dst:bf16::blocked:ab::f0,attr-scratchpad:user,,512x768:768x768,3.03101\nRunning as unit: loop-collect.service; invocation ID: 9e0618b48a194cadaaacffdaa83c2eb6\nRunning as unit: loop-collect-b.service; invocation ID: 3f1b6f9d03034d96b97c7a74320da9a9\nactive active 2026-11-13T19:42:15Z\n",
+ "received": "2026-11-13T19:40:58Z",
+ "script_sha256": "6b69e18c8d965f84c9fee728f1b5738849bb8de9ac9e5d7f5f27cbd79afcb47d",
+ "started": "2026-11-13T19:40:58Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 49.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:05:16Z",
+ "id": "20261112T070419Z-324897-g8start",
+ "output_bytes": 1570,
+ "output_tail": "{\"table\": 0, \"family\": \"e96f30a550f6\", \"decisions\": 40, \"seconds\": 48.4, \"solve_seconds\": 21.2, \"elapsed\": 48}\n{\"done\": 1, \"seconds\": 48}\n40 decisions on 1 tables of 1 deals; nets ['v0', 'v2', 'v4', 'v4.1', 'e5']; mean layouts 381; before the deal list 22, deal list 18\n\n== as built, v0\n  all                       40 decisions | true layout's log-weight +1.305 +- nan | cost without 0.0000, with 0.0000 | saved +0.0000 +- nan a decision, +0.000 +- nan a table | every layout +0.0000 +- nan | exponent 1.00, effective 152\n\n== as built, v2\n  all                       40 decisions | true layout's log-weight +0.494 +- nan | cost without 0.0000, with 0.0000 | saved +0.0000 +- nan a decision, +0.000 +- nan a table | every layout +0.0000 +- nan | exponent 1.00, effective 63\n\n== as built, v4\n  all                       40 decisions | true layout's log-weight +0.643 +- nan | cost without 0.0000, with 0.0250 | saved -0.0250 +- nan a decision, -1.000 +- nan a table | every layout -0.0250 +- nan | exponent 1.00, effective 68\n\n== as built, v4.1\nRunning as unit: g8-reading-start.service; invocation ID: dba0fc2fb64d4903a13db6839e9ca518\n07:05:16\nneartie bot 0 source 0 exit 0 06:47:30\nneartie pushed 06:47:59\n{\"epoch\": 4, \"seconds\": 2190, \"train_ce\": 0.5339, \"train_gap\": 0.0316, \"train_owner\": 0.5442, \"val\": {\"n\": 218537, \"nll\": 0.5996, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7579, \"in_best\": 0.9128, \"regret\": 0.0236, \"regret_gap_head\": 0.0201, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\np 8000 of 25858, 2351 s\nepoch 5 step 10000 of 25858, 2393 s\n",
+ "received": "2026-11-12T07:04:27Z",
+ "script_sha256": "1cfc22527373b4dc38d90182a82d5251b93ffa3ab1253673788e615d187fef41",
+ "started": "2026-11-12T07:04:27Z",
+ "timed_out": false,
+ "timeout_s": 400
+}

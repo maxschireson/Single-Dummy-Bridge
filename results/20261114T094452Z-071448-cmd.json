@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:45:02Z",
+ "id": "20261114T094452Z-071448-cmd",
+ "output_bytes": 1681,
+ "output_tail": "before\nbefore.log\nheld\nnet\nnet.log\nreplay.npz\nsp0.txt\nspr0.txt\nstu_held.npz\nstu_test.npz\nstu_train.npz\ntest\ntimeline.log\ntrain\ntrain.npz\nval.npz\n834M\tr3/replay.npz\n9.1M\tr3/stu_held.npz\n9.1M\tr3/stu_test.npz\n217M\tr3/stu_train.npz\n1.7G\tr3/train.npz\n98M\tr3/val.npz\narena-git\ncut-azure1\ncut-azure2\ncut-azure3\ncut-azure6\ngit-azure1\ngit-azure2\ngit-azure3\ngit-azure6\nrows-azure1\nin/arena-git:\n\nin/cut-azure1:\nsp0e-223000-223570.npz\nspr0e-240000-240940.npz\n\nin/cut-azure2:\nsp0d-183000-183873.npz\nspr0d-200000-200945.npz\n\nin/cut-azure3:\nsp0b-83000-84098.npz\nspr0b-120000-120961.npz\n\nin/cut-azure6:\nsp0c-144000-145173.npz\nspr0c-161000-161198.npz\n\nin/git-azure1:\n\nin/git-azure2:\n\nin/git-azure3:\n\nin/git-azure6:\n\nin/rows-azure1:\nsp0e-220000.npz\nsp0e-221000.npz\nsp0e-222000.npz\n\nin/rows-azure2:\nsp0d-180000.npz\nsp0d-181000.npz\nsp0d-182000.npz\n\nin/rows-azure3:\nsp0b-80000.npz\nsp0b-81000.npz\nsp0b-82000.npz\n\nin/rows-azure6:\nsp0c-140000.npz\nsp0c-141000.npz\nsp0c-142000.npz\nsp0c-143000.npz\nspr0c-160000.npz\ntotal 24\ndrwxr-xr-x  6 bridgebots bridgebots 4096 Nov 13 08:41 .\ndrwxr-xr-x 18 bridgebots bridgebots 4096 Nov 13 08:37 ..\ndrwxr-xr-x  4 bridgebots bridgebots 4096 Nov 14 06:34 rollout-loop-20261113\ndrwxr-xr-x  2 bridgebots bridgebots 4096 Nov 13 08:37 rollout-net-v1-20261113\ndrwxr-xr-x  2 bridgebots bridgebots 4096 Nov 13 08:37 rollout-net-v2-20261113\ndrwxr-xr-x  2 bridgebots bridgebots 4096 Nov 13 08:37 sid-net-s0-20261113\nREADME.md\nbefore.log\nmetrics.json\nmetrics_before.json\nnet.log\n               total        used        free      shared  buff/cache   available\nMem:              31          10           1           0          20          21\n/dev/root       123G   96G   27G  79% /\n",
+ "received": "2026-11-14T09:45:02Z",
+ "script_sha256": "f6b0aac03ab091e0b378aab2dd3ba62b849acedc6851f77d4f8caccb2be385be",
+ "started": "2026-11-14T09:45:02Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

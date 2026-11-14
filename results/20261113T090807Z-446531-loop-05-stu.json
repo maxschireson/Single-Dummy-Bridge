@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 49.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:09:25Z",
+ "id": "20261113T090807Z-446531-loop-05-stu",
+ "output_bytes": 960,
+ "output_tail": "r0 (ids z0a-v2~z0b-v2, capture level 1) stopped at 248 boards; highest deal 249 ; cpu a board 47.0\nsource 29d2e6a Stu: the loop's bot gets Max's name; records keep every layout's result\n{\"pair\": \"stu0a~stu0b\", \"boards\": 2, \"cpu_per_board\": 33.68, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"flat\": 2}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"bo\nstu preflight: rows 2 records 2 bytes a board 31579 notes 140 with per-layout blocks 62 | same contracts as the first preflight: True\nPREFLIGHT OK\nRunning as unit: loop-collect.service; invocation ID: 25e09338000f4cb78d2befb4a5211600\nactive active \n2026-11-13T08:43:13Z start r0 z0a-v2~z0b-v2 seed 9001 first 0 deals 20000 workers 8 --episodes (source 79c1845)\n2026-11-13T09:09:10Z start s0 stu0a~stu0b seed 9001 first 1000 deals 19000 workers 8 --episodes (source 29d2e6a)\nREADME.md pf-gate pf-self r0 r0.log runs.log \npublisher last pushed 09:03 UTC\n2026-11-13T09:09:25Z\n",
+ "received": "2026-11-13T09:08:35Z",
+ "script_sha256": "3e282ac3b7d34c98a80a4f19704dc3e3957a98eae61230d39416d880e8ffb2a2",
+ "started": "2026-11-13T09:08:35Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

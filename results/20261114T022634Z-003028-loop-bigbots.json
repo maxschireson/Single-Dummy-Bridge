@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T02:27:00Z",
+ "id": "20261114T022634Z-003028-loop-bigbots",
+ "output_bytes": 1734,
+ "output_tail": "total 22658872\ndrwxr-xr-x 2 bridgebots bridgebots        4096 Nov 13 02:32 .\ndrwxr-xr-x 9 bridgebots bridgebots        4096 Nov 13 03:51 ..\n-rw-r--r-- 1 bridgebots bridgebots     3278737 Nov 13 02:18 eps_before.txt\n-rw-r--r-- 1 bridgebots bridgebots      423899 Nov 13 02:19 eps_new.txt\n-rw-r--r-- 1 bridgebots bridgebots       25710 Nov 13 02:19 fetch.json\n-rw-r--r-- 1 bridgebots bridgebots       25705 Nov 13 02:32 fetchB.json\n-rw-r--r-- 1 bridgebots bridgebots    93186388 Nov 13 02:32 freshB.npz\n-rw-r--r-- 1 bridgebots bridgebots   118171443 Nov 13 02:32 freshB_raw.npz\n-rw-r--r-- 1 bridgebots bridgebots 22987545569 Nov 13 02:32 train.npz\nrows 30381099 deals 75409\n      6-32   13663349 rows,   13663349 with the search gap\n    71s-32    4065435 rows,    4065435 with the search gap\n     7s-32    3001379 rows,    3001379 with the search gap\n     8s-32    2495004 rows,    2495004 with the search gap\n     5RZ32    1693487 rows,          0 with the search gap\n     8c-32    1173617 rows,    1173617 with the search gap\n      5R32    1121441 rows,          0 with the search gap\n         1     963849 rows,          0 with the search gap\n     ben64     599276 rows,          0 with the search gap\n         3     291752 rows,          0 with the search gap\n        4b     270638 rows,          0 with the search gap\n      5-32     252407 rows,          0 with the search gap\n         2     251225 rows,          0 with the search gap\n     6-256     241225 rows,     241225 with the search gap\n       ben     224401 rows,          0 with the search gap\n     5R192      51533 rows,          0 with the search gap\n    5RZ192      18481 rows,          0 with the search gap\n     ben32       2600 rows,          0 with the search gap\n",
+ "received": "2026-11-14T02:26:58Z",
+ "script_sha256": "02891eabc299dbba802dff873acda161a150124753992f45c14ec8b2c24824eb",
+ "started": "2026-11-14T02:26:58Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

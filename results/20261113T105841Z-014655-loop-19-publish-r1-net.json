@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:59:09Z",
+ "id": "20261113T105841Z-014655-loop-19-publish-r1-net",
+ "output_bytes": 883,
+ "output_tail": "vocabulary ['', '1', '2', '3', '4b', '5-32', '5R192', '5R32', '5RZ192', '5RZ32', '6-256', '6-32', '71s-32', '7s-32', '8c-32', '8s-32', 'ben', 'ben32', 'ben64', 'stu0']\nweights other than the vectors identical to v2: True 15\nevery v2 bot's vectors identical: True\nstu0 against 8s-32: largest change [3.971, 3.969] | norms [13.979, 13.971] of [16.994, 8.244]\na9ee66def78cea60caa54b8268791efead51e30184f2b8806f6bd8ce9932c53b\n/home/bridgebots/work/loop/pub/train-r1: README.md before.log metrics.json metrics_before.json net.log policy.npz policy.sha256 timeline.log variants  /home/bridgebots/work/loop/pub/train-r1/variants: first-3e4.metrics.json first-3e4.policy.npz full-1e4.log full-1e4.metrics.json full-5e5.log full-5e5.metrics.json vec-1e2.log vec-1e2.metrics.json vec-3e3.log vec-3e3.metrics.json \nstu0a v 8p-32-v41: 500 boards to play (0 done), 8 workers\n2026-11-13T10:59:09Z\n",
+ "received": "2026-11-13T10:59:08Z",
+ "script_sha256": "88bf9ad64f526531e2e984485a4df79349d574567014c521975236d54f1a5142",
+ "started": "2026-11-13T10:59:08Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

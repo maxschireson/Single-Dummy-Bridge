@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:43:59Z",
+ "id": "20261112T074334Z-175015-rep2",
+ "output_bytes": 194,
+ "output_tail": "07:43:59\neval w768e5 done 07:34:01\nreading bench resumed 07:34:02\npush w768e5 done 07:34:25\n18\n34\n== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B\n",
+ "received": "2026-11-12T07:43:59Z",
+ "script_sha256": "f9dcb55611e278aee55f08ddf88aa1994674b7779ecbe3dfe74335eaa11823f3",
+ "started": "2026-11-12T07:43:59Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

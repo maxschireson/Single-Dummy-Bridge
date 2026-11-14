@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:02:18Z",
+ "id": "20261114T100202Z-813089-cmd",
+ "output_bytes": 1757,
+ "output_tail": "2026-11-14T09:55:45Z MATCH xh-hf-n stuhf-n~stubf-n: +0.182 +- 0.088 IMPs a deal for the first bot (2000 deals)\n2026-11-14T09:58:32Z MATCH xh-mf-n stumf-n~stubf-n: +0.164 +- 0.082 IMPs a deal for the first bot (2000 deals)\n2026-11-14T10:01:03Z MATCH xh-hs-n stuhs-n~stubs-n: +0.953 +- 0.132 IMPs a deal for the first bot (2000 deals)\n2026-11-14T09:52:38Z net hs: sha256 8777854ba9de352b\n2026-11-14T09:52:58Z net bs: sha256 58268971fc19038a\nnet    rows      | held-out SiD rows by epoch: log-loss / exact card / tricks its first card gives up | round 3's net there\n2026-11-14T10:01:03Z stage mini; source b4e1eae; threads 8\n/home/bridgebots/work/loop/exp-human/stu_all.npz: 504076 rows of 12198 deals (train 9756, validation 1276, test 1166); rows by bot {'stup0': 504076}; with the rollouts' values 77%\n/home/bridgebots/work/loop/exp-human/m10.npz: 820169 rows of 10934 deals (train 8776, validation 1131, test 1027); rows by bot {'1': 14985, '2': 4692, '3': 2790, '4b': 5070, '5-32': 3672, '5R192': 1059, '5R32': 18887, '5RZ192': 82, '5RZ32': 24659, '6-256': 387\n/home/bridgebots/work/loop/exp-human/m10h.npz: 865115 rows of 12490 deals (train 10031, validation 1294, test 1165); rows by bot {'1': 14985, '2': 4692, '3': 2790, '4b': 5070, '5-32': 3672, '5R192': 1059, '5R32': 18887, '5RZ192': 82, '5RZ32': 24659, '6-256': 3\n/home/bridgebots/work/loop/exp-human/m10h4.npz: 999953 rows of 17158 deals (train 13796, validation 1783, test 1579); rows by bot {'1': 14985, '2': 4692, '3': 2790, '4b': 5070, '5-32': 3672, '5R192': 1059, '5R32': 18887, '5RZ192': 82, '5RZ32': 24659, '6-256': \n2026-11-14T09:58:32Z start xh-hs-n stuhs-n~stubs-n seed 131 first 30000 deals 2000 workers 8  (source b4e1eae, nets fp32)\n2026-11-14T10:01:03Z end xh-hs-n: exit 0\n10:02:18\n",
+ "received": "2026-11-14T10:02:18Z",
+ "script_sha256": "bd4aabac4c6f718fb3f412ab2085712e0c241109b68c0cfa00f14fc9dbe82e41",
+ "started": "2026-11-14T10:02:18Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

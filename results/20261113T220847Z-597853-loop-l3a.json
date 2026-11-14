@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T22:09:29Z",
+ "id": "20261113T220847Z-597853-loop-l3a",
+ "output_bytes": 679,
+ "output_tail": "Mem:           32086       16988       14326           4        1207       15098\n scripts/gen8_match.py | 45 ++++++++++++++++++++++++++-------------------\n 1 file changed, 26 insertions(+), 19 deletions(-)\nsource 1e89996\n-rw-r--r-- 1 bridgebots bridgebots 7013852 Nov 13 22:06 /home/bridgebots/work/loop/src/models/cardplay/stu-net-r3a-20261\nRunning as unit: loop-rungs.service; invocation ID: 1c82f65e6ddf4944a78ec303c2f20653\nactive inactive inactive active 2026-11-13T22:09:09Z the collection is paused for jobs-azure5-r3a.txt\n2026-11-13T22:09:09Z start l3a-n stu3a-n~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 1e89996, nets fp32)\n2026-11-13T22:09:29Z\n",
+ "received": "2026-11-13T22:09:08Z",
+ "script_sha256": "23958561d3fa249d30ca90c0c23d254e2cd9cf65969746f1d2cbc5707e74c8f3",
+ "started": "2026-11-13T22:09:08Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

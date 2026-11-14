@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:46:30Z",
+ "id": "20261114T144618Z-575572-cmd",
+ "output_bytes": 784,
+ "output_tail": "2026-11-14T14:45:48Z MATCH xh-sAh-hA stusAh-n~stuhA-n: +0.711 +- 0.076 IMPs a deal for the first bot (4000 deals)\ninactive\n\"epoch\": 3, \"seconds\": 873\n{\"episodes\": 2600, \"deals\": 2597, \"unique_families\": 2590, \"examples\": 1719627, \"train\": 1368924, \"validation\": 177964, \"test\": 172739, \"rows_with_unrated_cards\": 5409}\nrows 1719627 | by deciding bot: 8s-32 563834, 71s-32 313691, 8c-32 232321, 9a-32 187050, 5RZ32 136822, 1 129983, 8x3-32 92723, ben64 43825, stup0 16718, ben 2136, 7s-32 265, 6-32 259\n2026-11-14T14:11:41Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\n2026-11-14T14:11:41Z spr0 2164 tables; sp0 5669 tables; sps0 779 tables; sp3s 3166 tables; sg8t1 923 tables; 68 row files from the other boxes and the arena\nactive\n/dev/root       123G  107G   17G  87% /\n",
+ "received": "2026-11-14T14:46:30Z",
+ "script_sha256": "5f985167ee0f994e13de5b9dccd1324c1000b2e50f99ebdf8656c869e4f2f45c",
+ "started": "2026-11-14T14:46:30Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 67.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:34:53Z",
+ "id": "20261114T173341Z-485703-cmd",
+ "output_bytes": 2389,
+ "output_tail": "4 boards of sp3s; the candidate's rollout decisions, one in 2\n31 decisions on 4 tables; CPU a decision, every setting: 3.05 s\n\nall: 31 decisions. Recorded card gives up 0.0968 tricks a decision by double dummy\n  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw\n  draw (as played)         |   +0.208 +- 0.461 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0645   +0.0000 +- 0.0000\n  top card                 |   +0.126 +- 0.424 |    -0.0209 +- 0.1671 |  -0.0327 +- 0.0314 |      38.7% |      0.0645   +0.0000 +- 0.0000\n  draw, power 2            |   +0.159 +- 0.441 |    -0.0847 +- 0.0649 |  -0.0105 +- 0.0097 |      32.3% |      0.0323   -0.0323 +- 0.0305\n  draw, cut 0.25           |   +0.153 +- 0.442 |    -0.0717 +- 0.0519 |  -0.0015 +- 0.0044 |      25.8% |      0.0645   +0.0000 +- 0.0000\n  others top, own drawn    |   -0.090 +- 0.382 |    -0.1300 +- 0.2524 |  +0.0002 +- 0.0472 |      45.2% |      0.0968   +0.0323 +- 0.0305\n  own top, others drawn    |   +0.394 +- 0.467 |    +0.1903 +- 0.2974 |  -0.0373 +- 0.0310 |      29.0% |      0.0968   +0.0323 +- 0.0305\n\ndefending: 31 decisions. Recorded card gives up 0.0968 tricks a decision by double dummy\n  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw\n  draw (as played)         |   +0.208 +- 0.461 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0645   +0.0000 +- 0.0000\n  top card                 |   +0.126 +- 0.424 |    -0.0209 +- 0.1671 |  -0.0327 +- 0.0314 |      38.7% |      0.0645   +0.0000 +- 0.0000\n  draw, power 2            |   +0.159 +- 0.441 |    -0.0847 +- 0.0649 |  -0.0105 +- 0.0097 |      32.3% |      0.0323   -0.0323 +- 0.0305\n  draw, cut 0.25           |   +0.153 +- 0.442 |    -0.0717 +- 0.0519 |  -0.0015 +- 0.0044 |      25.8% |      0.0645   +0.0000 +- 0.0000\n  others top, own drawn    |   -0.090 +- 0.382 |    -0.1300 +- 0.2524 |  +0.0002 +- 0.0472 |      45.2% |      0.0968   +0.0323 +- 0.0305\n  own top, others drawn    |   +0.394 +- 0.467 |    +0.1903 +- 0.2974 |  -0.0373 +- 0.0310 |      29.0% |      0.0968   +0.0323 +- 0.0305\n\nreal\t1m6.669s\nuser\t1m45.898s\nsys\t0m0.941s\n31 /tmp/sv-test.jsonl\nMem:              31          10           7           0          13          20\n17:34:53\n",
+ "received": "2026-11-14T17:33:45Z",
+ "script_sha256": "bfcabe97b194171ad296f2b49eaa01205eba7d9d4bdcb7b1fff28fb5477ce868",
+ "started": "2026-11-14T17:33:45Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

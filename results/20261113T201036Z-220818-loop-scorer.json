@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 120.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T20:12:58Z",
+ "id": "20261113T201036Z-220818-loop-scorer",
+ "output_bytes": 997,
+ "output_tail": "source 57eb87c\nscorer shapes {'Wh': (120, 768), 'Wa': (1064, 768), 'W1': (768, 512), 'W2': (512, 256), 'Wo': (256, 1)} | bf16 path True\nlog score change: mean 0.0373, 99th pct 0.1281, max 0.2589 | weights over 40,000 hands: total variation 0.0003\nfp32 66464 hand types a second\nbf16 114344 hand types a second\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 16, \"cpu_per_board\": 22.05}\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 16, \"cpu_per_board\": 16.6}\nfp32 cpu a table 22.05 | first 8 tables cards digest 98816ce14af8b825 (fp32 before: 98816ce14af8b825)\nbf16 cpu a table 16.60 | first 8 tables cards digest ceb433825d2e8665 (fp32 before: 98816ce14af8b825)\nRunning as unit: loop-collect.service; invocation ID: c12a9bedda2c484ca238c3e2b21f0a70\nRunning as unit: loop-collect-b.service; invocation ID: b5f3322299c1408ba5a4561868a98e54\nactive active 2026-11-13T20:12:44Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 6 --episodes --one-room (source 57eb87c, nets bf16)\n2026-11-13T20:12:58Z\n",
+ "received": "2026-11-13T20:10:57Z",
+ "script_sha256": "1da7e785bf6a689b5f05696f32c490ba210fdf8ff5415c99d90b396c02df924f",
+ "started": "2026-11-13T20:10:57Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

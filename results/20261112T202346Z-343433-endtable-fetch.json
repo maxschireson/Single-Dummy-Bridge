@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 6.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T20:23:58Z",
+ "id": "20261112T202346Z-343433-endtable-fetch",
+ "output_bytes": 614,
+ "output_tail": "k1.et: 4211 bytes in 0 s, hash ok\nk2.et: 46219 bytes in 0 s, hash ok\nk3.et: 10483035 bytes in 1 s, hash ok\nk4.et: 2796534231 bytes in 5 s, hash ok\ntotal 2741300\ndrwxr-xr-x 2 bridgebots bridgebots       4096 Nov 12 20:23 .\ndrwxr-xr-x 3 bridgebots bridgebots       4096 Nov 12 20:23 ..\n-rw-r--r-- 1 bridgebots bridgebots        288 Nov 12 20:23 SHA256SUMS\n-rw-r--r-- 1 bridgebots bridgebots       4211 Nov 12 20:23 k1.et\n-rw-r--r-- 1 bridgebots bridgebots      46219 Nov 12 20:23 k2.et\n-rw-r--r-- 1 bridgebots bridgebots   10483035 Nov 12 20:23 k3.et\n-rw-r--r-- 1 bridgebots bridgebots 2796534231 Nov 12 20:23 k4.et\n",
+ "received": "2026-11-12T20:23:52Z",
+ "script_sha256": "5afbdc6c6bbed7d2b3f8cbaf28b6b2f36200763ab793770239b0ea8b287f9f9d",
+ "started": "2026-11-12T20:23:52Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:08:29Z",
+ "id": "20261114T150821Z-723857-cmd",
+ "output_bytes": 266,
+ "output_tail": "\"epoch\": 2, \"seconds\": 464\n2026-11-14T14:47:15Z published to /home/bridgebots/work/loop/pub/train-r4: policy.npz sha256 edc5d6cfaf9fd868\n2026-11-14T14:47:15Z r4 sha256 edc5d6cfaf9fd868e4e07708b18ad6e712da1cf981688b1a152857ace5d8853f; disk free 23 GB\nactive\n15:08:29\n",
+ "received": "2026-11-14T15:08:29Z",
+ "script_sha256": "70226fe283539ef8a9a2197d4c0288ce4fbba09b751acf3233991a8279d29379",
+ "started": "2026-11-14T15:08:29Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

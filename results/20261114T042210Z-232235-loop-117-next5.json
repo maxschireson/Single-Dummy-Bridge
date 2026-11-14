@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:22:24Z",
+ "id": "20261114T042210Z-232235-loop-117-next5",
+ "output_bytes": 411,
+ "output_tail": "before: loop-rungs active, loop-rungs2 active\n2026-11-14T03:08:44Z the collection is paused for jobs-azure5-hd.txt\n2026-11-14T03:08:44Z start h3-pg stu3-pg~stu0-ps seed 131 first 5000 deals 1000 workers 8  (source fc8202f, nets fp32)\nRunning as unit: loop-rungs2.service; invocation ID: 035ee6fcd5274d3ea78a0b31a53b3cc2\nafter: loop-rungs active; loop-rungs2 active\nh3-pg boards so far: 827\n2026-11-14T04:22:24Z\n",
+ "received": "2026-11-14T04:22:18Z",
+ "script_sha256": "9cb0590ceaf824dcfb3ba57dc32357f0c5dbacd35b631a3832ba1c257da31aaa",
+ "started": "2026-11-14T04:22:18Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

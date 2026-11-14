@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:12:28Z",
+ "id": "20261114T041207Z-194143-loop-113-next5",
+ "output_bytes": 829,
+ "output_tail": "#!/usr/bin/env bash\nwhile [ \"$(systemctl is-active loop-rungs)\" = active ]; do sleep 30; done; sleep 45\ngit -C \"/home/bridgebots/work/loop/src\" fetch -q --depth 8 origin research/rollout-loop-20261113 && git -C \"/home/bridgebots/work/loop/src\" checkout -q 38b19d29a7d9933ba2716c545baf1f6044122edc\nbash \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/rungs.sh\" jobs-azure5-v41-styles.txt azure5\nRunning as unit: loop-rungs2.service; invocation ID: 31a0faa87af0435ebb3ff7d536a17b90\nloop-rungs: active; loop-rungs2: active\n2026-11-14T03:08:44Z the collection is paused for jobs-azure5-hd.txt\n2026-11-14T03:08:44Z start h3-pg stu3-pg~stu0-ps seed 131 first 5000 deals 1000 workers 8  (source fc8202f, nets fp32)\nh3-pg boards so far: 716\nREADME.md\ngen7_policy_v4.1.npz\ngen7_policy_v4.1.npz.part000\n2026-11-14T04:12:28Z\n",
+ "received": "2026-11-14T04:12:23Z",
+ "script_sha256": "f355a38b76ee936d6a827df2c6ff19f8940fce5a02c3f207c5b084e5e1656f0a",
+ "started": "2026-11-14T04:12:23Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

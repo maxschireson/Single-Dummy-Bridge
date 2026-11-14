@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:32:49Z",
+ "id": "20261114T103246Z-493835-cmd",
+ "output_bytes": 465,
+ "output_tail": "s10h 454954 1: 1.3395/0.4168/0.0996 2: 1.3391/0.4350/0.0927 3: 1.3470/0.4459/0.0883 4: 1.3679/0.4501/0.0878 5: 1.3932/0.4558/0.0845 6: 1.4098/0.4550/0.0855 kept 2\n2026-11-14T10:19:30Z start xh-hf-n stuhf-n~stubf-n seed 131 first 30000 deals 8000 workers 4  (source b4e1eae, nets fp32)\n2026-11-14T10:25:04Z end xh-m10h4-n: exit 0\n2026-11-14T10:29:00Z start xh-s10h-n stus10h-n~stus10-n seed 131 first 30000 deals 2000 workers 8  (source b4e1eae, nets fp32)\n10:32:49\n",
+ "received": "2026-11-14T10:32:49Z",
+ "script_sha256": "60921322eb0c3fb1fe50f97f13a549a324e6c2f559c74e3c485cc1270655370e",
+ "started": "2026-11-14T10:32:49Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

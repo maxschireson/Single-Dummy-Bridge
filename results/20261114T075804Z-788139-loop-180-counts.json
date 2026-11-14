@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:58:37Z",
+ "id": "20261114T075804Z-788139-loop-180-counts",
+ "output_bytes": 718,
+ "output_tail": "sp3s: 3166 tables, since 06:09, last 06:34, 7781 an hour\ns8-greedy: 500 boards, since 06:34, last 06:56, 1344 an hour\ns8-patient: 500 boards, since 06:56, last 07:18, 1369 an hour\ns8-active: 500 boards, since 07:18, last 07:40, 1351 an hour\ns8-passive: 386 boards, since 07:40, last 07:58, 1310 an hour\n2026-11-14T06:56:47Z start s8-patient g8-patient~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)\n2026-11-14T07:18:43Z start s8-active g8-active~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)\n2026-11-14T07:40:56Z start s8-passive g8-passive~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)\n",
+ "received": "2026-11-14T07:58:37Z",
+ "script_sha256": "f839c59790b2ecea686d6f58c7d0a6e4ee1cc0ee199720b7ede173b20912c51b",
+ "started": "2026-11-14T07:58:37Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

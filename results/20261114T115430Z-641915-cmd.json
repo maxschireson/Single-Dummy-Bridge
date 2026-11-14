@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:54:47Z",
+ "id": "20261114T115430Z-641915-cmd",
+ "output_bytes": 809,
+ "output_tail": "2026-11-14T10:44:12Z stage fit; source bd4d0b8; threads 4\n2026-11-14T10:59:15Z stage all; source bd4d0b8; threads 8\n2026-11-14T11:50:58Z stage big; source bd4d0b8; threads 8\n/home/bridgebots/work/loop/exp-human/hA.npz: 630296 rows of 22269 deals (train 17930, validation 2093, test 2246); rows by bot {'usbc': 630296}; with the rollouts' values 0%\n/home/bridgebots/work/loop/exp-human/bA.npz: 920187 rows of 22269 deals (train 17910, validation 2247, test 2112); rows by bot {'stup0': 920187}; with the rollouts' values 77%\n/home/bridgebots/work/loop/exp-human/sAh.npz: 1550483 rows of 44538 deals (train 35840, validation 4340, test 4358); rows by bot {'stup0': 920187, 'usbc': 630296}; with the rollouts' values 46%\n\"epoch\": 6, \"seconds\": 212\n2026-11-14T11:50:58Z end xh-m10B-n: exit 0\nxh-hs-p 148\n11:54:47\n",
+ "received": "2026-11-14T11:54:47Z",
+ "script_sha256": "1806ec1b134ba5b1d7238d4f38887ff458f71e03a89146f0c50b8fbab5028313",
+ "started": "2026-11-14T11:54:47Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

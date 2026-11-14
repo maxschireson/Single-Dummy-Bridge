@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T09:53:36Z",
+ "id": "20261114T095332Z-123573-cmd",
+ "output_bytes": 2079,
+ "output_tail": "2026-11-14T09:50:48Z stage e1; source b4e1eae; threads 8\n2026-11-14T09:51:15Z net hf: sha256 3a75dd11b9b454e7\n2026-11-14T09:51:45Z net bf: sha256 2287778f5610234f\n2026-11-14T09:52:20Z net mf: sha256 effbe5da946a0dee\n2026-11-14T09:52:38Z net hs: sha256 8777854ba9de352b\n2026-11-14T09:52:58Z net bs: sha256 58268971fc19038a\nnet    rows      | held-out SiD rows by epoch: log-loss / exact card / tricks its first card gives up | round 3's net there\nbf     51392     | 1: 1.0591/0.5116/0.0652 2: 1.0496/0.5135/0.0646 3: 1.0475/0.5137/0.0645 4: 1.0472/0.5134/0.0645 (kept 4; held-out set stu_eval.npz) | 1.2976/0.5125/0.0659\nbs               | scored on the SiD rows: 1.2930 / 0.4013 / 0.1061\nbs     51392     | 1: 1.3972/0.3281/0.1486 2: 1.3606/0.3652/0.1276 3: 1.3234/0.3916/0.1201 4: 1.3078/0.3927/0.1115 5: 1.3120/0.3992/0.1141 6: 1.3136/0.4018/0.1125 7: 1.3201/0.3952/0.1133 8: 1.3660/0.3902/0.1091 (kept 4; held-out set its own deals) | \nhf     36203     | 1: 1.2067/0.4948/0.0641 2: 1.2906/0.4858/0.0644 3: 1.3099/0.4825/0.0646 4: 1.3136/0.4822/0.0645 (kept 1; held-out set stu_eval_usbc.npz) | 1.5439/0.5011/0.0694\nhs               | scored on the SiD rows: 1.5393 / 0.3963 / 0.1011\nhs     36203     | 1: 1.3905/0.4212/None 2: 1.2642/0.5017/None 3: 1.1934/0.5326/None 4: 1.1747/0.5371/None 5: 1.1718/0.5326/None 6: 1.1676/0.5458/None 7: 1.1825/0.5471/None 8: 1.2394/0.5435/None 9: 1.2697/0.5352/None 10: 1.3701/0.5157/None (kept 6; held-out set its own deals) | \nmf     87595     | 1: 1.0718/0.5109/0.0644 2: 1.0685/0.5134/0.0639 3: 1.0685/0.5134/0.0638 4: 1.0682/0.5135/0.0638 (kept 4; held-out set stu_eval.npz) | 1.2976/0.5125/0.0659\n2026-11-14T09:52:58Z done: e1\n2026-11-14T09:50:46Z azure5 lent to the human-boards experiment (Max, 09:37 UTC: 'you can take a machine'); the collection (jobs-azure5.txt, at sg8t1) pauses and resumes after it\n2026-11-14T09:52:58Z start xh-hf-n stuhf-n~stubf-n seed 131 first 30000 deals 2000 workers 8  (source b4e1eae, nets fp32)\nmanifest.json\nresults.jsonl\nsummary.json\n438 /home/bridgebots/work/loop/runs/xh-hf-n/results.jsonl\n09:53:36\n",
+ "received": "2026-11-14T09:53:36Z",
+ "script_sha256": "f2f471fe70379be7db63f1299c5e2a1e644669b42000d18f4fbf56f0bfc06cb2",
+ "started": "2026-11-14T09:53:36Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

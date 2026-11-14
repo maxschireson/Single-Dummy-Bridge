@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 65.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:28:13Z",
+ "id": "20261112T122654Z-521915-aimed",
+ "output_bytes": 1713,
+ "output_tail": "mechanism report exit 0 11:32:21\nreading reports pushed 11:32:22\ncards with scorer weights exit 0 12:26:57\n21417 decisions on 530 tables of 329 deals; the reading is v4's: +0.185 +- 0.029 tricks a board against no reading; the true layout gains +0.65 nats from it\n  +1.05 nats, every decision             near 0.239 |  21417 decisions helped, +1.05 nats each | over the reading +0.198 +- 0.022 tricks a board\n  +1.85 nats, every decision             near 0.483 |  21417 decisions helped, +1.85 nats each | over the reading +0.320 +- 0.030 tricks a board\n  near of +1.05, tricks 1 to 6 only      near 0.239 |  10683 decisions helped, +1.68 nats each | over the reading +0.165 +- 0.020 tricks a board\n  near of +1.05, from trick 7 only       near 0.239 |  10734 decisions helped, +0.42 nats each | over the reading +0.034 +- 0.008 tricks a board\n21417 decisions on 530 tables of 329 deals; the reading is v4.1's: +0.197 +- 0.029 tricks a board against no reading; the true layout gains +0.69 nats from it\n  +1.05 nats, every decision             near 0.242 |  21417 decisions helped, +1.05 nats each | over the reading +0.190 +- 0.022 tricks a board\n  +1.85 nats, every decision             near 0.490 |  21417 decisions helped, +1.85 nats each | over the reading +0.301 +- 0.029 tricks a board\n  near of +1.05, tricks 1 to 6 only      near 0.242 |  10683 decisions helped, +1.69 nats each | over the reading +0.156 +- 0.019 tricks a board\n  near of +1.05, from trick 7 only       near 0.242 |  10734 decisions helped, +0.42 nats each | over the reading +0.034 +- 0.008 tricks a board\n12:28:13\nreading reports pushed 11:32:22\ncards with scorer weights exit 0 12:26:57\npools published exit 0 12:27:26 387M 689 files\n",
+ "received": "2026-11-12T12:27:08Z",
+ "script_sha256": "5f2bcd67a987b98ff6876e40e77601296ff6bf319d2e234cb33896c98532411c",
+ "started": "2026-11-12T12:27:08Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

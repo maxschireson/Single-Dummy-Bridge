@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:51:41Z",
+ "id": "20261112T065113Z-656160-ep3",
+ "output_bytes": 373,
+ "output_tail": "06:51:41\n{\"epoch\": 2, \"seconds\": 1166, \"train_ce\": 0.6137, \"train_gap\": 0.0378, \"train_owner\": 0.5572, \"val\": {\"n\": 218537, \"nll\": 0.6269, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7464, \"in_best\": 0.9058, \"regret\": 0.0271, \"regret_gap_head\": 0.0245, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n 20000 of 25858, 1577 s\nepoch 3 step 22000 of 25858, 1617 s\n",
+ "received": "2026-11-12T06:51:41Z",
+ "script_sha256": "487ba50f705f83a21a79323c323c91efedb6007d630e71a53dfa0b6a88addabe",
+ "started": "2026-11-12T06:51:41Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

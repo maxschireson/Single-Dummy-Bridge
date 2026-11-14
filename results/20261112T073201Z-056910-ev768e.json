@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:32:30Z",
+ "id": "20261112T073201Z-056910-ev768e",
+ "output_bytes": 1796,
+ "output_tail": "07:32:30\nneartie pushed 07:12:47\nreading bench paused for the 768-wide scoring 07:17:25\nfreshF done: {\"deals_in\": 144, \"deals_kept\": 144, \"dropped_as_seen\": 0, \"examples\": 65888} 07:19:09\n55 /home/bridgebots/work/p41/logs/eval_w768e5.log\n== five epochs: 512 wide against 768 wide\n591450 decisions, 1387 deals\nw512         gives up 0.0249 | exact 0.749 | top 3 0.991 | kept 0.98 2.72 0.90 2.04 | log-loss 0.6126\nw512e5       gives up 0.0241 | exact 0.755 | top 3 0.991 | kept 0.98 2.70 0.90 2.02 | log-loss 0.6005 || from w512: -0.0008 [-0.0015, -0.0001], cut 3.2% [0.4%, 5.9%]\nw768e5       gives up 0.0237 | exact 0.758 | top 3 0.992 | kept 0.98 2.71 0.90 2.02 | log-loss 0.5927 || from w512e5: -0.0004 [-0.0011, +0.0002], cut 1.8% [-1.0%, 4.7%]\n\n== the same on B (the temperature set)\n218537 decisions, 631 deals\nv4           gives up 0.0328 | exact 0.765 | top 3 0.988 | kept 0.98 2.97 0.90 2.23 | log-loss 0.6346\nw768         gives up 0.0243 | exact 0.759 | top 3 0.991 | kept 0.98 2.74 0.90 2.04 | log-loss 0.5952 || from v4: -0.0085 [-0.0097, -0.0074], cut 26.0% [23.1%, 28.9%]\nw768e5       gives up 0.0234 | exact 0.759 | top 3 0.991 | kept 0.98 2.74 0.90 2.04 | log-loss 0.5939 || from w768: -0.0008 [-0.0018, +0.0001], cut 3.5% [-0.2%, 7.2%]\n\n== trainer figures by deciding bot (0 = 6-32, 2 = 7s-32)\n{\"set\": \"freshALL_F.npz\", \"bot\": 0, \"rows\": 562444, \"deals\": 1292}\n{\"net\": \"w768\", \"all\": {\"n\": 562444, \"nll\": 0.6021, \"uniform_nll\": 1.245, \"tie_nll\": 0.7778, \"agree\": 0.7535, \"in_best\": 0.915, \"regret\": 0.024, \"regret_gap_head\": 0.0189, \"regret_random\": 0.1981, \"regret_lowest\": 0.2202}, \"by_phase\": {\"lead\": {\"n\": 1292, \"nll\": 1.2213, \"uniform_nll\": 2.5649, \"tie_nll\": 0.7629, \"agree\": 0.5782, \"in_best\": 0.6385, \"regret\": 0.0463, \"regret_gap_head\": 0.047, \"regret_random\": 0.2685, \"r\n",
+ "received": "2026-11-12T07:32:30Z",
+ "script_sha256": "f2dd3f8e6e1323a5cd774f1c2e8b2b64295647cfb11dae10909124ad56586b14",
+ "started": "2026-11-12T07:32:30Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

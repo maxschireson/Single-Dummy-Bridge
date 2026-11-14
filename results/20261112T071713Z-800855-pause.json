@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:17:45Z",
+ "id": "20261112T071713Z-800855-pause",
+ "output_bytes": 280,
+ "output_tail": "Running as unit: g8-reading-resume.service; invocation ID: 5486cd2b757e45ff842035a3f2d2a08a\n 07:17:45 up  3:25,  0 user,  load average: 8.45, 9.30, 8.13\nSTAT  NI %CPU COMMAND\nRl     0  293 python\nTN     5 85.5 python\nTN     5 84.8 python\nTN     5 84.4 python\nTN     5 84.3 python\n",
+ "received": "2026-11-12T07:17:24Z",
+ "script_sha256": "3ce70d748ce32a1f9644077047181e4bfc94291eb39139383bf8fe69a375478b",
+ "started": "2026-11-12T07:17:24Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

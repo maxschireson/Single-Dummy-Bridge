@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:42:14Z",
+ "id": "20261114T204147Z-077457-cmd",
+ "output_bytes": 706,
+ "output_tail": "{\"epoch\": 1, \"seconds\": 1975, \"train_ce\": 0.6597, \"train_gap\": 0.043, \"train_owner\": 0.5728, \"val\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.5727, \"uniform_nll\": 1.2695, \"tie_nll\": 0.7885, \"agree\": 0.7639, \"in_best\": 0.9128, \"rated_pick\": 1.0, \"regret\": 0.0257, \"regret_gap_head\": 0.0249, \"regret_random\": 0.2075, \"regret_lowest\": 0.2281}, \"temperature\": {\"t\": 1.03, \"nll\": 0.5725, \"nll_at_1\": 0.5727}}\nw1536 float parameters 6282178 [(2744832, 'wt0', (1787, 1536)), (1769472, 'wt1', (1536, 1152)), (1182720, 'wd0', (1540, 768)), (294912, 'ws1', (768, 384))]\nv2 float parameters 1742338 [(782592, 'wt0', (1019, 768)), (442368, 'wt1', (768, 576)), (296448, 'wd0', (772, 384)), (86016, 'ws0', (224, 384))]\n",
+ "received": "2026-11-14T20:42:13Z",
+ "script_sha256": "c15e40c4282b9a4611bf0072fe15654afac8e63fc8ee3ca001ed5387cc0ef7ee",
+ "started": "2026-11-14T20:42:13Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

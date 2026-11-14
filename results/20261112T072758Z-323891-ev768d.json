@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:28:26Z",
+ "id": "20261112T072758Z-323891-ev768d",
+ "output_bytes": 935,
+ "output_tail": "07:28:26\nneartie pushed 07:12:47\nreading bench paused for the 768-wide scoring 07:17:25\nfreshF done: {\"deals_in\": 144, \"deals_kept\": 144, \"dropped_as_seen\": 0, \"examples\": 65888} 07:19:09\n41 /home/bridgebots/work/p41/logs/eval_w768e5.log\n== its epochs 3, 4 and 5\n591450 decisions, 1387 deals\nw768         gives up 0.0240 | exact 0.755 | top 3 0.991 | kept 0.98 2.70 0.90 2.02 | log-loss 0.5996\ne3           gives up 0.0249 | exact 0.751 | top 3 0.991 | kept 0.98 2.73 0.90 2.04 | log-loss 0.6069 || from w768: +0.0009 [+0.0002, +0.0016], cut -3.8% [-6.8%, -0.9%]\ne4           gives up 0.0239 | exact 0.757 | top 3 0.992 | kept 0.98 2.69 0.90 2.01 | log-loss 0.5951 || from e3: -0.0010 [-0.0015, -0.0005], cut 4.0% [2.1%, 5.9%]\ne5           gives up 0.0237 | exact 0.758 | top 3 0.992 | kept 0.98 2.71 0.90 2.02 | log-loss 0.5927 || from e4: -0.0002 [-0.0005, +0.0000], cut 1.0% [-0.0%, 2.1%]\n\n== five epochs: 512 wide against 768 wide\n",
+ "received": "2026-11-12T07:28:26Z",
+ "script_sha256": "8addb4e4ac44c4fd456d45b220d3e8b8929def487b58911043b1dc66d14b3ed0",
+ "started": "2026-11-12T07:28:26Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

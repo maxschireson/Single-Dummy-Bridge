@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 294.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:03:52Z",
+ "id": "20261113T095849Z-275977-loop-10-learning-curve",
+ "output_bytes": 2585,
+ "output_tail": "source db83b7a Stu round 0: the ladder's first pass now, 200 deals a rung, before azure3 goes back to collecti\ns0 records 479, r0 records 248\n{\"episodes\": 527, \"deals\": 523, \"unique_families\": 523, \"examples\": 43296, \"train\": 35361, \"validation\": 4139, \"test\": 3796, \"rows_with_unrated_cards\": 6280}\n{\"episodes\": 200, \"deals\": 200, \"unique_families\": 200, \"examples\": 16527, \"train\": 13476, \"validation\": 1822, \"test\": 1229, \"rows_with_unrated_cards\": 2413}\ntraining: 164 s\ntraining set: deals 523 rows 43296 | held out: deals 200 rows 16527 | rows with the rollouts' gap (some cards unrated): 2413\nbase      0 boards | all: nll 1.2280 agree 0.6410 | from trick 7: nll 1.1117 agree 0.6708 n 8026 | rated_pick 0.9993 regret 0.0447 | epoch 1\nf8       65 boards | all: nll 0.9177 agree 0.6362 | from trick 7: nll 0.8660 agree 0.6645 n 8026 | rated_pick 0.9988 regret 0.0438 | epoch 4\nf4      131 boards | all: nll 0.9016 agree 0.6357 | from trick 7: nll 0.8512 agree 0.6647 n 8026 | rated_pick 0.9986 regret 0.0445 | epoch 3\nf2      262 boards | all: nll 0.8846 agree 0.6351 | from trick 7: nll 0.8375 agree 0.6595 n 8026 | rated_pick 0.9984 regret 0.0439 | epoch 2\nf1      523 boards | all: nll 0.8656 agree 0.6413 | from trick 7: nll 0.8222 agree 0.6668 n 8026 | rated_pick 0.9981 regret 0.0432 | epoch 2\nids blanked (v2 as a generic player): {\"nll\": 1.0709, \"agree\": 0.6375, \"regret\": 0.0449}\ncompared policy_epoch5.npz {\"all\": {\"n\": 16527, \"searched\": 13881, \"nll\": 1.0709, \"uniform_nll\": 1.3927, \"tie_nll\": 0.6554, \"agree\": 0.6375, \"in_best\": 0.7996, \"rated_pick\": 0.9993, \"regret\": 0.0449, \"regret_gap_head\": 0.0462, \"regret_random\": 0.2031, \"regret_lowest\": 0.2204}, \"from_trick_7\": {\"n\": 8026, \"searched\": 5556, \"nl\ncompared gen7_policy_v4.1.npz {\"all\": {\"n\": 16527, \"searched\": 13881, \"nll\": 1.0598, \"uniform_nll\": 1.3927, \"tie_nll\": 0.6554, \"agree\": 0.6666, \"in_best\": 0.783, \"rated_pick\": 0.9999, \"regret\": 0.0526, \"regret_gap_head\": 0.0514, \"regret_random\": 0.2031, \"regret_lowest\": 0.2204}, \"from_trick_7\": {\"n\": 8026, \"searched\": 5556, \"nll\ncompared policy_ft.npz {\"all\": {\"n\": 16527, \"searched\": 13881, \"nll\": 1.4106, \"uniform_nll\": 1.3927, \"tie_nll\": 0.6554, \"agree\": 0.6523, \"in_best\": 0.7936, \"rated_pick\": 0.9997, \"regret\": 0.048, \"regret_gap_head\": 0.0497, \"regret_random\": 0.2031, \"regret_lowest\": 0.2204}, \"from_trick_7\": {\"n\": 8026, \"searched\": 5556, \"nll\ntie_nll (log of the count of equal-best rated cards), all held-out rows with a gap: 0.6554 | uniform_nll 1.3927\n500 boards: -0.02 +- 0.0382 IMPs/board for stu0a; 573 boards/hour; 0 failed\n2026-11-13T10:03:52Z\n",
+ "received": "2026-11-13T09:58:58Z",
+ "script_sha256": "9410ee0cc9edbdd680f3f9f0562c219234a9b0b63eec4d13b5057d9dec26e25b",
+ "started": "2026-11-13T09:58:58Z",
+ "timed_out": false,
+ "timeout_s": 3000
+}

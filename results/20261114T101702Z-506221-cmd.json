@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:17:28Z",
+ "id": "20261114T101702Z-506221-cmd",
+ "output_bytes": 614,
+ "output_tail": "m10h4 999953 1: 1.1944/0.5082/0.0663 2: 1.2063/0.5081/0.0661 3: 1.2210/0.5085/0.0658 4: 1.2245/0.5082/0.0658 kept 1\n2026-11-14T10:08:47Z net m10h: sha256 e3e07d0b920acac8\n2026-11-14T10:13:32Z net m10h4: sha256 5d8eb42d74958418\nnet    rows      | held-out SiD rows by epoch: log-loss / exact card / tricks its first card gives up | round 3's net there\n2026-11-14T10:03:21Z start xh-mf-n stumf-n~stubf-n seed 131 first 30000 deals 8000 workers 4  (source b4e1eae, nets fp32)\n2026-11-14T10:13:32Z start xh-m10h-n stum10h-n~stum10-n seed 131 first 30000 deals 2000 workers 8  (source b4e1eae, nets fp32)\n7303\n10:17:28\n",
+ "received": "2026-11-14T10:17:28Z",
+ "script_sha256": "33734ec41201ccf48dd30309fa14808c48938a86b035c99f9240bf50e280daa2",
+ "started": "2026-11-14T10:17:28Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

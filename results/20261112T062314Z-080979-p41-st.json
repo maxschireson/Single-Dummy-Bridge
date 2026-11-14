@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:23:31Z",
+ "id": "20261112T062314Z-080979-p41-st",
+ "output_bytes": 1386,
+ "output_tail": "w512c1 stopped and removed (not asked for) 06:01:05\nw512e5 exit 0 06:16:48\nfreshE done: {\"deals_in\": 1194, \"deals_kept\": 611, \"dropped_as_seen\": 583, \"examples\": 265124} 06:20:03\n== every fresh set but B together: {\"parts\": 3, \"deals\": 1243, \"unique_families\": 1243, \"examples\": 525562, \"deals_by_hash_split\": [0, 1243, 0]}\n== v4, three epochs, five epochs\n525562 decisions, 1243 deals\nv4           gives up 0.0334 | exact 0.730 | top 3 0.989 | kept 0.98 2.94 0.90 2.20 | log-loss 0.6665\nw512         gives up 0.0247 | exact 0.749 | top 3 0.991 | kept 0.98 2.73 0.90 2.04 | log-loss 0.6128 || from v4: -0.0086 [-0.0096, -0.0078], cut 25.9% [23.7%, 28.0%]\nw512e5       gives up 0.0240 | exact 0.755 | top 3 0.991 | kept 0.98 2.70 0.90 2.02 | log-loss 0.6007 || from w512: -0.0008 [-0.0015, -0.0001], cut 3.2% [0.4%, 5.8%]\nv4 to w512 lead         cut   3.2% [ -7.1%,  12.6%]\nv4 to w512 tricks 1-2   cut  16.5% [ 10.0%,  22.5%]\nv4 to w512 tricks 3-6   cut  19.0% [ 16.0%,  22.1%]\nv4 to w512 tricks 7-13  cut  28.5% [ 25.7%,  31.3%]\nv4 to w512 all          cut  25.9% [ 23.7%,  28.0%]\nw512 to w512e5 lead         cut   2.0% [ -5.7%,   9.3%]\nw512 to w512e5 tricks 1-2   cut   4.0% [ -3.4%,  10.9%]\nw512 to w512e5 tricks 3-6   cut   0.4% [ -3.0%,   3.5%]\nw512 to w512e5 tricks 7-13  cut   4.2% [  0.6%,   7.7%]\nw512 to w512e5 all          cut   3.2% [  0.4%,   5.8%]\n== its epochs 3, 4 and 5\n",
+ "received": "2026-11-12T06:23:31Z",
+ "script_sha256": "945d60fdd3a1dfdb3814a8283733086474eaddc5d7656b96773298722fce6198",
+ "started": "2026-11-12T06:23:31Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

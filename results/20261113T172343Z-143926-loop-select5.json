@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 278.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:28:42Z",
+ "id": "20261113T172343Z-143926-loop-select5",
+ "output_bytes": 1464,
+ "output_tail": " training/rollout-loop-20261113/round2.sh           |   7 +-\n training/rollout-loop-20261113/runs.json           | 647 +++++++++++----------\n 11 files changed, 498 insertions(+), 370 deletions(-)\nsource e5f249d\n{\"epoch\": 0, \"val\": {\"n\": 129361, \"searched\": 105564, \"nll\": 0.5356, \"uniform_nll\": 1.2757, \"tie_nll\": 0.7674, \"agree\": 0.7794, \"in_best\": 0.9095, \"rated_pick\": 0.9998, \"regret\": 0.0236, \"regret_gap_head\": 0.0217, \"regret_random\": 0.2056, \"regret_lowest\": 0.22\n{\"epoch\": 1, \"select\": {\"bot\": \"stup0\", \"key\": \"nll\", \"value\": 0.9937, \"rest_nll\": 0.5175, \"within\": true}}\n{\"epoch\": 2, \"select\": {\"bot\": \"stup0\", \"key\": \"nll\", \"value\": 0.9822, \"rest_nll\": 0.5231, \"within\": true}}\n{\"epoch\": 3, \"select\": {\"bot\": \"stup0\", \"key\": \"nll\", \"value\": 0.9765, \"rest_nll\": 0.5264, \"within\": true}}\n{\"epoch\": 4, \"select\": {\"bot\": \"stup0\", \"key\": \"nll\", \"value\": 0.9748, \"rest_nll\": 0.5278, \"within\": true}}\n{\"epoch\": 5, \"select\": {\"bot\": \"stup0\", \"key\": \"nll\", \"value\": 0.9742, \"rest_nll\": 0.5291, \"within\": true}}\n{\"epoch\": 6, \"select\": {\"bot\": \"stup0\", \"key\": \"nll\", \"value\": 0.974, \"rest_nll\": 0.5293, \"within\": false}}\nselected epoch 5\nstup0 first card gives up: {'lead': 0.0583, 'tricks 1-4': 0.0618, 'tricks 5-8': 0.0834, 'tricks 9-13': 0.0547} | value head: {'lead': 0.0577, 'tricks 1-4': 0.0649, 'tricks 5-8': 0.0892, 'tricks 9-13': 0.0623}\nlog-loss stup0 0.9742 | 8s-32 0.4809 | all 0.5505\nsp0 1524 tables\nspr0 1155 tables\nactive active 2026-11-13T17:28:42Z\n",
+ "received": "2026-11-13T17:24:03Z",
+ "script_sha256": "1ca5ca07a2175ab75a6a246331727bd384c29d75100d29b298eaf50ab52cf6e4",
+ "started": "2026-11-13T17:24:03Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

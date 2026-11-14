@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:13:18Z",
+ "id": "20261114T111259Z-647759-cmd",
+ "output_bytes": 333,
+ "output_tail": "m10A 1450465 1: 1.1838/0.5078/0.0653 2: 1.2149/0.5078/0.0654 3: 1.2285/0.5068/0.0659 4: 1.2302/0.5072/0.0659\n2026-11-14T11:11:51Z net m10A: sha256 4a8ee344bc813358\n2026-11-14T11:05:28Z start xh-m10h4-n stum10h4-n~stum10-n seed 131 first 30000 deals 6000 workers 4  (source bd4d0b8, nets fp32)\nxh-m10h4-p 162 xh-m10h4-n 3948 11:13:18\n",
+ "received": "2026-11-14T11:13:17Z",
+ "script_sha256": "ca9bf31bdf55eb6bcf2107bdec6a0f6ed08e8fb4cecaade1a1b71b5667fd1165",
+ "started": "2026-11-14T11:13:17Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

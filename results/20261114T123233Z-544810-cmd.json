@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:32:49Z",
+ "id": "20261114T123233Z-544810-cmd",
+ "output_bytes": 254,
+ "output_tail": "2026-11-14T12:17:20Z arena-gen8-s3-azure1-feed: 1468 records, 0 not in v2's set\n2026-11-14T12:17:20Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\nactive\n0\nxh-hf-p 153\n 12:32:49 up 2 days,  8:40,  0 user,  load average: 9.41, 11.49, 12.62\n",
+ "received": "2026-11-14T12:32:49Z",
+ "script_sha256": "99ef9217064513f861986886948f93fae1bb3b65bf832e9ec0b11cfb9fe9da42",
+ "started": "2026-11-14T12:32:49Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 2.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:03:55Z",
+ "id": "20261112T070330Z-620849-g8setup",
+ "output_bytes": 1400,
+ "output_tail": "source 387504e Gen 8 reading bench: each decision's layouts solved once, every net's reading scored on them (W\n481435 models/cardplay/gen5-2026-11-10/policy.npz\n1087250 models/cardplay/gen7-policy-v0-2026-11-11/gen7_policy_v0.npz\n3365906 models/cardplay/gen7-policy-v2-2026-11-11/gen7_policy_v2.npz\n3365906 models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz\n3365906 models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz\n5743718 models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz\n1266008 bridge_harness/libbridge_dds.so\na473c11bd59dadc77c478513b07149b2cccf623261e406d637dbfe7a67f0b269  /home/bridgebots/work/p41/runs/w512e5/policy\ncb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed  models/cardplay/gen7-policy-v4.1-2026-11-12/\ncb3fcfd5c55873735ee22ea5e7ba04606794bed38d261fdf3f1b3a4af5c9fbed  /home/bridgebots/work/p41/runs/w512/policy_e\nExecStart=\nExecStart=\"/bin/bash\" \"-c\" \"/home/bridgebots/work/venv/bin/python scripts/train_gen7_policy.py --data /home/bridgebots/work/p41/data/gen7_v41_train.npz --all-train --val-data /home/bridgebots/work/p41/data/freshB.npz --kind suit --width 768 --epochs 5 --augment none --save-epochs --out /home/bridgebots/work/p41/runs/w768e5 > /home/bridgebots/work/p41/logs/w768e5.out 2> /home/bridgebots/work/p41/logs/w768e5.err; echo \\\"w768e5 exit $$? $$(date -u +%%T)\\\" >> /home/bridgebots/work/p41/logs/timeline.log\"\n",
+ "received": "2026-11-12T07:03:53Z",
+ "script_sha256": "1bda8ebdfbfdf89ec0e64a46c00b31c0abfeacba54d56d31efe8ce3f821d8df1",
+ "started": "2026-11-12T07:03:53Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

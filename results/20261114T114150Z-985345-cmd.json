@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:42:22Z",
+ "id": "20261114T114150Z-985345-cmd",
+ "output_bytes": 441,
+ "output_tail": "2026-11-14T11:40:09Z MATCH xh-m10h4-p stum10h4-pst~stum10-pst: +0.224 +- 0.266 IMPs a deal for the first bot (250 deals)\n2026-11-14T11:40:17Z MATCH xh-m10A-n stum10A-n~stum10-n: +0.235 +- 0.057 IMPs a deal for the first bot (4000 deals)\n2026-11-14T11:40:17Z end xh-m10A-n: exit 0\n2026-11-14T11:40:17Z start xh-m10B-n stum10B-n~stum10-n seed 131 first 30000 deals 4000 workers 4  (source bd4d0b8, nets fp32)\nxh-hs-p 14 xh-m10B-n 769 11:42:22\n",
+ "received": "2026-11-14T11:42:22Z",
+ "script_sha256": "5bf1b596ca3b32f6f359b27805624db11e0ac897dd4fa3ebfd10c1472b1cd028",
+ "started": "2026-11-14T11:42:22Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

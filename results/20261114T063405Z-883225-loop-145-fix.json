@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 35.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:34:58Z",
+ "id": "20261114T063405Z-883225-loop-145-fix",
+ "output_bytes": 480,
+ "output_tail": "source 9f18993\nRunning as unit: loop-collect.service; invocation ID: 4c8d6663cbc245d49a2b76c5e93e43d5\nRunning as unit: loop-collect-b.service; invocation ID: bf4cc2dea701496fa3a3e73d05eec8a8\nunits: loop-collect=active loop-collect-b=inactive loop-rows=inactive loop-switch=inactive \n2026-11-14T06:34:28Z end l0b-p: exit 0\n2026-11-14T06:34:28Z start s8-greedy g8-greedy~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source 9f18993, nets fp32)\n2026-11-14T06:34:58Z\n",
+ "received": "2026-11-14T06:34:22Z",
+ "script_sha256": "20c945e2495c4f10cf0223a0729a41e4e30cc3529f4dd51a096b4d0a61771089",
+ "started": "2026-11-14T06:34:22Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

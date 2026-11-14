@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:21:30Z",
+ "id": "20261113T172058Z-210945-loop-status",
+ "output_bytes": 597,
+ "output_tail": "active active inactive active inactive inactive inactive inactive inactive (collect collect-b chain publish rows rungs rungs2 switch after-ben)\nsp0 1466 tables\nspr0 1141 tables\n2026-11-13T16:42:00Z end l0b-stu0: exit 0\n2026-11-13T16:42:00Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 3435a1b)\n2026-11-13T16:42:00Z end l0b-p: exit 0\n2026-11-13T16:42:00Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 6 --episodes --one-room (source 3435a1b)\nload average: 8.25, 8.30, 8.34\n/dev/root       123G   64G   60G  52% /\n2026-11-13T17:21:29Z\n",
+ "received": "2026-11-13T17:21:29Z",
+ "script_sha256": "2439433d24bf9368993f6b1ac5dcbbdf6eb15cf35ce7632e918846cd67ce76d9",
+ "started": "2026-11-13T17:21:29Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 45.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T23:32:36Z",
+ "id": "20261112T233143Z-478590-plan-36-rootonly",
+ "output_bytes": 503,
+ "output_tail": "waiting now: match6 match5 rbc2a rbc2b\nposition 21\n2026-11-12T22:18:57Z start match4 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/pla\n2026-11-12T23:31:51Z end match4: exit 143\n2026-11-12T23:31:51Z start match6 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots configs/pla\nprr-32-v41 v 7s-32-v41: 1600 boards to play (0 done), 8 workers\n782\n",
+ "received": "2026-11-12T23:31:51Z",
+ "script_sha256": "8803a1f0caa42005ddaac0cf511118fa77cc502145b4cf1eeb6d60e3429be8a2",
+ "started": "2026-11-12T23:31:51Z",
+ "timed_out": false,
+ "timeout_s": 260
+}

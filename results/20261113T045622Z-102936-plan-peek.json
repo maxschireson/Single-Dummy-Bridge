@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T04:56:32Z",
+ "id": "20261113T045622Z-102936-plan-peek",
+ "output_bytes": 2023,
+ "output_tail": "2026-11-13T02:32:22Z set: {\"parts\": 18, \"deals\": 75409, \"bots\": [\"1\", \"2\", \"3\", \"4b\", \"5-32\", \"5R192\", \"5R32\", \"5RZ192\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben32\", \"ben64\"], \"unique_families\": 61003, \"examples\": 30381099, \"d\n2026-11-13T02:32:55Z freshB: {\"deals_in\": 247, \"deals_kept\": 144, \"dropped_as_seen\": 103, \"examples\": 123142}\n2026-11-13T02:32:55Z warm start from /home/bridgebots/work/plan/nets/w768e5_epoch5.npz (lr 5e-4, 3 epochs)\n2026-11-13T03:51:24Z warm done: {\"done\": \"/home/bridgebots/work/plan/rnet2w/warm\", \"selected_epoch\": 3, \"validation\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.524, \"uniform_nll\": 1.2695, \"tie_nll\": 0.7885, \"agree\": 0.7838, \"in_best\": 0.923, \"regret\": 0.0221,\n2026-11-13T03:51:27Z pushed to transfer/rollout-net-v2w-20261113; end\nepoch 3 step 56000 of 59338, 4415 s\nepoch 3 step 58000 of 59338, 4470 s\n{\"epoch\": 1, \"seconds\": 1547, \"train_ce\": 0.5815, \"train_gap\": 0.0335, \"train_owner\": 0.5531, \"val\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.5403, \"uniform_nll\": 1.2695, \"tie_nll\": 0.7885, \"agree\": 0.7788, \"in_best\": 0.9192, \"regret\": 0.0233, \"regret_gap_head\": 0.0217, \"regret_random\": 0.2075, \"regret_lowest\": 0.2281}, \"tempe\n{\"epoch\": 2, \"seconds\": 2947, \"train_ce\": 0.553, \"train_gap\": 0.0319, \"train_owner\": 0.5492, \"val\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.5275, \"uniform_nll\": 1.2695, \"tie_nll\": 0.7885, \"agree\": 0.7825, \"in_best\": 0.9219, \"regret\": 0.0223, \"regret_gap_head\": 0.0193, \"regret_random\": 0.2075, \"regret_lowest\": 0.2281}, \"temper\n{\"epoch\": 3, \"seconds\": 4509, \"train_ce\": 0.5378, \"train_gap\": 0.0307, \"train_owner\": 0.5468, \"val\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.524, \"uniform_nll\": 1.2695, \"tie_nll\": 0.7885, \"agree\": 0.7838, \"in_best\": 0.923, \"regret\": 0.0221, \"regret_gap_head\": 0.0194, \"regret_random\": 0.2075, \"regret_lowest\": 0.2281}, \"tempera\nMem:              31           5          12           0          14          26\n 04:56:32 up 1 day,  1:04,  0 user,  load average: 8.22, 8.17, 8.14\n",
+ "received": "2026-11-13T04:56:32Z",
+ "script_sha256": "d05e8f560690ecdcf165e1b7462326884f06ae40dfecd18795fdc2ff1a442741",
+ "started": "2026-11-13T04:56:32Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

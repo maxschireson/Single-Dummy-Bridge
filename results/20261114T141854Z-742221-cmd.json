@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:19:07Z",
+ "id": "20261114T141854Z-742221-cmd",
+ "output_bytes": 1100,
+ "output_tail": "2026-11-14T14:12:02Z sg8t1: 923 records\n2026-11-14T14:12:02Z records: 12101 to train on, 300 held out, 300 for the test\n{\"episodes\": 12101, \"deals\": 12070, \"unique_families\": 12070, \"examples\": 498784, \"train\": 398287, \"validation\": 51814, \"test\": 48683, \"rows_with_unrated_cards\": 189256}\n{\"episodes\": 300, \"deals\": 300, \"unique_families\": 300, \"examples\": 12401, \"train\": 9892, \"validation\": 1458, \"test\": 1051, \"rows_with_unrated_cards\": 4816}\n{\"episodes\": 300, \"deals\": 300, \"unique_families\": 300, \"examples\": 12419, \"train\": 9891, \"validation\": 1413, \"test\": 1115, \"rows_with_unrated_cards\": 4963}\n2026-11-14T14:18:42Z with 68 more row files from other boxes\n2026-11-14T14:11:41Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\n2026-11-14T14:11:41Z spr0 2164 tables; sp0 5669 tables; sps0 779 tables; sp3s 3166 tables; sg8t1 923 tables; 68 row files from the other boxes and the arena\n9506132 r4/stu_held.npz\n9519740 r4/stu_test.npz\n380236590 r4/stu_train.npz\nactive\n  23G\n 14:19:06 up 2 days, 10:27,  0 user,  load average: 5.52, 8.54, 19.06\npub last commit 2026-11-14 14:10:16 +0000\n",
+ "received": "2026-11-14T14:19:06Z",
+ "script_sha256": "f05f391c483299e97e0456f33dcb2ee8e5bd0c5bec634d42d9575128f6b2b917",
+ "started": "2026-11-14T14:19:06Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

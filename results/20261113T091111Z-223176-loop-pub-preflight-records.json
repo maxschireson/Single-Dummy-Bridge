@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:11:29Z",
+ "id": "20261113T091111Z-223176-loop-pub-preflight-records",
+ "output_bytes": 211,
+ "output_tail": "# loop: put the six preflight records where the publisher pushes them, for developing the dataset builder\n6\n20\nstu0a v stu0b: 19000 boards to play (0 done), 8 workers\npublisher last pushed 09:03:16 UTC\n09:11:29\n",
+ "received": "2026-11-13T09:11:29Z",
+ "script_sha256": "cc10289ffa4329560f72ec97014ddfe83000d5f341794bc115733686024d70e6",
+ "started": "2026-11-13T09:11:29Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

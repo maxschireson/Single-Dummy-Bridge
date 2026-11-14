@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:00:31Z",
+ "id": "20261113T020020Z-532119-plan-peek5",
+ "output_bytes": 1205,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 6889746 Nov 13 01:28 /home/bridgebots/work/plan/nets/w768e5_epoch5.npz\n2026-11-13T01:44:50Z built s04: {\"episodes\": 3797, \"deals\": 3796, \"unique_families\": 3742, \"examples\": 1527237, \"train\": 1216554, \"validation\": 145595, \"test\": 165088}\n2026-11-13T01:47:27Z built s05: {\"episodes\": 3797, \"deals\": 3787, \"unique_families\": 3718, \"examples\": 1564122, \"train\": 1238458, \"validation\": 165088, \"test\": 160576}\n2026-11-13T01:50:15Z built s06: {\"episodes\": 3797, \"deals\": 3788, \"unique_families\": 3734, \"examples\": 1544482, \"train\": 1259162, \"validation\": 139888, \"test\": 145432}\n2026-11-13T01:53:13Z built s07: {\"episodes\": 3797, \"deals\": 3789, \"unique_families\": 3743, \"examples\": 1556824, \"train\": 1255010, \"validation\": 147742, \"test\": 154072}\n2026-11-13T01:56:12Z built s08: {\"episodes\": 3797, \"deals\": 3791, \"unique_families\": 3742, \"examples\": 1555917, \"train\": 1259325, \"validation\": 137118, \"test\": 159474}\n2026-11-13T01:59:08Z built s09: {\"episodes\": 3797, \"deals\": 3791, \"unique_families\": 3739, \"examples\": 1535349, \"train\": 1251316, \"validation\": 143172, \"test\": 140861}\n1500 episodes 615872 examples\n 02:00:31 up 22:08,  0 user,  load average: 8.24, 8.13, 8.14\n",
+ "received": "2026-11-13T02:00:31Z",
+ "script_sha256": "3bb96eb6d4320204607d12511b0ea99d4c9f9903627d2dbc3fe0222ccf40cf6f",
+ "started": "2026-11-13T02:00:31Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

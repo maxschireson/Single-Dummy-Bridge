@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 119.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:43:33Z",
+ "id": "20261113T084106Z-961760-loop-02-preflight-start",
+ "output_bytes": 2460,
+ "output_tail": "source 79c1845 Rollout loop round 0: bots, unit scripts, and the control's results\n4 boards: 0.0 +- 0.0 IMPs/board for z0a-v2; 211 boards/hour; 0 failed\n{\"pair\": \"z0a-v2~z0b-v2\", \"boards\": 4, \"cpu_per_board\": 46.04, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4, \"won\": 0, \"lost\": 0, \"flat\": 4}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4, \"won\": 0, \"lost\": 0, \"flat\": 4}}\nself-play preflight: 69 s wall\n2 boards: 0.0 +- 0.0 IMPs/board for z0a-v2; 239 boards/hour; 0 failed\n{\"pair\": \"z0a-v2~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 28.2, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"flat\": 2}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"flat\": 2}}\ngate preflight: 30 s wall\ntotal 124\ndrwxr-xr-x 2 bridgebots bridgebots  4096 Nov 13 08:42 .\ndrwxr-xr-x 3 bridgebots bridgebots  4096 Nov 13 08:42 ..\n-rw-r--r-- 1 bridgebots bridgebots 20098 Nov 13 08:42 000000.json.gz\n-rw-r--r-- 1 bridgebots bridgebots 24741 Nov 13 08:42 000001.json.gz\n-rw-r--r-- 1 bridgebots bridgebots 34351 Nov 13 08:42 000002.json.gz\n-rw-r--r-- 1 bridgebots bridgebots 30454 Nov 13 08:42 000003.json.gz\nself-play rows 4 [(0, '6H', 0, 32.3), (1, '5C', 0, 32.8), (3, '2HX', 0, 52.6), (2, '4H', 0, 66.5)]\nrow x8 (candidate): {\"rollout\": 9, \"blend\": 9, \"search\": 0, \"claim\": 17, \"consulted\": 14, \"moved\": 0, \"guaranteed\": 0, \"guarantee_moved\": 0, \"odds\": 7, \"odds_split\": 0, \"mixed\": 0, \"rollouts\": 2174, \"net_rows\": 45360, \"asked\": 4266, \"floored\": 10.143, \"ended\": 847, \"forks\": 30, \"seconds\": 6.016}\ngate rows 2 [(1, '5C', 0, 26.5), (0, '6H', 0, 29.9)]\nepisode files 4 bytes a board 27411 notes by mode {'blend': 96, 'claim': 48, 'rollout': 134}\nrollout notes with more than one candidate: 120\nsample: {\"trick\": 12, \"net\": \"policy_epoch5.npz\", \"seat\": \"draw\", \"cards\": [\"D8\", \"DQ\"], \"runs\": [[\"D8\"], [\"DQ\"]], \"prior\": [0.99, 0.01], \"value\": [9.0, 8.0], \"roll\": [9.0, 8.0], \"n\": [2, 2], \"se\": [0.0, 0.0], \"alive\": [0, 1], \"chosen\": \"D8\", \"layouts\": 2, \"claim\": \"open\"}\nforks in the sample: 0\nPREFLIGHT OK\nRunning as unit: loop-collect.service; invocation ID: 2c736653e49a45058d97e18559cfa5c8\nRunning as unit: loop-publish.service; invocation ID: 77a0aa1d97594ceb9a1b2eb25987a80d\nactive\nactive\n2026-11-13T08:43:13Z start r0 z0a-v2~z0b-v2 seed 9001 first 0 deals 20000 workers 8 --episodes (source 79c1845)\n 08:43:33 up 1 day,  4:51,  0 user,  load average: 3.52, 2.46, 2.48\n2026-11-13T08:43:33Z\n",
+ "received": "2026-11-13T08:41:34Z",
+ "script_sha256": "437fb193cde439d1930b7dc66209f5eb561732794249e145c266c99c9b93c0c0",
+ "started": "2026-11-13T08:41:34Z",
+ "timed_out": false,
+ "timeout_s": 3000
+}

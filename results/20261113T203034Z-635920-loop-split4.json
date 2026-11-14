@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 4.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T20:30:42Z",
+ "id": "20261113T203034Z-635920-loop-split4",
+ "output_bytes": 1249,
+ "output_tail": "Thread(s) per core:                      1\nCore(s) per socket:                      8\nSocket(s):                               1\nsp0   before patch           tables  150 | cpu a table  32.5 | layouts  8.44 | rollouts 23.71 | other  0.35 | net rows/s in rollouts   5895\nsp0   patch, fp32            tables  150 | cpu a table  23.6 | layouts  8.11 | rollouts 16.20 | other -0.68 | net rows/s in rollouts   9133\nsp0   + bf16 nets            tables  150 | cpu a table  20.3 | layouts  6.98 | rollouts 13.47 | other -0.16 | net rows/s in rollouts  10576\nsp0   + shared scorer, bf16  tables  150 | cpu a table  18.8 | layouts  5.84 | rollouts 15.02 | other -2.08 | net rows/s in rollouts   9383\nspr0  before patch           tables  150 | cpu a table  55.9 | layouts  8.06 | rollouts 48.63 | other -0.76 | net rows/s in rollouts   6902\nspr0  patch, fp32            tables   35 | cpu a table  36.1 | layouts  7.82 | rollouts 28.21 | other  0.12 | net rows/s in rollouts  11498\nspr0  + bf16 nets            tables   48 | cpu a table  28.0 | layouts  6.83 | rollouts 22.12 | other -0.92 | net rows/s in rollouts  15116\nspr0  + shared scorer, bf16  tables   71 | cpu a table  26.1 | layouts  5.51 | rollouts 22.03 | other -1.40 | net rows/s in rollouts  14951\n",
+ "received": "2026-11-13T20:30:38Z",
+ "script_sha256": "52052112f713f7d006d16922735c6a7cc91f88380555d022984a820623614570",
+ "started": "2026-11-13T20:30:38Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:58:31Z",
+ "id": "20261112T075801Z-815930-afterrd",
+ "output_bytes": 2657,
+ "output_tail": "Running as unit: g8-after-reading.service; invocation ID: f2a2b9ad1ca940f2a2538df4b229a5b4\n6:                               [--policy2 other.npz] [--policy3 ...] [--policy4 ...] [--splits 1,2]\n10:\"2:net=2\" runs that tree on the net given by --policy2 (net=3, net=4: --policy3, --policy4), on the same pairs. --splits keeps only\n80:            extra[k] = v if k in ('reply', 'own') else float(v) if '.' in v else int(v)      # net=2: the tree runs on --policy2\n122:def start(policy, tricks, breadth, mass, layouts, from_trick, ties=False, to_trick=13, policy2=None, splits=None, more=None, replier='small'):\n127:    for k, path in {2: policy2, **(more or {})}.items():\n284:def main():\n286:    p.add_argument('--episodes', type=Path)\n287:    p.add_argument('--policy', type=Path)\n288:    p.add_argument('--tricks', default='1,2')\n289:    p.add_argument('--breadth', type=int, default=2)\n290:    p.add_argument('--mass', type=float, default=.9)\n291:    p.add_argument('--layouts', type=int, default=8)\n292:    p.add_argument('--from-trick', type=int, default=3)\n293:    p.add_argument('--to-trick', type=int, default=13)\n294:    p.add_argument('--policy2', type=Path, help='a second net, for trees marked net=2')\n295:    p.add_argument('--policy3', type=Path, help='a third net, for trees marked net=3')\n296:    p.add_argument('--policy4', type=Path, help='a fourth net, for trees marked net=4')\n297:    p.add_argument('--splits', help='keep only deals of these splits, e.g. 1,2 (0 train, 1 validation, 2 test)')\n298:    p.add_argument('--root-cards', type=int, default=3, help='per_side: the most root candidates taken from the net')\n299:    p.add_argument('--root-mass', type=float, default=.98, help='per_side: root candidates are kept until their probabilities add to this')\n300:    p.add_argument('--pairs', type=int, default=2000)\n301:    p.add_argument('--workers', type=int, default=2)\n302:    p.add_argument('--seconds', type=float, default=1e9)\n303:    p.add_argument('--replier', choices=('small', 'gen6'), default='small',\n305:    p.add_argument('--ties', action='store_true', help='also score tie-audit pairs (band -1): two cards Gen 6 rated level')\n306:    p.add_argument('--rows', type=Path, help='summarize a rows file written earlier with --out instead of running')\n307:    p.add_argument('--out', type=Path)\n319:                  initargs=(a.policy, tricks, a.breadth, a.mass, a.layouts, a.from_trick, a.ties, a.to_trick, a.policy2, splits,\n329:                                                           to_trick=a.to_trick, tables=tables, policy=str(a.policy), policy2=str(a.policy2), policy3=str(a.policy3), policy4=str(a.policy4), splits=\n",
+ "received": "2026-11-12T07:58:31Z",
+ "script_sha256": "303411cf53976703b2e1a78c07c9ac169660148726d3f32fa892c7eb1f554752",
+ "started": "2026-11-12T07:58:31Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

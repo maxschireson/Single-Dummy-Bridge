@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:09:18Z",
+ "id": "20261114T100854Z-673852-cmd",
+ "output_bytes": 907,
+ "output_tail": "2026-11-14T09:55:45Z MATCH xh-hf-n stuhf-n~stubf-n: +0.182 +- 0.088 IMPs a deal for the first bot (2000 deals)\n2026-11-14T09:58:32Z MATCH xh-mf-n stumf-n~stubf-n: +0.164 +- 0.082 IMPs a deal for the first bot (2000 deals)\n2026-11-14T10:01:03Z MATCH xh-hs-n stuhs-n~stubs-n: +0.953 +- 0.132 IMPs a deal for the first bot (2000 deals)\n2026-11-14T09:50:48Z stage e1; source b4e1eae; threads 8\n2026-11-14T09:52:20Z net mf: sha256 effbe5da946a0dee\n2026-11-14T10:01:03Z stage mini; source b4e1eae; threads 8\n2026-11-14T10:04:35Z net m10: sha256 7839c2c7ac685465\n2026-11-14T10:08:47Z net m10h: sha256 e3e07d0b920acac8\n\"epoch\": 4, \"seconds\": 153\n\"epoch\": 4, \"seconds\": 233\n2026-11-14T10:01:03Z end xh-hs-n: exit 0\n2026-11-14T10:03:21Z start xh-mf-n stumf-n~stubf-n seed 131 first 30000 deals 8000 workers 4  (source b4e1eae, nets fp32)\n 10:09:18 up 2 days,  6:17,  0 user,  load average: 10.45, 9.14, 8.28\n10:09:18\n",
+ "received": "2026-11-14T10:09:18Z",
+ "script_sha256": "36623b9c899fd0a6f1c7ba08774d817e595973474db3942fcebaeadd6c542afe",
+ "started": "2026-11-14T10:09:18Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

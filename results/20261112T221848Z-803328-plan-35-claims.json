@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 60.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T22:19:57Z",
+ "id": "20261112T221848Z-803328-plan-35-claims",
+ "output_bytes": 517,
+ "output_tail": "waiting now: @source match4 match5 rbc2a rbc2b\nposition 20\n2026-11-12T22:18:56Z end rbc2a: exit 143\n2026-11-12T22:18:57Z source now 0d1db2b Plan player: the claim finder (single-dummy sure tricks) at the declarin\n2026-11-12T22:18:57Z start match4 (source 0d1db2b): SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_match.py --source $P/capsule/recovery --bots c\nprc-32-v41 v 7s-32-v41: 1600 boards to play (0 done), 8 workers\nsure.cpp\nsure_cpp\n 22:19:57 up 18:27,  0 user,  load average: 5.90, 4.33, 5.45\n",
+ "received": "2026-11-12T22:18:56Z",
+ "script_sha256": "971542ba63d5fe744a6a30b423a6bbf5322bf179046986d751bc95160d501817",
+ "started": "2026-11-12T22:18:56Z",
+ "timed_out": false,
+ "timeout_s": 260
+}

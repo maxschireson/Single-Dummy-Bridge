@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 128.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:34:01Z",
+ "id": "20261114T183140Z-975514-cmd",
+ "output_bytes": 1327,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 08:37 models/cardplay/rollout-net-v2-20261113/policy_epoch5.npz\n{\"deals\": 964, \"of\": 75409, \"examples\": 400646, \"asked\": 400000, \"seed\": 7, \"rows_by_bot\": {\"1\": 16129, \"2\": 2323, \"3\": 2352, \"4b\": 3792, \"5-32\": 3090, \"5R192\": 914, \"5R32\": 13125, \"5RZ192\": 126, \"5RZ32\": 20860, \"6-256\": 3189, \"6-32\": 182057, \"71s-32\": 47373, \"7s-32\": 36345, \"8c-32\": 20090, \"8s-32\":\n400646 rows, 964 deals, bots ['1', '2', '3', '4b', '5-32', '5R192', '5R32', '5RZ192', '5RZ32', '6-256', '6-32', '71s-32', '7s-32', '8c-32', '8s-32', 'ben', 'ben32', 'ben64']\nv2           log-loss 0.5291  exact 0.7808  tricks given up 0.0182  from trick 7 0.4717/0.0162  T 1.0  ids blank 0.5954\n123142 rows, 144 deals, bots ['1', '5RZ32', '71s-32', '8c-32', '8s-32', 'ben', 'ben64']\nv2           log-loss 0.5093  exact 0.7888  tricks given up 0.0213  from trick 7 0.4432/0.0201  T 1.03  ids blank 0.5972\nkeys: ['v2'] | ['scores', 'temperature', 'ids_blank']\n== v2 (trained-on rows / held-out rows)\nall                rows       - /      - | log-loss    -   /    -   | exact    -   /    -   | tricks given up    -   /    -   | gap head    -   /    -  \nfrom trick 7       rows       - /      - | log-loss    -   /    -   | exact    -   /    -   | tricks given up    -   /    -   | gap head    -   /    -  \n18:34:01\n",
+ "received": "2026-11-14T18:31:52Z",
+ "script_sha256": "3126418896c1a4a5e8f184ad93a797748b086d822d81edb3b86369f01a56f31f",
+ "started": "2026-11-14T18:31:52Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

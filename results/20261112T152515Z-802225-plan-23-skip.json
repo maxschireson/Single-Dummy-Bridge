@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 25.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:26:15Z",
+ "id": "20261112T152515Z-802225-plan-23-skip",
+ "output_bytes": 292,
+ "output_tail": "position 10\n2026-11-12T15:25:50Z end ceilT12: exit 143\n2026-11-12T15:25:52Z source now f80593e Plan bots: pr75x, the bot as its own simulator from trick 5\n2026-11-12T15:25:52Z start rbc2 (source f80593e): $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g\n40 files, 40 pairs, 589 s\n",
+ "received": "2026-11-12T15:25:50Z",
+ "script_sha256": "366cdb247941d8de650ac04b65800800d2382109e451fb3e5233204a8a90779c",
+ "started": "2026-11-12T15:25:50Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

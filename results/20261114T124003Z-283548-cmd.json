@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:40:33Z",
+ "id": "20261114T124003Z-283548-cmd",
+ "output_bytes": 636,
+ "output_tail": "2026-11-14T12:17:20Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\nrecords without BEN 21910; with BEN 2660, kept 1157 (share 0.017 of 68067 new boards with the loop's 45000)\n8 files that are no board records set aside (odd/)\nactive\n5\n2026-11-14T12:14:22Z MATCH xh-hA-n stuhA-n~stubA-n: -0.032 +- 0.112 IMPs a deal for the first bot (2000 deals)\n2026-11-14T12:25:59Z MATCH xh-sAh-n stusAh-n~stubA-n: +0.786 +- 0.078 IMPs a deal for the first bot (4000 deals)\nxh-hf-p 201\n2026-11-14T12:29:43Z the experiment's last nets-alone matches (xh-m10A-F at 1134 deals; xh-m10B-A not started) stopped to give the arena row\n12:40:33\n",
+ "received": "2026-11-14T12:40:33Z",
+ "script_sha256": "70cd2b5d53b16d9d10e3bd5cc34fd96d96a05764fa912aa05f8d5b259864ec6a",
+ "started": "2026-11-14T12:40:33Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

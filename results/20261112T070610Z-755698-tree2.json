@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:06:19Z",
+ "id": "20261112T070610Z-755698-tree2",
+ "output_bytes": 1786,
+ "output_tail": "pairsA.npz: 722589 pairs, 70455 at a Gen 7 bot's decisions, 2445 overrides\npairsB.npz: 16088 pairs, 8669 at a Gen 7 bot's decisions, 256 overrides\npairsC.npz: 12406 pairs, 4740 at a Gen 7 bot's decisions, 157 overrides\npairsD.npz: 5458 pairs, 1321 at a Gen 7 bot's decisions, 50 overrides\npairsE.npz: 16825 pairs, 3012 at a Gen 7 bot's decisions, 137 overrides\noverrides by trick: {3: 753, 4: 817, 5: 745, 6: 730}\nall files         3045 overrides on 1909 deals | played card minus the search's card +0.0460 +- 0.0136 tricks, +0.087 +- 0.065 IMPs | better 16.5%, worse 13.0% | search's gap 0.058\nthe first file    2445 overrides on 1632 deals | played card minus the search's card +0.0348 +- 0.0152 tricks, +0.037 +- 0.074 IMPs | better 16.3%, worse 13.5% | search's gap 0.059\nthe other files    600 overrides on  385 deals | played card minus the search's card +0.0917 +- 0.0324 tricks, +0.292 +- 0.142 IMPs | better 17.2%, worse 11.0% | search's gap 0.056\ngap up to 0.1     2689 overrides on 1756 deals | played card minus the search's card +0.0465 +- 0.0139 tricks, +0.076 +- 0.067 IMPs | better 15.6%, worse 12.2% | search's gap 0.045\ngap over 0.1       356 overrides on  298 deals | played card minus the search's card +0.0421 +- 0.0531 tricks, +0.174 +- 0.247 IMPs | better 23.0%, worse 18.8% | search's gap 0.156\n07:06:19\nneartie bot 0 source 0 exit 0 06:47:30\nneartie pushed 06:47:59\nneartie pushed 07:06:19\n{\"epoch\": 4, \"seconds\": 2190, \"train_ce\": 0.5339, \"train_gap\": 0.0316, \"train_owner\": 0.5442, \"val\": {\"n\": 218537, \"nll\": 0.5996, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7579, \"in_best\": 0.9128, \"regret\": 0.0236, \"regret_gap_head\": 0.0201, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n 12000 of 25858, 2439 s\nepoch 5 step 14000 of 25858, 2482 s\nactive\n",
+ "received": "2026-11-12T07:06:18Z",
+ "script_sha256": "8d569b136ff575cc737b5835ef0f899c846250418ec995300c271947ebb38fd1",
+ "started": "2026-11-12T07:06:18Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

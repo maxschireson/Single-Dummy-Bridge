@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 2.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:29:43Z",
+ "id": "20261114T122932Z-661716-cmd",
+ "output_bytes": 608,
+ "output_tail": "365522 /home/bridgebots/work/loop/venv/bin/python scripts/x8_match.py --source /home/bridgebots/work/loop/capsule/recove\n365525 /home/bridgebots/work/loop/venv/bin/python scripts/x8_match.py --source /home/bridgebots/work/loop/capsule/recove\n365526 /home/bridgebots/work/loop/venv/bin/python scripts/x8_match.py --source /home/bridgebots/work/loop/capsule/recove\n2026-11-14T12:29:43Z the experiment's last nets-alone matches (xh-m10A-F at 1134 deals; xh-m10B-A not started) stopped to give the arena rows the cores before round 4's cut\n 12:29:43 up 2 days,  8:37,  0 user,  load average: 13.11, 13.33, 13.35\n",
+ "received": "2026-11-14T12:29:41Z",
+ "script_sha256": "6a07ae20c4e33a8c71e81b93715a2b116c3bad86af1f271832a7fe65adbbe1c6",
+ "started": "2026-11-14T12:29:41Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

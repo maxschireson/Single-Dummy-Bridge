@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:26:04Z",
+ "id": "20261112T062537Z-280207-p41-st",
+ "output_bytes": 1426,
+ "output_tail": "w512c1 stopped and removed (not asked for) 06:01:05\nw512e5 exit 0 06:16:48\nfreshE done: {\"deals_in\": 1194, \"deals_kept\": 611, \"dropped_as_seen\": 583, \"examples\": 265124} 06:20:03\n== its epochs 3, 4 and 5\n525562 decisions, 1243 deals\nw512         gives up 0.0247 | exact 0.749 | top 3 0.991 | kept 0.98 2.73 0.90 2.04 | log-loss 0.6128\ne3           gives up 0.0248 | exact 0.747 | top 3 0.991 | kept 0.98 2.75 0.90 2.05 | log-loss 0.6171 || from w512: +0.0001 [-0.0006, +0.0007], cut -0.3% [-3.0%, 2.4%]\ne4           gives up 0.0247 | exact 0.752 | top 3 0.991 | kept 0.98 2.71 0.90 2.03 | log-loss 0.6046 || from e3: -0.0002 [-0.0006, +0.0003], cut 0.7% [-1.2%, 2.5%]\ne5           gives up 0.0240 | exact 0.755 | top 3 0.991 | kept 0.98 2.70 0.90 2.02 | log-loss 0.6007 || from e4: -0.0007 [-0.0010, -0.0004], cut 2.8% [1.8%, 3.9%]\n== the same on B (the temperature set)\n218537 decisions, 631 deals\nv4           gives up 0.0328 | exact 0.765 | top 3 0.988 | kept 0.98 2.97 0.90 2.23 | log-loss 0.6346\nw512         gives up 0.0245 | exact 0.755 | top 3 0.990 | kept 0.98 2.75 0.90 2.06 | log-loss 0.6051 || from v4: -0.0083 [-0.0095, -0.0072], cut 25.4% [22.3%, 28.2%]\nw512e5       gives up 0.0247 | exact 0.758 | top 3 0.991 | kept 0.98 2.73 0.90 2.04 | log-loss 0.5951 || from w512: +0.0002 [-0.0007, +0.0011], cut -0.9% [-4.7%, 2.9%]\n== trainer figures by deciding bot (0 = 6-32, 2 = 7s-32)\nepoch 1 step 2000 of 25858, 73 s\n",
+ "received": "2026-11-12T06:26:04Z",
+ "script_sha256": "68717811e3e228cd19bec114c25baf53d61607befda4e49a6b15c80370de3e18",
+ "started": "2026-11-12T06:26:04Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:07:49Z",
+ "id": "20261114T140741Z-747885-cmd",
+ "output_bytes": 1117,
+ "output_tail": " 138854  1-05:24:35 Ss   /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure5\n 413690       07:34 S    sleep 600\nNov 13 08:43:13 Bridgebots5 systemd[1]: Started loop-publish.service - /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure5.\nNov 13 08:43:15 Bridgebots5 bash[138913]: remote:\nNov 14 14:00:18 Bridgebots5 bash[413577]: cp: error copying '/home/bridgebots/work/loop/runs/b0-pst200-1.log' to '/home/bridgebots/work/loop/pub/b0-pst200-1.log': No space left on device\nNov 14 14:00:18 Bridgebots5 bash[413603]: cp: error copying '/home/bridgebots/work/loop/runs/h3-pg.log' to '/home/bridgebots/work/loop/pub/h3-pg.log': No space left on device\nNov 14 14:00:18 Bridgebots5 bash[413688]: fatal: unable to write loose object file: No space left on device\n M b0-pst200-1.log\n M h3-pg.log\n M l0b-p.log\n M l0b-stu0.log\n M runs.log\n28\nactive failed 2026-11-14T14:04:20Z end s8-passive0: exit 0\n2026-11-14T14:04:20Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source 05cf9ae, nets fp32)\n",
+ "received": "2026-11-14T14:07:49Z",
+ "script_sha256": "9bda1db8ec7ed3afe48230f9a56d4b5574e1ad17be1b41d6124486faa7641782",
+ "started": "2026-11-14T14:07:49Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

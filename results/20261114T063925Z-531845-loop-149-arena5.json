@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 60.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:40:39Z",
+ "id": "20261114T063925Z-531845-loop-149-arena5",
+ "output_bytes": 327,
+ "output_tail": "  42G\nRunning as unit: loop-arena.service; invocation ID: 8bc80866a2d44d439272adfbea581c6c\nactive\n2026-11-14T06:39:40Z v2's episodes: 75811\n2026-11-14T06:40:30Z arena-gen9-azure4-feed: 3409 records, 3409 not in v2's set\n2026-11-14T06:40:39Z arena-gen9-azure4-ben64-feed: 1004 records, 1004 not in v2's set\n2026-11-14T06:40:39Z\n",
+ "received": "2026-11-14T06:39:39Z",
+ "script_sha256": "b7dde9c5bb76a836c50a96b290f1a44e82a88a8207e21a63a66720f22fbcc8c7",
+ "started": "2026-11-14T06:39:39Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

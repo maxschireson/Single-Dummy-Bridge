@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:09:53Z",
+ "id": "20261112T070949Z-690590-ep5",
+ "output_bytes": 853,
+ "output_tail": "07:09:53\nneartie bot 0 source 1 exit 0 06:47:21\nneartie bot 0 source 0 exit 0 06:47:30\nneartie pushed 06:47:59\nneartie pushed 07:06:19\n{\"epoch\": 3, \"seconds\": 1698, \"train_ce\": 0.571, \"train_gap\": 0.0343, \"train_owner\": 0.5502, \"val\": {\"n\": 218537, \"nll\": 0.6094, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7515, \"in_best\": 0.9099, \"regret\": 0.0253, \"regret_gap_head\": 0.0215, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n 2607 s\nepoch 5 step 22000 of 25858, 2648 s\nepoch 5 step 24000 of 25858, 2690 s\n\n  g8-reading-start.service loaded active running /bin/bash /home/bridgebots/work/p41/readi\n  p41-eval-w768e5.service  loaded active running /bin/bash /home/bridgebots/work/p41src/tr\n  p41-w768e5.service       loaded active running /bin/bash -c \"/home/bridgebots/work/venv/\n 07:09:53 up  3:17,  0 user,  load average: 6.74, 6.53, 6.84\n",
+ "received": "2026-11-12T07:09:53Z",
+ "script_sha256": "9f168412d73179bb1ffe44c8bbbc7d128064798ee0d1d620310e7360857722ff",
+ "started": "2026-11-12T07:09:53Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

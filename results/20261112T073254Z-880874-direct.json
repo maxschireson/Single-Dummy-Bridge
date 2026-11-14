@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:33:01Z",
+ "id": "20261112T073254Z-880874-direct",
+ "output_bytes": 1127,
+ "output_tail": "Running as unit: p41-direct.service; invocation ID: 9755195b2267425186e1d1e146743b69\n07:33:01\nreading bench paused for the 768-wide scoring 07:17:25\nfreshF done: {\"deals_in\": 144, \"deals_kept\": 144, \"dropped_as_seen\": 0, \"examples\": 65888} 07:19:09\n{\"net\": \"w768\", \"all\": {\"n\": 562444, \"nll\": 0.6021, \"uniform_nll\": 1.245, \"tie_nll\": 0.7778, \"agree\": 0.7535, \"in_best\": 0.915, \"regret\": 0.024, \"regret_gap_head\": 0.0189, \"regret_random\": 0.1981, \"re\n{\"net\": \"w768e5\", \"all\": {\"n\": 562444, \"nll\": 0.5942, \"uniform_nll\": 1.245, \"tie_nll\": 0.7778, \"agree\": 0.7571, \"in_best\": 0.9163, \"regret\": 0.0237, \"regret_gap_head\": 0.0184, \"regret_random\": 0.1981,\n{\"set\": \"freshALL_F.npz\", \"bot\": 2, \"rows\": 29006, \"deals\": 132}\n{\"net\": \"w768\", \"all\": {\"n\": 29006, \"nll\": 0.5519, \"uniform_nll\": 1.2597, \"tie_nll\": 0.7535, \"agree\": 0.7835, \"in_best\": 0.9116, \"regret\": 0.0234, \"regret_gap_head\": 0.0198, \"regret_random\": 0.192, \"r\n{\"net\": \"w768e5\", \"all\": {\"n\": 29006, \"nll\": 0.5626, \"uniform_nll\": 1.2597, \"tie_nll\": 0.7535, \"agree\": 0.7772, \"in_best\": 0.9103, \"regret\": 0.0235, \"regret_gap_head\": 0.0186, \"regret_random\": 0.192, \n== heads\n",
+ "received": "2026-11-12T07:33:01Z",
+ "script_sha256": "d82f9eddd0711f202ba468fd4ac75b881ac38c4abb6e163c92cddd59749042ca",
+ "started": "2026-11-12T07:33:01Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 100.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:48:15Z",
+ "id": "20261112T074615Z-254796-rep3",
+ "output_bytes": 581,
+ "output_tail": "Running as unit: g8-report-t1.service; invocation ID: 86bf2995df0a41a7bfc2f7ce4fddf8b7\npush w768e5 done 07:34:25\nowners exit 0 07:45:29\n5165 decisions on 128 tables of 86 deals; nets ['v0', 'v2', 'v4', 'v4.1', 'e5']; mean layouts 341; before the deal list 2578, deal list 2587\nno reading: cost 0.0165 +- 0.0024 a decision with 32 layouts solved (deal list: up to 256), 0.0163 +- 0.0025 with every stored layout; the weights themselves expect 0.0182 +- 0.0018\n\n    850 78.8 /home/bridgebots/work/venv/bin/python scripts/gen7_compare_nets.py /home/bridgebots/work/p41/data/freshALL_\n",
+ "received": "2026-11-12T07:46:35Z",
+ "script_sha256": "44bc840cf1b724012c4193ac5bc110d2cc99e60842e05745687bd6fe4b165cf1",
+ "started": "2026-11-12T07:46:35Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:50:41Z",
+ "id": "20261113T055010Z-128005-plan-seat3",
+ "output_bytes": 629,
+ "output_tail": "current seat2 ; waiting now: @source b54d6cadb9127712963bbced0802d9f165509127 | seat3 $PY scripts/plan_bench.py --episodes $P/data | @source 0d1db2bb9944abc83f0bc6de64d2e47299c2bf44 | match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pyli | rbc2a $PY scripts/plan_reading_bound.py --episodes | rbc2b $PY scripts/plan_reading_bound.py --episodes\nposition 33\n2026-11-13T05:30:47Z end match5: exit 143\n2026-11-13T05:30:47Z source now 9e6c3d9 scripts/score_rollout_nets.py: policy and rollout nets on one held-out s\n2026-11-13T05:30:47Z start seat2 (source 9e6c3d9): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets \"$NETS\n",
+ "received": "2026-11-13T05:50:41Z",
+ "script_sha256": "8153fc032db394ef34f68a9c697d08c605e7074484226bd8b4fe22e9f11f3175",
+ "started": "2026-11-13T05:50:41Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

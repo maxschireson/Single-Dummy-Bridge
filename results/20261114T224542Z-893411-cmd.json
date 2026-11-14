@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T22:46:05Z",
+ "id": "20261114T224542Z-893411-cmd",
+ "output_bytes": 1677,
+ "output_tail": "active\ninactive\n  loop-publish.service  loaded active running /usr/bin/bash /home/bridgebots/work/loop/src/training/\n\u25cf loop-serve.service    loaded failed failed  /usr/bin/python3 -m http.server 8765 --bind 172.16.0\n  loop-width.service    loaded active running /usr/bin/bash /home/bridgebots/work/loop/width.sh\n  loop-widthpub.service loaded active running /usr/bin/bash /home/bridgebots/work/loop/widthpub.sh l\npolicy_epoch1.npz\npolicy_epoch2.npz\npolicy_epoch3.npz\npolicy_epoch4.npz\nTraceback (most recent call last):\n  File \"<stdin>\", line 2, in <module>\nFileNotFoundError: [Errno 2] No such file or directory: '/home/bridgebots/work/loop/exp-width/w1536/metrics.json'\nepoch 5 step 40000 of 59338, 9483 s\nepoch 5 step 42000 of 59338, 9550 s\nepoch 5 step 44000 of 59338, 9616 s\nepoch 5 step 46000 of 59338, 9683 s\nepoch 5 step 48000 of 59338, 9749 s\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-ben.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-h3.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-hd.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-hs.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-human.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-r2.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-r3.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-r3a.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-r4.txt\n/home/bridgebots/work/loop/src/training/rollout-loop-20261113/jobs-azure5-v41-styles.txt\n",
+ "received": "2026-11-14T22:46:05Z",
+ "script_sha256": "9b256a48e1d132f10f4aefb0339c96a7495a4f21a21b7e4dbee06caf1dbacf0a",
+ "started": "2026-11-14T22:46:05Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

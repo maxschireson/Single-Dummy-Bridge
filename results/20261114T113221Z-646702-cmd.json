@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:32:36Z",
+ "id": "20261114T113221Z-646702-cmd",
+ "output_bytes": 1459,
+ "output_tail": "2026-11-14T06:39:40Z v2's episodes: 75811\n2026-11-14T06:40:30Z arena-gen9-azure4-feed: 3409 records, 3409 not in v2's set\n2026-11-14T06:40:39Z arena-gen9-azure4-ben64-feed: 1004 records, 1004 not in v2's set\n2026-11-14T06:40:50Z arena-gen9-genx-stu-azure4-feed: 212 records, 212 not in v2's set\n2026-11-14T06:42:17Z arena-gen8-19bbdce5-20261112-feed: 4456 records, 3340 not in v2's set\n2026-11-14T06:43:54Z arena-gen8-independent-feed: 5862 records, 4481 not in v2's set\n2026-11-14T06:45:31Z arena-gen8-candidate-codex-20261112-feed: 4230 records, 3167 not in v2's set\n2026-11-14T06:46:18Z arena-gen8-x3-azure1-feed: 3986 records, 3986 not in v2's set\n2026-11-14T06:46:45Z arena-gen8-azure1-feed: 1097 records, 0 not in v2's set\n2026-11-14T06:46:58Z arena-gen8-azure6-feed: 410 records, 0 not in v2's set\n2026-11-14T06:47:07Z arena-gen8-m1-azure1-feed: 215 records, 215 not in v2's set\n2026-11-14T06:47:29Z arena-gen8-s1-azure1-feed: 720 records, 720 not in v2's set\n2026-11-14T06:48:12Z arena-gen8-s3-azure1-feed: 1468 records, 0 not in v2's set\n2026-11-14T06:48:46Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\narena-gen8-19bbdce5-20261112-feed.txt\narena-gen8-azure1-feed.txt\narena-gen8-azure6-feed.txt\narena-gen8-candidate-codex-20261112-feed.txt\narena-gen8-independent-feed.txt\narena-gen8-m1-azure1-feed.txt\narena-gen8-s1-azure1-feed.txt\narena-gen8-s3-azure1-feed.txt\narena-gen8-s7-azure1-feed.txt\narena-gen8-x3-azure1-feed.txt\n21200\n0\n21\n",
+ "received": "2026-11-14T11:32:35Z",
+ "script_sha256": "bf1ae63c25b9b4e13b94b709326b16f373578fb13fa37d74599999a9bf6d66cd",
+ "started": "2026-11-14T11:32:35Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

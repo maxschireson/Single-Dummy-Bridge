@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:17:44Z",
+ "id": "20261114T151728Z-780135-cmd",
+ "output_bytes": 1002,
+ "output_tail": "loop-publish.service active running\nloop-r4.service active running\ntotal 7036\ndrwxr-xr-x  2 bridgebots bridgebots    4096 Nov 14 15:16 .\ndrwxr-xr-x 71 bridgebots bridgebots    4096 Nov 14 15:16 ..\n-rw-r--r--  1 bridgebots bridgebots    2477 Nov 14 15:16 before.log\n-rw-r--r--  1 bridgebots bridgebots   70413 Nov 14 15:16 metrics.json\n-rw-r--r--  1 bridgebots bridgebots   68548 Nov 14 15:16 metrics_before.json\n-rw-r--r--  1 bridgebots bridgebots    5254 Nov 14 15:16 net.log\n-rw-r--r--  1 bridgebots bridgebots 7026188 Nov 14 15:16 policy.npz\n-rw-r--r--  1 bridgebots bridgebots      65 Nov 14 15:16 policy.sha256\n-rw-r--r--  1 bridgebots bridgebots     729 Nov 14 15:16 test-policy-r3.json\n2026-11-14T14:45:48Z end xh-sAh-hA: exit 0\n2026-11-14T15:16:05Z the collection is paused for jobs-azure5-r4.txt\n2026-11-14T15:16:05Z start h4c-n stu4-n~stu4c-n seed 131 first 30000 deals 8000 workers 8  (source a470efe, nets fp32)\n 15:17:44 up 2 days, 11:25,  0 user,  load average: 7.99, 6.37, 6.45\n15:17:44\n",
+ "received": "2026-11-14T15:17:44Z",
+ "script_sha256": "ee0e02c55a4402b5226b6ad2bf13b049c21ccf11893ce48d9004b02f00930cc2",
+ "started": "2026-11-14T15:17:44Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

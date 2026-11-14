@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:56:09Z",
+ "id": "20261114T215546Z-537282-cmd",
+ "output_bytes": 2043,
+ "output_tail": "   1552 /home/bridgebots/work/loop/pub/h05/pairs-sp0.jsonl\n   2500 /home/bridgebots/work/loop/pub/h05/pairs-sp3s.jsonl\n   4052 total\nactive\npairs with under 32 distinct layouts drawn (late in the hand; the panel there is close to every layout the seat allows): 0.51\n2500 pairs re-evaluated; CPU a pair 0.75 s; layouts a pair 45\nsingle = the recorded pair (one layout); panel = mean over fresh layouts from the fork seat's own information; for the side to play\n                        pairs single=0 same sign   corr  slope reliab. | mean single mean panel panel SE | |panel|>2SE\nall                      2500     0.61      0.74   0.50   0.31   0.357 |      +0.188     +0.191    0.096 |        0.30\ndeclaring side           1347     0.58      0.74   0.54   0.34   0.371 |      +0.238     +0.239    0.092 |        0.34\ndefending side           1153     0.64      0.74   0.43   0.26   0.329 |      +0.131     +0.136    0.102 |        0.24\n32+ layouts drawn        1230     0.51      0.69   0.41   0.20   0.206 |      +0.162     +0.164    0.121 |        0.34\nunder 32 layouts         1270     0.70      0.83   0.66   0.58   0.711 |      +0.214     +0.218    0.072 |        0.25\nsingle label not 0        979     0.00      0.74   0.50   0.27   0.269 |      +0.481     +0.422    0.133 |        0.54\nfork at tricks 1-2         48     0.31      0.61   0.50   0.13   0.062 |      +0.021     +0.096    0.110 |        0.27\nfork at tricks 3-4        204     0.40      0.62   0.20   0.06   0.085 |      +0.093     +0.138    0.121 |        0.33\nfork at tricks 5-6        322     0.52      0.69   0.38   0.16   0.146 |      +0.205     +0.150    0.133 |        0.32\nfork at tricks 7-8        495     0.54      0.70   0.41   0.23   0.281 |      +0.200     +0.192    0.133 |        0.35\nfork at tricks 9-10       618     0.63      0.77   0.59   0.48   0.592 |      +0.178     +0.206    0.117 |        0.32\nfork at tricks 11-13      813     0.74      0.89   0.80   0.74   0.821 |      +0.216     +0.215    0.038 |        0.23\nepoch 4 step 20000 of 59338, 6788 s\n",
+ "received": "2026-11-14T21:56:09Z",
+ "script_sha256": "8bbca597e89b2675d1d8040390e41f27ccc777e07336c7692459a6814abbade1",
+ "started": "2026-11-14T21:56:09Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

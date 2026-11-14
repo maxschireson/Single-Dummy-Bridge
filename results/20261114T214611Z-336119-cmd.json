@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 1,
+ "finished": "2026-11-14T21:46:26Z",
+ "id": "20261114T214611Z-336119-cmd",
+ "output_bytes": 514,
+ "output_tail": "fee7d882734ac44c627d8362f9b6b15b2ab7e013dc8f10349530e5292bde09cd\n  File \"<string>\", line 1\n    import numpy as np,sys; z=np.load(sys.argv[1]); k=list(z.keys()); print(len(z[k[0]]), rows, k[:10]); d=z[deal] if deal in z else None; print(deals, len(set(d.tolist())) if d is not None else ?)\n                                                                                                                                                                                                   ^\nSyntaxError: invalid syntax\n",
+ "received": "2026-11-14T21:46:26Z",
+ "script_sha256": "6704a01750ededd4050e256d9ea0a6f8bb7980c940e053ce8fea39ef058cb89c",
+ "started": "2026-11-14T21:46:26Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

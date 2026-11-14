@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.7,
+ "exit_code": 128,
+ "finished": "2026-11-14T06:38:06Z",
+ "id": "20261114T063752Z-606638-loop-148-v2eps5",
+ "output_bytes": 749,
+ "output_tail": "0000aa05d891f7da02cdd873b85a9de4c4ee2dad.json.gz\n000140f4061d03f4aa782d75c8bf8957aafac0d7.json.gz\n0002567d44affb52c235bdaa2f63fd3737a89ee0.json.gz\n  66913 /home/bridgebots/work/plan/rnet2w/data/eps_before.txt\n   8651 /home/bridgebots/work/plan/rnet2w/data/eps_new.txt\n  75564 total\n0003e23bdac52aab2e5ed085c6e4c4551d86a843.json.gz\n000afee10d6880d7f6d311a0997093152f3ceec3.json.gz\n0015e06ce503b229258b262ebe4e231ed5e80711.json.gz\n0000aa05d891f7da02cdd873b85a9de4c4ee2dad.json.gz\n000140f4061d03f4aa782d75c8bf8957aafac0d7.json.gz\n0002567d44affb52c235bdaa2f63fd3737a89ee0.json.gz\n75564\n0176b5b08244432f3410d9839fd169f3e3840409.json.gz\n017df8f96ed7922f6822381d52d30fc56c2d3196.json.gz\n247\nbase.git\nw0.git\nw1.git\nw2.git\nw3.git\nw4.git\nw5.git\nw6.git\nw7.git\n",
+ "received": "2026-11-14T06:38:05Z",
+ "script_sha256": "2b677ee67cc80f747fa169601a0cb32872241b461fbfc7cc4f3cacb41b9152b3",
+ "started": "2026-11-14T06:38:05Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

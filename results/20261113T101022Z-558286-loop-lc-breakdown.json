@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:10:37Z",
+ "id": "20261113T101022Z-558286-loop-lc-breakdown",
+ "output_bytes": 1538,
+ "output_tail": "v2 as 8s-32  | declaring nll 1.690 agree 0.551 n 8451 | defending nll 0.745 agree 0.735 n 8076 | lead nll 1.095 agree 0.600 | tricks 1-4 nll 1.343 agree 0.624 | tricks 5-8 nll 1.421 agree 0.576 | tricks 9-13 nll 0.926 agree 0.727\n523 boards   | declaring nll 1.020 agree 0.555 n 8451 | defending nll 0.705 agree 0.731 n 8076 | lead nll 1.112 agree 0.555 | tricks 1-4 nll 0.858 agree 0.629 | tricks 5-8 nll 1.029 agree 0.584 | tricks 9-13 nll 0.689 agree 0.718\npolicy_epoch | declaring nll 1.397 agree 0.549 n 8451 | defending nll 0.730 agree 0.730 n 8076 | lead nll 1.135 agree 0.610 | tricks 1-4 nll 1.159 agree 0.622 | tricks 5-8 nll 1.252 agree 0.571 | tricks 9-13 nll 0.793 agree 0.723\ngen7_policy_ | declaring nll 1.407 agree 0.556 n 8451 | defending nll 0.697 agree 0.782 n 8076 | lead nll 1.101 agree 0.605 | tricks 1-4 nll 1.187 agree 0.637 | tricks 5-8 nll 1.236 agree 0.599 | tricks 9-13 nll 0.749 agree 0.770\npolicy_ft.np | declaring nll 2.049 agree 0.554 n 8451 | defending nll 0.743 agree 0.755 n 8076 | lead nll 1.069 agree 0.590 | tricks 1-4 nll 1.614 agree 0.626 | tricks 5-8 nll 1.614 agree 0.592 | tricks 9-13 nll 1.024 agree 0.745\nepochs of the 523-board run: [(1, 0.8901, 0.6376, 0.0431), (2, 0.8656, 0.6413, 0.0432), (3, 0.8671, 0.639, 0.0444), (4, 0.8752, 0.6373, 0.045)]\nall rows: in_best 0.7986 0.8038 | regret 0.0447 0.0432 | regret_gap_head 0.046 0.048 | regret_random 0.2031\nfrom trick 7: in_best 0.7156 0.725 | regret 0.0734 0.0685 | regret_gap_head 0.0762 0.0777 | regret_random 0.163 | searched 5556 of 8026\n",
+ "received": "2026-11-13T10:10:37Z",
+ "script_sha256": "5ae58e49ae15a9e6a846f0f34fb0cdd37764e8e96979f5570aafe1f19eda8b92",
+ "started": "2026-11-13T10:10:37Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

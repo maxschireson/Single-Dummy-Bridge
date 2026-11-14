@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 159.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:03:23Z",
+ "id": "20261113T120020Z-936234-loop-oneroom5",
+ "output_bytes": 1165,
+ "output_tail": "2026-11-13T11:40:58Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source e00923e)\nl0b-p at 211 boards\nsource e760e5e Collection: one table a board (--one-room); lead rungs ahead of round 1's rungs\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 16, \"cpu_per_board\": 28.57}\npf-one: 71 s wall\n{\"pair\": \"stu0-pra~stu0-prb\", \"boards\": 8, \"cpu_per_board\": 46.47}\npf-oner: 57 s wall\npf-one | boards 16 | tables a board [1] {1} | IMPs fields {'None'} | (board parity, North)  {(0, 'candidate'): 8, (1, 'opponent'): 8} | leads {'net': 16} by {'opponent': 11, 'candidate': 5} | bytes a board 30675 | cpu a board 28.6\npf-oner | boards 8 | tables a board [1] {1} | IMPs fields {'None'} | (board parity, North)  {(0, 'candidate'): 4, (1, 'opponent'): 4} | leads {'rollout+lead': 8} by {'opponent': 5, 'candidate': 3} | bytes a board 37429 | cpu a board 46.5\nONE ROOM OK\nRunning as unit: loop-collect.service; invocation ID: 28965c06592344409f1ab35baca3a9f5\nactive active \n2026-11-13T12:02:53Z end l0b-stu0: exit 0\n2026-11-13T12:02:53Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source e760e5e)\n2026-11-13T12:03:23Z\n",
+ "received": "2026-11-13T12:00:43Z",
+ "script_sha256": "681783e30867ac905275cc78f56021a0e742f7c5d5b9a2429781f4e3b42550d6",
+ "started": "2026-11-13T12:00:43Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

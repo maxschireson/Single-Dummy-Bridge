@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 5.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:14:53Z",
+ "id": "20261112T151433Z-673539-plan-19-capsule",
+ "output_bytes": 302,
+ "output_tail": "capsule: 50M\t/home/bridgebots/work/plan/capsule/recovery\nartifacts assets manifest.json \nModuleNotFoundError: No module named 'h5py'\nsource 2f00276 Reading bench: a cheaper stand-in for the bot (fewer layouts), calibrated against the\nconfigs/plan-bots.json scripts/gen8_match.py scripts/plan_match.py \n",
+ "received": "2026-11-12T15:14:47Z",
+ "script_sha256": "222a6748a4fa8a3d8bb84093945c22a5b3cef4728498ce7d199990cda94389e5",
+ "started": "2026-11-12T15:14:47Z",
+ "timed_out": false,
+ "timeout_s": 1000
+}

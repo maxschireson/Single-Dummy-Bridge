@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 3.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:09:02Z",
+ "id": "20261113T100834Z-642406-loop-11-own-entropy",
+ "output_bytes": 1470,
+ "output_tail": "all            decisions  16527 | entropy of Stu's own probabilities 0.2323 | mean largest probability 0.8538 | decisions with more than one card possible 0.248\ntricks 1-6     decisions   8501 | entropy of Stu's own probabilities 0.3181 | mean largest probability 0.8033 | decisions with more than one card possible 0.327\nfrom trick 7   decisions   8026 | entropy of Stu's own probabilities 0.1413 | mean largest probability 0.9074 | decisions with more than one card possible 0.164\ndeclaring      decisions   8451 | entropy of Stu's own probabilities 0.4542 | mean largest probability 0.7142 | decisions with more than one card possible 0.484\ndefending      decisions   8076 | entropy of Stu's own probabilities 0.0000 | mean largest probability 1.0000 | decisions with more than one card possible 0.000\nmode search    decisions   2944 | entropy of Stu's own probabilities 0.3360 | mean largest probability 0.7956 | decisions with more than one card possible 0.334\nmode blend     decisions   5381 | entropy of Stu's own probabilities 0.3187 | mean largest probability 0.8010 | decisions with more than one card possible 0.333\nmode rollout   decisions   6499 | entropy of Stu's own probabilities 0.1745 | mean largest probability 0.8856 | decisions with more than one card possible 0.203\nmode claim     decisions   1703 | entropy of Stu's own probabilities 0.0000 | mean largest probability 1.0000 | decisions with more than one card possible 0.000\n2026-11-13T10:09:00Z\n",
+ "received": "2026-11-13T10:08:58Z",
+ "script_sha256": "28495520baba4dc129706046bfaedd35f64ff3c4e956663a13ecb2a0aa3142e7",
+ "started": "2026-11-13T10:08:58Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

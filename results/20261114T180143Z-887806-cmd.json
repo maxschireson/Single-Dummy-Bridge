@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 13.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:02:23Z",
+ "id": "20261114T180143Z-887806-cmd",
+ "output_bytes": 1297,
+ "output_tail": "23067 arena records; 23067 name prefixes\narena, a sample               250 records | tables a record 36.3 (root 3.1, forks 33.2) | decisions with values a record 1231 | CPU-s a record: base 31.1 + branch 16.5 = 47.6 (tables sum 85.0)\n   tables by (depth, fork kind): {(1, 'gap'): 3642, (2, None): 2738, (1, None): 1912, (0, None): 772}\nself-play sg8t1               150 records | tables a record 1.0 (root 1.0, forks 0.0) | decisions with values a record 41 | CPU-s a record: base 12.6 + branch 0.0 = 12.6 (tables sum 12.6)\n   tables by (depth, fork kind): {(0, None): 150}\nself-play sg8t2               150 records | tables a record 1.0 (root 1.0, forks 0.0) | decisions with values a record 41 | CPU-s a record: base 12.4 + branch 0.0 = 12.4 (tables sum 12.4)\n   tables by (depth, fork kind): {(0, None): 150}\nself-play sp3s                150 records | tables a record 1.0 (root 1.0, forks 0.0) | decisions with values a record 36 | CPU-s a record: base 17.2 + branch 0.0 = 17.2 (tables sum 17.2)\n   tables by (depth, fork kind): {(0, None): 150}\nself-play sp0                 150 records | tables a record 1.0 (root 1.0, forks 0.0) | decisions with values a record 36 | CPU-s a record: base 25.7 + branch 0.0 = 25.7 (tables sum 25.7)\n   tables by (depth, fork kind): {(0, None): 150}\n18:02:23\n",
+ "received": "2026-11-14T18:02:09Z",
+ "script_sha256": "e3e3293b858010d2e5c14163e403527e626f6bcc740a901104cda6ca9a57c1d0",
+ "started": "2026-11-14T18:02:09Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

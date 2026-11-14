@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:32:02Z",
+ "id": "20261114T113139Z-039855-cmd",
+ "output_bytes": 351,
+ "output_tail": "sg8t1:711:711 sp0:5669:5669 sp3s:3166:3166 spr0:2164:2164 sps0:779:779 \n\n/home/bridgebots/work/loop/r4arena\n2026-11-14T11:05:28Z MATCH xh-m10F-n stum10F-n~stum10-n: +0.169 +- 0.050 IMPs a deal for the first bot (4000 deals)\n2026-11-14T11:21:33Z MATCH xh-m10h4-n stum10h4-n~stum10-n: +0.198 +- 0.045 IMPs a deal for the first bot (6000 deals)\n11:32:02\n",
+ "received": "2026-11-14T11:32:02Z",
+ "script_sha256": "1e51c36f82a9bc9c232eabcb4990e381e858d0f2b06830db3ab4c3fb8d6d049d",
+ "started": "2026-11-14T11:32:02Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

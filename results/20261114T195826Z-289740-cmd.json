@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 300.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:03:31Z",
+ "id": "20261114T195826Z-289740-cmd",
+ "output_bytes": 765,
+ "output_tail": "16\nMem:              62           1          61           0           0          61\n/dev/root       123G  101G   23G  83% /\nRunning as unit: loop-publish.service; invocation ID: af41694ce8824143bd646df348121991\n4:cd \"$S2\"; export OPENBLAS_NUM_THREADS=16 OMP_NUM_THREADS=16 MKL_NUM_THREADS=16\n5:echo \"$(date -u +%FT%TZ) width test begins: v2's recipe at 1,536 wide on the pool's rows, 16 cores (the collection is paused)\" >> \"$W/runs.log\"\nRunning as unit: loop-width.service; invocation ID: a66481d0bea345f5aa593b3e25918dcf\nactive active data in memory 14.15 GB, 30381099 examples\n75409 training deals, 30381099 training examples, 123142 held-out examples from freshB.npz (144 deals)\n 20:03:31 up 6 min,  0 user,  load average: 7.84, 2.70, 1.02\n2026-11-14T20:03:31Z\n",
+ "received": "2026-11-14T19:58:31Z",
+ "script_sha256": "85d079e9dc249edcff869870b7cd314feea4b8c5d1acbeb4e30374ac70cc8fee",
+ "started": "2026-11-14T19:58:31Z",
+ "timed_out": false,
+ "timeout_s": 420
+}

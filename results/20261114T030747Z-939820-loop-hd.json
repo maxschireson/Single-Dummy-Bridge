@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T03:08:03Z",
+ "id": "20261114T030747Z-939820-loop-hd",
+ "output_bytes": 748,
+ "output_tail": "#!/usr/bin/env bash\nwhile [ \"$(systemctl is-active loop-strong)\" = active ]; do sleep 30; done; sleep 45\ngit -C \"/home/bridgebots/work/loop/src\" fetch -q --depth 8 origin research/rollout-loop-20261113 && git -C \"/home/bridgebots/work/loop/src\" checkout -q fc8202fc96158f249b5ff14b3d0a2e959dbb5c7f\nbash \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/rungs.sh\" jobs-azure5-hd.txt azure5\nRunning as unit: loop-rungs.service; invocation ID: 18c601437fd64f289a12af4ef92ec779\nloop-strong: inactive; loop-rungs: active\n2026-11-14T03:04:48Z end l0b-p: exit 0\n2026-11-14T03:04:48Z start sp3s stu3-psa~stu3-psb seed 9001 first 360000 deals 20000 workers 8 --episodes --one-room (source 3dc875b, nets bf16, --recycle 20)\n2026-11-14T03:08:03Z\n",
+ "received": "2026-11-14T03:07:58Z",
+ "script_sha256": "b15b813372fb9333ae8711b60ff18deba4f5a3f54865592c17a55501b660b27b",
+ "started": "2026-11-14T03:07:58Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

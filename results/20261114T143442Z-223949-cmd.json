@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:34:54Z",
+ "id": "20261114T143442Z-223949-cmd",
+ "output_bytes": 522,
+ "output_tail": "\"epoch\": 2, \"seconds\": 509\nrows 1719627 | by deciding bot: 8s-32 563834, 71s-32 313691, 8c-32 232321, 9a-32 187050, 5RZ32 136822, 1 129983, 8x3-32 92723, ben64 43825, stup0 16718, ben 2136, 7s-32 265, 6-32 259\n2026-11-14T14:11:41Z arena rows: /home/bridgebots/work/loop/r4arena/arena.npz\n2026-11-14T14:11:41Z spr0 2164 tables; sp0 5669 tables; sps0 779 tables; sp3s 3166 tables; sg8t1 923 tables; 68 row files from the other boxes and the arena\nactive\n 14:34:54 up 2 days, 10:42,  0 user,  load average: 4.82, 5.23, 10.07\n",
+ "received": "2026-11-14T14:34:54Z",
+ "script_sha256": "7e47b1201371c8877d5f0f67a1be03efdf832ae3afd666e1451ab2a6419ccd60",
+ "started": "2026-11-14T14:34:54Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

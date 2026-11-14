@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T08:02:40Z",
+ "id": "20261112T080213Z-573877-after3",
+ "output_bytes": 447,
+ "output_tail": "Running as unit: g8-after-reading3.service; invocation ID: b330ce6d8c6a4e89ab767be05477b718\n08:02:40\n== the same on B\n218537 decisions, 631 deals\nw512         gives up 0.0245 | exact 0.755 | top 3 0.990 | kept 0.98 2.75 0.90 2.06 | log-loss 0.6051\nw768e5       gives up 0.0234 | exact 0.759 | top 3 0.991 | kept 0.98 2.74 0.90 2.04 | log-loss 0.5939 || from w512: -0.0010 [-0.0020, -0.0000], cut 4.3% [0.1%, 8.1%]\n\ndirect comparison done 08:02:13\n",
+ "received": "2026-11-12T08:02:40Z",
+ "script_sha256": "a083fc44299ec522f133d63ccf22af29b57e439dc434a270b34776cd53ef241d",
+ "started": "2026-11-12T08:02:40Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

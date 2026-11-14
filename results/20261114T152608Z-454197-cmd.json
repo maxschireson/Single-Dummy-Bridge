@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:26:27Z",
+ "id": "20261114T152608Z-454197-cmd",
+ "output_bytes": 226,
+ "output_tail": "h4c-n +0.032 +- 0.034 (7644)\n2026-11-14T15:16:05Z the collection is paused for jobs-azure5-r4.txt\n2026-11-14T15:16:05Z start h4c-n stu4-n~stu4c-n seed 131 first 30000 deals 8000 workers 8  (source a470efe, nets fp32)\n15:26:27\n",
+ "received": "2026-11-14T15:26:27Z",
+ "script_sha256": "721d1e6888afaf2f46c70fe6301c62cc4e66788b45050fb70bcddcee154acba6",
+ "started": "2026-11-14T15:26:27Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

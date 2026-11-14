@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.8,
+ "exit_code": 0,
+ "finished": "2026-11-12T17:09:01Z",
+ "id": "20261112T170850Z-659314-plan-32-ceilings",
+ "output_bytes": 224,
+ "output_tail": "running: ceilLead | waiting now: @source ceilT12b ceilTies ceil64b wide3 rbc2a rbc2b\ncommit\n0f0f4f8 Headroom: a simulation check of the fit (--fit-check); report: the trick 3 to 6 fi\nposition 12\n440 files, 206 pairs, 4070 s\n",
+ "received": "2026-11-12T17:09:00Z",
+ "script_sha256": "5df925970a190f0660017d3735ffc4ba3b52d7bfc25070f09ddbcbde972759c4",
+ "started": "2026-11-12T17:09:00Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

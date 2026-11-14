@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 45.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T14:09:50Z",
+ "id": "20261113T140844Z-688822-loop-r2a5",
+ "output_bytes": 1215,
+ "output_tail": " scripts/train_rollout_net.py                       |   5 +-\n training/rollout-loop-20261113/PLAN.md             |  31 ++++--\n training/rollout-loop-20261113/first_divergence.py | 123 +++++++++++++++++++++\n training/rollout-loop-20261113/round2.sh           | 100 +++++++++++++++++\n 4 files changed, 250 insertions(+), 9 deletions(-)\nsource 961bcf8 Stu: round2.sh (pure Stu's rows, named stup0, from round 1's net with replay); traine\nspr0 717 tables, sp0 87\n-rw-r--r-- 1 bridgebots bridgebots 7013852 Nov 13 10:59 /home/bridgebots/work/loop/pub/train-r1/policy.npz\nRunning as unit: loop-train2.service; invocation ID: 5b4e5159b041459faae93cd79ce77fff\nactive active active \n2026-11-13T14:09:05Z start r2a; source 961bcf8; runs spr0,sp0; held out 150 boards; 4 epochs at 1e-4; replay x1; from /home/bridgebots/work/loop/pub/train-r1/policy.npz\n2026-11-13T14:09:07Z spr0: 710 records\n2026-11-13T14:09:07Z sp0: 87 records\n2026-11-13T14:09:07Z records: 647 to train on, 150 held out\n2026-11-13T12:42:40Z start spr0 stu0-pra~stu0-prb seed 9001 first 100000 deals 20000 workers 8 --episodes --one-room (source 25d4dd0)\nMem:              31           5           7           0          18          25\n2026-11-13T14:09:50Z\n",
+ "received": "2026-11-13T14:09:05Z",
+ "script_sha256": "09666718cf948bdbb62b962ac9bd59059a2c58a56abe6f37c1bb9e62ae4e162c",
+ "started": "2026-11-13T14:09:05Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

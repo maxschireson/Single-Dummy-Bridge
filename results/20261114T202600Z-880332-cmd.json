@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 42.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:27:09Z",
+ "id": "20261114T202600Z-880332-cmd",
+ "output_bytes": 588,
+ "output_tail": "before before.log held net net.log sg8t1.txt sp0.txt sp3s.txt spr0.txt sps0.txt stu_held.npz stu_test.npz stu_train.npz test timeline.log train val.npz \n-rw-r--r-- 1 bridgebots bridgebots 102638668 Nov 14 14:54 /home/bridgebots/work/loop/r4c/val.npz\nval.npz: 135543 rows, 444 deals; bots ['', '1', '5RZ32', '71s-32', '8c-32', '8s-32', 'ben', 'ben64', 'stup0'] ; compressed 4221 KB\ntrain 12101 records\nheld 300 records\ntest 300 records\nextra row files dated before the cut: 67 | arena rows file present: True\narena sample records: 2600\ninputs.json 1497 KB\nsample: 201 files, 6.9M\n20:27:09\n",
+ "received": "2026-11-14T20:26:26Z",
+ "script_sha256": "de769a0084ae5acc6ee53ce7a7c7c1f47db7d5aa8b6f933f3acd65f70a82a3c8",
+ "started": "2026-11-14T20:26:26Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

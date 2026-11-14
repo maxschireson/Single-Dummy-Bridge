@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:27:06Z",
+ "id": "20261112T062633Z-985775-p41-st",
+ "output_bytes": 2274,
+ "output_tail": "06:27:06\n 06:27:06 up  2:35,  0 user,  load average: 8.76, 8.94, 10.07\nw512c1 start 06:00:31\nw512c1 stopped and removed (not asked for) 06:01:05\nw512e5 exit 0 06:16:48\nfreshE done: {\"deals_in\": 1194, \"deals_kept\": 611, \"dropped_as_seen\": 583, \"examples\": 265124} 06:20:03\neval w512e5 done 06:26:53\npush w512e5 done 06:27:05\n212 06:27:02 /home/bridgebots/work/p41/logs/w768e5.err\n0 06:23:48 /home/bridgebots/work/p41/logs/w768e5.out\n  \n  \n  \n4096 06:17:14 .\n4096 06:01:05 ..\n6889746 05:48:17 policy_epoch1.npz\n6889746 06:02:22 policy_epoch2.npz\n6889746 06:17:14 policy_epoch3.npz\ndata in memory 6.02 GB, 13239367 examples\n38128 training deals, 13239367 training examples, 218537 held-out examples from freshB.npz (631 deals)\nepoch 1 step 2000 of 25858, 73 s\nepoch 1 step 2000 of 25858, 73 s\nepoch 1 step 4000 of 25858, 138 s\n  23941 Thu Nov 12 06:23:48 2026     197  0.0 /bin/bash -c /home/bridgebots/work/venv/bin/python scripts/train_gen7_policy.py --data /home/bridgebots/work/p41/data/gen7_v41_train.npz --all-train --val\n  23942 Thu Nov 12 06:23:48 2026     197  320 /home/bridgebots/work/venv/bin/python scripts/train_gen7_policy.py --data /home/bridgebots/work/p41/data/gen7_v41_train.npz --all-train --val-data /home/b\nactive\ninactive\nactive\nNov 12 05:26:37 Bridgebots5 systemd[1]: Started p41-w768e5.service - /bin/bash -c \"/home/bridgebots/work/venv/bin/python scripts/train_gen7_policy.py --data /home/bridgebots/work/p41/data/gen7_v41_tra\nNov 12 06:23:48 Bridgebots5 systemd[1]: Stopping p41-w768e5.service - /bin/bash -c \"/home/bridgebots/work/venv/bin/python scripts/train_gen7_policy.py --data /home/bridgebots/work/p41/data/gen7_v41_tr\nNov 12 06:23:48 Bridgebots5 systemd[1]: p41-w768e5.service: Deactivated successfully.\nNov 12 06:23:48 Bridgebots5 systemd[1]: Stopped p41-w768e5.service - /bin/bash -c \"/home/bridgebots/work/venv/bin/python scripts/train_gen7_policy.py --data /home/bridgebots/work/p41/data/gen7_v41_tra\nNov 12 06:23:48 Bridgebots5 systemd[1]: p41-w768e5.service: Consumed 3h 14min 49.049s CPU time, 7.8G memory peak, 0B memory swap peak.\nNov 12 06:23:48 Bridgebots5 systemd[1]: Started p41-w768e5.service - /bin/bash -c \"/home/bridgebots/work/venv/bin/python scripts/train_gen7_policy.py --data /home/bridgebots/work/p41/data/gen7_v41_tra\n",
+ "received": "2026-11-12T06:27:06Z",
+ "script_sha256": "90a2953f0829d738fc399ad2985926e5ae559a1e022cd357321e23c82fa91e65",
+ "started": "2026-11-12T06:27:06Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

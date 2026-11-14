@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T16:23:28Z",
+ "id": "20261114T162307Z-345616-cmd",
+ "output_bytes": 88,
+ "output_tail": "409 /home/bridgebots/work/loop/runs/h4c-pst/results.jsonl\nh4c-pst -0.132 +- 0.195 (409)\n",
+ "received": "2026-11-14T16:23:28Z",
+ "script_sha256": "4f7b2544f43b8441fa9198dedc26bf051c5987b8f1fe5d2807a272b359a3ac20",
+ "started": "2026-11-14T16:23:28Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

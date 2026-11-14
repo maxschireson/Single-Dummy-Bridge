@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 45.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:58:04Z",
+ "id": "20261113T104228Z-563607-loop-18-ladder-500-999",
+ "output_bytes": 667,
+ "output_tail": "s0 paused at 976 boards: 950 boards: -0.0274 +- 0.0303 IMPs/board for stu0a; 543 boards/hour; 0 failed\nsource 0723f0b Stu ladder: the pure bot against Stu comes first, on both boxes\nRunning as unit: loop-collect.service; invocation ID: 62f5878280fa4cbeb10297497f0923f1\nactive active \n2026-11-13T09:09:10Z start s0 stu0a~stu0b seed 9001 first 1000 deals 19000 workers 8 --episodes (source 29d2e6a)\n2026-11-13T10:57:19Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 0723f0b)\nstu0a v 8p-32-v41: 500 boards to play (0 done), 8 workers\nREADME.md pf-gate pf-self pf-stu r0 r0.log runs.log s0 s0.log train-r1 \n2026-11-13T10:58:04Z\n",
+ "received": "2026-11-13T10:57:18Z",
+ "script_sha256": "f015fecad646355a5df7434f51f0467dafaf5480076a4442c77ddf80ad4d9197",
+ "started": "2026-11-13T10:57:18Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

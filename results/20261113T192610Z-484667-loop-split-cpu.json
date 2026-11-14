@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.8,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:26:16Z",
+ "id": "20261113T192610Z-484667-loop-split-cpu",
+ "output_bytes": 757,
+ "output_tail": "CPU(s): 8\nModel name: AMD EPYC 9V74 80-Core Processor\nL2 cache: 8 MiB (8 instances)\nL3 cache: 32 MiB (1 instance)\navx512_bf16 avx512_vnni avx512f  \nsp0 tables 60 | cpu a table 32.3 | decisions a table 40.8 | modes a table {'rollout': 33.9, 'claim': 5.9}\n   seconds a table by part: {'_action_cpu': 32.21, 'claims': 0.04, 'layouts': 8.68, 'rollouts': 23.19} | net rows a table 130917\n   rollouts share of table cpu 72% | net rows/s inside rollouts 5645\nspr0 tables 60 | cpu a table 56.3 | decisions a table 41.3 | modes a table {'rollout': 37.3, 'claim': 4.0}\n   seconds a table by part: {'_action_cpu': 56.19, 'claims': 0.02, 'layouts': 8.41, 'rollouts': 48.43} | net rows a table 340605\n   rollouts share of table cpu 86% | net rows/s inside rollouts 7033\n",
+ "received": "2026-11-13T19:26:15Z",
+ "script_sha256": "9196fe97abe8b074aa88efd2bbad1feab7df9570d3b01e46f80c24326c0fa1c4",
+ "started": "2026-11-13T19:26:15Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

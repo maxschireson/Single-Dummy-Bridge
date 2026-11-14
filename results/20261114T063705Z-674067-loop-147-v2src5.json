@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:37:32Z",
+ "id": "20261114T063705Z-674067-loop-147-v2src5",
+ "output_bytes": 2249,
+ "output_tail": "data\neps\nepsB\ngit\nlogs\npub\nwarm\neps_before.txt\neps_new.txt\nfetch.json\nfetchB.json\nfreshB.npz\nfreshB_raw.npz\ntrain.npz\n--- /home/bridgebots/work/plan/rnet2w/data/fetch.json\n{\n \"repo\": \"https://github.com/maxschireson/Single-Dummy-Bridge\",\n \"patterns\": [\n  \"arena-gen6-*\",\n  \"arena-gen7-*\",\n  \"arena-gen71-*\",\n  \"arena-gen8-*\",\n  \"arena-gen5rz*\",\n  \"transfer/pre7-test-azure*-20261112\"\n ],\n \"finished_utc\": \"2026-11-13T02:19:02Z\",\n \"seconds\": 15,\n \"new_blobs\": 8651,\n \"new_bytes\": 1535768997,\n \"branches\": {\n  \"arena-gen5rz-ben-feed\": {\n   \"tip\": \"a559ccb59e9d3ff09d8c759c016534b4efcef254\",\n   \"tip_time\": \"2026-11-11T02:03:54+00:00\",\n   \"episodes\": 8372,\n   \"new\": 8372\n  },\n  \"arena-gen5rz-feed\": {\n   \"tip\": \"03fd90e694d02ba139559fc323e63e384da9e969\",\n   \"tip_time\": \"2026-11-10T17:44:23+00:00\",\n   \"episodes\": 151,\n   \"new\": 151\n  },\n  \"arena-gen6-ben-expansion-feed\": {\n   \"tip\": \"b1a5a3e7b77cbefc2fb68df73e5cf5aeeecfbed2\",\n   \"tip_time\": \"2026-11-11T05:46:53+00:00\",\n   \"episodes\": 262,\n   \"new\": 0\n  },\n  \"arena-gen6-chatgpt-feed\": {\n   \"tip\": \"841277e01ff4238c9e759743d379c769b8b21a69\",\n   \"tip_time\": \"2026-11-13T02:56:20+01:00\",\n   \"episodes\": 4880,\n   \"new\": 0\n  },\n  \"arena-gen6-codex-ben-followups-feed\": {\n   \"tip\": \"9e35788b7db67bd31dd589b9c6087c8e8e92e3be\",\n   \"tip_time\": \"2026-11-11T05:52:24+00:00\",\n   \"episodes\": 217,\n   \"new\": 0\n  },\n  \"arena-gen6-codex-ben-gate\": {\n   \"tip\": \"32d459d5513005f3c032a04fb6c785d4a0db4d6f\",\n   \"tip_time\": \"2026-11-11T05:21:10+00:00\",\n   \"episodes\": 0,\n   \"new\": 0\n  },\n  \"arena-gen6-codex-feed\": {\n   \"tip\": \"20a82a253bc4f90a396a3f8991c935e4530df7f0\",\n   \"tip_time\": \"2026-11-11T05:16:32+00:00\",\n   \"episodes\": 1544,\n   \"n\n--- /home/bridgebots/work/plan/rnet2w/data/fetchB.json\n{\n \"repo\": \"https://github.com/maxschireson/Single-Dummy-Bridge\",\n \"patterns\": [\n  \"arena-gen6-*\",\n  \"arena-gen7-*\",\n  \"arena-gen71-*\",\n  \"arena-gen8-*\",\n  \"arena-gen5rz*\",\n  \"transfer/pre7-test-azure*-20261112\"\n ],\n \"finished_utc\": \"2026-11-13T02:32:40Z\",\n \"seconds\": 16,\n \"new_blobs\": 247,\n \"new_bytes\": 66493895,\n \"branches\": {\n  \"arena-gen5rz-ben-feed\": {\n   \"tip\": \"a559ccb59e9d3ff09d8c759c016534b4efcef254\",\n   \"tip_time\": \"2026-11-11T02:03:54+00:00\",\n   \"episodes\": 8372,\n   \"new\": 0\n  },\n  \"arena-gen5rz-feed\": {\n",
+ "received": "2026-11-14T06:37:32Z",
+ "script_sha256": "5b2f1aeb3e2ac5ecb66b54bf54302ea8b53a496a2609f80986525be316afc0e5",
+ "started": "2026-11-14T06:37:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

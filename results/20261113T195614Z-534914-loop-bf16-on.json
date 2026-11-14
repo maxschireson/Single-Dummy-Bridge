@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 24.8,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:56:59Z",
+ "id": "20261113T195614Z-534914-loop-bf16-on",
+ "output_bytes": 436,
+ "output_tail": "source 3b37f15\ntorch 2.15.0+cpu\nRunning as unit: loop-collect.service; invocation ID: 2385e7244e684f47aff7b642cf7e6762\nRunning as unit: loop-collect-b.service; invocation ID: 9e46dc5170844b8cacc6ff0752076407\nbox azure5: active active \n2026-11-13T19:56:39Z end l0b-p: exit 0\n2026-11-13T19:56:39Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 6 --episodes --one-room (source 3b37f15, nets bf16)\n2026-11-13T19:56:59Z\n",
+ "received": "2026-11-13T19:56:34Z",
+ "script_sha256": "2483bd2049c3acc4fd74cd351f6a972501ebf95ec521900fa9c2a09be4dbabb8",
+ "started": "2026-11-13T19:56:34Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

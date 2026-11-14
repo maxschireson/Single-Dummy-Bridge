@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 72.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:25:30Z",
+ "id": "20261114T212411Z-729391-cmd",
+ "output_bytes": 363,
+ "output_tail": "v2e2         log-loss 0.5502  exact 0.7732  tricks given up 0.0245  from trick 7 0.4848/0.0233  T 1.01  ids blank 0.6304\nv2e3         log-loss 0.5300  exact 0.7790  tricks given up 0.0231  from trick 7 0.4642/0.0217  T 1.01  ids blank 0.6155\nv2e4         log-loss 0.5138  exact 0.7874  tricks given up 0.0222  from trick 7 0.4472/0.0212  T 1.01  ids blank 0.6012\n",
+ "received": "2026-11-14T21:24:17Z",
+ "script_sha256": "b9c02585ef6ab11e72a0276a04e1e9524570dda967124b228d6fb844e100a65c",
+ "started": "2026-11-14T21:24:17Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

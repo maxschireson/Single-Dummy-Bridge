@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:53:41Z",
+ "id": "20261114T145331Z-210865-cmd",
+ "output_bytes": 476,
+ "output_tail": "\"epoch\": 4, \"seconds\": 1278\nheld\nsg8t1.txt\nsp0.txt\ntricks 5-8     4067   3292 | 0.0817 -> 0.0767 | 0.0794 -> 0.0754 | 0.5338 -> 0.5483 | 0.1778\ntricks 9-13    4078   2386 | 0.0604 -> 0.0552 | 0.0556 -> 0.0569 | 0.7283 -> 0.7364 | 0.1422\n2026-11-14T14:47:15Z published to /home/bridgebots/work/loop/pub/train-r4: policy.npz sha256 edc5d6cfaf9fd868\n2026-11-14T14:47:15Z r4 sha256 edc5d6cfaf9fd868e4e07708b18ad6e712da1cf981688b1a152857ace5d8853f; disk free 23 GB\nactive\n14:53:40\n",
+ "received": "2026-11-14T14:53:40Z",
+ "script_sha256": "bd3feed921c028f0836a3319a9d55d8cb94daccb204aaec6e5c0c24144668812",
+ "started": "2026-11-14T14:53:40Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

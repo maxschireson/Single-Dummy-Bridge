@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:19:44Z",
+ "id": "20261114T081938Z-224441-loop-186-pub3",
+ "output_bytes": 291,
+ "output_tail": "## transfer/rollout-loop-azure5-20261113\n?? usbc-lt/usbc_238149_4_1.lt2.json.gz\n9ca98b4 Rollout loop outputs from azure5, 2026-11-14T08:18:07Z\ncd0c0ab Rollout loop outputs from azure5, 2026-11-14T08:08:05Z\nb25c9fe Rollout loop outputs from azure5, 2026-11-14T07:58:02Z\nEverything up-to-date\n",
+ "received": "2026-11-14T08:19:43Z",
+ "script_sha256": "ed80bc7474e2fb5a1a76494622160ce315dd2aadfc4b5499b7d13a4e406dde09",
+ "started": "2026-11-14T08:19:43Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

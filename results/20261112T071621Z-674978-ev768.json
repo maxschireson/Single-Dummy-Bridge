@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:16:52Z",
+ "id": "20261112T071621Z-674978-ev768",
+ "output_bytes": 699,
+ "output_tail": "07:16:52\nw768e5 exit 0 07:10:40\nreading bench starts 07:10:41\nneartie pushed 07:12:47\n3 /home/bridgebots/work/p41/logs/eval_w768e5.log\n== temperatures fitted on B\nrows 218537 | log-loss at T=1 0.6576 | best T 1.042 log-loss 0.6571\nwritten /home/bridgebots/work/p41/runs/w768e5/policy_epoch1_T.npz | largest logit difference on 8,192 rows 5.7220458984375e-06\n{\"table\": 56, \"family\": \"47be4766941e\", \"decisions\": 41, \"seconds\": 28.5, \"solve_seconds\": 5.0, \"elapsed\": 335}\n{\"table\": 59, \"family\": \"868bea3d854f\", \"decisions\": 41, \"seconds\": 42.2, \"solve_seconds\": 21.3, \"elapsed\": 343}\n{\"table\": 47, \"family\": \"e151cf4be8ef\", \"decisions\": 41, \"seconds\": 39.6, \"solve_seconds\": 17.8, \"elapsed\": 363}\n12\n",
+ "received": "2026-11-12T07:16:52Z",
+ "script_sha256": "789ecfd92307544c9588b1e237574c14b701f1c00f8caa1c7c2b84db4c862cfb",
+ "started": "2026-11-12T07:16:52Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

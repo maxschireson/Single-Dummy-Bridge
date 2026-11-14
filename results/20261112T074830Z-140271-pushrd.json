@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 31.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:49:18Z",
+ "id": "20261112T074830Z-140271-pushrd",
+ "output_bytes": 280,
+ "output_tail": "owners exit 0 07:45:29\nreport t1 done 07:49:15\nreading reports pushed 07:49:18\n \n4096 .\n4096 ..\n43902 interim.json\n19114 interim.txt\n57067 t1-house.json\n26497 t1-house.txt\n317611 t1-owner.json\n145193 t1-owner.txt\n708315 t1-sweep.json\n29299 t1-sweep.txt\n57679 t1.json\n26496 t1.txt\n",
+ "received": "2026-11-12T07:48:47Z",
+ "script_sha256": "3181791ab7862152a2b103eb36cb5d707c21f3441512f2089b99a1b0a8049b18",
+ "started": "2026-11-12T07:48:47Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

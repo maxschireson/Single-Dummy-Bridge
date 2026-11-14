@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 60.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T14:30:17Z",
+ "id": "20261113T142844Z-128045-loop-split5",
+ "output_bytes": 711,
+ "output_tail": "spr0 866 tables, sp0 87\nsource b64ae5e Stu jobs: azure5's collection split, six workers with the net's lead (sp0) and two with rolled-\nRunning as unit: loop-collect.service; invocation ID: 9f37935f8b254edb8f198703f1172e53\nRunning as unit: loop-collect-b.service; invocation ID: ade88d5c605946bd84fbc8d0c2c6b510\nactive active active \n2026-11-13T14:29:17Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source b64ae5e)\n2026-11-13T14:29:17Z end l0b-p: exit 0\n2026-11-13T14:29:17Z start sp0 stu0-pa~stu0-pb seed 9001 first 60000 deals 20000 workers 6 --episodes --one-room (source b64ae5e)\nload average: 8.16, 8.58, 9.83\n/dev/root       123G   64G   60G  52% /\n2026-11-13T14:30:17Z\n",
+ "received": "2026-11-13T14:29:17Z",
+ "script_sha256": "14110c6736ad6e4141690d35013caf152ae955d8cb5ead4afda7e30ecf2c3046",
+ "started": "2026-11-13T14:29:17Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

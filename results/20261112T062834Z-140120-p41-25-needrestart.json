@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:28:40Z",
+ "id": "20261112T062834Z-140120-p41-25-needrestart",
+ "output_bytes": 247,
+ "output_tail": "$nrconf{restart} = 'l';\nNEEDRESTART-VER: 3.6\nNEEDRESTART-KCUR: 7.0.0-1017-azure\nNEEDRESTART-KEXP: 7.0.0-1017-azure\nNEEDRESTART-KSTA: 1\nNEEDRESTART-SVC: dbus.service\nepoch 1 step 4000 of 25858, 138 s\nepoch 1 step 6000 of 25858, 188 s\nactive\nactive\n",
+ "received": "2026-11-12T06:28:39Z",
+ "script_sha256": "09bfa93ebef5e3abcb72b0d22699588b837e6b937dc7f2def5406e8da2d5ff88",
+ "started": "2026-11-12T06:28:39Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

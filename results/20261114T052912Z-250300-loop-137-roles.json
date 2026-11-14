@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 3.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T05:29:35Z",
+ "id": "20261114T052912Z-250300-loop-137-roles",
+ "output_bytes": 295,
+ "output_tail": "Running as unit: loop-switch.service; invocation ID: 5474c8d8fe3041a9ae0c898cd1562928\nswitch: active | next: active | bensession: inactive\n1\n2026-11-14T04:38:55Z start h3-pib stu3-psti~stu3-pst seed 131 first 17500 deals 500 workers 8 --episodes (source 68fb9ca, nets fp32)\n2026-11-14T05:29:35Z\n",
+ "received": "2026-11-14T05:29:32Z",
+ "script_sha256": "0858e393b172ea79c67a7e36e424fcc710e84416b07392948f7ffe5c424d81a8",
+ "started": "2026-11-14T05:29:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

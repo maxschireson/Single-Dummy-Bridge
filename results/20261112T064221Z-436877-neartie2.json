@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 45.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:43:12Z",
+ "id": "20261112T064221Z-436877-neartie2",
+ "output_bytes": 557,
+ "output_tail": "Running as unit: p41-neartie.service; invocation ID: dc066e00f1e44ac4a795467b7271696d\nneartie exit 0 06:42:35\nneartie pushed 06:42:36\n{\"epoch\": 1, \"seconds\": 669, \"train_ce\": 0.7048, \"train_gap\": 0.0472, \"train_owner\": 0.5762, \"val\": {\"n\": 218537, \"nll\": 0.6576, \"uniform_nll\": 1.2533, \"tie_nll\": 0.7779, \"agree\": 0.7291, \"in_best\": 0.8964, \"regret\": 0.0331, \"regret_gap_head\": 0.0275, \"regret_random\": 0.1976, \"regret_lowest\": 0.2213}}\n5858, 971 s\nepoch 2 step 18000 of 25858, 1008 s\nepoch 2 step 20000 of 25858, 1045 s\nepoch 2 step 22000 of 25858, 1086 s\n",
+ "received": "2026-11-12T06:42:27Z",
+ "script_sha256": "db35a4a8b0889e77e5a9b53509e59b7a5768533cd856e6aa7b67db4bd89ccb34",
+ "started": "2026-11-12T06:42:27Z",
+ "timed_out": false,
+ "timeout_s": 150
+}

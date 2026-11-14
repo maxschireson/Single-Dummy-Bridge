@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T22:03:48Z",
+ "id": "20261114T220341Z-595761-cmd",
+ "output_bytes": 2649,
+ "output_tail": "   2500 /home/bridgebots/work/loop/pub/h05/pairs-sp0.jsonl\n   2500 /home/bridgebots/work/loop/pub/h05/pairs-sp3s.jsonl\n   5000 total\ninactive\npairs with under 32 distinct layouts drawn (late in the hand; the panel there is close to every layout the seat allows): 0.51\n5000 pairs re-evaluated; CPU a pair 0.74 s; layouts a pair 45\nsingle = the recorded pair (one layout); panel = mean over fresh layouts from the fork seat's own information; for the side to play\n                        pairs single=0 same sign   corr  slope reliab. | mean single mean panel panel SE | |panel|>2SE\nall                      5000     0.63      0.75   0.54   0.35   0.389 |      +0.188     +0.197    0.091 |        0.29\ndeclaring side           2631     0.60      0.76   0.57   0.37   0.397 |      +0.242     +0.248    0.088 |        0.34\ndefending side           2369     0.67      0.74   0.49   0.32   0.373 |      +0.128     +0.141    0.095 |        0.24\n32+ layouts drawn        2463     0.54      0.69   0.45   0.23   0.238 |      +0.175     +0.186    0.116 |        0.35\nunder 32 layouts         2537     0.72      0.85   0.70   0.63   0.753 |      +0.201     +0.208    0.067 |        0.24\nsingle label not 0       1843     0.00      0.75   0.54   0.30   0.290 |      +0.511     +0.458    0.126 |        0.56\nfork at tricks 1-2         90     0.38      0.52   0.41   0.11   0.067 |      +0.000     +0.101    0.102 |        0.24\nfork at tricks 3-4        393     0.44      0.62   0.29   0.09   0.092 |      +0.140     +0.150    0.114 |        0.35\nfork at tricks 5-6        659     0.54      0.71   0.46   0.21   0.178 |      +0.181     +0.162    0.129 |        0.33\nfork at tricks 7-8        997     0.58      0.70   0.44   0.25   0.279 |      +0.161     +0.170    0.128 |        0.32\nfork at tricks 9-10      1194     0.63      0.79   0.63   0.52   0.634 |      +0.214     +0.238    0.109 |        0.32\nfork at tricks 11-13     1667     0.75      0.91   0.80   0.77   0.871 |      +0.211     +0.214    0.035 |        0.22\nCPU a pair and share of pairs, by trick of the fork; and share whose panel differs from 0 by over 2 SE and by over 0.25 trick\ntricks 1-2: share 0.018  cpu 1.85 s  layouts 119  |panel|>2SE 0.24  |panel|>0.25 0.22\ntricks 3-4: share 0.079  cpu 1.27 s  layouts 102  |panel|>2SE 0.35  |panel|>0.25 0.32\ntricks 5-6: share 0.132  cpu 1.00 s  layouts 79  |panel|>2SE 0.33  |panel|>0.25 0.33\ntricks 7-8: share 0.199  cpu 0.88 s  layouts 63  |panel|>2SE 0.32  |panel|>0.25 0.37\ntricks 9-10: share 0.239  cpu 0.59 s  layouts 42  |panel|>2SE 0.32  |panel|>0.25 0.43\ntricks 11-13: share 0.333  cpu 0.48 s  layouts 5  |panel|>2SE 0.22  |panel|>0.25 0.27\n",
+ "received": "2026-11-14T22:03:48Z",
+ "script_sha256": "a5c57c5a53972d1e86982e86ea49b99daba334033646a511f9d214a463a43a27",
+ "started": "2026-11-14T22:03:48Z",
+ "timed_out": false,
+ "timeout_s": 90
+}

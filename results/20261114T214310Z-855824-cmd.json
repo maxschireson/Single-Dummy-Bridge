@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 60.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:44:20Z",
+ "id": "20261114T214310Z-855824-cmd",
+ "output_bytes": 432,
+ "output_tail": "source e590369\n/home/bridgebots/work/loop/runs/sp0\n/home/bridgebots/work/loop/runs/sp3s\nRunning as unit: loop-pairs.service; invocation ID: 6054633369b340d2a5d6d023edce840e\nactive\n272 /home/bridgebots/work/loop/pub/h05/pairs-sp3s.jsonl\n{\"epoch\": 3, \"seconds\": 5961, \"train_ce\": 0.5662, \"train_gap\": 0.0332, \"train_owner\": 0.551, \"val\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.526, \"uniform_nll\nepoch 4 step 2000 of 59338, 6040 s\n",
+ "received": "2026-11-14T21:43:20Z",
+ "script_sha256": "4c13abb968d2e593c489c78dbd6f42bfef8c51ca26e35e193eb723d896329114",
+ "started": "2026-11-14T21:43:20Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

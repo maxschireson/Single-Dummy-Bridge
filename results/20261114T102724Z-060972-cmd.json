@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:27:43Z",
+ "id": "20261114T102724Z-060972-cmd",
+ "output_bytes": 551,
+ "output_tail": "s10 410008 1: 1.3563/0.4171/0.1014 2: 1.3620/0.4338/0.0948 3: 1.3633/0.4422/0.0912 4: 1.3836/0.4498/0.0874 5: 1.4001/0.4503/0.0876 6: 1.4274/0.4516/0.0869 kept 1\n   r3 there: 1.2976/0.5125/0.0659\n2026-11-14T10:01:03Z stage mini; source b4e1eae; threads 8\n2026-11-14T10:25:04Z stage scratch; source b4e1eae; threads 8\n2026-11-14T10:26:58Z net s10: sha256 8c4274e5d6ce355e\n2026-11-14T10:19:30Z start xh-hf-n stuhf-n~stubf-n seed 131 first 30000 deals 8000 workers 4  (source b4e1eae, nets fp32)\n2026-11-14T10:25:04Z end xh-m10h4-n: exit 0\n4972\n10:27:43\n",
+ "received": "2026-11-14T10:27:43Z",
+ "script_sha256": "3cb1614e8b50b3e08e4c0d1b335e6afaa3f8ea0dc1c0e19fff37d72944b14582",
+ "started": "2026-11-14T10:27:43Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

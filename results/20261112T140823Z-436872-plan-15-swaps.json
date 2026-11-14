@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:08:29Z",
+ "id": "20261112T140823Z-436872-plan-15-swaps",
+ "output_bytes": 203,
+ "output_tail": "running: ceilT712b | waiting now: @source rbs1 rbs2 rbs3 ceilT12 wide3 ceil16c\nposition 0; 2026-11-12T13:49:24Z start ceilT712b (source 43ab390): $PY scripts/plan_ceiling.\n1020 files, 1971 pairs, 1117 s\n",
+ "received": "2026-11-12T14:08:29Z",
+ "script_sha256": "ed68798109c30ddba721a5ad131b379041eaec16512dad246fb1f54b4b271a0c",
+ "started": "2026-11-12T14:08:29Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

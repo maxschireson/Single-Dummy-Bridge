@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T16:34:45Z",
+ "id": "20261114T163426Z-813720-cmd",
+ "output_bytes": 424,
+ "output_tail": "h4c-pst -0.104 +- 0.170 (500)\n2026-11-14T16:33:30Z start s8-passive0 g8-passive0~8p-32-v41 seed 131 first 25000 deals 500 workers 8 --episodes (source a470efe, nets fp32)\n2026-11-14T16:33:30Z end s8-passive0: exit 0\n2026-11-14T16:33:30Z start sg8t1 g8-greedy0~g8-passive0 seed 9001 first 730000 deals 2000 workers 8 --episodes --one-room (source a470efe, n\nloop-collect.service running\nloop-publish.service running\n16:34:45\n",
+ "received": "2026-11-14T16:34:45Z",
+ "script_sha256": "354bac5306aad4be26935818cb8ae68a249d0fef05ee6c2c8c7a00b6d0f2a9a5",
+ "started": "2026-11-14T16:34:45Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

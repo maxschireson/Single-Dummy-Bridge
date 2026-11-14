@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 39.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:37:30Z",
+ "id": "20261113T083640Z-014444-loop-01-setup",
+ "output_bytes": 1992,
+ "output_tail": "plan_reading_bound.py processes left: 0; queue.sh state: Ts\njax==0.12.0.1 jaxlib==0.12.0.1 numpy==2.5.4 optax==0.2.9 scipy==1.18.1 h5py \nnumpy 2.5.4 h5py 3.16.0 jax 0.12.0.1 optax 0.2.9\nsource 24c8091 Trainer: --keep-heads; the play-reading comparison; per-layout weights split out of the labeller\nsure.cpp from 2e6ed6d\n{\"left\": 3, \"value\": 0, \"seconds\": 0.0000191, \"search_seconds\": 0.0000191, \"nodes_above\": 65, \"probes\": 0}\nsure.cpp differs from plan's copy\n/home/bridgebots/work/loop/src/bridge_harness/libbridge_dds.so\n}\n}\npolicy_scratch.npz ok\n/home/bridgebots/work/loop/src/models/cardplay/gen5-2026-11-10/policy.npz\nrollout net v2 from transfer/rollout-net-v2-20261113 at 85749ce\n8f87aa8f52ae2c119408693766c2018a8bb73a5b4b49b2304e7f220babbf34cf  models/cardplay/rollout-net-v2-202\n8f87aa8f52ae2c119408693766c2018a8bb73a5b4b49b2304e7f220babbf34cf  /home/bridgebots/work/plan/nets/v2\nv2 arrays: 21 ['emb_other', 'emb_own', 'kind', 'bot_vocab']\nkind 1\nbot_vocab ['', '1', '2', '3', '4b', '5-32', '5R192', '5R32', '5RZ192', '5RZ32', '6-256', '6-32', '71s-32', '7s-32', '8c-32', '8s-32', 'ben', 'ben32', 'ben64']\ncapsule 50M\nartifacts assets manifest.json \nboard 0 failed (attempt 2): ValueError: Distinct generations required\nboard 1 failed (attempt 2): ValueError: Distinct generations required\n{\"pair\": \"8z-ft1~8z-ft1\", \"boards\": 0, \"cpu_per_board\": null}\ntotal 24\ndrwxr-xr-x 3 bridgebots bridgebots 4096 Nov 13 08:37 .\ndrwxr-xr-x 3 bridgebots bridgebots 4096 Nov 13 08:37 ..\ndrwxr-xr-x 2 bridgebots bridgebots 4096 Nov 13 08:37 episodes\n-rw-r--r-- 1 bridgebots bridgebots 7266 Nov 13 08:37 manifest.json\n-rw-r--r-- 1 bridgebots bridgebots    0 Nov 13 08:37 results.jsonl\n-rw-r--r-- 1 bridgebots bridgebots  105 Nov 13 08:37 summary.json\ntotal 8\ndrwxr-xr-x 2 bridgebots bridgebots 4096 Nov 13 08:37 .\ndrwxr-xr-x 3 bridgebots bridgebots 4096 Nov 13 08:37 ..\n/dev/root       123G   63G   61G  51% /\n 08:37:30 up 1 day,  4:45,  0 user,  load average: 4.99, 4.23, 3.02\n2026-11-13T08:37:30Z\n",
+ "received": "2026-11-13T08:36:51Z",
+ "script_sha256": "8f2b020aae46e32ea7ebe060a494cbbfde88da3624611c48ace2642f7ffc1dde",
+ "started": "2026-11-13T08:36:51Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

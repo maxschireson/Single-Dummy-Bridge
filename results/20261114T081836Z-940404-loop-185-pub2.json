@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:18:41Z",
+ "id": "20261114T081836Z-940404-loop-185-pub2",
+ "output_bytes": 221,
+ "output_tail": " 138854   84927 /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure5\n 330529     551 sleep 600\n 331547      31 sleep 600\n08:18 Rollout loop outputs from azure5, 2026-11-14T08:18:07Z\n0\n",
+ "received": "2026-11-14T08:18:40Z",
+ "script_sha256": "b955f20862cbd974981f38e454f7d90c772896b77a49340c0a75b3451ebb2561",
+ "started": "2026-11-14T08:18:40Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

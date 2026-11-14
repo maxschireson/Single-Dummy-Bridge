@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 140.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:32:07Z",
+ "id": "20261113T112940Z-861371-loop-21-pure-stu",
+ "output_bytes": 1420,
+ "output_tail": "2026-11-13T10:57:19Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 0723f0b)\nl0b-stu0 at 393 boards\nsource e00923e Stu: pure Stu as the main line; its self-play twins, the searched-lead rung, and the plan\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 4, \"cpu_per_board\": 52.35, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 4, \"won\": 0, \"lost\": 0, \"flat\"\npf-pp: 66 s wall\n{\"pair\": \"stu0-pl~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 31.95, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"fla\npf-pl: 34 s wall\npf-pp candidate | lead {'net': 4} | later {'rollout': 133, 'claim': 29} | decisions with per-layout results 116 | bytes a board 55355 | cpu a board 52.4\npf-pp opponent | lead {'net': 4} | later {'rollout': 133, 'claim': 29} | decisions with per-layout results 116 | bytes a board 55355 | cpu a board 52.4\npf-pl candidate | lead {'search': 2} | later {'rollout': 52, 'claim': 29} | decisions with per-layout results 48 | bytes a board 35046 | cpu a board 31.9\nPURE STU BOTS OK\nRunning as unit: loop-collect.service; invocation ID: 0f885a8c9e8846c691c687a3bf7c251b\nactive active \n2026-11-13T10:57:19Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source 0723f0b)\n2026-11-13T11:31:26Z start l0b-stu0 stu0a~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source e00923e)\n2026-11-13T11:32:07Z\n",
+ "received": "2026-11-13T11:29:46Z",
+ "script_sha256": "92b75046c6b37333c6ae60a87bcb279a1ee100e8ed13a1d27b51cf2238531e1e",
+ "started": "2026-11-13T11:29:46Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

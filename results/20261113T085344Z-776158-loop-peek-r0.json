@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:54:18Z",
+ "id": "20261113T085344Z-776158-loop-peek-r0",
+ "output_bytes": 597,
+ "output_tail": "# loop: collection progress (read-only)\n106\n106\n3\nactive active \n50 boards: -0.06 +- 0.1085 IMPs/board for z0a-v2; 597 boards/hour; 0 failed\n100 boards: -0.03 +- 0.054 IMPs/board for z0a-v2; 570 boards/hour; 0 failed\n2f8f6b792ac874f1\n/home/bridgebots/work/plan/rnet2w/data\n/home/bridgebots/work/plan/rnet2w/eps\n/home/bridgebots/work/plan/rnet2w/epsB\n/home/bridgebots/work/plan/rnet2w/git\n/home/bridgebots/work/plan/rnet2w/logs\n/home/bridgebots/work/plan/rnet2w/pub\n/home/bridgebots/work/plan/rnet2w/warm\n35G\n 08:54:18 up 1 day,  5:02,  0 user,  load average: 8.21, 7.58, 5.39\n2026-11-13T08:54:18Z\n",
+ "received": "2026-11-13T08:54:17Z",
+ "script_sha256": "417d8c976ecb8fbb3427f9b932010f1c012436da9d741d5e728f75d21fbf9bd4",
+ "started": "2026-11-13T08:54:17Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

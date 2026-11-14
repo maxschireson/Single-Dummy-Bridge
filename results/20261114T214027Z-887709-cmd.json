@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 6.8,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:41:05Z",
+ "id": "20261114T214027Z-887709-cmd",
+ "output_bytes": 1034,
+ "output_tail": "source f56a462\n12 pairs drawn from sp3s\nskipped: {'too few layouts played': 6}\n6 pairs re-evaluated; CPU a pair 0.75 s; layouts a pair 55\nsingle = the recorded pair (one layout); panel = mean over fresh layouts from the fork seat's own information; for the side to play\n                        pairs single=0 same sign   corr  slope reliab. | mean single mean panel panel SE | |panel|>2SE\n\nreal\t0m5.693s\nuser\t0m8.671s\nsys\t0m0.972s\n{\"file\": \"362063.json.gz\", \"trick\": 9, \"root_trick\": 6, \"declaring\": false, \"single\": -1, \"panel\": -0.9734, \"se\": 0.0319, \"layouts\": 56, \"p_main\": 0.1326, \"p_other\": 0.7599, \"main_tricks\": 5, \"other_tricks\": 4, \"cpu\": 0.671}\n{\"file\": \"362890.json.gz\", \"trick\": 9, \"root_trick\": 3, \"declaring\": false, \"single\": 0, \"panel\": 0.3352, \"se\": 0.1335, \"layouts\": 35, \"p_main\": 0.815, \"p_other\": 0.1202, \"main_tricks\": 11, \"other_tricks\": 11, \"cpu\": 0.626}\n{\"file\": \"362072.json.gz\", \"trick\": 7, \"root_trick\": 4, \"declaring\": true, \"single\": 0, \"panel\": 0.5312, \"se\": 0.1554, \"layouts\": 23, \"p_main\": 0.3991,\n6\n",
+ "received": "2026-11-14T21:40:58Z",
+ "script_sha256": "a9f63a60f9eb964d6948a7d9b6e84517eb71643fa649b8170022e49c9d34a553",
+ "started": "2026-11-14T21:40:58Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

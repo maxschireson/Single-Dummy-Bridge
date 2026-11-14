@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:16:04Z",
+ "id": "20261114T121546Z-808732-cmd",
+ "output_bytes": 424,
+ "output_tail": "2026-11-14T12:14:22Z MATCH xh-hA-n stuhA-n~stubA-n: -0.032 +- 0.112 IMPs a deal for the first bot (2000 deals)\n2026-11-14T12:14:22Z start xh-sAh-n stusAh-n~stubA-n seed 131 first 30000 deals 4000 workers 4  (source c7d78f1, nets fp32)\n2026-11-14T12:06:46Z arena-gen8-s3-azure1-feed: 1468 records, 0 not in v2's set\n2026-11-14T12:06:46Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\nfailed\nxh-hf-p 72\n12:16:04\n",
+ "received": "2026-11-14T12:16:04Z",
+ "script_sha256": "57e337a7a324ff67969ba5fb9031f51a1bc4b8564e5c90f9e067542bd3d2edca",
+ "started": "2026-11-14T12:16:04Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

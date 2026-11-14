@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 3.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T20:05:18Z",
+ "id": "20261113T200509Z-705617-loop-split3",
+ "output_bytes": 786,
+ "output_tail": "sp0   before patch  tables  150 | cpu a table  32.5 | layouts  8.44 | rollouts 23.71 | other  0.35 | net rows/s in rollouts   5895\nsp0   patch, fp32   tables  150 | cpu a table  23.6 | layouts  8.11 | rollouts 16.20 | other -0.68 | net rows/s in rollouts   9133\nsp0   patch + bf16  tables  105 | cpu a table  19.7 | layouts  6.92 | rollouts 13.11 | other -0.28 | net rows/s in rollouts  10933\nspr0  before patch  tables  150 | cpu a table  55.9 | layouts  8.06 | rollouts 48.63 | other -0.76 | net rows/s in rollouts   6902\nspr0  patch, fp32   tables   35 | cpu a table  36.1 | layouts  7.82 | rollouts 28.21 | other  0.12 | net rows/s in rollouts  11498\nspr0  patch + bf16  tables   27 | cpu a table  26.1 | layouts  6.24 | rollouts 20.55 | other -0.64 | net rows/s in rollouts  15767\n",
+ "received": "2026-11-13T20:05:15Z",
+ "script_sha256": "420def0d08c48b38d5cd7458e89b6ea24f11d8c379c7bc55e2802435f2aa6f9d",
+ "started": "2026-11-13T20:05:15Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

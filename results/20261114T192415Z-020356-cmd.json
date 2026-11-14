@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 158.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T19:27:13Z",
+ "id": "20261114T192415Z-020356-cmd",
+ "output_bytes": 738,
+ "output_tail": "{\"epoch\": 1, \"seconds\": 2786, \"train_ce\": 0.6586, \"train_gap\": 0.043, \"train_owner\": 0.5748, \"val\": {\"n\": 123142, \"searched\": 100592, \"nll\": 0.5724, \"uniform_nll\": 1.2695, \"tie_nll\": 0.7885, \"agree\": 0.763, \"in_best\": 0.9115, \"rated_pick\": 1.0, \"regret\": 0.0275, \"regret_gap_head\": 0.0263, \"regret_random\": 0.2075, \"regret_lowest\": 0.2281}, \"temperature\": {\"t\": 1.01, \"nll\": 0.5724, \"nll_at_1\": 0.5724}}\ntotal 24588\ndrwxr-xr-x 2 bridgebots bridgebots     4096 Nov 14 19:26 .\ndrwxr-xr-x 3 bridgebots bridgebots     4096 Nov 14 18:37 ..\n-rw-r--r-- 1 bridgebots bridgebots 25167044 Nov 14 19:26 policy_epoch1.npz\npublisher last commit 2026-11-14 19:26:14 +0000\nunpushed files: 0\n\n/dev/root       123G  101G   23G  83% /\n2026-11-14T19:27:13Z\n",
+ "received": "2026-11-14T19:24:35Z",
+ "script_sha256": "217a0a9c07b96e419eb26c38303ae85d3334633633897f4df3108d3728d0f083",
+ "started": "2026-11-14T19:24:35Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

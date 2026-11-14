@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 42.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T20:49:26Z",
+ "id": "20261113T204840Z-449435-loop-int8b",
+ "output_bytes": 2725,
+ "output_tail": "  int8 per-col       first card same  97.14% | log-prob change mean 0.1520 max 3.671 | TV mean 0.0238 | tricks given up 0.0235 (fp32 0.0231)\n  int8 per-col mixed first card same  97.43% | log-prob change mean 0.1384 max 3.792 | TV mean 0.0209 | tricks given up 0.0235 (fp32 0.0231)\n\nstu-net-r2-20261113/policy.npz\n  rows/s at 512 rows a call, one thread: fp32 18243 | bf16 33315 (1.83x) | int8 55491 (3.05x) | int8 mixed 51189 (2.80x) | int8 per-col 54636 (3.00x) | int8 per-col mixed 50131 (2.75x)\n  rows/s at 128 rows a call, one thread: fp32 17642 | bf16 31169 (1.77x) | int8 51778 (2.93x) | int8 mixed 47770 (2.71x) | int8 per-col 50865 (2.88x) | int8 per-col mixed 47095 (2.67x)\n  bf16               first card same  99.76% | log-prob change mean 0.0144 max 0.281 | TV mean 0.0022 | tricks given up 0.0233 (fp32 0.0230)\n  int8               first card same  85.08% | log-prob change mean 0.7076 max 8.383 | TV mean 0.1233 | tricks given up 0.0274 (fp32 0.0230)\n  int8 mixed         first card same  93.02% | log-prob change mean 0.3595 max 6.734 | TV mean 0.0584 | tricks given up 0.0253 (fp32 0.0230)\n  int8 per-col       first card same  96.92% | log-prob change mean 0.1429 max 5.408 | TV mean 0.0240 | tricks given up 0.0234 (fp32 0.0230)\n  int8 per-col mixed first card same  97.18% | log-prob change mean 0.1325 max 5.119 | TV mean 0.0216 | tricks given up 0.0233 (fp32 0.0230)\n\ngen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz\n  rows/s at 512 rows a call, one thread: fp32 29935 | bf16 54662 (1.88x) | int8 66580 (2.06x) | int8 mixed 69323 (1.84x) | int8 per-col 62672 (2.56x) | int8 per-col mixed 76430 (2.39x)\n  rows/s at 128 rows a call, one thread: fp32 31991 | bf16 38977 (1.60x) | int8 77010 (2.44x) | int8 mixed 71373 (2.20x) | int8 per-col 74810 (2.36x) | int8 per-col mixed 68196 (2.20x)\n  bf16               first card same  99.75% | log-prob change mean 0.0123 max 0.199 | TV mean 0.0021 | tricks given up 0.0295 (fp32 0.0295)\n  int8               first card same  90.23% | log-prob change mean 0.3700 max 3.304 | TV mean 0.0761 | tricks given up 0.0314 (fp32 0.0295)\n  int8 mixed         first card same  96.32% | log-prob change mean 0.1497 max 2.299 | TV mean 0.0274 | tricks given up 0.0296 (fp32 0.0295)\n  int8 per-col       first card same  97.92% | log-prob change mean 0.0883 max 1.525 | TV mean 0.0163 | tricks given up 0.0294 (fp32 0.0295)\n  int8 per-col mixed first card same  98.03% | log-prob change mean 0.0824 max 1.660 | TV mean 0.0151 | tricks given up 0.0297 (fp32 0.0295)\nRunning as unit: loop-collect.service; invocation ID: c63f1174245e42a897fcb4b36250e543\nRunning as unit: loop-collect-b.service; invocation ID: c77aea610ac44d9cb3a57e6aeeba54ae\nactive active 2026-11-13T20:49:26Z\n",
+ "received": "2026-11-13T20:48:43Z",
+ "script_sha256": "788389b10237e7ba96f74198ac181fe330e2b691a8e1626de4c3dd549656f153",
+ "started": "2026-11-13T20:48:43Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

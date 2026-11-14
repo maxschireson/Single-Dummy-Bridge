@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T20:06:52Z",
+ "id": "20261113T200622Z-322724-loop-classes",
+ "output_bytes": 533,
+ "output_tail": "gen6 note keys: {'effective': 1454, 'source': 1454, 'play_decisions': 1454, 'effective_with_play': 1454, 'trick': 1454, 'layout_seconds': 1454, 'dds_seconds': 1454, 'settings': 1454, 'classes': 801, 'draws': 801, 'pool': 801, 'pick': 801, 'play_power': 801, 'listed': 653}\nclasses scored, by trick (mean, max, decisions): {1: (43351, 241684, 109), 2: (23672, 205426, 140), 3: (9457, 35310, 144), 4: (4294, 35310, 139), 5: (1746, 12452, 140), 6: (696, 4422, 129)}\nfirst decision of each side after dummy: mean 51211, max 241684, n 80\n",
+ "received": "2026-11-13T20:06:51Z",
+ "script_sha256": "0255423a4b4755fe03d8b908ba802f1499b3e2cec38b3b19f84c64bdded7e89e",
+ "started": "2026-11-13T20:06:51Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T08:00:04Z",
+ "id": "20261112T075948Z-974461-st6",
+ "output_bytes": 313,
+ "output_tail": "08:00:04\nreading bench: shards 4-7 stopped, their cores go to a pool-2048 run 07:51:53\npool-2048 run stopped (pool size turned out not to matter before the deal list); shards 4-7 of the bench continue 07:53:31\n== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B\n283\n66\n",
+ "received": "2026-11-12T08:00:04Z",
+ "script_sha256": "e8ef6f7dd29aedc3788a31a70504c6ebb5c2dc6796a8746d4224ade45180c33d",
+ "started": "2026-11-12T08:00:04Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

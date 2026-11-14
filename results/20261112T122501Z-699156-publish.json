@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:25:35Z",
+ "id": "20261112T122501Z-699156-publish",
+ "output_bytes": 174,
+ "output_tail": "377M\t/home/bridgebots/work/p41/runs/reading\n    136 own     144 pools     136 uns \nRunning as unit: g8-publish-pools.service; invocation ID: a6a02e4577704ad086973b443d48cfff\n",
+ "received": "2026-11-12T12:25:35Z",
+ "script_sha256": "1ca74c6c02274af6633858837e43a8ce40c1050b9f42290ad2eca96375de1763",
+ "started": "2026-11-12T12:25:35Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

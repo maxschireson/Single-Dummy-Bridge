@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:16:06Z",
+ "id": "20261114T081557Z-862722-loop-184-pub",
+ "output_bytes": 715,
+ "output_tail": "\u25cf loop-publish.service - /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure5\n     Loaded: loaded (/run/systemd/transient/loop-publish.service; transient)\n  Transient: yes\n     Active: active (running) since Fri 2026-11-13 08:43:13 UTC; 23h ago\nNov 13 08:43:13 Bridgebots5 systemd[1]: Started loop-publish.service - /usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/pub.sh azure5.\nNov 13 08:43:15 Bridgebots5 bash[138913]: remote:\nREADME.md\nb0-pst200-1\nb0-pst200-1.log\nb0-pst200-2\nb0-pst200-2.log\nb0-pst200-3\nb0-pst200-3.log\nb0-pst200-4\nb0-pst200-4.log\nb0-pst200-5\n3.4M\t/home/bridgebots/work/loop/pub/usbc\n2.1M\t/home/bridgebots/work/loop/pub/usbc-lt\n",
+ "received": "2026-11-14T08:16:06Z",
+ "script_sha256": "a682c570d70c52725b9a2fd4577b66c463a109f0c031a76570e3fa961dab8865",
+ "started": "2026-11-14T08:16:06Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

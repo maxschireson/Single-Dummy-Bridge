@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 101.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:50:56Z",
+ "id": "20261113T194848Z-850300-loop-bf16sizes",
+ "output_bytes": 1017,
+ "output_tail": "rollout-net-v2-20261113 rows/s fp32 / bf16 by batch: 8: 9078 / 11808 (1.30x) | 16: 11059 / 16356 (1.48x) | 32: 10673 / 18120 (1.70x) | 64: 13030 / 22045 (1.69x) | 128: 12442 / 23888 (1.92x) | 256: 12526 / 32647 (2.61x) | 512: 11520 / 27282 (2.37x) | 1024: 13570 / 23736 (1.75x)\ngen7-policy-v4.1-2026-11-12 rows/s fp32 / bf16 by batch: 8: 19369 / 18908 (0.98x) | 16: 21507 / 26725 (1.24x) | 32: 26539 / 39368 (1.48x) | 64: 30219 / 43633 (1.44x) | 128: 25661 / 44646 (1.74x) | 256: 25794 / 45897 (1.78x) | 512: 27507 / 48922 (1.78x) | 1024: 23505 / 50109 (2.13x)\nstu0-pa v stu0-pb: 4 boards to play (0 done), 1 workers\n4 boards: None +- None IMPs/board for stu0-pa; 176 boards/hour; 0 failed\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 4, \"cpu_per_board\": 19.08}\ntotal CPU 0.0 s for 4 tables; net calls 0.0 s (0%)\nRunning as unit: loop-collect.service; invocation ID: 53a3015a249342e588034fd7e649f734\nRunning as unit: loop-collect-b.service; invocation ID: 48eda676473c407eb42fdff413c2a5d6\nactive active 2026-11-13T19:50:56Z\n",
+ "received": "2026-11-13T19:49:15Z",
+ "script_sha256": "75cd53f36f815e8870154acfcd6d9f68beda50f79ac55825febbe8c6c1d69c35",
+ "started": "2026-11-13T19:49:15Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

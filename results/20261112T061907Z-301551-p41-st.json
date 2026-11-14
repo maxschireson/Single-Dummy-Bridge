@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:19:26Z",
+ "id": "20261112T061907Z-301551-p41-st",
+ "output_bytes": 1132,
+ "output_tail": "checks stopped, runs unpinned 05:41:25\nw512c1 start 06:00:31\nw512c1 stopped and removed (not asked for) 06:01:05\nw512e5 exit 0 06:16:48\n== temperatures fitted on B\nrows 218537 | log-loss at T=1 0.6632 | best T 1.042 log-loss 0.6626\nwritten /home/bridgebots/work/p41/runs/w512e5/policy_epoch1_T.npz | largest logit difference on 8,192 rows 7.62939453125e-06\nrows 218537 | log-loss at T=1 0.6331 | best T 1.042 log-loss 0.6326\nwritten /home/bridgebots/work/p41/runs/w512e5/policy_epoch2_T.npz | largest logit difference on 8,192 rows 4.76837158203125e-06\nrows 218537 | log-loss at T=1 0.6098 | best T 1.074 log-loss 0.6088\nwritten /home/bridgebots/work/p41/runs/w512e5/policy_epoch3_T.npz | largest logit difference on 8,192 rows 7.62939453125e-06\nrows 218537 | log-loss at T=1 0.6006 | best T 1.074 log-loss 0.5994\nwritten /home/bridgebots/work/p41/runs/w512e5/policy_epoch4_T.npz | largest logit difference on 8,192 rows 7.62939453125e-06\nrows 218537 | log-loss at T=1 0.5973 | best T 1.106 log-loss 0.5951\nwritten /home/bridgebots/work/p41/runs/w512e5/policy_epoch5_T.npz | largest logit difference on 8,192 rows 7.62939453125e-06\n",
+ "received": "2026-11-12T06:19:26Z",
+ "script_sha256": "c33585798192ed97b6bfb4dddb61100640e9e70e35412ff366a133ad904fcb69",
+ "started": "2026-11-12T06:19:26Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

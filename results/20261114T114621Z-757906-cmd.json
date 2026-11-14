@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:46:33Z",
+ "id": "20261114T114621Z-757906-cmd",
+ "output_bytes": 252,
+ "output_tail": "2026-11-14T10:44:12Z stage fit; source bd4d0b8; threads 4\n2026-11-14T10:59:15Z stage all; source bd4d0b8; threads 8\n2026-11-14T11:40:17Z start xh-m10B-n stum10B-n~stum10-n seed 131 first 30000 deals 4000 workers 4  (source bd4d0b8, nets fp32)\n11:46:33\n",
+ "received": "2026-11-14T11:46:33Z",
+ "script_sha256": "50baafd21f5420e0d1677711a41bb22d2528c90994b4d6b63784379e765357ea",
+ "started": "2026-11-14T11:46:33Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

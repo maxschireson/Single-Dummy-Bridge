@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:13:14Z",
+ "id": "20261112T151245Z-683091-plan-18-walks",
+ "output_bytes": 162,
+ "output_tail": "running: rbs3 | waiting now: ceilT12 @source rbc2 rbc1 wide3 ceil16c\nposition 7; 2026-11-12T15:06:24Z start rbs3 (source 2f00276): $PY scripts/plan_reading_bound\n",
+ "received": "2026-11-12T15:13:14Z",
+ "script_sha256": "d9b53985d3a5fd8fcc4bc0bc2482f32f86ac41c22ed843861037e95519b3e935",
+ "started": "2026-11-12T15:13:14Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 1.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:57:08Z",
+ "id": "20261113T115701Z-995083-loop-dup5",
+ "output_bytes": 479,
+ "output_tail": "s0 boards with two tables 119 | identical card for card 113 | first differing ply where they differ [8, 11, 12, 12, 12, 16]\nr0 boards with two tables 119 | identical card for card 111 | first differing ply where they differ [8, 8, 11, 12, 15, 17, 17, 20]\n2026-11-13T11:40:58Z end l0b-stu0: exit 0\n2026-11-13T11:40:58Z start l0b-p stu0-p~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source e00923e)\n175\n/dev/root       123G   64G   60G  52% /\n2026-11-13T11:57:08Z\n",
+ "received": "2026-11-13T11:57:07Z",
+ "script_sha256": "7964492b0f480ae4b5087d64fa24591262d0007062d9a5be94bcd820f5a813c2",
+ "started": "2026-11-13T11:57:07Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

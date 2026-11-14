@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 141.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:48:12Z",
+ "id": "20261113T194536Z-450762-loop-bf16e2e",
+ "output_bytes": 840,
+ "output_tail": "source 3b37f15\ntorch 2.15.0+cpu numpy 2.5.4\nrollout-net-v2-20261113 fp32 -> bf16 | first card same 99.71% | log-prob change mean 0.0136 | gap change mean 0.0001\ngen7-policy-v4.1-2026-11-12 fp32 -> bf16 | first card same 99.76% | log-prob change mean 0.0123 | gap change mean 0.0001\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 16, \"cpu_per_board\": 20.54}\nfp32: 53 s wall\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 16, \"cpu_per_board\": 18.21}\nbf16: 45 s wall\nfp32 tables 16 | cpu a table 20.54 | rollouts seconds a table 0.00\nbf16 tables 16 | cpu a table 18.21 | rollouts seconds a table 0.00\ntables played identically card for card: 0 of 16\nRunning as unit: loop-collect.service; invocation ID: ab6941a6517c404f88242cf05604738a\nRunning as unit: loop-collect-b.service; invocation ID: f8920fe914a24b36be395f47f976a6e9\nactive active 2026-11-13T19:48:12Z\n",
+ "received": "2026-11-13T19:45:50Z",
+ "script_sha256": "af8416e3aabe52a98db7b39887a6b1761a91be60dc03fff855910232972607a4",
+ "started": "2026-11-13T19:45:50Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

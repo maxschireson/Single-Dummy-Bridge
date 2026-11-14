@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 60.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T02:30:35Z",
+ "id": "20261114T022912Z-213436-loop-strong",
+ "output_bytes": 567,
+ "output_tail": "source 3dc875b\n/dev/root       123G   72G   52G  58% /\nRunning as unit: loop-strong.service; invocation ID: 6e7553eb481e4a5fbfbeaea3fd1109df\nactive inactive 2026-11-14T02:29:35Z start; source 3dc875b; threads 8\n{\"deals\": 9440, \"of\": 75409, \"examples\": 3668621, \"asked\": 100000000, \"seed\": 0, \"rows_by_bot\": {\"8c-32\": 1173617, \"8s-32\": 2495004}}\n{\"deals\": 8995, \"of\": 75409, \"examples\": 3669696, \"asked\": 3668621, \"seed\": 3, \"rows_by_bot\": {\"1\": 130797, \"2\": 29565, \"3\": 38536, \"4b\": 33208, \"5-32\": 28443, \"5R192\": 6631, \"5R32\": 134755, \"5RZ192\":\n2026-11-14T02:30:35Z\n",
+ "received": "2026-11-14T02:29:34Z",
+ "script_sha256": "f24eb4a2572f6a3ee1945afa51258c9da86febf09f8a776719ca255c514ebfd6",
+ "started": "2026-11-14T02:29:34Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

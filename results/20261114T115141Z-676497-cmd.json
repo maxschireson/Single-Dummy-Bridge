@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:52:13Z",
+ "id": "20261114T115141Z-676497-cmd",
+ "output_bytes": 284,
+ "output_tail": "2026-11-14T11:50:58Z MATCH xh-m10B-n stum10B-n~stum10-n: +0.229 +- 0.059 IMPs a deal for the first bot (4000 deals)\n2026-11-14T10:59:15Z stage all; source bd4d0b8; threads 8\n2026-11-14T11:50:58Z stage big; source bd4d0b8; threads 8\n2026-11-14T11:50:58Z end xh-m10B-n: exit 0\n11:52:13\n",
+ "received": "2026-11-14T11:52:13Z",
+ "script_sha256": "50baafd21f5420e0d1677711a41bb22d2528c90994b4d6b63784379e765357ea",
+ "started": "2026-11-14T11:52:13Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

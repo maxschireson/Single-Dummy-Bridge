@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:21:34Z",
+ "id": "20261114T102105Z-919702-cmd",
+ "output_bytes": 634,
+ "output_tail": "2026-11-14T10:19:21Z MATCH xh-m10h-n stum10h-n~stum10-n: +0.084 +- 0.060 IMPs a deal for the first bot (2000 deals)\n2026-11-14T10:19:30Z MATCH xh-mf-n stumf-n~stubf-n: +0.082 +- 0.040 IMPs a deal for the first bot (8000 deals)\n2026-11-14T10:08:47Z net m10h: sha256 e3e07d0b920acac8\n2026-11-14T10:13:32Z net m10h4: sha256 5d8eb42d74958418\nnet    rows      | held-out SiD rows by epoch: log-loss / exact card / tricks its first card gives up | round 3's net there\n2026-11-14T10:19:30Z end xh-mf-n: exit 0\n2026-11-14T10:19:30Z start xh-hf-n stuhf-n~stubf-n seed 131 first 30000 deals 8000 workers 4  (source b4e1eae, nets fp32)\n10:21:34\n",
+ "received": "2026-11-14T10:21:34Z",
+ "script_sha256": "c25340d2dee8c60a528faf4dd66cebb4a7bc09eff61e3120dd26c650d51e395d",
+ "started": "2026-11-14T10:21:34Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T05:30:14Z",
+ "id": "20261113T053005Z-147931-plan-seat2",
+ "output_bytes": 303,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 05:30 policy_epoch5.npz\n-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 05:30 policy_epoch3.npz\nTraceback (most recent call last):\n  File \"<stdin>\", line 6, in <module>\nAssertionError: match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scri\n1600\n",
+ "received": "2026-11-13T05:30:13Z",
+ "script_sha256": "aa9fc8811c76cc4f09f57e0aa445e585bed1633d47aead69907487dec07019bb",
+ "started": "2026-11-13T05:30:13Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

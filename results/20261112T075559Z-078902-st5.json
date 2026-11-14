@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:56:26Z",
+ "id": "20261112T075559Z-078902-st5",
+ "output_bytes": 394,
+ "output_tail": "07:56:26\nreading bench: shards 4-7 stopped, their cores go to a pool-2048 run 07:51:53\npool-2048 run stopped (pool size turned out not to matter before the deal list); shards 4-7 of the bench continue 07:53:31\n== v4.1 (512 wide, three epochs) against 768 wide, five epochs, directly: every fresh set but B\n250\n56\n   1341 80.5 /home/bridgebots/work/venv/bin/python scripts/gen7_compare_nets.py \n",
+ "received": "2026-11-12T07:56:25Z",
+ "script_sha256": "e423a0fd14c39068d9dd3abcd5cfa73ecb4074c190474b3087df6b313d07033e",
+ "started": "2026-11-12T07:56:25Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:29:14Z",
+ "id": "20261113T172909Z-327977-loop-pubsel5",
+ "output_bytes": 558,
+ "output_tail": "aca020142a5aec3017e69b0b6db04768440f5dbbb5ea688e0b8b55d96d0a8ca2\ntotal 6900\ndrwxr-xr-x  2 bridgebots bridgebots    4096 Nov 13 17:29 .\ndrwxr-xr-x 19 bridgebots bridgebots    4096 Nov 13 17:29 ..\n-rw-r--r--  1 bridgebots bridgebots     133 Nov 13 17:29 README.txt\n-rw-r--r--  1 bridgebots bridgebots   23432 Nov 13 17:29 metrics.json\n-rw-r--r--  1 bridgebots bridgebots 7013852 Nov 13 17:29 policy.npz\n-rw-r--r--  1 bridgebots bridgebots      65 Nov 13 17:29 policy.sha256\n-rw-r--r--  1 bridgebots bridgebots    4633 Nov 13 17:29 sel.log\n2026-11-13T17:29:14Z\n",
+ "received": "2026-11-13T17:29:14Z",
+ "script_sha256": "ba7d59a59542091c7efca2288a53ff64e9001ebc84d49e8336649a2e535c4dac",
+ "started": "2026-11-13T17:29:14Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

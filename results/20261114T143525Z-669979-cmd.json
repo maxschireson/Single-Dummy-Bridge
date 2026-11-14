@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:36:17Z",
+ "id": "20261114T143525Z-669979-cmd",
+ "output_bytes": 252,
+ "output_tail": "Running as unit: loop-human5.service; invocation ID: 8479019dacb24df9b81752d19288a757\nactive active 2026-11-14T14:35:57Z start xh-sAh-hA stusAh-n~stuhA-n seed 131 first 30000 deals 4000 workers 4  (source a470efe, nets fp32)\n\"epoch\": 2, \"seconds\": 509\n",
+ "received": "2026-11-14T14:35:57Z",
+ "script_sha256": "56ceffb358b4926a9472469f682e3c62304c5cf9d98902e3c211680748fa2d48",
+ "started": "2026-11-14T14:35:57Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.9,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:39:54Z",
+ "id": "20261112T063946Z-029912-pushnt",
+ "output_bytes": 791,
+ "output_tail": "total 168\ndrwxr-xr-x  3 bridgebots bridgebots   4096 Nov 12 06:39 .\ndrwxr-xr-x 10 bridgebots bridgebots   4096 Nov 12 06:39 ..\ndrwxr-xr-x  8 bridgebots bridgebots   4096 Nov 12 06:39 .git\n-rw-r--r--  1 bridgebots bridgebots 105158 Nov 12 06:39 near_tie.json\n-rw-r--r--  1 bridgebots bridgebots  45133 Nov 12 06:39 neartie.log\n-rw-r--r--  1 bridgebots bridgebots    161 Nov 12 06:39 pairsE.log\npush w512e5 done 06:27:05\nw768e5 was restarted by the daily unattended upgrade at 06:23:48 (needrestart); it runs again from the start. needrestart set to list-only 06:28:40\nneartie exit 0 06:37:37\n2 step 2000 of 25858, 706 s\nepoch 2 step 4000 of 25858, 744 s\nepoch 2 step 6000 of 25858, 784 s\nepoch 2 step 8000 of 25858, 821 s\nepoch 2 step 10000 of 25858, 859 s\nepoch 2 step 12000 of 25858, 896 s\n",
+ "received": "2026-11-12T06:39:53Z",
+ "script_sha256": "a16f57a4c01258673c2f42a578ffaba419252e320bd6ecab6cacce6a4f81ff36",
+ "started": "2026-11-12T06:39:53Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

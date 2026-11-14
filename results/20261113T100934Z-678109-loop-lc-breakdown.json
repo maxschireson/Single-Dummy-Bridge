@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 1,
+ "finished": "2026-11-13T10:10:05Z",
+ "id": "20261113T100934Z-678109-loop-lc-breakdown",
+ "output_bytes": 285,
+ "output_tail": "# loop: learning-curve breakdown by phase and side (read-only)\n  File \"<stdin>\", line 6\n    parts.append(f\"{k} nll {v[k][\\\"nll\\\"]:.3f} agree {v[k][\\\"agree\\\"]:.3f} n {v[k][\\\"n\\\"]}\")\n                                  ^\nSyntaxError: unexpected character after line continuation character\n",
+ "received": "2026-11-13T10:10:05Z",
+ "script_sha256": "1bf659c069edea6372bf8e850540e2656dfeb473642724216be9d97b948f5e80",
+ "started": "2026-11-13T10:10:05Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T22:22:16Z",
+ "id": "20261113T222152Z-068814-loop-kinds",
+ "output_bytes": 366,
+ "output_tail": "rows 250224 tables 6054 | by kind {0: 250224} | searched 193884\nstu0-pa capture {'level': 2, 'layouts': 128, 'forks': 8, 'audit': 'features', 'audit_search': False}\nstu0-pra capture {'level': 2, 'layouts': 128, 'forks': 8, 'audit': 'features', 'audit_search': False}\nstu0a capture {'level': 2, 'layouts': 128, 'forks': 8, 'audit': 'features', 'audit_search': False}\n",
+ "received": "2026-11-13T22:22:16Z",
+ "script_sha256": "e6f8176de8493abd1bad511364d3a31eb9f563f59f704617bd0753702a608dc9",
+ "started": "2026-11-13T22:22:16Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

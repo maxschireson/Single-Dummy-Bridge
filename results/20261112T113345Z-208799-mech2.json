@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:34:14Z",
+ "id": "20261112T113345Z-208799-mech2",
+ "output_bytes": 2208,
+ "output_tail": "11:34:14\ncards exit 0 11:30:49\nmechanism report exit 0 11:32:21\nreading reports pushed 11:32:22\n21417 decisions on 530 tables of 329 deals; nets ['v0', 'v2', 'v4', 'v4.1', 'e5']\n\n== the true holder of an unseen card: mean log-probability under the weights (cards either hidden hand could hold; 0 is certainty, -0.693 a coin toss)\n  before the deal list  honours (T to A)  no reading -0.6126 +- 0.0045 | v0 -0.5849 +- 0.0055 | v2 -0.5687 +- 0.0053 | v4 -0.5572 +- 0.0052 | v4.1 -0.5559 +- 0.0054 | e5 -0.5555 +- 0.0057\n  before the deal list  small cards       no reading -0.6399 +- 0.0029 | v0 -0.6210 +- 0.0037 | v2 -0.6145 +- 0.0036 | v4 -0.6079 +- 0.0037 | v4.1 -0.6073 +- 0.0038 | e5 -0.6066 +- 0.0038\n  deal list             honours (T to A)  no reading -0.5436 +- 0.0073 | v0 -0.4779 +- 0.0109 | v2 -0.4430 +- 0.0113 | v4 -0.4046 +- 0.0099 | v4.1 -0.3980 +- 0.0104 | e5 -0.3971 +- 0.0104\n  deal list             small cards       no reading -0.5760 +- 0.0052 | v0 -0.5148 +- 0.0090 | v2 -0.4908 +- 0.0094 | v4 -0.4506 +- 0.0085 | v4.1 -0.4489 +- 0.0092 | e5 -0.4500 +- 0.0090\n\n== information aimed at the true deal: log-weight + kappa x (cards given to their true holder); the true layout's gain in nats, tricks saved a table\n  every unseen card k 0.125: +0.68 nats, +0.104 +- 0.015 | k 0.25: +1.30 nats, +0.182 +- 0.020 | k 0.5: +2.41 nats, +0.361 +- 0.030 | k 1: +4.07 nats, +0.543 +- 0.041 | k 2: +6.02 nats, +0.540 +- 0.043\n  honours (T to A)  k 0.125: +0.25 nats, +0.078 +- 0.012 | k 0.25: +0.48 nats, +0.135 +- 0.017 | k 0.5: +0.88 nats, +0.243 +- 0.026 | k 1: +1.50 nats, +0.403 +- 0.037 | k 2: +2.17 nats, +0.493 +- 0.045\n  small cards       k 0.125: +0.43 nats, +0.023 +- 0.008 | k 0.25: +0.83 nats, +0.050 +- 0.011 | k 0.5: +1.54 nats, +0.108 +- 0.015 | k 1: +2.64 nats, +0.162 +- 0.022 | k 2: +3.93 nats, +0.145 +- 0.032\n\n== the nets, as built, for comparison\n  v0       +0.35 nats, +0.117 +- 0.028 tricks a table\n  v2       +0.50 nats, +0.172 +- 0.031 tricks a table\n  v4       +0.65 nats, +0.185 +- 0.029 tricks a table\n  v4.1     +0.69 nats, +0.198 +- 0.029 tricks a table\n  e5       +0.69 nats, +0.169 +- 0.030 tricks a table\n 11:34:14 up  7:42,  0 user,  load average: 0.18, 0.38, 0.24\n",
+ "received": "2026-11-12T11:34:14Z",
+ "script_sha256": "dad1ff78e8a334aa73b37499168e8434082a95807670c68f0247367fd99156ff",
+ "started": "2026-11-12T11:34:14Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

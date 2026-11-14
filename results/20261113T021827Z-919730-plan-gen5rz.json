@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 68.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:19:54Z",
+ "id": "20261113T021827Z-919730-plan-gen5rz",
+ "output_bytes": 1590,
+ "output_tail": "waiting now: @source 7caad4f197f23f27279d06d825b3eae4b2060d15 | rnet2wr2 RESUME=1 W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz  | seat1 $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets \" | @source 0d1db2bb9944abc83f0bc6de64d2e47299c2bf44 | match6 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_m | match5 SURE_BIN=$P/bin/sure_cpp PYTHONPATH=$P/pylib $PY scripts/plan_m | rbc2a $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp  | rbc2b $PY scripts/plan_reading_bound.py --episodes $P/data/fresh_g6sp \n2026-11-13T02:13:50Z built s14: {\"episodes\": 3797, \"deals\": 3787, \"unique_families\": 3734, \"examples\": 1553763, \"train\":\n2026-11-13T02:16:30Z built s15: {\"episodes\": 3798, \"deals\": 3793, \"unique_families\": 3727, \"examples\": 1542296, \"train\":\ns00 s00.npz s01 s01.npz s02 s02.npz s03 s03.npz s04 s04.npz s05 s05.npz s06 s06.npz s07 s07.npz s08 s08.npz s09 s09.npz s10 s10.npz s11 s11.npz s12 s12.npz s13 s13.npz s14 s14.npz s15 s15.npz sx \n \n4096 .\n4096 ..\n3278737 eps_before.txt\n301840 eps_new.txt\n25332 fetch.json\nposition 27\n2026-11-13T02:18:46Z source now 7caad4f Rollout net v2 chain: the Gen 5RZ feeds (arena-gen5rz*, Max 02:15); each\n2026-11-13T02:18:46Z start rnet2wr2 (source 7caad4f): RESUME=1 W=$P/rnet2w RUN=warm INIT=$P/nets/w768e5_epoch5.npz LR=5e-4 EPOCHS=3 SCORER=$P/nets/han\n/dev/root       123G   57G   67G  46% /\n2026-11-13T02:19:02Z fetched 75564 episodes\n2026-11-13T02:19:02Z resume: keeping the parts in /home/bridgebots/work/plan/rnet2w/shards\n2026-11-13T02:19:10Z resume: 8651 newly fetched episodes as part sx021902\n",
+ "received": "2026-11-13T02:18:46Z",
+ "script_sha256": "4f116384c669032c6878f23abcaa41a5fb03dfb50db25156e6c8cb05e4389314",
+ "started": "2026-11-13T02:18:46Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

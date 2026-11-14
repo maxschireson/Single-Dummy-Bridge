@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 1,
+ "finished": "2026-11-14T05:26:27Z",
+ "id": "20261114T052604Z-475820-loop-136-rates",
+ "output_bytes": 1341,
+ "output_tail": "2026-11-13T22:22:14Z jobs-azure5-r3a.txt has ended; back to the collection\n2026-11-13T22:53:59Z round 3's cut: sp0 and spr0 stopped; the collection is paused for round 3's training, then sps0 (pure rollout)\n2026-11-13T23:29:15Z the collection is paused for jobs-azure5-r3.txt\n2026-11-14T00:02:53Z jobs-azure5-r3.txt has ended; back to the collection\n2026-11-14T00:21:39Z the collection is paused for jobs-azure5-h3.txt\n2026-11-14T00:32:39Z jobs-azure5-h3.txt has ended; back to the collection\n2026-11-14T00:46:00Z sps0 stopped: the collection moves to sp3s (round 3's net in the rollouts)\n2026-11-14T00:46:00Z start sp3s stu3-psa~stu3-psb seed 9001 first 360000 deals 20000 workers 8 --episodes --one-room (source e87d09a, nets b\n2026-11-14T02:29:35Z the collection is paused for exp_strong.sh\n2026-11-14T03:04:48Z start sp3s stu3-psa~stu3-psb seed 9001 first 360000 deals 20000 workers 8 --episodes --one-room (source 3dc875b, nets b\n2026-11-14T03:08:44Z the collection is paused for jobs-azure5-hd.txt\n2026-11-14T04:38:10Z jobs-azure5-hd.txt has ended; back to the collection\n2026-11-14T04:38:10Z start sp3s stu3-psa~stu3-psb seed 9001 first 360000 deals 20000 workers 8 --episodes --one-room (source fc8202f, nets b\n2026-11-14T04:38:55Z the collection is paused for jobs-azure5-v41-styles.txt\nsp3s 2584 tables; first row 04:38 last 04:38\n",
+ "received": "2026-11-14T05:26:27Z",
+ "script_sha256": "5a8bc3208aade44e54cf7984f65de0340c417f165dc54d18e80bd4f537bed6bd",
+ "started": "2026-11-14T05:26:27Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

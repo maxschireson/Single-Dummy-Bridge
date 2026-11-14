@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:10:57Z",
+ "id": "20261114T121038Z-774102-cmd",
+ "output_bytes": 639,
+ "output_tail": "2026-11-14T12:09:15Z net sAh: sha256 2090e776b9ea8ced\nsAh 1550483 1: 1.2984/0.4522/0.0833 2: 1.3050/0.4661/0.0777 3: 1.3315/0.4700/0.0766 4: 1.3345/0.4730/0.0755 5: 1.3511/0.4771/0.0736 6: 1.3564/0.4785/0.0730\n2026-11-14T12:01:57Z start xh-hf-p stuhf-pst~stubf-pst seed 131 first 30000 deals 250 workers 8  (source bd4d0b8, nets fp32)\n2026-11-14T12:09:15Z start xh-hA-n stuhA-n~stubA-n seed 131 first 30000 deals 2000 workers 4  (source c7d78f1, nets fp32)\n2026-11-14T12:06:46Z arena-gen8-s3-azure1-feed: 1468 records, 0 not in v2's set\n2026-11-14T12:06:46Z arena-gen8-s7-azure1-feed: 1074 records, 666 not in v2's set\nxh-hf-p 51\n12:10:57\n",
+ "received": "2026-11-14T12:10:57Z",
+ "script_sha256": "147df75b52e918c0e76783ce6252ee8e299bdaf4fbebbc2ac4dace1c307fc5aa",
+ "started": "2026-11-14T12:10:57Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

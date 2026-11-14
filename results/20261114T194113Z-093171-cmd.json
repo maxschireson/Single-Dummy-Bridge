@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T19:41:30Z",
+ "id": "20261114T194113Z-093171-cmd",
+ "output_bytes": 50,
+ "output_tail": "policy_epoch5.npz\ndata\neps\nepsB\ngit\nlogs\npub\nwarm\n",
+ "received": "2026-11-14T19:41:30Z",
+ "script_sha256": "e7b809f3418cef9bdd166acd1e71b2db02fee7a79d9e4a3e005c3708308981a2",
+ "started": "2026-11-14T19:41:30Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

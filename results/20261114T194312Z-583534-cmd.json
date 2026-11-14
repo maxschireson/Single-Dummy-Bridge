@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure5",
+ "duration_s": 100.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T19:45:15Z",
+ "id": "20261114T194312Z-583534-cmd",
+ "output_bytes": 531,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 14 19:43 /tmp/v2_e1.npz\n123142 rows, 144 deals, bots ['1', '5RZ32', '71s-32', '8c-32', '8s-32', 'ben', 'ben64']\nv2e1         log-loss 0.5756  exact 0.7614  tricks given up 0.0268  from trick 7 0.5098/0.0254  T 0.99  ids blank 0.6504\nw1536e1      log-loss 0.5724  exact 0.7630  tricks given up 0.0275  from trick 7 0.5090/0.0262  T 1.01  ids blank 0.6458\nv2e5         log-loss 0.5093  exact 0.7888  tricks given up 0.0213  from trick 7 0.4432/0.0201  T 1.03  ids blank 0.5972\n19:45:15\n",
+ "received": "2026-11-14T19:43:35Z",
+ "script_sha256": "d2460e3f2ece65db6c36e7f84b1fb34ab5e726458393ab2f2e0d256db5a30a66",
+ "started": "2026-11-14T19:43:35Z",
+ "timed_out": false,
+ "timeout_s": 600
+}
