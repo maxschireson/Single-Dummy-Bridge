@@ -33,6 +33,8 @@ def main():
     ap.add_argument('--players', nargs='+', default=['Max Schireson'])
     ap.add_argument('--min', type=int, default=20)
     ap.add_argument('--by-year', action='store_true', help='split each player\'s adult boards by year')
+    ap.add_argument('--ref', default='', help='yardstick from this category\'s boards only (e.g. Open); default every adult board')
+    ap.add_argument('--only-ref', action='store_true', help='score the named players on the --ref category\'s boards only')
     a = ap.parse_args()
     T = load(a.dirs)
     U = units(T)
@@ -46,9 +48,11 @@ def main():
         return d.mean() + ref[role_of[ks[0]]]['loss'], d.std(ddof=1) / math.sqrt(len(d))
 
     # the adult field: per player and role, adult boards
+    cat = np.array([T[u[0]]['category'] for u in U])
+    inref = (cat == a.ref) if a.ref else isad
     per = collections.defaultdict(lambda: collections.defaultdict(list))
     for k, u in enumerate(U):
-        if u[3] and isad[k]:
+        if u[3] and inref[k]:
             per[u[3]][u[1]].append(k)
     for how in ('curve', 'both'):
         field = {}
@@ -64,7 +68,7 @@ def main():
                           sum((W[role] * x[1]) ** 2 for role, x in zip(ROLES, s))))
         sc = np.array([x[0] for x in v]); se2 = np.array([x[1] for x in v])
         field['pooled'] = (sc.mean(), sc.std(ddof=1), math.sqrt(max(sc.var(ddof=1) - se2.mean(), 0.)), len(v), boot(sc, se2))
-        print(f'\n== {how} measure. Adult field (players with {a.min}+ boards in the role): mean, SD, SD beyond luck, players')
+        print(f'\n== {how} measure. Field: {a.ref or "adult"} boards, players with {a.min}+ boards in the role: mean, SD, SD beyond luck, players')
         for role, (m, sd, tau, n, bse) in field.items():
             print(f'  {role:8s} {m:.3f}  SD {sd:.3f}  beyond luck {tau:.3f} +- {bse:.3f} (bootstrap over players)  ({n} players)')
 
@@ -72,9 +76,10 @@ def main():
             ids = {u[3] for u in U if (u[4] or '').lower() == name.lower()}
             print(f'  {name}:')
             years = sorted({T[u[0]]['year'] for u in U if u[3] in ids})
-            splits = [('adult', lambda k: isad[k])]
+            mine = inref if a.only_ref else isad
+            splits = [('adult', lambda k: mine[k])]
             if a.by_year:
-                splits += [(f'ad {y}', lambda k, y=y: isad[k] and T[U[k][0]]['year'] == y) for y in years]
+                splits += [(f'ad {y}', lambda k, y=y: mine[k] and T[U[k][0]]['year'] == y) for y in years]
             splits += [('junior', lambda k: not isad[k])]
             for label, keep in splits:
                 s = {}
