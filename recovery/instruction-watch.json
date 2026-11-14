@@ -143,7 +143,7 @@
     "previous_collector_pid": 283196,
     "verified_resume_completed": 5852
   },
-  "checked_epoch": 1794681016.2307725,
+  "checked_epoch": 1794684284.8020704,
   "coordination_blob": "571b7e0216775ed6070cec186907fd7c6ef4d52c",
   "coordination_handoff": {
     "blob": "2031ac2817d4208df05f03adc56c0a49e405b991",
@@ -176,7 +176,7 @@
     "total": 25000,
     "training_overlap": 0
   },
-  "free_bytes": 18403385344,
+  "free_bytes": 17700495360,
   "future_cohort_requirements": [
     "Exclude released-policy training-family union or later authorized exclusions.",
     "Block new seeded pools against every published corpus; do not take over or reassign another producer's families.",
@@ -265,12 +265,12 @@
   "health": {
     "heartbeat.json": {
       "ben_workers": 1,
-      "completed": 5852,
-      "epoch": 1794681009.8481257,
+      "completed": 5957,
+      "epoch": 1794684276.154418,
       "in_flight": [
-        5852,
-        5853,
-        5854
+        5957,
+        5958,
+        5959
       ],
       "started_epoch": 1794678764.074319,
       "stopping": false,
@@ -285,26 +285,26 @@
       "pid": 79982
     },
     "publisher-status.json": {
-      "completed": 5852,
-      "epoch": 1794681007.191837,
+      "completed": 5957,
+      "epoch": 1794684270.569811,
       "status": "published"
     },
     "state.json": {
       "by_pair": {
-        "8c-32~71s-32": 975,
-        "8c-32~8s-32": 975,
-        "8s-32~1": 975,
-        "8s-32~5RZ32": 975,
-        "8s-32~71s-32": 1952
+        "8c-32~71s-32": 993,
+        "8c-32~8s-32": 992,
+        "8s-32~1": 993,
+        "8s-32~5RZ32": 993,
+        "8s-32~71s-32": 1987
       },
       "complete": false,
-      "completed": 5852,
-      "contiguous": 5852,
-      "epoch": 1794680989.8449965,
+      "completed": 5958,
+      "contiguous": 5957,
+      "epoch": 1794684276.3499527,
       "failures": 0,
       "manifest_identity": "507374949f82b9f19e9166d734a140a6b89d7a8b476379ffd383832a8f8f495d",
-      "root_games": 19504,
-      "tables": 241640,
+      "root_games": 19858,
+      "tables": 245929,
       "target": 16036
     },
     "watchdog-process.json": {
@@ -314,15 +314,15 @@
     "watchdog-status.json": {
       "ben": "ready",
       "collector": "running",
-      "epoch": 1794680980.1256316,
+      "epoch": 1794684280.3984933,
       "publisher": "running"
     }
   },
-  "heartbeat_age": 6.382646799087524,
+  "heartbeat_age": 8.647652387619019,
   "historical_gen71_revision": "50990002b64833073b04e1bad025241109033ad3",
   "historical_gen71_snapshot_unchanged": true,
   "historical_provenance": "recovery/history-index.json",
-  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T17:33:52Z",
+  "issue_and_pr_query": "repo:maxschireson/Single-Dummy-Bridge updated:>=2026-11-14T18:30:16Z",
   "main_revision": "62bd8a24da6a679e7f8534cfdf47ddfdf4d80664",
   "main_snapshot_unchanged": true,
   "new_applicable_instructions": [],
@@ -350,7 +350,7 @@
     "physical_root_tables": 36,
     "tree_consultations": 705
   },
-  "previous_checked_epoch": 1794677632.7981014,
+  "previous_checked_epoch": 1794681016.2307725,
   "processes": {
     "process.json": {
       "cmdline": "/workspace/work/bridge-venv/bin/python -u ops/gen5_runtime.py --run /workspace/work/bridge-gen8-19bbdce5-20261112 --workers 3 ",
@@ -365,13 +365,13 @@
       "pid": 79983
     }
   },
-  "publisher_age": 9.038935422897339,
+  "publisher_age": 14.232259273529053,
   "registry_blob": "3e289c39830e8a7beab36b12465e34171dde5ca9",
   "registry_commit": "81aa28dd04bd8c4d1afff0b9b210448e40157f7c",
   "registry_disposition": "Registry and owned collector update unchanged; active Gen8 source and both permanently retired source pins verified",
   "registry_key": "gen6selfplay19bbdce5",
-  "registry_revision": "49b58a126db04cf9ef64080a49e39932b7430b6b",
-  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/GenXStu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified. Existing frozen watchdog completed planned DDS-cache rotation at5778 after graceful drain; collector resumed with fresh healthy heartbeat, watchdog, publisher and held ownership locks. No failure clearing or operator restart.",
+  "registry_revision": "10a7ae8ff2fd9d6e2a9c02b72c4a43eda5cc7cf7",
+  "result": "No applicable instruction changed. Main, adopted Gen8 notices and plan, earlier Gen7.1 notices, coordination, cleanup and known Gen9/8X/GenXStu deployment source references are unchanged; no PR update or new relevant comment. The prior explicit instruction to continue19bbdce5 remains in handled instructions. Frozen source, models, manifest, corpus and training exclusion union verified with fresh healthy collector, watchdog, publisher and held ownership locks. No runtime changes, failure clearing or operator restart.",
   "retired_processes": [],
   "reviewed_discussions": [
     {
@@ -441,6 +441,6 @@
     }
   },
   "unresolved_failures": [],
-  "watchdog_age": 36.105140924453735,
+  "watchdog_age": 4.403577089309692,
   "writer_and_watchdog_locks": "held"
 }
