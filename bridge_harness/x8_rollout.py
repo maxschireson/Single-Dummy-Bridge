@@ -25,6 +25,7 @@ order is part of what each seat has seen, and the net reads it. The one answer s
 finder's, which is a proof from hard facts (cards played, show-outs, hand sizes) and does not depend on the order.
 """
 from dataclasses import dataclass, field
+import os
 import time
 
 import numpy as np
@@ -33,6 +34,24 @@ from .gen7_net import INPUTS
 from .plan_rollout import Public, Rows, inputs, solve_rows
 
 SUIT_OF = np.arange(52) // 13
+# Fork continuations ride in the main rows' batches from the step they are taken (one net call a ply for both), with
+# their own random stream (Seats.fork_rng). BRIDGE_FORK_BATCH=0: the copies are finished after the main loop, one copy
+# group at a time, drawing from the seats' main stream, as before 14 November. =2 (for checks): finished after the main
+# loop one group at a time but from fork_rng, so the main rows draw exactly as with 1.
+FORK_MODE = int(os.environ.get('BRIDGE_FORK_BATCH', '1') or 1)
+FORK_BATCH = FORK_MODE == 1
+
+
+def concat_rows(a, b):
+    """Two batches at the same ply as one (rows of `a`, then of `b`)."""
+    if a.played != b.played:
+        raise ValueError('Rows are joined only at the same ply')
+    r = object.__new__(type(a))
+    r.__dict__.update(a.__dict__)
+    for k in ('holder', 'by', 'order', 'trick', 'leader', 'won', 'void'):
+        setattr(r, k, np.concatenate([getattr(a, k), getattr(b, k)]))
+    r.n = a.n + b.n
+    return r
 
 
 class Seats:
@@ -63,6 +82,7 @@ class Seats:
         self.seen, self.cut = seen, cut
         self.other = None if other is None else dict(mode=other.get('mode', mode), power=other.get('power', power), cut=other.get('cut', cut))
         self.rng = np.random.default_rng(seed)
+        self.fork_rng = np.random.default_rng((int(seed), 0xF0F))     # fork continuations' own stream (FORK_BATCH)
         self.net_rows = 0
         self.side, self.publics = None, None
 
@@ -71,13 +91,34 @@ class Seats:
         self.publics = [Public(net, o) for net in self.nets]
         return self
 
-    def cards(self, rows, other=None):
-        """(card per row, the rows with a choice, [those rows, 52] the net's log-probabilities)."""
+    def cards(self, rows, other=None, rng=None):
+        """(card per row, the rows with a choice, [those rows, 52] the net's log-probabilities). Draws use `rng`
+        (default: the seats' main stream)."""
+        scored = self._scores(rows, other)
+        return self._select(*scored, self.rng if rng is None else rng), scored[1], scored[3]
+
+    def cards_pair(self, rows, other, rows_b, other_b):
+        """`cards` for two batches at the same ply with one net evaluation: `rows` draw from the main stream exactly as
+        `cards(rows, other)` would, `rows_b` from `fork_rng`. Returns (cards, free, logp) for `rows`, then cards for
+        `rows_b`."""
+        n = rows.n
+        both = concat_rows(rows, rows_b)
+        oth = None if other is None else np.concatenate([np.asarray(other), np.asarray(other_b)])
+        legal, free, controller, logp, score = self._scores(both, oth)
+        a = free < n
+        same = score is logp
+        part = lambda m, legal_m, free_m: (legal_m, free_m, controller[m], logp[m], logp[m] if same else score[m])
+        out_a = self._select(*part(a, legal[:n], free[a]), self.rng)
+        out_b = self._select(*part(~a, legal[n:], free[~a] - n), self.fork_rng)
+        return out_a, free[a], logp[a], out_b
+
+    def _scores(self, rows, other):
+        """(legal [n, 52], rows with a choice, their controllers, their log-probabilities, their blend scores)."""
         legal = rows.legal()
-        out = legal.argmax(axis=1)
         free = np.flatnonzero(legal.sum(axis=1) > 1)
         if not len(free):
-            return out, free, np.zeros((0, 52), np.float32)
+            z = np.zeros((0, 52), np.float32)
+            return legal, free, np.zeros(0, np.int8), z, z
         batch = inputs(rows, self.publics[0])
         controller = rows.controller()[free]
         use = np.zeros(len(free), np.int64)
@@ -106,15 +147,22 @@ class Seats:
             else:
                 logp[at] = self.nets[k].log_policy_arrays(b)
             self.net_rows += len(at)
+        return legal, free, controller, logp, score
+
+    def _select(self, legal, free, controller, logp, score, rng):
+        """Each row's card from its scores; random draws from `rng`."""
+        out = legal.argmax(axis=1)
+        if not len(free):
+            return out
         if self.other is None and self.cut <= 0:                # all four seats alike, every legal card drawable: as it always was
             if self.mode == 'draw':
                 p = np.exp(self.power * logp.astype(np.float64)) * legal[free]
                 cum = np.cumsum(p, axis=1)
-                ticket = self.rng.random(len(free)) * cum[:, -1]
+                ticket = rng.random(len(free)) * cum[:, -1]
                 out[free] = (cum < ticket[:, None]).sum(axis=1).clip(max=51)
             else:
                 out[free] = np.where(legal[free], score, -np.inf).argmax(axis=1)
-            return out, free, logp
+            return out
         mine = controller % 2 == self.side
         groups = [(np.arange(len(free)), self.mode, self.power, self.cut)] if self.other is None else \
             [(np.flatnonzero(mine), self.mode, self.power, self.cut),
@@ -128,11 +176,11 @@ class Seats:
                 if cut > 0:
                     p = np.where(p >= cut * p.max(axis=1, keepdims=True), p, 0.)
                 cum = np.cumsum(p, axis=1)
-                ticket = self.rng.random(len(at)) * cum[:, -1]
+                ticket = rng.random(len(at)) * cum[:, -1]
                 out[free[at]] = (cum < ticket[:, None]).sum(axis=1).clip(max=51)
             else:
                 out[free[at]] = np.where(allowed, score[at] if mode == 'blend' else logp[at], -np.inf).argmax(axis=1)
-        return out, free, logp
+        return out
 
 
 @dataclass
@@ -177,7 +225,7 @@ def runs_with(holder, dead, actor, x):
 
 def _finish(rows, seats, other, stop, dds):
     while rows.played < stop and rows.n:
-        chosen, _, _ = seats.cards(rows, other)
+        chosen, _, _ = seats.cards(rows, other, rng=seats.fork_rng if FORK_MODE == 2 else None)
         rows.play(chosen)
     return rows.won.copy() if rows.done else solve_rows(rows, dds)
 
@@ -217,7 +265,9 @@ def evaluate(o, worlds, cards, seats, *, other=None, horizon=0, dds=None, finder
         for row in rng.choice(n, size=min(forks, n), replace=False):
             schedule.setdefault(int(rng.integers(span)), []).append(int(row))
     step = 0
+    fork_rows, fork_other = None, None                      # FORK_BATCH: the fork copies, advanced with the main rows
     while rows.played < stop and rows.n:
+        new_copy = None
         left = 13 - rows.played // 4
         if finder is not None and rows.on_table == 0 and 0 < left <= leaf_cards:
             need = target - rows.won.astype(np.int64)
@@ -237,7 +287,12 @@ def evaluate(o, worlds, cards, seats, *, other=None, horizon=0, dds=None, finder
                     ident = ident[keep]
                     if not rows.n:
                         break
-        chosen, free, logp = seats.cards(rows, None if other_all is None else other_all[ident])
+        main_other = None if other_all is None else other_all[ident]
+        fork_chosen = None
+        if fork_rows is not None:
+            chosen, free, logp, fork_chosen = seats.cards_pair(rows, main_other, fork_rows, fork_other)
+        else:
+            chosen, free, logp = seats.cards(rows, main_other)
         if step in schedule:
             at_free = {int(r): k for k, r in enumerate(free)}
             dead = (rows.by >= 0) & (rows.order <= rows.played - rows.on_table)
@@ -266,13 +321,33 @@ def evaluate(o, worlds, cards, seats, *, other=None, horizon=0, dds=None, finder
             if take:
                 copy = rows.take(np.array(take))
                 copy.play(np.array(first))
-                copies.append((copy, None if other_all is None else other_all[ident[np.array(take)]], len(take) // 2))
+                copy_other = None if other_all is None else other_all[ident[np.array(take)]]
+                if FORK_BATCH:
+                    new_copy = (copy, copy_other)
+                else:
+                    copies.append((copy, copy_other, len(take) // 2))
         lines[ident, step] = chosen
         rows.play(chosen)
+        if fork_chosen is not None:
+            fork_rows.play(fork_chosen)
+        if new_copy is not None:                            # now at the same ply as the main rows: they go on together
+            if fork_rows is None:
+                fork_rows, fork_other = new_copy
+            else:
+                fork_rows = concat_rows(fork_rows, new_copy[0])
+                fork_other = None if fork_other is None else np.concatenate([fork_other, new_copy[1]])
         step += 1
     if rows.n:
         final[ident] = rows.won if rows.done else solve_rows(rows, dds)
     pairs, k = [], 0
+    if fork_rows is not None:                               # the copies go on alone if every main row ended first
+        while fork_rows.played < stop and fork_rows.n:
+            fork_rows.play(seats.cards(fork_rows, fork_other, rng=seats.fork_rng)[0])
+        won = fork_rows.won.copy() if fork_rows.done else solve_rows(fork_rows, dds)
+        for k, f in enumerate(found):
+            pairs.append(Fork(layout=f['row'] % n_w, first=int(cards[f['row'] // n_w]), prefix=tuple(int(x) for x in lines[f['row'], :f['step']]),
+                              seat=f['seat'], main=f['main'], other=f['other'], p_main=f['p_main'], p_other=f['p_other'],
+                              main_tricks=int(won[2 * k]), other_tricks=int(won[2 * k + 1])))
     for copy, copy_other, count in copies:                  # both copies of each fork go on as the rollouts do, without claims
         won = _finish(copy, seats, copy_other, stop, dds)
         for j in range(count):

@@ -44,11 +44,31 @@ this machine's kernels (`tests/test_bf16_buckets.py`). Not yet measured on a Zen
 gain will be smaller; the memory growth the loop saw there (3-4 GB a worker, README "Speed of a table") fits this cause.
 `BRIDGE_NET_BUCKETS=0` turns the padding off.
 
+## 2. Fork continuations in the main batch (done: `x8_rollout.FORK_BATCH`, `Seats.cards_pair`)
+
+At the step a fork is taken its two copies have played as many cards as the main rows, so from then on they ride in
+the main rows' batches (one net evaluation a ply for both; no claims for them, as before). They draw from their own
+stream (`Seats.fork_rng`), so the main rows' draws do not depend on them. `BRIDGE_FORK_BATCH=0` restores the old path
+(copies finished after the main loop from the main stream); `=2` is the old path on the fork stream, the reference
+for checking.
+
+| Self-play, the same 6 boards, one worker, sandbox | CPU-s a board, mode 2 (old path, own stream) | mode 1 (batched) |
+| --- | --- | --- |
+| fp32 | 20.6, 20.1 | 18.4, 18.2 |
+| bf16, padded | 12.6 | 9.4 |
+
+Mode 1 plays the same cards as mode 2 (6 of 6 boards in three of four pairings; in one fp32 run one board differed
+from card 10, and rerunning mode 1 gave mode 2's cards again: a run-to-run difference, most likely the claim
+solver's time limits, not the batching). `tests/test_fork_batch.py`: the main rows' tricks, floors, ends and lines are
+identical in modes 1 and 2, the same forks are taken, and with top-card seats the forks' results are identical too.
+`tests/test_x8.py` passes in modes 0 and 1. **Against the code as it runs now (mode 0) the main rows draw differently
+after a race's first round**, because the old continuations consumed the main stream: same distribution, not the same
+cards.
+
+Together, in the sandbox: bf16 as the boxes run it 26.0 CPU-s a board, padded and batched 9.4 (2.8x); fp32 20.3 to 18.3.
+
 ## Proposed next
 
-- **Fork continuations in the main batch.** At the step a fork is taken, its two copies have played as many cards as
-  the main rows, so they can ride in the main rows' batches to the end (no claims for them, their own random stream
-  so the main rows' draws are unchanged). Removes about half of all net calls; about 8-10% of a table's CPU.
 - **The hand-fit scorer's first layer as table lookups.** Its input is one-hot per suit, so `x @ Wh` is a sum of
   gathered rows (about 15% of the scorer, 3% of a table). Exact up to rounding order.
 - **BEN in the tests.** BEN's answer is a function of its request (hand, auction, dummy, cards played); a cache of
@@ -65,3 +85,4 @@ gain will be smaller; the memory growth the loop saw there (3-4 GB a worker, REA
 | `bench/instrument.py` | runs `scripts/x8_match.py` with counters on the scorer's and nets' calls (rows, time, callers) |
 | `bench/fold.py` | summarizes a py-spy raw profile by function |
 | `bench/ab_run.sh`, `bench/cmp_plays.py` | a self-play run with its peak worker memory; two runs' cards compared board by board |
+| `tests/test_bf16_buckets.py`, `tests/test_fork_batch.py` | the two changes' equivalence checks |
