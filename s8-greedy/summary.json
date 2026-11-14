@@ -1,23 +1,23 @@
 {
  "pair": "g8-greedy~8p-32-v41",
- "boards": 300,
- "cpu_per_board": 20.37,
+ "boards": 500,
+ "cpu_per_board": 20.69,
  "common": {
-  "imps_per_board": -0.21,
-  "se": 0.1978,
-  "boards": 300,
-  "won": 53,
-  "lost": 61,
-  "flat": 186
+  "imps_per_board": -0.156,
+  "se": 0.1461,
+  "boards": 500,
+  "won": 77,
+  "lost": 96,
+  "flat": 327
  },
  "native": {
-  "imps_per_board": -0.21,
-  "se": 0.1978,
-  "boards": 300,
-  "won": 53,
-  "lost": 61,
-  "flat": 186
+  "imps_per_board": -0.156,
+  "se": 0.1461,
+  "boards": 500,
+  "won": 77,
+  "lost": 96,
+  "flat": 327
  },
  "failures": 0,
- "boards_per_hour": 1369
+ "boards_per_hour": 1344
 }
