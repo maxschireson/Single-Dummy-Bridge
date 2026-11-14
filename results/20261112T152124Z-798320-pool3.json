@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 50.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:22:18Z",
+ "id": "20261112T152124Z-798320-pool3",
+ "output_bytes": 269,
+ "output_tail": "prepnext3: failed\n  File \"<stdin>\", line 16\n    assert not set(af) & mine, 'overlap with this box\\\\'s earlier Gen 7.1 lanes'\n                                                                               ^\nSyntaxError: unterminated string literal (detected at line 16)\n",
+ "received": "2026-11-12T15:21:28Z",
+ "script_sha256": "2f7712c1eb84be345da9b8570e4d63b59110e83218fa472a66ce3d2d3b22115b",
+ "started": "2026-11-12T15:21:28Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

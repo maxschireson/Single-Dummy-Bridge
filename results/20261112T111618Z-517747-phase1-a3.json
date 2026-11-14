@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 1.8,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:16:36Z",
+ "id": "20261112T111618Z-517747-phase1-a3",
+ "output_bytes": 515,
+ "output_tail": "STOP yes, WATCHDOG_STOP no, failures 0, receipts 720, published 720, units arena-gen7 inactive arena-gen7-publish inactive\nphase 1 azure3: 2814 deals, 720 played, 2094 unplayed, 1475 of them not in the training families; 7s-32 identity f0a578598673; source fe382f9\nof those fresh deals, also in another run's corpus on this box: 621\nlane 1: 267 of 366\nlane 2: 268 of 366\nlane 3: 278 of 372\nlane 4: 272 of 361\nlane 5: 255 of 365\nlane 6: 253 of 369\nlane 7: 263 of 369\nlane 8: 237 of 365\ncurrent lanes: deals left 840\n",
+ "received": "2026-11-12T11:16:35Z",
+ "script_sha256": "43f0fc35e9181706ae288dd8619146e4a318a72491c61255748e8722a6b5e4ff",
+ "started": "2026-11-12T11:16:35Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

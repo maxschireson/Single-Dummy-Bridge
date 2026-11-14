@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 4.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:01:51Z",
+ "id": "20261112T120131Z-020873-gate",
+ "output_bytes": 1757,
+ "output_tail": "GATE {\"n\": 3088, \"mean\": -0.04015544041450777, \"se\": 0.046616077327813164, \"ci\": [-0.13155711001099332, 0.05124622918197779], \"eligible\": false, \"counts\": {\"71s-32~7s-32\": 3088}, \"excluded\": {\"71s-32~7s-32\": 0}, \"sources\": [[\"arena-gen7-1-mix-azure1-feed\", \"f37d8d826522\"], [\"arena-gen7-1-fresh-azure3-ben64-4-feed\", \"a290b70852a9\"], [\"arena-gen7-1-fresh-azure3-ben64-3-feed\", \"5739d5b18d12\"], [\"arena-gen7-1-fresh-azure3-ben64-1-feed\", \"cafb5c90115e\"], [\"arena-gen7-1-fresh-azure3-ben64-2-feed\", \"ee1d84ad0138\"], [\"arena-gen7-1-fresh-azure3-ben64-5-feed\", \"b1668f080ab8\"], [\"arena-gen71-19bbdce5-20261112-feed\", \"50f9d04042e9\"], [\"arena-gen7-1-compare-codex-20261112-feed\", \"cb3fe1be55d6\"], [\"arena-gen7-1-fresh-azure3-ben64-7-feed\", \"dd96458b675c\"], [\"arena-gen7-1-fresh-azure3-ben64-8-feed\", \"6e37908f191d\"], [\"arena-gen7-1-fresh-azure3-ben64-6-feed\", \"050b664fdf3d\"], [\"arena-gen7-1-vs70-fresh-azure2-feed\", \"4b32e6ed0d6b\"], [\"arena-gen71-independent-feed\", \"8bcab55ffc5b\"]], \"errors\": []}\ngate for 71s-32~7s-32: 3088 boards on families v4.1 was not trained on, mean -0.040, 95% interval -0.132 to +0.051; eligible False\nboards left out because their family is in the training list: {'71s-32~7s-32': 0}\nfeeds read: 13 ['arena-gen7-1-mix-azure1-feed', 'arena-gen7-1-fresh-azure3-ben64-4-feed', 'arena-gen7-1-fresh-azure3-ben64-3-feed', 'arena-gen7-1-fresh-azure3-ben64-1-feed', 'arena-gen7-1-fresh-azure3-ben64-2-feed', 'arena-gen7-1-fresh-azure3-ben64-5-feed', 'arena-gen71-19bbdce5-20261112-feed', 'arena-gen7-1-compare-codex-20261112-feed', 'arena-gen7-1-fresh-azure3-ben64-7-feed', 'arena-gen7-1-fresh-azure3-ben64-8-feed', 'arena-gen7-1-fresh-azure3-ben64-6-feed', 'arena-gen7-1-vs70-fresh-azure2-feed', 'arena-gen71-independent-feed']\nerrors: none\n",
+ "received": "2026-11-12T12:01:47Z",
+ "script_sha256": "600681190c7942e9298e55231791e35844190c1ef257ce6b7c2f3bcf343aae14",
+ "started": "2026-11-12T12:01:47Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

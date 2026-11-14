@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T05:19:26Z",
+ "id": "20261114T051857Z-534262-loop-134-counts",
+ "output_bytes": 174,
+ "output_tail": "sp3sb 274 tables, last 03:18\nunits: loop-bensession \n2026-11-14T05:08:49Z start b3-pst200b-8 stu3-pst~ben200 seed 131 first 480 deals 32 workers 1 --common-only --episodes (\n",
+ "received": "2026-11-14T05:19:25Z",
+ "script_sha256": "2409987ff733e9d9d3854f56e762a2399807a58aa99cc4cfdb279d996f3d62e6",
+ "started": "2026-11-14T05:19:25Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

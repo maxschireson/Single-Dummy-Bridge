@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T16:36:15Z",
+ "id": "20261114T163605Z-371945-cmd",
+ "output_bytes": 714,
+ "output_tail": "8:bu4c-pst200b stu4c-put~ben200 131 256 256 8 --episodes\n9:#u4-pst200c stu4-put~ben200 131 512 512 8 --episodes\n10:bu4c-pst200c stu4c-put~ben200 131 512 512 8 --episodes\n11:#u4-pst200d stu4-put~ben200 131 1024 512 8 --episodes\n12:bu4c-pst200d stu4c-put~ben200 131 1024 512 8 --episodes\n13:#u4-pst200e stu4-put~ben200 131 1536 512 8 --episodes\n14:bu4c-pst200e stu4c-put~ben200 131 1536 512 8 --episodes\n15:# 16:40 UTC: stu4's blocks c to e dropped (Max's rule for the human tables; stu4 vs stu4c inside the bot -0.10 +- 0.17)\n2026-11-14T16:16:41Z start bu4c-pst200a-8 stu4c-put~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 830661d, n\nbu4c-pst200a: 114 | bu4c-pst200b: 0 | \n16:36:15\n",
+ "received": "2026-11-14T16:36:14Z",
+ "script_sha256": "552d715fbaa650b373f801f9589fd50f84c087ad2e115fba3f40aad6907e1a3c",
+ "started": "2026-11-14T16:36:14Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

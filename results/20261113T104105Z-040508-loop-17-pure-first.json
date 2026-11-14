@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 45.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:42:03Z",
+ "id": "20261113T104105Z-040508-loop-17-pure-first",
+ "output_bytes": 664,
+ "output_tail": "2026-11-13T10:34:55Z end l0-p: exit 0\n2026-11-13T10:34:55Z start l0-v1-p stu0v1-p~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source e57865f)\nsource 0723f0b Stu ladder: the pure bot against Stu comes first, on both boxes\nRunning as unit: loop-chain.service; invocation ID: 4c979213cff84faf950a9c06f9c1cc05\nactive active \n2026-11-13T10:41:18Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 0723f0b)\n2026-11-13T10:41:19Z end l0-p: exit 0\n2026-11-13T10:41:19Z start l0-v1-p stu0v1-p~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 0723f0b)\nl0-p: 200 boards\nl0-v1-p: 98 boards\n2026-11-13T10:42:03Z\n",
+ "received": "2026-11-13T10:41:18Z",
+ "script_sha256": "d1c5d017e775784adedd312d0a979bdb35eeac2907f6c878f032ee8cbba44aa5",
+ "started": "2026-11-13T10:41:18Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 48.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T01:54:05Z",
+ "id": "20261114T015302Z-569043-loop-ben4",
+ "output_bytes": 1038,
+ "output_tail": "source 228770d\nround 3's net in place, sha256 a8cf8a94ebcf29da\nactive active active active active active active active \nRunning as unit: loop-bensession.service; invocation ID: 1b206a8873d642ba82a59b92978f342e\nactive inactive inactive 2026-11-14T01:53:37Z start b0-ps200-6 stu0-ps~ben200 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)\n2026-11-14T01:53:37Z start b0-ps200-7 stu0-ps~ben200 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)\n2026-11-14T01:53:37Z start b0-ps200-8 stu0-ps~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)\n< sample_hands_play = 64\n< min_sample_hands_play = 64\n< min_sample_hands_play_bad = 64\n> sample_hands_play = 200\n> min_sample_hands_play = 20\n> min_sample_hands_play_bad = 20\n< sample_hands_play = 64\n< min_sample_hands_play = 64\n< min_sample_hands_play_bad = 64\n> sample_hands_play = 200\n> min_sample_hands_play = 20\n> min_sample_hands_play_bad = 20\n2026-11-14T01:54:05Z\n",
+ "received": "2026-11-14T01:53:17Z",
+ "script_sha256": "f4fd6a28defecfe97b5b17061a954d0f1d34670fad2da27f267fa152f49a29e3",
+ "started": "2026-11-14T01:53:17Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 5.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:31:17Z",
+ "id": "20261114T073105Z-140582-loop-167-lt",
+ "output_bytes": 425,
+ "output_tail": "Running as unit: loop-usbclt.service; invocation ID: d74386bb058b48a093f55cd5a5307e66\nactive active 2026-11-14T07:30:35Z usbc_138424_3_1 Open Semifinal 3/4: 30 boards, 120 tables (1499 requests so far)\n2026-11-14T07:30:49Z usbc_138429_2_1 Open Final 2/4: 30 boards, 60 tables (1570 requests so far)\n2026-11-14T07:30:55Z usbc_147370_1_1 Open Nickell vs Yang: 14 boards, 28 tables (1602 requests so far)\n8\n2026-11-14T07:31:17Z\n",
+ "received": "2026-11-14T07:31:11Z",
+ "script_sha256": "c5a98f58bbbdac3b2e2d232ef5a4004847b6a30f11d80479337e45aa077086a0",
+ "started": "2026-11-14T07:31:11Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

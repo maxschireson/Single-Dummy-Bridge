@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 40.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T07:24:30Z",
+ "id": "20261114T072344Z-248265-loop-164-harvest",
+ "output_bytes": 645,
+ "output_tail": "Running as unit: loop-usbc.service; invocation ID: 1e1cc26ff84c4304b32696abd471d17b\nactive\nactive inactive loop-ben-bu3-ps200a-1.service loop-ben-bu3-ps200a-2.service loop-ben-bu3-ps200a-3.service loop-ben-bu3-ps200a-4.service loop-ben-bu3-ps200a-5.service loop-ben-bu3-ps200a-6.service loop-ben-bu3-ps200a-7.service loop-ben-bu3-ps200a-8.service loop-ben200@1.service loop-ben200@2.service loop-ben200@3.service loop-ben200@4.service loop-ben200@5.service loop-ben200@6.service loop-ben200@7.service loop-ben200@8.service loop-bensession.service loop-ledger.service loop-publish.service loop-rows.service loop-usbc.service 2026-11-14T07:24:29Z\n",
+ "received": "2026-11-14T07:23:49Z",
+ "script_sha256": "761357b422f471a0689015ea34ff1c62eba99e729c3c7cfe3e6273a142cf3ac4",
+ "started": "2026-11-14T07:23:49Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

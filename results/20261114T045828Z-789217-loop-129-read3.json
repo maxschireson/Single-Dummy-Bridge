@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:59:00Z",
+ "id": "20261114T045828Z-789217-loop-129-read3",
+ "output_bytes": 746,
+ "output_tail": "2026-11-14T04:26:16Z start b3-pst200-6 stu3-pst~ben200 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source 3caab93, nets fp32)\n2026-11-14T04:26:16Z start b3-pst200-7 stu3-pst~ben200 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source 3caab93, nets fp32)\n2026-11-14T04:26:16Z start b3-pst200-8 stu3-pst~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 3caab93, nets fp32)\nb3-pst200 -0.38 +- 0.30 (207)\nb3-ps200 -0.04 +- 0.26 (256)\nb0-ps200 -0.13 +- 0.24 (256)\nbg-200 -0.16 +- 0.26 (256)\nb3-pst200b n=0\nby deal b3-pst200 minus b3-ps200 -0.30 +- 0.38 (207)\nby deal b3-pst200 minus b0-ps200 -0.16 +- 0.28 (207)\nby deal b3-pst200 minus bg-200 -0.22 +- 0.35 (207)\n2026-11-14T04:59:00Z\n",
+ "received": "2026-11-14T04:58:59Z",
+ "script_sha256": "f0bbfa24acfdeb50ca364f95261d020630f0ca2c0501f0617e8314fee341c6a1",
+ "started": "2026-11-14T04:58:59Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

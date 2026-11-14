@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 47.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:39:19Z",
+ "id": "20261113T233810Z-881172-loop-ben3",
+ "output_bytes": 845,
+ "output_tail": "source 3cb03ef\nround 3's net in place, sha256 a8cf8a94ebcf29da\nactive active active active active active active active \nRunning as unit: loop-bensession.service; invocation ID: e2dc1eec0e37487a9ee11f08d9c80aea\nactive inactive inactive 2026-11-13T23:38:51Z start b3-p-6 stu3-p~ben64 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source 3cb03ef, nets fp32)\n2026-11-13T23:38:51Z start b3-p-7 stu3-p~ben64 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source 3cb03ef, nets fp32)\n2026-11-13T23:38:51Z start b3-p-8 stu3-p~ben64 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 3cb03ef, nets fp32)\n< sample_hands_play = 64\n< min_sample_hands_play = 64\n< min_sample_hands_play_bad = 64\n> sample_hands_play = 200\n> min_sample_hands_play = 20\n> min_sample_hands_play_bad = 20\n2026-11-13T23:39:19Z\n",
+ "received": "2026-11-13T23:38:31Z",
+ "script_sha256": "c4d3959bf7e03aa16f1489abf5fe5126b4630eaf9c8686f6f9fdf9a98889b375",
+ "started": "2026-11-13T23:38:31Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

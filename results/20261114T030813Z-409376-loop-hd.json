@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T03:08:30Z",
+ "id": "20261114T030813Z-409376-loop-hd",
+ "output_bytes": 844,
+ "output_tail": "#!/usr/bin/env bash\nwhile [ \"$(systemctl is-active loop-bensession)\" = active ]; do sleep 30; done; sleep 45\ngit -C \"/home/bridgebots/work/loop/src\" fetch -q --depth 8 origin research/rollout-loop-20261113 && git -C \"/home/bridgebots/work/loop/src\" checkout -q fc8202fc96158f249b5ff14b3d0a2e959dbb5c7f\nbash \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/rungs.sh\" jobs-azure3-hd.txt azure3\nRunning as unit: loop-rungs.service; invocation ID: 2b3f4363b12a450981ff32f6afd34903\nloop-bensession: active; loop-rungs: active\n2026-11-14T02:35:42Z start b3-ps200-7 stu3-ps~ben200 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)\n2026-11-14T02:35:42Z start b3-ps200-8 stu3-ps~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)\n2026-11-14T03:08:30Z\n",
+ "received": "2026-11-14T03:08:24Z",
+ "script_sha256": "b07fdd61e8d1e6ab9ff0233aa5888548156bc955588967630a13d61061f1147f",
+ "started": "2026-11-14T03:08:24Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

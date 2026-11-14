@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 40.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:19:20Z",
+ "id": "20261112T111818Z-825792-prepnext",
+ "output_bytes": 1619,
+ "output_tail": "prepnext: active\nlane 3: cohort c4d51ea62765, 185 deals: shard 2/8 of the phase 1 cohort d75a644daf20's unplayed deals (720 played, 619 unplayed deals from training families left out over all shards), pairs {'71s-32~ben64': 1}, 71s-32 7b0f58b4c403, exclusions sha256 4818856d731bee23\nlane 4: cohort f3af1a4d922d, 184 deals: shard 3/8 of the phase 1 cohort d75a644daf20's unplayed deals (720 played, 619 unplayed deals from training families left out over all shards), pairs {'71s-32~ben64': 1}, 71s-32 7b0f58b4c403, exclusions sha256 4818856d731bee23\nlane 5: cohort 80a3caa4e274, 184 deals: shard 4/8 of the phase 1 cohort d75a644daf20's unplayed deals (720 played, 619 unplayed deals from training families left out over all shards), pairs {'71s-32~ben64': 1}, 71s-32 7b0f58b4c403, exclusions sha256 4818856d731bee23\nlane 6: cohort 4cd53876fdb6, 184 deals: shard 5/8 of the phase 1 cohort d75a644daf20's unplayed deals (720 played, 619 unplayed deals from training families left out over all shards), pairs {'71s-32~ben64': 1}, 71s-32 7b0f58b4c403, exclusions sha256 4818856d731bee23\nlane 7: cohort 2cc7d350c249, 184 deals: shard 6/8 of the phase 1 cohort d75a644daf20's unplayed deals (720 played, 619 unplayed deals from training families left out over all shards), pairs {'71s-32~ben64': 1}, 71s-32 7b0f58b4c403, exclusions sha256 4818856d731bee23\nlane 8: cohort 8512e1610ffe, 184 deals: shard 7/8 of the phase 1 cohort d75a644daf20's unplayed deals (720 played, 619 unplayed deals from training families left out over all shards), pairs {'71s-32~ben64': 1}, 71s-32 7b0f58b4c403, exclusions sha256 4818856d731bee23\n",
+ "received": "2026-11-12T11:18:39Z",
+ "script_sha256": "0c9fe3ef5ef86456d75b84f93b19c8d722fd55ff2b712ed100c3611d79de24ea",
+ "started": "2026-11-12T11:18:39Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

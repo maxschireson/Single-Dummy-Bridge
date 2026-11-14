@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:20:53Z",
+ "id": "20261114T182046Z-034132-cmd",
+ "output_bytes": 2498,
+ "output_tail": "multiprocessing.pool.RemoteTraceback: \n\"\"\"\nTraceback (most recent call last):\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 125, in worker\n    result = (True, func(*args, **kwds))\n                    ^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/bench/seat_variants.py\", line 136, in one_file\n    got = p.choose(o, random.Random(seed + (7919 if VARIANTS[k][0] == 'draw, other seed' else 0)))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/x8_player.py\", line 1068, in choose\n    return self.audited(o, result)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/x8_player.py\", line 1147, in audited\n    plain = self.unclaimed_card(o)\n            ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/x8_player.py\", line 1098, in unclaimed_card\n    return X8Player.choose(self.unclaimed_player, o, stream).card\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/x8_player.py\", line 1066, in choose\n    result = self.rollout_decision(o, rng, stage)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/x8_player.py\", line 845, in rollout_decision\n    got = self.roll(o, worlds, w, reps, stage, nrng, floor0, race=True)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/x8_player.py\", line 702, in roll\n    got = evaluate(o, [worlds[i] for i in index], [reps[j] for j in alive], seats, other=None if other is None else other[index],\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/x8_rollout.py\", line 201, in evaluate\n    rows = Rows(o, worlds).take(np.tile(np.arange(n_w), n_c))\n           ^^^^^^^^^^^^^^^\n  File \"/home/bridgebots/work/loop/src/bridge_harness/plan_rollout.py\", line 58, in __init__\n    raise ValueError('A layout does not fit the play so far')\nValueError: A layout does not fit the play so far\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/bench/seat_variants.py\", line 213, in <module>\n    main()\n",
+ "received": "2026-11-14T18:20:53Z",
+ "script_sha256": "9780e1a315e061ce61640f9e2b6366d7680e66e71254671e2ddb4347b262cef3",
+ "started": "2026-11-14T18:20:53Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

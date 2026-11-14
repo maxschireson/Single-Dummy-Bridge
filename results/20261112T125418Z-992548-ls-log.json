@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:54:33Z",
+ "id": "20261112T125418Z-992548-ls-log",
+ "output_bytes": 483,
+ "output_tail": "2026-11-12T11:25:58Z started\n2026-11-12T12:42:08Z lane 3: gen71fresh-azure3-ben64-3 done (372 of 372 boards, all published); moving to gen71fresh2-azure3-ben64-3\n2026-11-12T12:42:08Z lane 3: collector active, publisher active on gen71fresh2-azure3-ben64-3\n2026-11-12T12:44:08Z lane 4: gen71fresh-azure3-ben64-4 done (361 of 361 boards, all published); moving to gen71fresh2-azure3-ben64-4\n2026-11-12T12:44:09Z lane 4: collector active, publisher active on gen71fresh2-azure3-ben64-4\n",
+ "received": "2026-11-12T12:54:33Z",
+ "script_sha256": "5a3a4f96763a22394a8286d4af49b45cfd6a1aec03fe751c0f84f63afeb46c91",
+ "started": "2026-11-12T12:54:33Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

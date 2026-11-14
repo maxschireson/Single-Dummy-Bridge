@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:31:04Z",
+ "id": "20261112T163047Z-272884-s8-peek",
+ "output_bytes": 1933,
+ "output_tail": "16:31:04\nswitch8 active\nlane 1: preflight passed in 200s: [('8s-32~ben64', 0, 82, 73), ('8s-32~ben64', 1, 80, 124)] | tree consulted 26 moved 2 over budget 0\nlane 2: preflight passed in 190s: [('8s-32~ben64', 0, 82, 72), ('8s-32~ben64', 1, 81, 114)] | tree consulted 23 moved 1 over budget 0\nlane 3: preflight passed in 234s: [('8s-32~ben64', 0, 86, 128), ('8s-32~ben64', 1, 84, 104)] | tree consulted 20 moved 6 over budget 0\nlane 4: preflight passed in 207s: [('8s-32~ben64', 0, 84, 76), ('8s-32~ben64', 1, 88, 128)] | tree consulted 24 moved 5 over budget 0\nlane 5: preflight passed in 177s: [('8s-32~ben64', 0, 82, 98), ('8s-32~ben64', 1, 84, 76)] | tree consulted 26 moved 2 over budget 0\nlane 6: preflight passed in 195s: [('8s-32~ben64', 0, 80, 98), ('8s-32~ben64', 1, 82, 93)] | tree consulted 25 moved 1 over budget 0\nlane 7: preflight passed in 234s: [('8s-32~ben64', 0, 78, 101), ('8s-32~ben64', 1, 84, 129)] | tree consulted 18 moved 0 over budget 0\nlane 8: preflight passed in 199s: [('8s-32~ben64', 0, 78, 87), ('8s-32~ben64', 1, 84, 108)] | tree consulted 20 moved 6 over budget 0\n16:30:53 lane 1: collector active, publisher active, feed arena-gen8-azure3-ben64-1-feed\n16:30:56 lane 2: collector active, publisher active, feed arena-gen8-azure3-ben64-2-feed\n16:31:00 lane 3: collector active, publisher active, feed arena-gen8-azure3-ben64-3-feed\n16:31:03 lane 4: collector active, publisher active, feed arena-gen8-azure3-ben64-4-feed\n   lane 1: gen71fresh3-azure3-ben64-1 finished at 9 boards    lane 2: gen71fresh3-azure3-ben64-2 finished at 11 boards    lane 3: gen71fresh3-azure3-ben64-3 finished at 40 boards    lane 4: gen71fresh3-azure3-ben64-4 finished at 37 boards    lane 5: gen71fresh3-azure3-ben64-5 finished at 7 boards    lane 6: gen71fresh2-azure3-ben64-6 finished at 172 boards    lane 7: gen71fresh3-azure3-ben64-7 finished at 1 boards    lane 8: gen71fresh2-azure3-ben64-8 finished at 167 boards \n\n",
+ "received": "2026-11-12T16:31:04Z",
+ "script_sha256": "ffdfb17407cfec59fd23fdd8e7d3627ccf5625f10b3c3bec0a7f73c19e521ae6",
+ "started": "2026-11-12T16:31:04Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

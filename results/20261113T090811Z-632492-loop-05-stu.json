@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 45.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:09:03Z",
+ "id": "20261113T090811Z-632492-loop-05-stu",
+ "output_bytes": 2293,
+ "output_tail": "== drain log\n2026-11-13T08:51:55Z lanes 1 2 3 4 5 7 8: collectors stopped; starting the loop's job chain and publisher\nRunning as unit: loop-chain.service; invocation ID: bc9f90d3188a4a36a5d85a499f8d3c02\nRunning as unit: loop-publish.service; invocation ID: d11f74060be74b009736cfdc4f868632\n2026-11-13T08:57:35Z lane 6: collector ended by itself at 372 boards\n2026-11-13T08:57:35Z all eight collectors have stopped\n2026-11-13T08:59:35Z lane 1: gen8-f-azure3-ben64-1 19 boards, all published, feed head 70af3d4\n2026-11-13T08:59:35Z lane 2: gen8-f-azure3-ben64-2 22 boards, all published, feed head 0c2d19b\n2026-11-13T08:59:35Z lane 3: gen8-f-azure3-ben64-3 36 boards, all published, feed head 91c75e8\n2026-11-13T08:59:35Z lane 4: gen8-f-azure3-ben64-4 40 boards, all published, feed head 17c0814\n2026-11-13T08:59:35Z lane 5: gen8-f-azure3-ben64-5 16 boards, all published, feed head 74e31aa\n2026-11-13T08:59:35Z lane 6: gen8-p2-azure3-ben64-6 372 boards, all published, feed head 2bef771\n2026-11-13T08:59:35Z lane 7: gen8-f-azure3-ben64-7 9 boards, all published, feed head 352bfad\n2026-11-13T08:59:35Z lane 8: gen8-f-azure3-ben64-8 9 boards, all published, feed head 7159a51\n2026-11-13T08:59:35Z DRAINED: eight lanes stopped at a board boundary, 523 boards in their current runs, every one published; BEN servers left up\n== lanes\n1:inactive/inactive 2:inactive/inactive 3:inactive/inactive 4:inactive/inactive 5:inactive/inactive 6:inactive/inactive 7:inactive/inactive 8:inactive/inactive \ndrain unit: inactive\ng0-v2 (id z0a-v2) stopped at 163 boards: 150 boards: -0.5133 +- 0.1981 IMPs/board for z0a-v2; 586 boards/hour; 0 failed\nsource 29d2e6a Stu: the loop's bot gets Max's name; records keep every layout's result\nRunning as unit: loop-chain.service; invocation ID: 8a9ca04186e5494caaa48dc7b6dddf49\nactive active \n2026-11-13T08:51:55Z start g0-v2 z0a-v2~8p-32-v41 seed 131 first 0 deals 2000 workers 8  (source 79c1845)\n2026-11-13T09:08:18Z start g0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 2000 workers 8  (source 29d2e6a)\nstu0a v 8p-32-v41: 2000 boards to play (0 done), 8 workers\npublisher last pushed 09:01 UTC\nMem:              31           9           7           0          15          22\n 09:09:03 up 1 day,  6:58,  0 user,  load average: 8.15, 8.98, 9.00\n2026-11-13T09:09:03Z\n",
+ "received": "2026-11-13T09:08:17Z",
+ "script_sha256": "86fd16c784ef4d97fb32d07aa7f378a9f1fb2d0eee5740830bfe9adbc2340a44",
+ "started": "2026-11-13T09:08:17Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

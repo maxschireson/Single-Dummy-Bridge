@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:55:20Z",
+ "id": "20261112T075459Z-797132-ben-facts",
+ "output_bytes": 581,
+ "output_tail": "2.9G\t/home/bridgebots/work/ben 2.4G\t/home/bridgebots/work/ben-venv \ninstall log: first 03:32:58, last 03:34:49 DONE\n03:32:58 == source\n03:33:43 == models against configs/ben-gen5-16.provenance.json\n03:33:43 == config\n03:33:43 == python environment\n03:34:37 == server test on 127.0.0.1:8089\n03:34:47 listening after 15s; memory 0.8 GB\n03:34:48 bid request took 0.1s; server memory 0.8 GB, threads 7\nben-server@1 (BEN 64 profile): rss 1.1 GB, up 15202s\nben-server@2 (BEN 64 profile): rss 1.2 GB, up 14888s\nauthorized_keys boxctl_github boxctl_github.pub known_hosts known_hosts.old \n",
+ "received": "2026-11-12T07:55:20Z",
+ "script_sha256": "6939ed702c755702a9979d3149813cc8f34dbee647086112fec7a3f7db618bdb",
+ "started": "2026-11-12T07:55:20Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

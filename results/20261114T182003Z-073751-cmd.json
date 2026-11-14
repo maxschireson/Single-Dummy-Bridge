@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:20:19Z",
+ "id": "20261114T182003Z-073751-cmd",
+ "output_bytes": 1436,
+ "output_tail": "2026-11-14T17:44:44Z start bu4c-pst200c-8 stu4c-put~ben200 seed 131 first 960 deals 64 workers 1 --common-only --episodes (source 830661d, nets fp32)\n2026-11-14T18:15:46Z the BEN gate stops at 698 deals of stu4c (adopted; Max, 17:27 and 17:57 UTC); the seat bench, then Gen 8's self-play\n2026-11-14T18:15:46Z seat bench begins (bench/seat_variants.py on round 3's gate records, one decision in 8)\n2026-11-14T18:16:39Z seat bench ended: exit 0; 72 decisions\n2026-11-14T18:16:39Z start sg8v1 g8-greedy0~g8-passive0 seed 9001 first 880000 deals 2000 workers 8 --episodes --one-room (source 7768d38, nets fp32)\n---\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/bench/seat_variants.py\", line 213, in <module>\n    main()\n  File \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/bench/seat_variants.py\", line 202, in main\n    for part in pool.imap_unordered(one_file, [(f, a.every, a.lead) for f in files], chunksize=1):\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 873, in next\n    raise value\nValueError: A layout does not fit the play so far\n---\n72 /home/bridgebots/work/loop/pub/exp/seat-bu3.jsonl\nloop-chain.service running;loop-ledger.service running;loop-publish.service running;loop-rows.service running;\n 18:20:19 up 2 days, 16:09,  0 user,  load average: 8.28, 8.34, 8.37\n",
+ "received": "2026-11-14T18:20:19Z",
+ "script_sha256": "e79a1e751ee9b20dc22bc7d45aa8979faf7409b2cef974785b71a618160ceee9",
+ "started": "2026-11-14T18:20:19Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

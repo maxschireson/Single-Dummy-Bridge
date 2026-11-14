@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:09:35Z",
+ "id": "20261114T170903Z-596041-cmd",
+ "output_bytes": 265,
+ "output_tail": "R4c vs BEN +0.036 +- 0.228 (306); R3 same deals -0.324 +- 0.212; R4c - R3 paired +0.359 +- 0.243\nR4 - R4c paired -0.261 +- 0.248 (306)\n2026-11-14T17:00:53Z start bu4c-pst200b-8 stu4c-put~ben200 seed 131 first 480 deals 32 workers 1 --common-only --episode\n17:09:35\n",
+ "received": "2026-11-14T17:09:34Z",
+ "script_sha256": "5b9cbe592c836999907a328e34698e38f9ca38ef8d58ae4b5578ba0eac25c86c",
+ "started": "2026-11-14T17:09:34Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

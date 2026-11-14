@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 50.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:41:27Z",
+ "id": "20261113T094028Z-145895-loop-09-ladder-first-pass",
+ "output_bytes": 509,
+ "output_tail": "s0b paused at 224 boards: 200 boards: 0.005 +- 0.005 IMPs/board for stu0a; 495 boards/hour; 0 failed\nsource db83b7a Stu round 0: the ladder's first pass now, 200 deals a rung, before azure3 goes back to collecting\nRunning as unit: loop-chain.service; invocation ID: cab3755d2abb40449a1a3ee720565b29\nactive active \n2026-11-13T09:40:37Z start l0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source db83b7a)\nstu0a v 8p-32-v41: 200 boards to play (0 done), 8 workers\n2026-11-13T09:41:27Z\n",
+ "received": "2026-11-13T09:40:37Z",
+ "script_sha256": "8f52f034cf88044698f9a13b40add6aeb0f67cdc4e47be8abe0d227989c8dab8",
+ "started": "2026-11-13T09:40:37Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

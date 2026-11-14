@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 4.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T16:08:20Z",
+ "id": "20261113T160758Z-025597-loop-after3",
+ "output_bytes": 1470,
+ "output_tail": " training/rollout-loop-20261113/rungs.sh            |  13 +\n training/rollout-loop-20261113/runs.json           | 498 ++++++++++++++-------\n 17 files changed, 844 insertions(+), 260 deletions(-)\nsource b4eea94\nRunning as unit: loop-after-ben.service; invocation ID: b278d0db0f7f440ca662e896b01f97bd\nactive active active active \nsp0b stu0-pa~stu0-pb 9001 80000 20000 6 --episodes --one-room\n2026-11-13T16:08:05Z end b0-g8-6: exit 0\n2026-11-13T16:08:05Z start b0-stu0-1 stu0a~ben64 seed 131 first 0 deals 32 workers 1 --common-only --episodes (source fd\n2026-11-13T16:08:05Z start b0-stu0-2 stu0a~ben64 seed 131 first 32 deals 32 workers 1 --common-only --episodes (source f\n2026-11-13T16:08:05Z start b0-stu0-3 stu0a~ben64 seed 131 first 64 deals 32 workers 1 --common-only --episodes (source f\n2026-11-13T16:08:05Z start b0-stu0-4 stu0a~ben64 seed 131 first 96 deals 32 workers 1 --common-only --episodes (source f\n2026-11-13T16:08:05Z start b0-stu0-5 stu0a~ben64 seed 131 first 128 deals 32 workers 1 --common-only --episodes (source \n2026-11-13T16:08:05Z start b0-stu0-6 stu0a~ben64 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source \n2026-11-13T16:08:05Z start b0-stu0-7 stu0a~ben64 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source \n2026-11-13T16:08:05Z start b0-stu0-8 stu0a~ben64 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source \nb0-p 256 boards\nb0-g8 256 boards\nb0-stu0 0 boards\n2026-11-13T16:08:19Z\n",
+ "received": "2026-11-13T16:08:16Z",
+ "script_sha256": "7840ba74f38e0359aef1bbd90b9657fb7334092e344cec1dbb7603c054464f26",
+ "started": "2026-11-13T16:08:16Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

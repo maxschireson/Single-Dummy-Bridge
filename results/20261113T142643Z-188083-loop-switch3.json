@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T14:27:19Z",
+ "id": "20261113T142643Z-188083-loop-switch3",
+ "output_bytes": 314,
+ "output_tail": "Running as unit: loop-switch.service; invocation ID: dbd3aed49a1e46afb6f7864abb3cd28a\nactive active active active \nl0-pr 487\nl0-pl 200\n2026-11-13T14:24:16Z start l0-pr stu0-pr~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source bc4b3af)\n2026-11-13T14:26:11Z end pf-ben-1: exit 0\n2026-11-13T14:27:19Z\n",
+ "received": "2026-11-13T14:27:13Z",
+ "script_sha256": "e8171e26730cd6ac483c50645bc87067398a013942aed6d821ec7236b6ca179b",
+ "started": "2026-11-13T14:27:13Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

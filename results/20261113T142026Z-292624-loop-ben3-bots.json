@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T14:20:39Z",
+ "id": "20261113T142026Z-292624-loop-ben3-bots",
+ "output_bytes": 2326,
+ "output_tail": "capsule bots: ['1', '2', '3', '4b', '5-32', '5R192', '5R32', '5RZ192', '5RZ32', '6-256', '6-32', 'ben', 'ben64']\nben {\"id\": \"ben-16\", \"engine\": \"ben\", \"url\": \"http://127.0.0.1:8087\", \"samples\": 16, \"bidding\": \"assets/bidding/ben.keras\", \"config\": \"assets/ben-16.conf\", \"artifact_sha256\": {\"bidding\": \"b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3\", \"config\": \"5bc5d0cccf21e4a169376fc43a08342b77e3b893c132e09416b53282c3ad7043\"}, \"identity\": \"ef98d53559f2d3b3f7f0e562e6da07fb6d0b797d54516b842edbce01162c7133\"}\nben64 {\"id\": \"ben-64\", \"engine\": \"ben\", \"url\": \"http://127.0.0.1:8089\", \"samples\": 64, \"bidding\": \"assets/bidding/ben.keras\", \"config\": \"assets/ben-64.conf\", \"artifact_sha256\": {\"bidding\": \"b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3\", \"config\": \"6586bb6492f1c43526ca547407afe00b30adb166e5242ecb44a51772ddfc2ac2\"}, \"identity\": \"5ef56f915ce8e9abbfb2650dead99389e92dba8aa0a64b2961db41bbdf048c69\"}\nlane run bots: ['1', '2', '3', '4b', '5-32', '5R192', '5R32', '5RZ192', '5RZ32', '6-256', '6-32', '71s-32', '8s-32', 'ben', 'ben64'] | roster ['8s-32', 'ben64'] | schedule ['8s-32~ben64']\nben {\"id\": \"ben-16\", \"engine\": \"ben\", \"url\": \"http://127.0.0.1:8087\", \"samples\": 16, \"bidding\": \"assets/bidding/ben.keras\", \"config\": \"assets/ben-16.conf\", \"artifact_sha256\": {\"bidding\": \"b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3\", \"config\": \"5bc5d0cccf21e4a169376fc43a08342b77e3b893c132e09416b53282c3ad7043\"}, \"identity\": \"ef98d53559f2d3b3f7f0e562e6da07fb6d0b797d54516b842edbce01162c7133\"}\nben64 {\"id\": \"ben-64\", \"engine\": \"ben\", \"url\": \"http://127.0.0.1:8089\", \"samples\": 64, \"bidding\": \"assets/bidding/ben.keras\", \"config\": \"assets/ben-64.conf\", \"artifact_sha256\": {\"bidding\": \"b0dff3dfae590cbe5927b2cc0402920df7b15336c3510dc92300010cadb17de3\", \"config\": \"6586bb6492f1c43526ca547407afe00b30adb166e5242ecb44a51772ddfc2ac2\"}, \"identity\": \"5ef56f915ce8e9abbfb2650dead99389e92dba8aa0a64b2961db41bbdf048c69\"}\n3:BEN_PORT=8089\n4:BEN_CONF=/home/bridgebots/work/runs/gen8-f-azure3-ben64-1/assets/ben-64.conf\n3:BEN_PORT=8089\n4:BEN_CONF=/home/bridgebots/work/runs/gen8-f-azure3-ben64-2/assets/ben-64.conf\n3:BEN_PORT=8089\n4:BEN_CONF=/home/bridgebots/work/runs/gen8-f-azure3-ben64-3/assets/ben-64.conf\nbenlane-8\nbenlane-7\nbenlane-5\nbenlane-6\nbenlane-3\nbenlane-4\nbenlane-2\nbenlane-1\n",
+ "received": "2026-11-13T14:20:39Z",
+ "script_sha256": "8e812bbe7e1b8074ee38a2f45bd526cc61957f4fa848e50d7d2ec248123d659d",
+ "started": "2026-11-13T14:20:39Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

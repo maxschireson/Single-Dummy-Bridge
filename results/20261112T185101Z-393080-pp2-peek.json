@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T18:51:16Z",
+ "id": "20261112T185101Z-393080-pp2-peek",
+ "output_bytes": 825,
+ "output_tail": "18:51:16\nlane 6: cohort 8f61dd686e60, 372 deals taken over from the lane's 7.1 pool 52c9d7f1b547 (139 played, 193 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, \nlane 7: cohort 46ddd4e1d4b4, 368 deals taken over from the lane's 7.1 pool 55b0be4a60dc (151 played, 184 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, \nlane 8: cohort 88fc3b6f4b20, 369 deals taken over from the lane's 7.1 pool efdf7bec3f5c (142 played, 192 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, \nsecond pool: 2946 deals over 8 lanes, disjoint from each other and from the first pool's 1365\nprepp2 active lane-switch inactive\n1:running 2:running 3:running 4:running 5:running 6:running 7:running 8:running \n24\n",
+ "received": "2026-11-12T18:51:16Z",
+ "script_sha256": "80e6192f25a343a127f05a296578975bcc8e0df7a18fec9327899b887c031425",
+ "started": "2026-11-12T18:51:16Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 101.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:27:01Z",
+ "id": "20261113T102504Z-185718-loop-14-net-rung",
+ "output_bytes": 1218,
+ "output_tail": "2026-11-13T10:12:47Z end l0-v1: exit 0\n2026-11-13T10:12:47Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source db83b7a)\nsource e57865f Stu ladder: the nets alone as the lowest rung; a table net that takes names is told who plays\n{\"pair\": \"stu0-n~8p-32-v41\", \"boards\": 4, \"cpu_per_board\": 13.92, \"common\": {\"imps_per_board\": -4.25, \"se\": 2.8395, \"boards\": 4, \"\n{\"pair\": \"stu0-n~8p-32-v41\", \"boards\": 4, \"cpu_per_board\": 13.83, \"common\": {\"imps_per_board\": -4.25, \"se\": 2.8395, \"boards\": 4, \"\n{\"pair\": \"stu0v1-n~8p-32-v41\", \"boards\": 4, \"cpu_per_board\": 14.15, \"common\": {\"imps_per_board\": -9.0, \"se\": 3.937, \"boards\": 4, \"\nstu0-n decisions by method {'net': 170} | stu0v1-n {'net': 163}\nv2 alone, told 8s-32 against no name: positions reached by both 154 of 170 | different card at 45\nNET RUNG OK\nRunning as unit: loop-chain.service; invocation ID: 08ccb63ae61d48a1b2212ad9aa7866da\nactive active \n2026-11-13T10:26:21Z start l0-v1 stu0v1~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source e57865f)\n2026-11-13T10:26:21Z end l0-v1: exit 0\n2026-11-13T10:26:21Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source e57865f)\n2026-11-13T10:27:01Z\n",
+ "received": "2026-11-13T10:25:19Z",
+ "script_sha256": "f883b37ac3abaa2733fee4233cd7d13fe75da2f1125d2889f64a65811f961a96",
+ "started": "2026-11-13T10:25:19Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

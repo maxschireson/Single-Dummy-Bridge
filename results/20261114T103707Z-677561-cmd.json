@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T10:37:15Z",
+ "id": "20261114T103707Z-677561-cmd",
+ "output_bytes": 1673,
+ "output_tail": "2026-11-14T09:17:10Z start bu3-pst200c-6 stu3-put~ben200 seed 131 first 832 deals 64 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n2026-11-14T09:17:10Z start bu3-pst200c-7 stu3-put~ben200 seed 131 first 896 deals 64 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n2026-11-14T09:17:10Z start bu3-pst200c-8 stu3-put~ben200 seed 131 first 960 deals 64 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n2026-11-14T10:32:44Z end bu3-pst200c-2: exit 0\n2026-11-14T10:35:09Z end bu3-pst200c-3: exit 0\n2026-11-14T10:36:27Z end bu3-pst200c-1: exit 0\nbu3-ps200a-1 32 bu3-ps200a-2 32 bu3-ps200a-3 32 bu3-ps200a-4 32 bu3-ps200a-5 32 bu3-ps200a-6 32 bu3-ps200a-7 32 bu3-ps200a-8 32 bu3-ps200b-1 32 bu3-ps200b-2 32 bu3-ps200b-3 32 bu3-ps200b-4 32 bu3-ps200b-5 32 bu3-ps200b-6 32 bu3-ps200b-7 32 bu3-ps200b-8 32 bu3-pst200a-1 32 bu3-pst200a-2 32 bu3-pst200a-3 32 bu3-pst200a-4 32 bu3-pst200a-5 32 bu3-pst200a-6 32 bu3-pst200a-7 32 bu3-pst200a-8 32 bu3-pst200b-1 32 bu3-pst200b-2 32 bu3-pst200b-3 32 bu3-pst200b-4 32 bu3-pst200b-5 32 bu3-pst200b-6 32 bu3-pst200b-7 32 bu3-pst200b-8 32 bu3-pst200c-1 64 bu3-pst200c-2 64 bu3-pst200c-3 64 bu3-pst200c-4 60 bu3-pst200c-5 62 bu3-pst200c-6 62 bu3-pst200c-7 61 bu3-pst200c-8 62 \nloop-ben-bu3-pst200c-4.service loop-ben-bu3-pst200c-5.service loop-ben-bu3-pst200c-6.service loop-ben-bu3-pst200c-7.service loop-ben-bu3-pst200c-8.service loop-ben200@1.service loop-ben200@2.service loop-ben200@3.service loop-ben200@4.service loop-ben200@5.service loop-ben200@6.service loop-ben200@7.service loop-ben200@8.service loop-bensession.service loop-ledger.service loop-publish.service loop-rows.service 10:37:15\n",
+ "received": "2026-11-14T10:37:15Z",
+ "script_sha256": "826cc52a2d75aa92212d1e8b3bf5e5817c96d3622c6e5a5ac355a7d99b3c4d15",
+ "started": "2026-11-14T10:37:15Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

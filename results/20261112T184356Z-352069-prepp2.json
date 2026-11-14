@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 45.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T18:45:06Z",
+ "id": "20261112T184356Z-352069-prepp2",
+ "output_bytes": 2485,
+ "output_tail": "lane-switch: inactive disabled; laneswitch.sh present; SWITCH_OFF yes\n4\nprepp2: active\nlane 6: source 52c9d7f1b547, capsule shard 10/32, 704 deals, 139 played\nlane 7: source 55b0be4a60dc, capsule shard 18/32, 703 deals, 151 played\nlane 8: source efdf7bec3f5c, capsule shard 26/32, 703 deals, 142 played\nlane 1: cohort 5a29c3f69b5c, 368 deals taken over from the lane's 7.1 pool 21e33977501e (148 played, 188 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nlane 2: cohort 70e1acbf5031, 368 deals taken over from the lane's 7.1 pool 31a6f480a65f (149 played, 187 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nlane 3: cohort e31ac6866cc3, 368 deals taken over from the lane's 7.1 pool 4dfe193fae34 (159 played, 176 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nlane 4: cohort 6c4bdd8ff519, 367 deals taken over from the lane's 7.1 pool 9d0b3e390702 (154 played, 182 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nlane 5: cohort 304d2eba5007, 366 deals taken over from the lane's 7.1 pool 77a6611cc6dc (153 played, 185 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nlane 6: cohort 8f61dd686e60, 372 deals taken over from the lane's 7.1 pool 52c9d7f1b547 (139 played, 193 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nlane 7: cohort 46ddd4e1d4b4, 368 deals taken over from the lane's 7.1 pool 55b0be4a60dc (151 played, 184 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nlane 8: cohort 88fc3b6f4b20, 369 deals taken over from the lane's 7.1 pool efdf7bec3f5c (142 played, 192 unplayed deals from training families left out), pairs {'8s-32~ben64': 1}, 8s-32 269fdf1854f4, systems {'8s-32': 'house-gen6', 'ben64': 'ben-gib-bbo-8742',\nsecond pool: 2946 deals over 8 lanes, disjoint from each other and from the first pool's 1365\n",
+ "received": "2026-11-12T18:44:21Z",
+ "script_sha256": "164a13b303c569b2a2e0039ea0d90b7e20125984eb393711f0a8d93c34136b28",
+ "started": "2026-11-12T18:44:21Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T14:54:07Z",
+ "id": "20261114T145357Z-219822-cmd",
+ "output_bytes": 253,
+ "output_tail": "2026-11-14T14:51:18Z end bu3-pst200e-6: exit 0\n2026-11-14T14:51:29Z end bu3-pst200e-4: exit 0\n2026-11-14T14:52:47Z end bu3-pst200e-3: exit 0\nbu3-pst200a: 256 | bu3-pst200b: 256 | bu3-pst200c: 512 | bu3-pst200d: 512 | bu3-pst200e: 510 | \nactive\n14:54:07\n",
+ "received": "2026-11-14T14:54:07Z",
+ "script_sha256": "dddef2e41eb0557e8a854cfe8ed4b5d755073ea28b4f7e345561103a856fc7be",
+ "started": "2026-11-14T14:54:07Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

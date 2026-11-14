@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:23:22Z",
+ "id": "20261113T072310Z-121302-units-look",
+ "output_bytes": 1737,
+ "output_tail": "07:23:22\n== arena-ben@1\nWorkingDirectory=/home/bridgebots/work/sdb-gen8\nEnvironmentFile=/home/bridgebots/work/lanes/%i.env\nEnvironment=HOME=/home/bridgebots PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 TF_NUM_INTRAOP_THREADS=1 TF_NUM_INTEROP_THREADS=1 TF_CPP_MIN_LOG_LEVEL=3\nExecStartPre=/home/bridgebots/work/lanes/wait-port.sh ${BEN_PORT}\nExecStart=/home/bridgebots/work/venv/bin/python -u ops/gen5_runtime.py --run ${RUN} --workers 1\n== arena-ben-publish@1\nWorkingDirectory=/home/bridgebots/work/sdb-gen8\nEnvironmentFile=/home/bridgebots/work/lanes/%i.env\nEnvironment=HOME=/home/bridgebots PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 TF_NUM_INTRAOP_THREADS=1 TF_NUM_INTEROP_THREADS=1 TF_CPP_MIN_LOG_LEVEL=3\nExecStart=/home/bridgebots/work/venv/bin/python -u ops/publish_gen5.py --run ${RUN} --publication ${PUB}\n== ben-server@1\nWorkingDirectory=/home/bridgebots/work/ben\nEnvironmentFile=/home/bridgebots/work/lanes/%i.env\nEnvironment=HOME=/home/bridgebots PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 TF_NUM_INTRAOP_THREADS=1 TF_NUM_INTEROP_THREADS=1 TF_CPP_MIN_LOG_LEVEL=3\nExecStart=/home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config ${BEN_CONF} --host 127.0.0.1 --port ${BEN_PORT} --record false\nRUN=/home/bridgebots/work/runs/gen8-p2-azure3-ben64-1\nPUB=/home/bridgebots/work/publication/gen8-p2-azure3-ben64-1\nBEN_PORT=8089\nBEN_CONF=/home/bridgebots/work/runs/gen8-p2-azure3-ben64-1/assets/ben-64.conf\nXDG_CACHE_HOME=/home/bridgebots/work/lanes/1.cache\nben ben-setup ben-venv capsule-gen7-capture endtable g8 gen71 gen8 lanes publication runs sdb-gen7 sdb-gen7-arena sdb-gen71 sdb-gen71x sdb-gen8 sources tools venv ",
+ "received": "2026-11-13T07:23:22Z",
+ "script_sha256": "6adc11f383c492d000cc3529dbdb6afba3ea98e76bbba2e608963b7a8d27d209",
+ "started": "2026-11-13T07:23:22Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

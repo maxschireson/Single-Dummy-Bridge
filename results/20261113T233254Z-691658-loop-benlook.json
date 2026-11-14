@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:33:25Z",
+ "id": "20261113T233254Z-691658-loop-benlook",
+ "output_bytes": 1688,
+ "output_tail": "# /etc/systemd/system/ben-server@.service\n[Unit]\nDescription=BEN server (BEN (64)), lane %i\nRequires=benlane-netns@%i.service\nAfter=benlane-netns@%i.service\n\n[Service]\nUser=bridgebots\nNetworkNamespacePath=/run/netns/benlane-%i\nWorkingDirectory=/home/bridgebots/work/ben\nEnvironmentFile=/home/bridgebots/work/lanes/%i.env\nEnvironment=HOME=/home/bridgebots PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 TF_NUM_INTRAOP_THREADS=1 TF_NUM_INTEROP_THREADS=1 TF_CPP_MIN_LOG_LEVEL=3\nExecStart=/home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config ${BEN_CONF} --host 127.0.0.1 --port ${BEN_PORT} --record false\nStandardOutput=append:/home/bridgebots/work/lanes/%i.ben.log\nStandardError=append:/home/bridgebots/work/lanes/%i.ben.log\nRestart=always\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target\nactive\nactive\n661196 /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure3-ben64-1/assets/ben-64.conf --host 127.0.0.1 --port 8089 --record false\n758380 /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure3-ben64-2/assets/ben-64.conf --host 127.0.0.1 --port 8089 --record false\n771724 /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure3-ben64-3/assets/ben-64.conf --host 127.0.0.1 --port 8089 --record false\n721552 /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure3-ben64-4/assets/ben-64.conf --host 127.0.0.1 --port 8089 --record false\nMem:           32086       22004        9235           4        1332       10081\n",
+ "received": "2026-11-13T23:33:25Z",
+ "script_sha256": "ba0ff7279a59146683492f1d96e7ecf3e6862db15f2a6cb4b08d6c1ae89449c5",
+ "started": "2026-11-13T23:33:25Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

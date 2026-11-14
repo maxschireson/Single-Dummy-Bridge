@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 50.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:36:22Z",
+ "id": "20261112T063508Z-751515-azure3-fresh",
+ "output_bytes": 477,
+ "output_tail": "switch71f: active\n06:35:32 == build and test the source that has --exclude-families (the lanes keep playing)\n06:35:34 checkout: a588e09e4aec88fa8b41e814df95b515f07e134c Keep promotion gate output JSON-native at the threshold\n06:36:13 policy v4 d6b011937ee9ec53, v4.1 cb3fcfd5c5587373; dds library 103865b6ea4b31eb\n06:36:14 tests test_gen71*.py: Ran 7 tests in 0.209s OK \n06:36:16 tests test_gen7_selfplay.py: Ran 7 tests in 0.268s OK \n06:36:16 == finish the lanes of 06:07 UTC\n",
+ "received": "2026-11-12T06:35:32Z",
+ "script_sha256": "c71955b42305b849325ce002fb3c565257d2d13873947f51fdfb3535d1830e16",
+ "started": "2026-11-12T06:35:32Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

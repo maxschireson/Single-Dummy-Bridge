@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 126.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:23:57Z",
+ "id": "20261113T112127Z-771004-loop-20-round1-rungs",
+ "output_bytes": 1236,
+ "output_tail": "round 1's net in place, sha256 a9ee66def78cea60\n2026-11-13T11:01:09Z start l0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 0723f0b)\nl0-stu0 at 432 boards\nsource 8fa49a8 Stu round 1: the net is v2 with only Stu's two vectors trained; its rungs join azure3's ladder\n{\"pair\": \"stu1a~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 32.59, \"common\": {\"imps_per_board\": -1.0, \"se\": 1.0, \"boards\": 2, \"won\": 0, \"lost\"\n{\"pair\": \"stu1-p~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 36.31, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\"\n{\"pair\": \"stu1-n~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 9.19, \"common\": {\"imps_per_board\": -0.5, \"se\": 0.5, \"boards\": 2, \"won\": 0, \"lost\"\nstu1a boards 2 {'search': 13, 'blend': 23, 'claim': 17, 'rollout': 32} rollout net ['policy.npz']\nstu1-p boards 2 {'rollout': 54, 'claim': 25, 'net': 2} rollout net ['policy.npz']\nstu1-n boards 2 {'net': 89} rollout net []\nROUND 1 BOTS OK\nRunning as unit: loop-chain.service; invocation ID: 0c91af1cc4f94465964e8a6b5eb658e1\nactive active \n2026-11-13T11:23:18Z end l0-v1-n: exit 0\n2026-11-13T11:23:18Z start l0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 8fa49a8)\n2026-11-13T11:23:57Z\n",
+ "received": "2026-11-13T11:21:50Z",
+ "script_sha256": "fe2a590196de381bef8281637490434cf01fb4be497ff76a9cb2bfa3a03a2f6e",
+ "started": "2026-11-13T11:21:50Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

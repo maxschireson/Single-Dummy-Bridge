@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:30:48Z",
+ "id": "20261114T083022Z-186031-loop-187-caps",
+ "output_bytes": 1521,
+ "output_tail": "common bidder 6-32 | bots 13\n4b | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'near_tie']\n3 | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'near_tie']\n2 | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'near_tie']\n1 | ? |  | ['artifact_sha256', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'near_tie', 'samples']\nben | ben |  | ['artifact_sha256', 'bidding', 'config', 'engine', 'id', 'identity', 'samples', 'url']\n5-32 | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'near_tie']\n5R32 | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'layout_reduction']\n5R192 | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'layout_reduction']\n5RZ32 | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'layout_reduction']\n5RZ192 | ? |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'exploration', 'id', 'identity', 'layout_reduction']\n6-32 | gen6 |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'engine', 'exploration', 'gen6', 'id']\n6-256 | gen6 |  | ['artifact_sha256', 'belief', 'belief_kind', 'bidding', 'engine', 'exploration', 'gen6', 'id']\nben64 | ben |  | ['artifact_sha256', 'bidding', 'config', 'engine', 'id', 'identity', 'samples', 'url']\n",
+ "received": "2026-11-14T08:30:48Z",
+ "script_sha256": "a0b9dd32eaa4983c274607d2a676c23e43e7332037deb2dbd3248e9f2b8f72cf",
+ "started": "2026-11-14T08:30:48Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

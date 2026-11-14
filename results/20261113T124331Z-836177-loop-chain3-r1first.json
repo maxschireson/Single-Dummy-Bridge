@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 40.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:44:30Z",
+ "id": "20261113T124331Z-836177-loop-chain3-r1first",
+ "output_bytes": 614,
+ "output_tail": "2026-11-13T12:38:05Z end l0-pr: exit 0\n2026-11-13T12:38:05Z start l0-pl stu0-pl~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 4806f1f)\nl0-pr 200 boards\nl0-pl 58 boards\nsource 25d4dd0 Stu jobs: the collection rolls out its leads (spr0); round 1's rungs get a 200-deal first pass\nRunning as unit: loop-chain.service; invocation ID: 9e2635be32154186b6b5083c57e8d107\nactive active \n2026-11-13T12:43:51Z end l0-pr: exit 0\n2026-11-13T12:43:51Z start l0-pl stu0-pl~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 25d4dd0)\n/dev/root       123G   39G   84G  32% /\n2026-11-13T12:44:30Z\n",
+ "received": "2026-11-13T12:43:50Z",
+ "script_sha256": "985a81a3414fd9b70ac00637057cb56cab4bda44807ac76a6972372986ec3652",
+ "started": "2026-11-13T12:43:50Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

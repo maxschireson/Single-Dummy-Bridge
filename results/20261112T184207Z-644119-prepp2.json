@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 45.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T18:43:18Z",
+ "id": "20261112T184207Z-644119-prepp2",
+ "output_bytes": 341,
+ "output_tail": "lane-switch: inactive disabled; laneswitch.sh present; SWITCH_OFF yes\n4\nprepp2: failed\n18:42:33 load 8.44 8.65 8.78; memory available 15711 MB\nlane 1: source 21e33977501e, capsule shard 0/32, 704 deals, 148 played\nTraceback (most recent call last):\n  File \"<stdin>\", line 7, in <module>\nAssertionError: (2, 149, 149, {'index': 8, 'of': 32})\n",
+ "received": "2026-11-12T18:42:33Z",
+ "script_sha256": "73ec05d0bf9cdc6ff1c95f6a5b42967ba11017fb07a7aee3dcf7486657c09bd5",
+ "started": "2026-11-12T18:42:33Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

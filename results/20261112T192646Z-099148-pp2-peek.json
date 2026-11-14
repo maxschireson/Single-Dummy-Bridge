@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 1,
+ "finished": "2026-11-12T19:27:02Z",
+ "id": "20261112T192646Z-099148-pp2-peek",
+ "output_bytes": 564,
+ "output_tail": "19:27:02\nlane 7: preflight passed in 403s: [('8s-32~ben64', 0, 84, 173), ('8s-32~ben64', 1, 83, 197)] | tree consulted 20 moved 0 over budget 0\nlane 8: preflight passed in 440s: [('8s-32~ben64', 0, 82, 188), ('8s-32~ben64', 1, 86, 222)] | tree consulted 28 moved 0 over budget 0\n18:54:14 second pool armed: 1:gen8-p2-azure3-ben64-1 2:gen8-p2-azure3-ben64-2 3:gen8-p2-azure3-ben64-3 4:gen8-p2-azure3-ben64-4 5:gen8-p2-azure3-ben64-5 6:gen8-p2-azure3-ben64-6 7:gen8-p2-azure3-ben64\n18:54:14 DONE\nprepp2 inactive lane-switch active\n1:0 2:0 3:0 4:0 5:0 6:0 7:0 8:0 \n0\n",
+ "received": "2026-11-12T19:27:02Z",
+ "script_sha256": "80e6192f25a343a127f05a296578975bcc8e0df7a18fec9327899b887c031425",
+ "started": "2026-11-12T19:27:02Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

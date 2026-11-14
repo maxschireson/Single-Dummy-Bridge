@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 2.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:37:32Z",
+ "id": "20261113T083721Z-873179-loop-switch-off",
+ "output_bytes": 1164,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 137 Nov 13 08:37 /home/bridgebots/work/lanes/SWITCH_OFF\n2026-11-13T08:35:50Z lane 7: collector active, publisher active on gen8-f-azure3-ben64-7\n2026-11-13T08:35:50Z lane 8: gen8-p2-azure3-ben64-8 done (369 of 369 boards, all published); moving to gen8-f-azure3-ben64-8\n2026-11-13T08:35:50Z lane 8: collector active, publisher active on gen8-f-azure3-ben64-8\nlane 1: gen8-f-azure3-ben64-1 11 of 1500 played, 10 published; collector active, next: none\nlane 2: gen8-f-azure3-ben64-2 13 of 1500 played, 12 published; collector active, next: none\nlane 3: gen8-f-azure3-ben64-3 29 of 1500 played, 29 published; collector active, next: none\nlane 4: gen8-f-azure3-ben64-4 31 of 1500 played, 30 published; collector active, next: none\nlane 5: gen8-f-azure3-ben64-5 8 of 1500 played, 8 published; collector active, next: none\nlane 6: gen8-p2-azure3-ben64-6 359 of 372 played, 359 published; collector active, next: gen8-f-azure3-ben64-6\nlane 7: gen8-f-azure3-ben64-7 1 of 1500 played, 1 published; collector active, next: none\nlane 8: gen8-f-azure3-ben64-8 1 of 1500 played, 0 published; collector active, next: none\n2026-11-13T08:37:30Z\n",
+ "received": "2026-11-13T08:37:29Z",
+ "script_sha256": "1bde36d2ab1f72c3f288206a671d904b0b2eddb744aff69244696c7eb466db18",
+ "started": "2026-11-13T08:37:29Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

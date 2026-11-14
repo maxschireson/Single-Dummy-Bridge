@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 260.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:55:06Z",
+ "id": "20261113T115027Z-958513-loop-leadpf3",
+ "output_bytes": 2068,
+ "output_tail": "2026-11-13T11:38:16Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source e00923e)\nl0-p at 392 boards\nsource 0a87e01 8X: the opening lead from rollouts (x8 `lead` block); Stu's rolled-lead bots\n{\"pair\": \"stu0-pr~8p-32-v41\", \"boards\": 8, \"cpu_per_board\": 77.22, \"common\": {\"imps_per_board\": 1.375, \"se\": 1.034, \"boards\": 8, \"won\": 2, \"lost\": 1, \npf-pr: 92 s wall\n{\"pair\": \"stu0-pra~stu0-prb\", \"boards\": 8, \"cpu_per_board\": 112.57, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 8, \"won\": 0, \"lost\": 0, \"fl\npf-prr: 135 s wall\npf-pr | leads {'rollout+lead': 8} | later {'rollout': 290, 'claim': 40}\n   lead rollouts: candidates 10.2 (min 9 max 12) | layouts kept/played [(512, 512, 512)] | moved off the net's lead 4 of 8 | seconds a lead: layouts 0.06 rollouts 29.30 | net rows a lead 212566 | malformed 0\n   bytes a board 52105 | cpu a board 77.2 | x8 summary keys with lead: ['lead', 'lead_moved', 'lead_seconds'] | IMPs [0, 0, 0, 0, 0, -1, 5, 7]\npf-prr | leads {'rollout+lead': 16} | later {'rollout': 540, 'claim': 96}\n   lead rollouts: candidates 10.2 (min 9 max 12) | layouts kept/played [(512, 512, 512)] | moved off the net's lead 10 of 16 | seconds a lead: layouts 0.06 rollouts 26.75 | net rows a lead 191142 | malformed 0\n   bytes a board 73749 | cpu a board 112.6 | x8 summary keys with lead: ['lead', 'lead_moved', 'lead_seconds'] | IMPs [0, 0, 0, 0, 0, 0, 0, 0]\nLEAD ROLLOUT BOTS OK\n{\"episodes\": 8, \"deals\": 8, \"unique_families\": 8, \"examples\": 652, \"train\": 570, \"validation\": 0, \"test\": 82, \"rows_with_unrated_cards\": 238}\nrows 652 | lead rows 16 | lead rows with a gap for every legal card 16 | mean legal cards at the lead 13.0 | mean gap of the cards not best at the lead 0.205 tricks | share of lead cards within 0.05 of the best 0.26\nRunning as unit: loop-chain.service; invocation ID: a5f822fb11f84336b7cb521d3efab2d9\nactive active \n2026-11-13T11:54:37Z end l0-stu0: exit 0\n2026-11-13T11:54:37Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 0a87e01)\n2026-11-13T11:55:06Z\n",
+ "received": "2026-11-13T11:50:45Z",
+ "script_sha256": "f9edcae213720af13493dc4307e260c46dc1c23a9ddf8a74f529437dfaef2974",
+ "started": "2026-11-13T11:50:45Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

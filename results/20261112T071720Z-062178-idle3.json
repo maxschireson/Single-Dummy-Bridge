@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 39.9,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:18:32Z",
+ "id": "20261112T071720Z-062178-idle3",
+ "output_bytes": 360,
+ "output_tail": "07:17:52\nw1 25% R16/D2; s1 67% R5/D0; w2 18% R9/D2; s2 77% R5/D0; w3 17% R14/D1; s3 75% R7/D0; w4 9% R7/D1; s4 89% R4/D0; w5 21% R11/D1; s5 74% R8/D0; w6 14% R10/D4; s6 78% R4/D0; w7 23% R12/D2; s7 73% R4/D0; w8 25% R16/D4; s8 69% R4/D0; \nlane collectors' workers: 152%, BEN servers: 602%\nsystem cpu: user 93%, sys 3%, idle 2%, iowait 1.8%\nlane caches: 162 MB\n",
+ "received": "2026-11-12T07:17:52Z",
+ "script_sha256": "d4bf7f0cee3ea55acc215e7de2b4e27d720b6e25be100a999ed3416af00461a4",
+ "started": "2026-11-12T07:17:52Z",
+ "timed_out": false,
+ "timeout_s": 90
+}

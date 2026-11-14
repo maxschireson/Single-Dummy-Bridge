@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:27:30Z",
+ "id": "20261112T112706Z-240320-peek-prepnext",
+ "output_bytes": 1697,
+ "output_tail": "11:27:30\nprepnext inactive; lane-switch active\nplan: Gen 7.1 \u00b7 BEN (64) pair on azure3: standard with policy v4.1 against BEN (64), deals v4.1 was not trained on | pairs {'71s-32~ben64': 1} | policy gen7_policy_v41 | tree {'root_margin': 0.25, 'trust': 0.3, 'path': 0.5, 'tricks': 3}\nlane 1: preflight passed in 388s: [('71s-32~ben64', 0, 41, 140), ('71s-32~ben64', 1, 62, 222)] | tree consulted 20 moved 1 over budget 0\nlane 2: preflight passed in 205s: [('71s-32~ben64', 0, 39, 82), ('71s-32~ben64', 1, 42, 94)] | tree consulted 10 moved 0 over budget 0\nlane 3: preflight passed in 315s: [('71s-32~ben64', 0, 62, 183), ('71s-32~ben64', 1, 42, 110)] | tree consulted 17 moved 2 over budget 0\nlane 4: preflight passed in 265s: [('71s-32~ben64', 0, 41, 98), ('71s-32~ben64', 1, 45, 141)] | tree consulted 17 moved 1 over budget 0\nlane 5: preflight passed in 292s: [('71s-32~ben64', 0, 41, 186), ('71s-32~ben64', 1, 41, 87)] | tree consulted 19 moved 1 over budget 0\nlane 6: preflight passed in 327s: [('71s-32~ben64', 0, 67, 229), ('71s-32~ben64', 1, 39, 70)] | tree consulted 18 moved 1 over budget 0\nlane 7: preflight passed in 296s: [('71s-32~ben64', 0, 63, 158), ('71s-32~ben64', 1, 40, 116)] | tree consulted 13 moved 3 over budget 0\nlane 8: preflight passed in 300s: [('71s-32~ben64', 0, 42, 89), ('71s-32~ben64', 1, 63, 185)] | tree consulted 11 moved 0 over budget 0\n11:25:58 next pool armed: 1:gen71fresh2-azure3-ben64-1 2:gen71fresh2-azure3-ben64-2 3:gen71fresh2-azure3-ben64-3 4:gen71fresh2-azure3-ben64-4 5:gen71fresh2-azure3-ben64-5 6:gen71fresh2-azure3-ben64-6 7:gen71fresh2-azure3-ben64-7 8:gen71fresh2-azure3-ben64-8 ; lane-switch active\n11:25:58 DONE\n2026-11-12T11:25:58Z started\n",
+ "received": "2026-11-12T11:27:30Z",
+ "script_sha256": "8dc5b9cb030ccffea66b1a2c9c58fc847ea4112dd30b4b81ba4ebedd952df2fd",
+ "started": "2026-11-12T11:27:30Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

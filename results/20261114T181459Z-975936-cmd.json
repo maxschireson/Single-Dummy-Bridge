@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 254.0,
+ "exit_code": 4,
+ "finished": "2026-11-14T18:19:46Z",
+ "id": "20261114T181459Z-975936-cmd",
+ "output_bytes": 174,
+ "output_tail": "bu4c-pst200a: 256 | bu4c-pst200b: 256 | bu4c-pst200c: 186 | \nsource 7768d38\nRunning as unit: loop-seatbench.service; invocation ID: 2073cf19416c4852b5aa35984c34d944\ninactive ",
+ "received": "2026-11-14T18:15:32Z",
+ "script_sha256": "6a08e7231391bac9cbe062b5a48896e49940c8bf9a1b31e1601ec6c802d07877",
+ "started": "2026-11-14T18:15:32Z",
+ "timed_out": false,
+ "timeout_s": 420
+}

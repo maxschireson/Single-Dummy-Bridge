@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 303.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:26:59Z",
+ "id": "20261114T182150Z-086254-cmd",
+ "output_bytes": 425,
+ "output_tail": "source 42caf93\nRunning as unit: loop-seatbench.service; invocation ID: 78c5ae5760724a3c9656b64d2141b09a\nbench: active; decisions so far: 513\n2026-11-14T18:21:59Z the collection waits for the seat bench (fixed, source 42caf93)\n2026-11-14T18:21:59Z seat bench begins (bench/seat_variants.py on round 3's gate records, one decision in 8)\n 18:26:59 up 2 days, 16:16,  0 user,  load average: 8.42, 8.31, 8.32\n2026-11-14T18:26:59Z\n",
+ "received": "2026-11-14T18:21:56Z",
+ "script_sha256": "4585068c526d3d6d949c09c4d1898598789afecb518a7bbe6e001903c396a53c",
+ "started": "2026-11-14T18:21:56Z",
+ "timed_out": false,
+ "timeout_s": 480
+}

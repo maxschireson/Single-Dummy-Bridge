@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T13:37:48Z",
+ "id": "20261114T133744Z-200949-cmd",
+ "output_bytes": 524,
+ "output_tail": "2026-11-14T13:31:30Z start bu3-pst200e-6 stu3-put~ben200 seed 131 first 1856 deals 64 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n2026-11-14T13:31:30Z start bu3-pst200e-7 stu3-put~ben200 seed 131 first 1920 deals 64 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n2026-11-14T13:31:30Z start bu3-pst200e-8 stu3-put~ben200 seed 131 first 1984 deals 64 workers 1 --common-only --episodes (source 9f18993, nets fp32)\nbu3-pst200d: 512 boards | bu3-pst200e: 38 boards | \nactive inactive 13:37:48\n",
+ "received": "2026-11-14T13:37:48Z",
+ "script_sha256": "2831540316804dd2477263b8d902a22aba93c466860fd7fd72329c278ca35591",
+ "started": "2026-11-14T13:37:48Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

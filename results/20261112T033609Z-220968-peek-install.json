@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:36:18Z",
+ "id": "20261112T033609Z-220968-peek-install",
+ "output_bytes": 1170,
+ "output_tail": "ben-install: inactive\n03:32:58 == source\n03:33:43 BEN at 9b5f43104aeac713a80b73513f2f2d6daf9f8769, 2.1G; lfs filters: 0\n03:33:43 == models against configs/ben-gen5-16.provenance.json\n16 model files, 17 entries, 0 mismatches; source commit pinned 9b5f43104aea\n03:33:43 == config\n/home/bridgebots/work/capsule-gen7-capture/recovery/assets/ben-64.conf sha256 6586bb6492f1c43526ca547407afe00b30adb166e5242ecb44a51772ddfc2ac2\n03:33:43 == python environment\n03:34:37 packages installed: 61; differing from the pinned list: 0\n03:34:37 == server test on 127.0.0.1:8089\n03:34:47 listening after 15s; memory 0.8 GB\n2026-11-12 03:34:40 gameapi.py - Version 0.9.0.2\nPython version: 3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0] False\nLoading TensorFlow 2.21.0 - Keras version: 3.15.1\nNumPy Version : 2.0.2\nModel:    GIB-BBO-8742_2026-10-23-E30.keras\nDDSolver enabled. Version 3.1.0 Max threads 1\nWarmed up 17 models in 2.40 seconds\nbid request answered: {'bid': '1C', 'who': 'NN', 'quality': '1'} | keys ['alert', 'bid', 'candidates', 'explanation', 'explanations', 'hcp', 'quality', 'shape', 'who']\n03:34:48 bid request took 0.1s; server memory 0.8 GB, threads 7\n03:34:49 DONE\n",
+ "received": "2026-11-12T03:36:18Z",
+ "script_sha256": "2abb2aa05acbbf7f4e564050ba65f2d4ce6f3d6cec098dc4a2ee39db0a0762d1",
+ "started": "2026-11-12T03:36:18Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:32:17Z",
+ "id": "20261113T073211Z-460511-pf-peek",
+ "output_bytes": 667,
+ "output_tail": "07:32:17\n07:25:55 load 6.35 6.38 6.85; memory available 17888 MB\n07:25:57 checkout: 46b7e0044be79d40ad17499334b6ececf022910e Gen 9 cohort: plan opened on g9's go (Max's 03:47 instruction); one-j\n07:26:18 v4.1 matches sdb-gen8's; dds built\n07:26:34 tests test_gen8*.py: Ran 25 tests in 15.786s OK \n07:26:36 tests test_gen71*.py: Ran 8 tests in 0.300s OK \n07:27:09 tests test_rule_bidder.py: Ran 14 tests in 33.222s OK \n07:28:02 tests test_bidding_systems.py: Ran 28 tests in 52.743s OK \n07:28:02 tests test_prepare_gen7*.py: Ran 0 tests in 0.000s \n07:28:02 tests took 104s\n07:28:02 tests did not pass\n07:28:02 STOPPED: tests\n07:28:02 lane-switch released\nprepf failed\n",
+ "received": "2026-11-13T07:32:17Z",
+ "script_sha256": "b53c89be783edf10682207ac5ec49f9c44a3d8062d99bdc347f11e6f422f28c6",
+ "started": "2026-11-13T07:32:17Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

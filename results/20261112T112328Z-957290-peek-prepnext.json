@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:23:56Z",
+ "id": "20261112T112328Z-957290-peek-prepnext",
+ "output_bytes": 285,
+ "output_tail": "11:23:56\nprepnext active; lane-switch inactive\nplan: Gen 7.1 \u00b7 BEN (64) pair on azure3: standard with policy v4.1 against BEN (64), deals v4.1 was not trained on | pairs {'71s-32~ben64': 1} | policy gen7_policy_v41 | tree {'root_margin': 0.25, 'trust': 0.3, 'path': 0.5, 'tricks': 3}\n",
+ "received": "2026-11-12T11:23:56Z",
+ "script_sha256": "8dc5b9cb030ccffea66b1a2c9c58fc847ea4112dd30b4b81ba4ebedd952df2fd",
+ "started": "2026-11-12T11:23:56Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

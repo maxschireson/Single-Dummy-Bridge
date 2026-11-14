@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:53:16Z",
+ "id": "20261113T085302Z-217966-loop-drain-peek",
+ "output_bytes": 954,
+ "output_tail": "# loop: drain progress (read-only)\n2026-11-13T08:50:34Z lane 3: STOP in gen8-f-azure3-ben64-3 at 35 boards\n2026-11-13T08:50:34Z lane 4: STOP in gen8-f-azure3-ben64-4 at 39 boards\n2026-11-13T08:50:34Z lane 5: STOP in gen8-f-azure3-ben64-5 at 15 boards\n2026-11-13T08:50:34Z lane 7: STOP in gen8-f-azure3-ben64-7 at 8 boards\n2026-11-13T08:50:34Z lane 8: STOP in gen8-f-azure3-ben64-8 at 8 boards\n2026-11-13T08:51:55Z lanes 1 2 3 4 5 7 8: collectors stopped; starting the loop's job chain and publisher\nRunning as unit: loop-chain.service; invocation ID: bc9f90d3188a4a36a5d85a499f8d3c02\nRunning as unit: loop-publish.service; invocation ID: d11f74060be74b009736cfdc4f868632\n1:inactive 2:inactive 3:inactive 4:inactive 5:inactive 6:active 7:inactive 8:inactive \nactive active active \n2026-11-13T08:51:55Z start g0-v2 z0a-v2~8p-32-v41 seed 131 first 0 deals 2000 workers 8  (source 79c1845)\n 08:53:16 up 1 day,  6:42,  0 user,  load average: 8.23, 8.41, 8.65\n",
+ "received": "2026-11-13T08:53:16Z",
+ "script_sha256": "3672b73cfb116c8a528856772911765d7e608637e1783acbba3567384c65e9f5",
+ "started": "2026-11-13T08:53:16Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

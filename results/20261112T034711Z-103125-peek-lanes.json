@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:47:21Z",
+ "id": "20261112T034711Z-103125-peek-lanes",
+ "output_bytes": 1340,
+ "output_tail": "ben-lanes: active\n03:41:55 units and preflight wrapper written\nplan: Gen 7 \u00b7 phase 1, BEN (64) pair on azure3: standard against BEN (64) | pairs {'7s-32~ben64': 1} | tree {'root_margin': 0.25, 'trust': 0.3, 'path': 0.5, 'tricks': 3}\n03:41:55 files the BEN test server left in its checkout: 0 \n03:41:55 == lane 1 (shard 1/32)\nlane 1: cohort 0a5dd6cb578d, 704 deals, shard 1/32, pairs {'7s-32~ben64': 1}\n03:42:08 lane 1: BEN server listening\nlane 1: preflight passed in 260s: [('7s-32~ben64', 0, 231, 173), ('7s-32~ben64', 1, 108, 84)] | tree consulted 37 moved 2 over budget 0\n03:46:31 == drain the non-BEN collector\n03:46:56 non-BEN cohort stopped at 720 boards, failures 0\n03:46:57 lane 1: collector active, publisher active, feed arena-gen7-phase1-azure3-ben64-1-feed\n03:46:57 == lanes 2 to 8\nlane 2: cohort 441933e79ab2, 704 deals, shard 9/32, pairs {'7s-32~ben64': 1}\nlane 3: cohort 7100832b4607, 703 deals, shard 17/32, pairs {'7s-32~ben64': 1}\nlane 4: cohort c408ecbb2b48, 703 deals, shard 25/32, pairs {'7s-32~ben64': 1}\nlane 5: cohort c7ea0350a69e, 704 deals, shard 3/32, pairs {'7s-32~ben64': 1}\nlane 6: cohort b0c53930ed12, 704 deals, shard 11/32, pairs {'7s-32~ben64': 1}\nlane 7: cohort 4797ea730e8e, 703 deals, shard 19/32, pairs {'7s-32~ben64': 1}\nlane 8: cohort 56c7bff8f4a3, 703 deals, shard 27/32, pairs {'7s-32~ben64': 1}\n",
+ "received": "2026-11-12T03:47:21Z",
+ "script_sha256": "13f98a14990a000ad252c3e5bea872bf50dd6b9a18265980cd88601d6b2584a9",
+ "started": "2026-11-12T03:47:21Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

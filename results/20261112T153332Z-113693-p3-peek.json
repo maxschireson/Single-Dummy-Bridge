@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:34:05Z",
+ "id": "20261112T153332Z-113693-p3-peek",
+ "output_bytes": 1624,
+ "output_tail": "15:34:05\nprepnext3 inactive\nlane 1: preflight passed in 282s: [('71s-32~ben64', 0, 43, 132), ('71s-32~ben64', 1, 42, 128)] | tree consulted 10 moved 1 over budget 0\nlane 2: preflight passed in 441s: [('71s-32~ben64', 0, 62, 259), ('71s-32~ben64', 1, 80, 154)] | tree consulted 22 moved 1 over budget 0\nlane 3: preflight passed in 343s: [('71s-32~ben64', 0, 43, 146), ('71s-32~ben64', 1, 42, 170)] | tree consulted 11 moved 0 over budget 0\nlane 4: preflight passed in 204s: [('71s-32~ben64', 0, 41, 94), ('71s-32~ben64', 1, 41, 79)] | tree consulted 10 moved 0 over budget 0\nlane 5: preflight passed in 349s: [('71s-32~ben64', 0, 62, 205), ('71s-32~ben64', 1, 67, 121)] | tree consulted 23 moved 2 over budget 0\nlane 6: preflight passed in 395s: [('71s-32~ben64', 0, 81, 225), ('71s-32~ben64', 1, 61, 149)] | tree consulted 22 moved 2 over budget 0\nlane 7: preflight passed in 318s: [('71s-32~ben64', 0, 40, 175), ('71s-32~ben64', 1, 39, 115)] | tree consulted 12 moved 1 over budget 0\nlane 8: preflight passed in 277s: [('71s-32~ben64', 0, 41, 133), ('71s-32~ben64', 1, 41, 116)] | tree consulted 11 moved 5 over budget 0\n15:30:57 third pool armed: 1:gen71fresh3-azure3-ben64-1 2:gen71fresh3-azure3-ben64-2 3:gen71fresh3-azure3-ben64-3 4:gen71fresh3-azure3-ben64-4 5:gen71fresh3-azure3-ben64-5 6:gen71fresh3-azure3-ben64-6 7:gen71fresh3-azure3-ben64-7 8:gen71fresh3-azure3-ben64-8 ;\n15:30:57 DONE\n2026-11-12T13:29:13Z lane 8: gen71fresh-azure3-ben64-8 done (365 of 365 boards, all published); moving to gen71fresh2-azure3-ben64-8\n2026-11-12T13:29:13Z lane 8: collector active, publisher active on gen71fresh2-azure3-ben64-8\n",
+ "received": "2026-11-12T15:34:05Z",
+ "script_sha256": "81cf4fe7a5713f5a77cfe935c645c6cb4153576dd8f19984a0347c7285c19e92",
+ "started": "2026-11-12T15:34:05Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

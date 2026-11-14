@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:46:21Z",
+ "id": "20261113T074559Z-537574-fsw",
+ "output_bytes": 931,
+ "output_tail": "07:46:21\n2026-11-12T21:59:41Z lane 6: gen8-azure3-ben64-6 done (184 of 184 boards, all published); moving to gen8-p2-azure3-ben64-6\n2026-11-12T21:59:41Z lane 6: collector active, publisher active on gen8-p2-azure3-ben64-6\n2026-11-13T07:44:44Z lane 3: gen8-p2-azure3-ben64-3 done (368 of 368 boards, all published); moving to gen8-f-azure3-ben64-3\n2026-11-13T07:44:44Z lane 3: collector active, publisher active on gen8-f-azure3-ben64-3\n2026-11-13T07:44:44Z lane 4: gen8-p2-azure3-ben64-4 done (367 of 367 boards, all published); moving to gen8-f-azure3-ben64-4\n2026-11-13T07:44:44Z lane 4: collector active, publisher active on gen8-f-azure3-ben64-4\n1:gen8-p2-azure3-ben64-1(sdb-gen8) 2:gen8-p2-azure3-ben64-2(sdb-gen8) 3:gen8-f-azure3-ben64-3(sdb-gen9c) 4:gen8-f-azure3-ben64-4(sdb-gen9c) 5:gen8-p2-azure3-ben64-5(sdb-gen8) 6:gen8-p2-azure3-ben64-6(sdb-gen8) 7:gen8-p2-azure3-ben64-7(sdb-gen8) 8:gen8-p2-azure3-ben64-8(sdb-gen8) \n",
+ "received": "2026-11-13T07:46:21Z",
+ "script_sha256": "8f685bf66bd7c3d8aeea54d70eba8ae0dbd6b56bf31b428670f762726031e3db",
+ "started": "2026-11-13T07:46:21Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

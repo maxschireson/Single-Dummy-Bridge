@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:25:54Z",
+ "id": "20261112T052543Z-770244-40-mem",
+ "output_bytes": 2149,
+ "output_tail": "                           total        used        free      shared  buff/cache   available\nMem:           32086       18248         765           4       13537       13837\n== by kind (RSS MB, processes)\n   14107 MB   24  collector and its workers\n    9909 MB    8  BEN server (gameapi.py)\n    1125 MB    8  publisher\n     360 MB  190  other\n       4 MB    1  LEFTOVER test or preflight\n== the ten largest\n  1782 MB  up  5736s  pid 10871  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1773 MB  up  5936s  pid 9237  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1727 MB  up  5707s  pid 11271  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1718 MB  up  5764s  pid 10519  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1679 MB  up  5694s  pid 11460  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1631 MB  up  5755s  pid 10690  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1620 MB  up  5682s  pid 11652  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1609 MB  up  5718s  pid 11093  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1319 MB  up  5921s  pid 9818  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1318 MB  up  5921s  pid 9807  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n== BEN servers, one line a lane (RSS MB, uptime s)\nlane 1: 1263 MB up 6235s; lane 2: 1338 MB up 5922s; lane 3: 1217 MB up 5922s; lane 4: 1210 MB up 5922s; lane 5: 1231 MB up 5922s; lane 6: 1202 MB up 5922s; lane 7: 1319 MB up 5922s; lane 8: 1159 MB up 5922s; \n== kernel: recent out-of-memory events\n(end)\n",
+ "received": "2026-11-12T05:25:53Z",
+ "script_sha256": "b4f9ecc9c362ea13c123965f1b1f4d4877f7bba826f9e77b5f5a887c2f68cc44",
+ "started": "2026-11-12T05:25:53Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

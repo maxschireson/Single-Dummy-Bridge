@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 8.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:50:42Z",
+ "id": "20261113T085007Z-324573-loop-03-drain-lanes",
+ "output_bytes": 705,
+ "output_tail": "Running as unit: loop-drain.service; invocation ID: 1121c04652c34e588a38d754eeefac15\n2026-11-13T08:50:34Z RECYCLE_OFF and SWITCH_OFF in place; stopping lanes 1 2 3 4 5 7 8 after the board in hand\n2026-11-13T08:50:34Z lane 1: STOP in gen8-f-azure3-ben64-1 at 18 boards\n2026-11-13T08:50:34Z lane 2: STOP in gen8-f-azure3-ben64-2 at 21 boards\n2026-11-13T08:50:34Z lane 3: STOP in gen8-f-azure3-ben64-3 at 35 boards\n2026-11-13T08:50:34Z lane 4: STOP in gen8-f-azure3-ben64-4 at 39 boards\n2026-11-13T08:50:34Z lane 5: STOP in gen8-f-azure3-ben64-5 at 15 boards\n2026-11-13T08:50:34Z lane 7: STOP in gen8-f-azure3-ben64-7 at 8 boards\n2026-11-13T08:50:34Z lane 8: STOP in gen8-f-azure3-ben64-8 at 8 boards\nactive\n",
+ "received": "2026-11-13T08:50:34Z",
+ "script_sha256": "fbd896a9bfde724aa16294580c3534a105efeef9e58c6ba008b23cf919ba6610",
+ "started": "2026-11-13T08:50:34Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

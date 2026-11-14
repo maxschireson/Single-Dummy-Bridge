@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 655.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:04:48Z",
+ "id": "20261113T225332Z-388701-loop-switch",
+ "output_bytes": 1072,
+ "output_tail": " scripts/gen7_build_dataset.py | 71 +++++++++++++++++++++++++++++++++++++++++--\n 1 file changed, 68 insertions(+), 3 deletions(-)\nsource 1a40de0\nRunning as unit: loop-chain.service; invocation ID: d0ec66fbe9704e4d85aaba194c665d72\nRunning as unit: loop-rows.service; invocation ID: f4c33e310c734e8397774ab574e0b3a6\nbox azure3: active active active \n2026-11-13T22:53:55Z end l1-n: exit 0\n2026-11-13T22:53:55Z start sps0b stu0-psa~stu0-psb seed 9001 first 280000 deals 20000 workers 8 --episodes --one-room (source 1a40de0, nets bf16, --recycle 20)\n2026-11-13T22:59:40Z cut sp0b 83000-84098: 1099 boards, {\"episodes\": 1099, \"deals\": 1098, \"unique_families\": 1098, \"examples\": 45425, \"train\": 35892, \"validation\": 4335, \"test\", 2268 KB\n2026-11-13T23:04:48Z cut spr0b 120000-120961: 962 boards, {\"episodes\": 962, \"deals\": 961, \"unique_families\": 961, \"examples\": 39633, \"train\": 31928, \"validation\": 3833, \"test\": 3, 2016 KB\nsp0b 4106 tables (final)\nspr0b 962 tables (final)\nMem:           32086       25758        5508           4        1304        6327\n2026-11-13T23:04:48Z\n",
+ "received": "2026-11-13T22:53:53Z",
+ "script_sha256": "0cbc60cbdba65b666d7238d6ce228b303292169c52ec8685f6ce9294fb9b5897",
+ "started": "2026-11-13T22:53:53Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

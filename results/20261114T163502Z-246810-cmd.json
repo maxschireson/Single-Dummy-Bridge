@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T16:35:11Z",
+ "id": "20261114T163502Z-246810-cmd",
+ "output_bytes": 239,
+ "output_tail": "R4 vs BEN -0.283 +- 0.186 (512); R3 same deals -0.096 +- 0.177; R4 - R3 paired -0.188 +- 0.204\nR4c vs BEN +0.385 +- 0.363 (109); R3 same deals -0.349 +- 0.389; R4c - R3 paired +0.734 +- 0.423\nR4 - R4c paired -0.716 +- 0.419 (109)\n16:35:11\n",
+ "received": "2026-11-14T16:35:11Z",
+ "script_sha256": "f2d56904cb55be9ec076fbab896ca7d46b73ccec8d15559c47880e02aacd09d2",
+ "started": "2026-11-14T16:35:11Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

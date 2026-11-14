@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 20.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:59:45Z",
+ "id": "20261112T055917Z-720101-51-lanes-to-71",
+ "output_bytes": 184,
+ "output_tail": "switch71: active\n05:59:25 == build the Gen 7.1 source\n05:59:28 checkout: 9f5ec19498e7e20e9f610ed93d896880a17cbcc9 Gen 7.1: policy net v4.1, a cohort that holds bots with different net\n",
+ "received": "2026-11-12T05:59:25Z",
+ "script_sha256": "33bc233e07e67ae04f26a59318ccc1a73120c13b9753fa1cb5b4cff94f9bdaef",
+ "started": "2026-11-12T05:59:25Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

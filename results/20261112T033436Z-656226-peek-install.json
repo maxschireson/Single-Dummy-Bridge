@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:34:45Z",
+ "id": "20261112T033436Z-656226-peek-install",
+ "output_bytes": 559,
+ "output_tail": "ben-install: active\n03:32:58 == source\n03:33:43 BEN at 9b5f43104aeac713a80b73513f2f2d6daf9f8769, 2.1G; lfs filters: 0\n03:33:43 == models against configs/ben-gen5-16.provenance.json\n16 model files, 17 entries, 0 mismatches; source commit pinned 9b5f43104aea\n03:33:43 == config\n/home/bridgebots/work/capsule-gen7-capture/recovery/assets/ben-64.conf sha256 6586bb6492f1c43526ca547407afe00b30adb166e5242ecb44a51772ddfc2ac2\n03:33:43 == python environment\n03:34:37 packages installed: 61; differing from the pinned list: 0\n03:34:37 == server test on 127.0.0.1:8089\n",
+ "received": "2026-11-12T03:34:45Z",
+ "script_sha256": "2abb2aa05acbbf7f4e564050ba65f2d4ce6f3d6cec098dc4a2ee39db0a0762d1",
+ "started": "2026-11-12T03:34:45Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

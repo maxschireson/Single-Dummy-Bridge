@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T19:42:42Z",
+ "id": "20261114T194222Z-697970-cmd",
+ "output_bytes": 2396,
+ "output_tail": "tricks 1-4: 3092 decisions. Recorded card gives up 0.0462 tricks a decision by double dummy\n  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw\n  draw (as played)         |   +0.070 +- 0.020 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0424   +0.0000 +- 0.0000\n  draw, other seed         |   +0.068 +- 0.020 |    +0.0012 +- 0.0041 |  -0.0008 +- 0.0006 |      43.2% |      0.0414   -0.0010 +- 0.0026\n  top card                 |   +0.069 +- 0.020 |    -0.0020 +- 0.0083 |  -0.0015 +- 0.0012 |      38.3% |      0.0414   -0.0010 +- 0.0031\n  draw, power 2            |   +0.068 +- 0.020 |    -0.0085 +- 0.0052 |  -0.0031 +- 0.0008 |      35.9% |      0.0430   +0.0006 +- 0.0027\n  draw, cut 0.25           |   +0.070 +- 0.020 |    -0.0113 +- 0.0048 |  -0.0022 +- 0.0008 |      36.4% |      0.0417   -0.0006 +- 0.0031\n  others top, own drawn    |   -0.121 +- 0.020 |    +0.0033 +- 0.0109 |  -0.0026 +- 0.0015 |      36.4% |      0.0433   +0.0010 +- 0.0028\n  own top, others drawn    |   +0.260 +- 0.020 |    +0.0745 +- 0.0112 |  +0.0072 +- 0.0014 |      37.5% |      0.0430   +0.0006 +- 0.0030\n\ntricks 5-13: 4780 decisions. Recorded card gives up 0.0215 tricks a decision by double dummy\n  simulated seats          |  own-side optimism |  squared error - draw |       Brier - draw | other card | DD given up         minus draw\n  draw (as played)         |   +0.094 +- 0.011 |    +0.0000 +- 0.0000 |  +0.0000 +- 0.0000 |       0.0% |      0.0192   +0.0000 +- 0.0000\n  draw, other seed         |   +0.096 +- 0.011 |    +0.0103 +- 0.0044 |  +0.0006 +- 0.0010 |      34.3% |      0.0195   +0.0002 +- 0.0017\n  top card                 |   +0.092 +- 0.011 |    +0.0035 +- 0.0049 |  +0.0009 +- 0.0012 |      28.5% |      0.0215   +0.0023 +- 0.0020\n  draw, power 2            |   +0.095 +- 0.011 |    -0.0011 +- 0.0038 |  -0.0007 +- 0.0009 |      25.1% |      0.0182   -0.0010 +- 0.0016\n  draw, cut 0.25           |   +0.097 +- 0.011 |    -0.0007 +- 0.0034 |  -0.0007 +- 0.0008 |      24.4% |      0.0205   +0.0013 +- 0.0016\n  others top, own drawn    |   +0.032 +- 0.011 |    -0.0145 +- 0.0046 |  -0.0036 +- 0.0011 |      27.4% |      0.0205   +0.0013 +- 0.0017\n  own top, others drawn    |   +0.156 +- 0.011 |    +0.0285 +- 0.0045 |  +0.0041 +- 0.0010 |      26.4% |      0.0195   +0.0002 +- 0.0018\n",
+ "received": "2026-11-14T19:42:42Z",
+ "script_sha256": "623e241684026a56d6d650eebd8211f7102e7378d6ca7c9cc09a7581ff46f2c5",
+ "started": "2026-11-14T19:42:42Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

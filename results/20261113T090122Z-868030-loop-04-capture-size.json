@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 257.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:05:43Z",
+ "id": "20261113T090122Z-868030-loop-04-capture-size",
+ "output_bytes": 1274,
+ "output_tail": "{\"pair\": \"z0a-v2~z0b-v2\", \"boards\": 6, \"cpu_per_board\": 51.88, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 6, \"won\": 0, \"lost\": 0, \"flat\": 6}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 6, \"won\": 0, \"lost\": 0, \"flat\": 6}}\ncap1: 126 s wall\n{\"pair\": \"z0a-v2~z0b-v2\", \"boards\": 6, \"cpu_per_board\": 53.65, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 6, \"won\": 0, \"lost\": 0, \"flat\": 6}, \"native\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 6, \"won\": 0, \"lost\": 0, \"flat\": 6}}\ncap2: 131 s wall\nboards 6 6\nbytes a board as written: level 1 27239 | level 2, 128 layouts 43065\nbytes a board re-encoded the same way: level 1 27221 | level 2, 128 layouts 43047\n| level 2, 64 layouts 38266 (decisions with a block: 254, of them over 64 layouts: 110)\ndecision notes 416 416 | same modes, tricks and cards in the same order: True\nsame contracts and results: True | cpu a board 51.9 53.7\nblocks by mode {'blend': 76, 'claim': 0, 'rollout': 178}\ncandidates whose mean tricks were rebuilt from the per-layout results: 444 | largest difference from the recorded mean: 0.0\nrollout decisions by layouts kept: {1: 18, 2: 6, 3: 10} ... {120: 4, 126: 10, 128: 2}\n100 boards: -0.27 +- 0.2269 IMPs/board for z0a-v2; 634 boards/hour; 0 failed\n2026-11-13T09:05:43Z\n",
+ "received": "2026-11-13T09:01:26Z",
+ "script_sha256": "18dd17c70a1df4940fe773ffcb77eda36f5b365adb96aa257ab69bf19022c80d",
+ "started": "2026-11-13T09:01:26Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 20.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:08:08Z",
+ "id": "20261113T120740Z-788118-loop-ledger3",
+ "output_bytes": 1578,
+ "output_tail": " training/rollout-loop-20261113/DASHBOARD.md     |  14 ++-\n training/rollout-loop-20261113/PLAN.md          |  37 ++++++-\n training/rollout-loop-20261113/README.md        |   5 +\n training/rollout-loop-20261113/fusion_ledger.py | 129 ++++++++++++++++++++++++\n 4 files changed, 180 insertions(+), 5 deletions(-)\nsource 4806f1f Stu: fusion_ledger.py, a count against the exact single-dummy solver with no opponent\nRunning as unit: loop-ledger.service; invocation ID: 57a7f5c1e5ce4436b9c836977e362813\nactive active active \n2026-11-13T11:59:43Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source e760e5e)\n2026-11-13T12:06:27Z end l0-p: exit 0\n2026-11-13T12:06:27Z start l0-pr stu0-pr~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source e760e5e)\ng0-stu0 g0-stu0.log g0-v2 g0-v2.log l0-n l0-n.log l0-p l0-p.log l0-pr l0-pr.log l0-stu0 l0-stu0.log l0-v1 l0-v1-n l0-v1-n.log l0-v1-p l0-v1-p.log l0-v1.log s0b s0b.log \nl0-n       8p-32-v41    tables  398 | declaring: held  1301 gave up   13 (1.00%) | defending: choice   244 handed   12 (4.9%) | unknown 0\nl0-n       stu0-n       tables  398 | declaring: held   895 gave up    9 (1.01%) | defending: choice   128 handed   18 (14.1%) | unknown 0\nl0-p       8p-32-v41    tables  996 | declaring: held  2762 gave up   51 (1.85%) | defending: choice   285 handed   29 (10.2%) | unknown 0\nl0-p       stu0-p       tables  996 | declaring: held  2927 gave up    7 (0.24%) | defending: choice   347 handed   23 (6.6%) | unknown 0\nl0-pr      8p-32-v41    tables   12 | declarin2026-11-13T12:08:08Z\n",
+ "received": "2026-11-13T12:07:47Z",
+ "script_sha256": "40f04f79a8f17601140d448deca4b78f3860ced3a713b5e4d023632670db75c8",
+ "started": "2026-11-13T12:07:47Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

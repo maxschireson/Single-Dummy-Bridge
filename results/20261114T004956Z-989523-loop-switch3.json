@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 3121.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T01:42:02Z",
+ "id": "20261114T004956Z-989523-loop-switch3",
+ "output_bytes": 1448,
+ "output_tail": "inactive\nsource 57ce557\nRunning as unit: loop-chain.service; invocation ID: 08fd5bcee6e14d5ab10598db7ce95488\nRunning as unit: loop-rows.service; invocation ID: 448d6de35f054d448871795080099fe9\nazure3: active active active \n2026-11-14T01:41:33Z start l1-n stu1-n~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57ce557, nets fp32)\n2026-11-14T01:41:33Z end l1-n: exit 0\n2026-11-14T01:41:33Z start sp3sb stu3-psa~stu3-psb seed 9001 first 380000 deals 20000 workers 8 --episodes --one-room (source 57ce557, nets bf16, --recycle 20)\n2026-11-13T23:38:51Z BEN (200) servers listening: 8 of 8\n2026-11-14T00:57:54Z end bb-200v64-8: exit 0\n2026-11-14T00:59:14Z end bb-200v64-5: exit 0\n2026-11-14T00:59:36Z end bb-200v64-4: exit 0\n2026-11-14T00:59:36Z end bb-200v64-2: exit 0\n2026-11-14T01:00:06Z end bb-200v64-3: exit 0\n2026-11-14T01:04:13Z end bb-200v64-7: exit 0\n2026-11-14T01:05:29Z end bb-200v64-1: exit 0\n2026-11-14T01:06:37Z end bb-200v64-6: exit 0\n2026-11-14T01:35:00Z end bg-200-8: exit 0\n2026-11-14T01:36:24Z end bg-200-4: exit 0\n2026-11-14T01:36:38Z end bg-200-2: exit 0\n2026-11-14T01:36:43Z end bg-200-5: exit 0\n2026-11-14T01:36:53Z end bg-200-3: exit 0\n2026-11-14T01:39:06Z end bg-200-1: exit 0\n2026-11-14T01:39:15Z end bg-200-7: exit 0\n2026-11-14T01:40:37Z end bg-200-6: exit 0\n2026-11-14T01:40:47Z jobs-azure3-ben3.txt has ended; BEN (200) servers stopped; back to the collection\nsps0b 826 tables (final)\n2026-11-14T01:42:02Z\n",
+ "received": "2026-11-14T00:50:00Z",
+ "script_sha256": "8ba91bc98200ead8b397e1a4f4c55d5b513553d42c031c51b33e067ea70f4019",
+ "started": "2026-11-14T00:50:00Z",
+ "timed_out": false,
+ "timeout_s": 7200
+}

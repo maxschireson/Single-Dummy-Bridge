@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:05:51Z",
+ "id": "20261112T030547Z-007764-phase1-status",
+ "output_bytes": 946,
+ "output_tail": "P1 {\"box\": \"azure3\", \"shard\": {\"index\": 2, \"of\": 8}, \"target\": 2814, \"completed\": 104, \"pairs\": {\"7s-32~6-32\": {\"n\": 35, \"sum\": 15, \"sumsq\": 175, \"won\": 4, \"flat\": 27, \"lost\": 4}, \"7s-32~5RZ32\": {\"n\": 34, \"sum\": 38, \"sumsq\": 580, \"won\": 8, \"flat\": 22, \"lost\": 4}, \"7s-32~1\": {\"n\": 35, \"sum\": 103, \"sumsq\": 1153, \"won\": 17, \"flat\": 16, \"lost\": 2}}, \"tables\": 1738, \"last_30min\": 104, \"running_s\": 392, \"failures\": [], \"stop\": false, \"collector\": \"active\", \"publisher\": \"active\", \"publish\": {\"status\": \"published\", \"completed\": 88, \"age_s\": 58}, \"disk_free_gb\": 125.1, \"cache_gb\": 0.19, \"load\": [7.3, 7.3, 6.7], \"other_units\": {\"pre7-match\": \"inactive\", \"pre7-publish\": \"active\", \"e2-fetch\": \"inactive\"}, \"pre7\": {\"run\": \"pre7-7s-vs-6f-azure3\", \"n\": 374, \"sum\": 113, \"sumsq\": 4045, \"won\": 62, \"flat\": 275, \"lost\": 37, \"tables\": 5433, \"failures\": 0, \"publisher_last\": \"2026-11-12T03:03:48Z pushed transfer/pre7-test-azure3-20261112: 374 episodes\"}}\n",
+ "received": "2026-11-12T03:05:51Z",
+ "script_sha256": "74bc98e545d9d7dae41ea1a5d0910b48834419a0e34f5f9beebc51a8e2a59e2f",
+ "started": "2026-11-12T03:05:51Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 15.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:26:14Z",
+ "id": "20261114T172538Z-111655-cmd",
+ "output_bytes": 630,
+ "output_tail": "  by how clear the choice was (the card played ahead of the next candidate by this many tricks): the rollouts' optimism for the side deciding, tricks\n    declaring under 0.05: +0.036 +- 0.012 (10455) | 0.05 to 0.2: +0.081 +- 0.017 (9664) | 0.2 to 0.5: +0.135 +- 0.022 (3898) | 0.5 and more: +0.093 +- 0.019 (5104)\n    defending under 0.05: +0.110 +- 0.009 (14231) | 0.05 to 0.2: +0.215 +- 0.018 (10087) | 0.2 to 0.5: +0.269 +- 0.020 (4687) | 0.5 and more: +0.226 +- 0.020 (4960)\n  calibration of the contract's chance (the rollouts' chance for the card played, in bins: decisions, mean chance, share made +- SE by table)\n17:26:14\n",
+ "received": "2026-11-14T17:25:58Z",
+ "script_sha256": "217e31ae26c91356459bd6b6735d4e04fec2f3459b835048b23e126f7c5eb86d",
+ "started": "2026-11-14T17:25:58Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

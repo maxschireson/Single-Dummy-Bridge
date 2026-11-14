@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:44:18Z",
+ "id": "20261113T074354Z-343251-pf-peek",
+ "output_bytes": 1938,
+ "output_tail": "07:44:18\nlane 7: cohort a583eeb5bfcf, 1500 fresh deals (seed 8307; excluded: {'training_families': 34092, 'source_corpus': 182, 'played': 85910}), bots and artifacts from the lane's first pool c5177491c16c, pairs {'8s-32~ben64': 1}, 8s-32 \nlane 8: cohort 53a93eeed64e, 1500 fresh deals (seed 8308; excluded: {'training_families': 34092, 'source_corpus': 183, 'played': 85910}), bots and artifacts from the lane's first pool af47c1156de4, pairs {'8s-32~ben64': 1}, 8s-32 \nfresh pools: 12000 deals over 8 lanes, disjoint from each other and from this box's earlier 4311\nlane 1: preflight passed in 395s: [('8s-32~ben64', 0, 86, 199), ('8s-32~ben64', 1, 78, 183)] | tree consulted 28 moved 2 over budget 0\nlane 2: preflight passed in 403s: [('8s-32~ben64', 0, 87, 223), ('8s-32~ben64', 1, 84, 165)] | tree consulted 28 moved 6 over budget 0\nlane 3: preflight passed in 306s: [('8s-32~ben64', 0, 82, 161), ('8s-32~ben64', 1, 80, 132)] | tree consulted 28 moved 2 over budget 0\nlane 4: preflight passed in 327s: [('8s-32~ben64', 0, 86, 159), ('8s-32~ben64', 1, 88, 156)] | tree consulted 24 moved 2 over budget 0\nlane 5: preflight passed in 355s: [('8s-32~ben64', 0, 80, 206), ('8s-32~ben64', 1, 78, 134)] | tree consulted 30 moved 0 over budget 0\nlane 6: preflight passed in 409s: [('8s-32~ben64', 0, 80, 233), ('8s-32~ben64', 1, 78, 161)] | tree consulted 34 moved 3 over budget 0\nlane 7: preflight passed in 417s: [('8s-32~ben64', 0, 82, 176), ('8s-32~ben64', 1, 82, 226)] | tree consulted 26 moved 2 over budget 0\nlane 8: preflight passed in 378s: [('8s-32~ben64', 0, 84, 198), ('8s-32~ben64', 1, 80, 169)] | tree consulted 24 moved 2 over budget 0\n07:44:03 lane-switch released\n07:44:03 fresh pools armed: 1:gen8-f-azure3-ben64-1 2:gen8-f-azure3-ben64-2 3:gen8-f-azure3-ben64-3 4:gen8-f-azure3-ben64-4 5:gen8-f-azure3-ben64-5 6:gen8-f-azure3-ben64-6 7:gen8-f-azure3-ben64-7 8:gen8-f-azure3-ben64-8 ; lane-swi\n07:44:03 DONE\nprepf inactive\n",
+ "received": "2026-11-13T07:44:17Z",
+ "script_sha256": "b53c89be783edf10682207ac5ec49f9c44a3d8062d99bdc347f11e6f422f28c6",
+ "started": "2026-11-13T07:44:17Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

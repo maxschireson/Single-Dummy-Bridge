@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.8,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:25:51Z",
+ "id": "20261112T062535Z-302808-families-order",
+ "output_bytes": 2249,
+ "output_tail": "list sha256 4818856d731bee23 (expected 4818856d731bee23)\ngen71-azure3-ben64-1: 625 deals, 20 played (highest index 19); training families 259: first fresh deal at index 218, last trained deal at index 459; played on training families 20; of the next 400 deals in order, 228 are training families; fresh deals left 366\ngen71-azure3-ben64-2: 629 deals, 15 played (highest index 14); training families 263: first fresh deal at index 226, last trained deal at index 463; played on training families 15; of the next 400 deals in order, 237 are training families; fresh deals left 366\ngen71-azure3-ben64-3: 629 deals, 17 played (highest index 16); training families 257: first fresh deal at index 223, last trained deal at index 464; played on training families 17; of the next 400 deals in order, 228 are training families; fresh deals left 372\ngen71-azure3-ben64-4: 620 deals, 19 played (highest index 18); training families 259: first fresh deal at index 214, last trained deal at index 455; played on training families 19; of the next 400 deals in order, 228 are training families; fresh deals left 361\ngen71-azure3-ben64-5: 625 deals, 19 played (highest index 18); training families 260: first fresh deal at index 218, last trained deal at index 459; played on training families 19; of the next 400 deals in order, 230 are training families; fresh deals left 365\ngen71-azure3-ben64-6: 633 deals, 18 played (highest index 17); training families 264: first fresh deal at index 230, last trained deal at index 467; played on training families 18; of the next 400 deals in order, 235 are training families; fresh deals left 369\ngen71-azure3-ben64-7: 632 deals, 20 played (highest index 19); training families 263: first fresh deal at index 226, last trained deal at index 467; played on training families 20; of the next 400 deals in order, 231 are training families; fresh deals left 369\ngen71-azure3-ben64-8: 629 deals, 16 played (highest index 15); training families 264: first fresh deal at index 224, last trained deal at index 463; played on training families 16; of the next 400 deals in order, 237 are training families; fresh deals left 365\nall current Gen 7.1 cohorts on this box: {'deals': 5022, 'played': 144, 'hit': 2089, 'hit_played': 144}\n",
+ "received": "2026-11-12T06:25:50Z",
+ "script_sha256": "5417079fb2505b3650ee9ee1d1a41263b9207282401915c7ea43f4fc42c2c9ba",
+ "started": "2026-11-12T06:25:50Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

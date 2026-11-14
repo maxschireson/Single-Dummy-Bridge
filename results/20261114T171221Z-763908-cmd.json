@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:12:41Z",
+ "id": "20261114T171221Z-763908-cmd",
+ "output_bytes": 2054,
+ "output_tail": "R4 - R3 all: -0.188 +- 0.204 (512)\n  on deals R4c has played: -0.049 +- 0.242 (326)\n  on deals R4c has not played: -0.430 +- 0.366 (186)\nR4c - R3: +0.291 +- 0.231 (326)\nR4 - R4c: -0.340 +- 0.240 (326)\nvs BEN, all 512: R3 -0.096 +- 0.177 (512) | R4 -0.283 +- 0.186 (512)\nvs BEN, deals R4c has played: R3 -0.190 +- 0.207 (326) | R4 -0.239 +- 0.229 (326) | R4c +0.101 +- 0.219 (326)\nR4 - R3: 277 of 512 deals differ; total -96 IMPs; swings of 10+: 31 against R4 (-372), 22 for R4 (+261)\n  swings under 10: 224 deals, total +15\n  worst for R4: [(-26, 458), (-14, 5), (-14, 77), (-14, 226), (-14, 228), (-14, 321), (-14, 329), (-14, 474)]\n  best for R4: [(12, 218), (12, 288), (12, 416), (13, 248), (13, 311), (16, 65), (16, 138), (19, 336)]\nrow keys: ['auction_len', 'candidate', 'common', 'common_score', 'contract', 'cpu', 'family', 'index', 'native', 'native_score', 'opponent', 'search', 'tables']\n{\"index\": 0, \"family\": \"c61a24cbfd8a74b1525275efbd4825db822dfdc6c7403059ec34c56f97a7a2f6\", \"candidate\": \"stu4-put\", \"opponent\": \"ben200\", \"cpu\": 30.0, \"tables\": 2, \"contract\": \"4H\", \"auction_len\": 12, \"common\": 0, \"common_score\": 0, \"native\": 0, \"native_score\": 0, \"search\": {\"candidate\": {\"decisions\": 27, \"seconds\": 13.014146283006994, \"pool\": 16, \"effective\": 6483.896145254201, \"power\": 16.0, \"tree\": 0, \"tree_moved\": 0, \"x8\": {\"rollout\": 27, \"blend\": 0, \"search\": 0, \"claim\": 15, \"consulted\": 27, \"moved\": 11, \"guaranteed\": 0, \"guarantee_moved\": 0, \"odds\": 8, \"odds_split\": 0, \"mixed\": 1, \"rollouts\": 4805, \"net_rows\": 122232, \"asked\": 1884, \"floored\": 6.768, \"ended\": 1796, \"forks\": 137, \"seconds\": 26.06, \"lead\": 1, \"lead_moved\": 0, \"lead_seconds\": 1.074}}, \"opponent\": {\"decisions\": 0, \"seconds\": 0.0, \"pool\": 0, \"effective\": 0.0, \"power\": 0.0, \"tree\": 0, \"tree_moved\": 0, \"x8\": {\"rollout\": 0, \"blend\": 0, \"search\": 0, \"claim\": 0, \"consulted\": 0, \"moved\": 0, \"guaranteed\": 0, \"guarantee_moved\": 0, \"odds\": 0, \"odds_split\": 0, \"mixed\": 0, \"rollouts\": 0, \"net_rows\": 0, \"asked\": 0, \"floored\": 0.0, \"ended\": 0, \"forks\": 0, \"seconds\": 0.0}}}}\n17:12:41\n",
+ "received": "2026-11-14T17:12:40Z",
+ "script_sha256": "8a1a1a4340fd20020c647512bce14f85b3d9d562d5f67911d3010afc2c57bcaf",
+ "started": "2026-11-14T17:12:40Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

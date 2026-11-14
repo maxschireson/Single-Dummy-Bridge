@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 127.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:19:27Z",
+ "id": "20261112T021527Z-557736-02-build",
+ "output_bytes": 1053,
+ "output_tail": "== restore model files\nok     models/bidding/gen5-2026-11-10/restore_model.py\nok     models/bidding/gen6-candidate-2026-11-11/restore_model.py\nok     models/cardplay/gen3-2026-11-09/restore_models.py\nok     models/cardplay/gen4-2026-11-09/restore.py\nok     models/cardplay/gen5-2026-11-10/restore_policy.py\nok     models/cardplay/gen5-belief-2026-11-10/restore_belief.py\nok     models/cardplay/gen7-policy-v0-2026-11-11/restore.py\nok     models/cardplay/gen7-policy-v1-2026-11-11/restore.py\nok     models/cardplay/gen7-policy-v2-2026-11-11/restore.py\nok     models/cardplay/gen7-policy-v4-2026-11-11/restore.py\nok     models/cardplay/hand-fit-scorer-v0-2026-11-11/restore.py\nok     models/cardplay/joint-auction-belief-lead-v0-2026-11-10/restore.py\n== DDS\n/home/bridgebots/work/sdb-gen7/bridge_harness/libbridge_dds.so\nbuild took 10s\n-rwxr-xr-x 1 bridgebots bridgebots 1266008 Nov 12 02:17 bridge_harness/libbridge_dds.so\n== Gen 7 tests\n----------------------------------------------------------------------\nRan 53 tests in 116.424s\n\nOK\ntests took 117s\n",
+ "received": "2026-11-12T02:17:20Z",
+ "script_sha256": "f456deb18cf652020332d531b08aa395bca574feb9fa1f6c5ec4420a4356629b",
+ "started": "2026-11-12T02:17:20Z",
+ "timed_out": false,
+ "timeout_s": 3600
+}

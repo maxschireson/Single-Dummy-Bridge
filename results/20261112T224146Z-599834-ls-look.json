@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T22:42:01Z",
+ "id": "20261112T224146Z-599834-ls-look",
+ "output_bytes": 1581,
+ "output_tail": "22:42:01\npath=/home/bridgebots/work/lanes/laneswitch.sh\n== /home/bridgebots/work/lanes/laneswitch.log\n2026-11-12T21:28:38Z lane 5: gen8-azure3-ben64-5 done (177 of 177 boards, all published); moving to gen8-p2-azure3-ben64-5\n2026-11-12T21:28:38Z lane 5: collector active, publisher active on gen8-p2-azure3-ben64-5\n2026-11-12T21:36:39Z lane 2: gen8-azure3-ben64-2 done (173 of 173 boards, all published); moving to gen8-p2-azure3-ben64-2\n2026-11-12T21:36:39Z lane 2: collector active, publisher active on gen8-p2-azure3-ben64-2\n2026-11-12T21:42:39Z lane 7: gen8-azure3-ben64-7 done (182 of 182 boards, all published); moving to gen8-p2-azure3-ben64-7\n2026-11-12T21:42:40Z lane 7: collector active, publisher active on gen8-p2-azure3-ben64-7\n2026-11-12T21:46:40Z lane 1: gen8-azure3-ben64-1 done (175 of 175 boards, all published); moving to gen8-p2-azure3-ben64-1\n2026-11-12T21:46:40Z lane 1: collector active, publisher active on gen8-p2-azure3-ben64-1\n2026-11-12T21:53:40Z lane 8: gen8-azure3-ben64-8 done (183 of 183 boards, all published); moving to gen8-p2-azure3-ben64-8\n2026-11-12T21:53:41Z lane 8: collector active, publisher active on gen8-p2-azure3-ben64-8\n2026-11-12T21:59:41Z lane 6: gen8-azure3-ben64-6 done (184 of 184 boards, all published); moving to gen8-p2-azure3-ben64-6\n2026-11-12T21:59:41Z lane 6: collector active, publisher active on gen8-p2-azure3-ben64-6\n1:gen8-p2-azure3-ben64-1 2:gen8-p2-azure3-ben64-2 3:gen8-p2-azure3-ben64-3 4:gen8-p2-azure3-ben64-4 5:gen8-p2-azure3-ben64-5 6:gen8-p2-azure3-ben64-6 7:gen8-p2-azure3-ben64-7 8:gen8-p2-azure3-ben64-8 \n",
+ "received": "2026-11-12T22:42:01Z",
+ "script_sha256": "143275e0b81cdea1d425dd5d8ab301181df9ea018543c42fb2dbcae560285185",
+ "started": "2026-11-12T22:42:01Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

@@ -1,0 +1,111 @@
+{
+ "agent_started": "2026-11-12T02:13:39Z",
+ "agent_version": "1.0",
+ "box": "azure3",
+ "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+ "cpus": 8,
+ "disk": {
+  "home": {
+   "free_gb": 86.0,
+   "total_gb": 132.0
+  },
+  "root": {
+   "free_gb": 86.0,
+   "total_gb": 132.0
+  }
+ },
+ "heartbeat_s": 300.0,
+ "hostname": "Bridgebots3",
+ "last_done": "20261114T224609Z-419766-cmd",
+ "last_fetch": {
+  "outcome": "ok",
+  "time": "2026-11-14T22:46:21Z"
+ },
+ "load": [
+  8.39,
+  8.43,
+  8.79
+ ],
+ "memory_mb": {
+  "MemAvailable": 15693,
+  "MemTotal": 32086,
+  "SwapFree": 0,
+  "SwapTotal": 0
+ },
+ "os": "Ubuntu 24.04.5 LTS",
+ "pending": [],
+ "poll_s": 30.0,
+ "previous_push": {
+  "outcome": "ok",
+  "time": "2026-11-14T22:43:19Z"
+ },
+ "running": null,
+ "time": "2026-11-14T22:46:22Z",
+ "top_processes": [
+  {
+   "cpu_pct": 95.4,
+   "elapsed_s": 2150,
+   "mem_pct": 3.7,
+   "name": "python",
+   "pid": 950581,
+   "user": "bridgeb+"
+  },
+  {
+   "cpu_pct": 95.3,
+   "elapsed_s": 2150,
+   "mem_pct": 3.9,
+   "name": "python",
+   "pid": 950578,
+   "user": "bridgeb+"
+  },
+  {
+   "cpu_pct": 95.3,
+   "elapsed_s": 2150,
+   "mem_pct": 4.0,
+   "name": "python",
+   "pid": 950585,
+   "user": "bridgeb+"
+  },
+  {
+   "cpu_pct": 95.3,
+   "elapsed_s": 2150,
+   "mem_pct": 3.5,
+   "name": "python",
+   "pid": 950580,
+   "user": "bridgeb+"
+  },
+  {
+   "cpu_pct": 95.2,
+   "elapsed_s": 2150,
+   "mem_pct": 3.8,
+   "name": "python",
+   "pid": 950579,
+   "user": "bridgeb+"
+  },
+  {
+   "cpu_pct": 95.2,
+   "elapsed_s": 2150,
+   "mem_pct": 3.6,
+   "name": "python",
+   "pid": 950584,
+   "user": "bridgeb+"
+  },
+  {
+   "cpu_pct": 95.1,
+   "elapsed_s": 2150,
+   "mem_pct": 3.8,
+   "name": "python",
+   "pid": 950583,
+   "user": "bridgeb+"
+  },
+  {
+   "cpu_pct": 95.1,
+   "elapsed_s": 2150,
+   "mem_pct": 3.7,
+   "name": "python",
+   "pid": 950582,
+   "user": "bridgeb+"
+  }
+ ],
+ "uptime_s": 246947
+}

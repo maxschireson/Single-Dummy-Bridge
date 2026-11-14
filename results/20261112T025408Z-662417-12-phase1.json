@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 365.9,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:00:46Z",
+ "id": "20261112T025408Z-662417-12-phase1",
+ "output_bytes": 2293,
+ "output_tail": "== prepare (shard 2/8)\nidentity d75a644daf203c58189edcc0ec50c041bfc1ed373607625dbdad88b63fe4dac5 | target 2814 | shard {'index': 2, 'of': 8} | pairs {'7s-32~6-32': 1, '7s-32~5RZ32': 1, '7s-32~1': 1}\ntree: margin 0.25 trust 0.3 path 0.5 tricks 3 breadth 3 layouts 8 plain 1\n== preflight\npreflight passed: [('7s-32~5RZ32', 0, 166), ('7s-32~6-32', 1, 319), ('7s-32~1', 2, 120), ('7s-32~6-32', 3, 207), ('7s-32~1', 4, 79), ('7s-32~5RZ32', 5, 218)]\npreflight took 199s\n== records for recovery\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794452281.997003    5538 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nI0000 00:00:1794452282.034116    5538 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794452283.243621    5538 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\n== publication checkout (arena-gen7-phase1-azure3-feed)\n== drain the pre-7 test match\npre-7 run: 374 boards, failures 0; its publisher makes the last push by itself\n== units\ncollector: active; boards 24; load average: 7.05, 7.45, 6.42\n{\"completed\": 23, \"index\": 24, \"pair\": \"7s-32~5RZ32\", \"common\": 3, \"native\": 3}\n{\"completed\": 24, \"index\": 19, \"pair\": \"7s-32~1\", \"common\": 14, \"native\": 14}\n== first publication\n{\"completed\": 24, \"tables\": 48, \"rate\": {\"pairs\": 24, \"per_hour\": 288.0, \"full_window\": true}, \"files\": 7, \"output\": \"/home/bridgebots/work/publication/gen7-phase1-azure3\"}\npushed 213c15b Gen5: 24 verified paired deals, common/native bidding\npublisher: active\nstate: 25 of 2814 {'7s-32~1': 9, '7s-32~6-32': 8, '7s-32~5RZ32': 8}\n",
+ "received": "2026-11-12T02:54:40Z",
+ "script_sha256": "6216cc1dff46957ddf203b82ffcbab27e0f8e1fa634216fd7cf17189d407c4d9",
+ "started": "2026-11-12T02:54:40Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

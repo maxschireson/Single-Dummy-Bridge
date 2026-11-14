@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 40.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:14:19Z",
+ "id": "20261113T091313Z-919496-loop-06-collect-first",
+ "output_bytes": 488,
+ "output_tail": "g0-stu0 paused at 58 boards: 50 boards: 0.0 +- 0.2556 IMPs/board for stu0a; 646 boards/hour; 0 failed\nsource 33cdc28 Stu round 0: azure3 collects first; the gate's baseline and the control follow\nRunning as unit: loop-chain.service; invocation ID: 949c46282ede44ed9ea6e5d9f0aac28c\nactive active \n2026-11-13T09:13:39Z start s0b stu0a~stu0b seed 9001 first 20000 deals 20000 workers 8 --episodes (source 33cdc28)\nstu0a v stu0b: 20000 boards to play (0 done), 8 workers\n2026-11-13T09:14:19Z\n",
+ "received": "2026-11-13T09:13:39Z",
+ "script_sha256": "eca602cba6a87b2c67575aaec403b9b1ddd0954d7dcdfe3f9d6ee10c19aa0e52",
+ "started": "2026-11-13T09:13:39Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

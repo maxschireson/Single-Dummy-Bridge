@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:44:23Z",
+ "id": "20261114T114404Z-360533-cmd",
+ "output_bytes": 234,
+ "output_tail": "sp0b:4106 sp3sb:274 spr0b:962 sps0b:826 \n      3 sp0b \ncut.log sp0b-83000-84098.npz spr0b-120000-120961.npz \n9f18993\nExecStart=\nExecStart=\"/usr/bin/bash\" \"/home/bridgebots/work/loop/src/training/rollout-loop-20261113/rows.sh\" \"sp3sb\"\n",
+ "received": "2026-11-14T11:44:23Z",
+ "script_sha256": "18274c7a8ca7b25b598bace59b5a976211edcb8af2b29ff5df11626c02617e1b",
+ "started": "2026-11-14T11:44:23Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

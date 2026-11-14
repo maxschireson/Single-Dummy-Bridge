@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:45:18Z",
+ "id": "20261112T034509Z-101153-peek-lanes",
+ "output_bytes": 441,
+ "output_tail": "ben-lanes: active\n03:41:55 units and preflight wrapper written\nplan: Gen 7 \u00b7 phase 1, BEN (64) pair on azure3: standard against BEN (64) | pairs {'7s-32~ben64': 1} | tree {'root_margin': 0.25, 'trust': 0.3, 'path': 0.5, 'tricks': 3}\n03:41:55 files the BEN test server left in its checkout: 0 \n03:41:55 == lane 1 (shard 1/32)\nlane 1: cohort 0a5dd6cb578d, 704 deals, shard 1/32, pairs {'7s-32~ben64': 1}\n03:42:08 lane 1: BEN server listening\n",
+ "received": "2026-11-12T03:45:18Z",
+ "script_sha256": "13f98a14990a000ad252c3e5bea872bf50dd6b9a18265980cd88601d6b2584a9",
+ "started": "2026-11-12T03:45:18Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T14:20:06Z",
+ "id": "20261113T141956Z-435476-loop-ben3-caps",
+ "output_bytes": 344,
+ "output_tail": "Traceback (most recent call last):\n  File \"<stdin>\", line 4, in <module>\nKeyError: 'generations'\nSTOP\nWATCHDOG_STOP\nartifacts\nassets\nben-preflight.json\ncorpus.jsonl\nepisodes\nheartbeat.json\nlaunch.json\nmanifest.json\npreflight-equivalence.json\npreflight.json\nreceipts\nretirement.json\nruntime\nsource-indices.json\nstate.json\nstatistics-policy.json\n",
+ "received": "2026-11-13T14:20:06Z",
+ "script_sha256": "eba594562e4bacc05d5eef87f450f9e79c6aacfa5b64fcf5750629df63d598fd",
+ "started": "2026-11-13T14:20:06Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 96.0,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:30:03Z",
+ "id": "20261114T062758Z-834337-loop-143-blind3",
+ "output_bytes": 949,
+ "output_tail": "2026-11-14T05:51:29Z start b3-ps200b-7 stu3-ps~ben200 seed 131 first 448 deals 32 workers 1 --common-only --episodes (source 3caab93, nets fp32)\n2026-11-14T05:51:29Z start b3-ps200b-8 stu3-ps~ben200 seed 131 first 480 deals 32 workers 1 --common-only --episodes (source 3caab93, nets fp32)\nb3-ps200b: 236 boards | b3-pst200c: 0 boards | b3-ps200c: 0 boards | \nsource 9f18993\nRunning as unit: loop-bensession.service; invocation ID: 510c532a48184833b89b1e943cff5347\nactive inactive 2026-11-14T06:29:00Z start bu3-pst200a-6 stu3-put~ben200 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n2026-11-14T06:29:00Z start bu3-pst200a-7 stu3-put~ben200 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n2026-11-14T06:29:00Z start bu3-pst200a-8 stu3-put~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 9f18993, nets fp32)\n16\n2026-11-14T06:30:02Z\n",
+ "received": "2026-11-14T06:28:27Z",
+ "script_sha256": "c2babf041d08d620aa2dc1c8469cefb36f95c196ef3f367d0b099960065724f9",
+ "started": "2026-11-14T06:28:27Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

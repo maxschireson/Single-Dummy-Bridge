@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 10.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T15:27:00Z",
+ "id": "20261114T152639Z-401744-cmd",
+ "output_bytes": 605,
+ "output_tail": "source 830661d\nround 4c's net in place, sha256 e4b689c87db2f56b\n2026-11-14T14:55:49Z start bu4-pst200a-6 stu4-put~ben200 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source 830661d, nets fp32)\n2026-11-14T14:55:49Z start bu4-pst200a-7 stu4-put~ben200 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source 830661d, nets fp32)\n2026-11-14T14:55:49Z start bu4-pst200a-8 stu4-put~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 830661d, nets fp32)\nbu4-pst200a: 196 boards | bu4-pst200b: 0 boards | bu4c-pst200a: 0 boards | \n2026-11-14T15:26:59Z\n",
+ "received": "2026-11-14T15:26:49Z",
+ "script_sha256": "a47d6bf6e50b6640e4b7e5070e73afee49f391b05dc72346153ee7794ed0d5b7",
+ "started": "2026-11-14T15:26:49Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

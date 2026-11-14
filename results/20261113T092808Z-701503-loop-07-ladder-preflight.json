@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 160.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:31:21Z",
+ "id": "20261113T092808Z-701503-loop-07-ladder-preflight",
+ "output_bytes": 1912,
+ "output_tail": "source 52f54a4 Stu round 0: the ladder's four bots, and azure3's job list with the ladder ahead of the control\n{\"pair\": \"stu0-b50~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 35.73, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"fl\nstu0-b50: 38 s wall\n{\"pair\": \"stu0-r6~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 34.86, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"fla\nstu0-r6: 38 s wall\n{\"pair\": \"stu0-r3~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 32.91, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"fla\nstu0-r3: 37 s wall\n{\"pair\": \"stu0-p~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 42.47, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"flat\nstu0-p: 47 s wall\nstu0-b50 | boards 2 | cpu a board 35.7 | results [0, 0]\n   tricks lead {'search': 2}\n   tricks 1-2 {'search': 11}\n   tricks 3-5 {'blend 0.50': 17, 'claim': 4}\n   tricks 6 {'claim': 2, 'blend 0.50': 6}\n   tricks 7-13 {'claim': 19, 'rollout': 22}\nstu0-r6 | boards 2 | cpu a board 34.9 | results [0, 0]\n   tricks lead {'search': 2}\n   tricks 1-2 {'search': 11}\n   tricks 3-5 {'blend 0.25': 17, 'claim': 4}\n   tricks 6 {'claim': 2, 'rollout': 6}\n   tricks 7-13 {'claim': 15, 'rollout': 30}\nstu0-r3 | boards 2 | cpu a board 32.9 | results [0, 0]\n   tricks lead {'search': 2}\n   tricks 1-2 {'search': 11}\n   tricks 3-5 {'rollout': 16, 'claim': 3}\n   tricks 6 {'claim': 2, 'rollout': 6}\n   tricks 7-13 {'claim': 21, 'rollout': 22}\nstu0-p | boards 2 | cpu a board 42.5 | results [0, 0]\n   tricks lead {'net': 2}\n   tricks 1-2 {'rollout': 11}\n   tricks 3-5 {'rollout': 16, 'claim': 4}\n   tricks 6 {'claim': 2, 'rollout': 5}\n   tricks 7-13 {'claim': 23, 'rollout': 21}\n100 boards: 0.01 +- 0.01 IMPs/board for stu0a; 509 boards/hour; 0 failed\n 09:31:21 up 1 day,  7:20,  0 user,  load average: 9.83, 9.00, 8.68\n2026-11-13T09:31:21Z\n",
+ "received": "2026-11-13T09:28:40Z",
+ "script_sha256": "30479395c29e3d60fc8243ff81b89dc9ec537afd3a6992c339caff9b836ca798",
+ "started": "2026-11-13T09:28:40Z",
+ "timed_out": false,
+ "timeout_s": 3000
+}

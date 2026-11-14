@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 45.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:26:40Z",
+ "id": "20261113T072542Z-567026-prepf",
+ "output_bytes": 359,
+ "output_tail": "prepf: active\n07:25:55 load 6.35 6.38 6.85; memory available 17888 MB\n07:25:57 checkout: 46b7e0044be79d40ad17499334b6ececf022910e Gen 9 cohort: plan opened on g9's go (Max's 03:47 instruction); one-j\n07:26:18 v4.1 matches sdb-gen8's; dds built\n07:26:34 tests test_gen8*.py: Ran 25 tests in 15.786s OK \n07:26:36 tests test_gen71*.py: Ran 8 tests in 0.300s OK \n",
+ "received": "2026-11-13T07:25:55Z",
+ "script_sha256": "37c85121a7adaf5a276ab58ae925cfde8c3ab602b47564cd0bb739e39fcf0b6c",
+ "started": "2026-11-13T07:25:55Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

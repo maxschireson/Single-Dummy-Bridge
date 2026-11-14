@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 155.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T09:34:59Z",
+ "id": "20261113T093154Z-067139-loop-08-ladder-v1-preflight",
+ "output_bytes": 2310,
+ "output_tail": "source 4a81c2f Stu round 0: the ladder's bots with rollout net v1 inside too\n{\"pair\": \"stu0v1~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 26.38, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"flat\nstu0v1: 31 s wall\n{\"pair\": \"stu0v1-b50~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 26.81, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"\nstu0v1-b50: 31 s wall\n{\"pair\": \"stu0v1-r6~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 27.01, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"f\nstu0v1-r6: 31 s wall\n{\"pair\": \"stu0v1-r3~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 26.15, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"f\nstu0v1-r3: 31 s wall\n{\"pair\": \"stu0v1-p~8p-32-v41\", \"boards\": 2, \"cpu_per_board\": 27.12, \"common\": {\"imps_per_board\": 0.0, \"se\": 0.0, \"boards\": 2, \"won\": 0, \"lost\": 0, \"fl\nstu0v1-p: 30 s wall\nstu0v1 | boards 2 | cpu a board 26.4 | results [0, 0]\n   tricks lead {'search': 2}\n   tricks 1-2 {'search': 11}\n   tricks 3-5 {'blend 0.25': 17, 'claim': 4}\n   tricks 6 {'claim': 2, 'blend 0.25': 6}\n   tricks 7-13 {'claim': 16, 'rollout': 26}\nstu0v1-b50 | boards 2 | cpu a board 26.8 | results [0, 0]\n   tricks lead {'search': 2}\n   tricks 1-2 {'search': 11}\n   tricks 3-5 {'blend 0.50': 18, 'claim': 4}\n   tricks 6 {'claim': 2, 'blend 0.50': 6}\n   tricks 7-13 {'claim': 22, 'rollout': 19}\nstu0v1-r6 | boards 2 | cpu a board 27.0 | results [0, 0]\n   tricks lead {'search': 2}\n   tricks 1-2 {'search': 11}\n   tricks 3-5 {'blend 0.25': 17, 'claim': 4}\n   tricks 6 {'claim': 2, 'rollout': 6}\n   tricks 7-13 {'claim': 19, 'rollout': 25}\nstu0v1-r3 | boards 2 | cpu a board 26.1 | results [0, 0]\n   tricks lead {'search': 2}\n   tricks 1-2 {'search': 11}\n   tricks 3-5 {'rollout': 17, 'claim': 4}\n   tricks 6 {'claim': 1, 'rollout': 6}\n   tricks 7-13 {'claim': 22, 'rollout': 19}\nstu0v1-p | boards 2 | cpu a board 27.1 | results [0, 0]\n   tricks lead {'net': 2}\n   tricks 1-2 {'rollout': 11}\n   tricks 3-5 {'rollout': 17, 'claim': 4}\n   tricks 6 {'claim': 3, 'rollout': 5}\n   tricks 7-13 {'claim': 22, 'rollout': 18}\n150 boards: 0.0067 +- 0.0067 IMPs/board for stu0a; 500 boards/hour; 0 failed\n 09:34:59 up 1 day,  7:24,  0 user,  load average: 9.83, 9.27, 8.85\n2026-11-13T09:34:59Z\n",
+ "received": "2026-11-13T09:32:23Z",
+ "script_sha256": "a09283eec7fc133215241872de8591a2432ac9524d398bea547f448bfeb0f473",
+ "started": "2026-11-13T09:32:23Z",
+ "timed_out": false,
+ "timeout_s": 3000
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 75.7,
+ "exit_code": 0,
+ "finished": "2026-11-13T15:28:22Z",
+ "id": "20261113T152655Z-496111-loop-ledger3-ben",
+ "output_bytes": 1855,
+ "output_tail": " configs/loop-bots.json                          | 1552 ++++++++++++++++++++++-\n training/rollout-loop-20261113/PLAN.md          |   34 +-\n training/rollout-loop-20261113/fusion_ledger.py |   12 +-\n training/rollout-loop-20261113/jobs-azure5.txt  |   17 +-\n training/rollout-loop-20261113/jobs-azure5b.txt |    4 +\n training/rollout-loop-20261113/jobs-azure6.txt  |    5 +\n training/rollout-loop-20261113/jobs-azure6b.txt |    3 +\n training/rollout-loop-20261113/make_bots.py     |   31 +-\n training/rollout-loop-20261113/make_runs.py     |   19 +-\n training/rollout-loop-20261113/runs.json        |   77 +-\n 10 files changed, 1647 insertions(+), 107 deletions(-)\nsource fd64172\nRunning as unit: loop-ledger.service; invocation ID: 39194f4815fb4b4ab7f134492c120fd7\nas of 2026-11-13T15:27:50Z\nb0-p       ben64        tables  360 | declaring: held  1003 gave up    6 (0.60%) | defending: choice   110 handed    8 (7.3%) | unknown 0\nb0-p       stu0-p       tables  360 | declaring: held  1009 gave up    3 (0.30%) | defending: choice    97 handed    7 (7.2%) | unknown 0\nl1-stu1    stu1a        tables  398 | declaring: held  1212 gave up    9 (0.74%) | defending: choice   132 handed   13 (9.8%) | unknown 0\nb0-p       ben64        tables  360 | declaring: held  1003 gave up    6 (0.60%) | defending: choice   110 handed    8 (7.3%) | unknown 0\nb0-p       stu0-p       tables  360 | declaring: held  1009 gave up    3 (0.30%) | defending: choice    97 handed    7 (7.2%) | unknown 0\n22 24 24 25 23 22 22 25 boards by lane (b0-p)\nactive active active 2026-11-13T14:58:35Z start b0-p-7 stu0-p~ben64 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source bc4b3af)\n2026-11-13T14:58:35Z start b0-p-8 stu0-p~ben64 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source bc4b3af)\nload average: 9.12, 8.76, 8.56\n2026-11-13T15:28:22Z\n",
+ "received": "2026-11-13T15:27:06Z",
+ "script_sha256": "a88a7e4267e013750fb0bc2fde9cd1922f582b8a3d19aa61e931cce7919a62b5",
+ "started": "2026-11-13T15:27:06Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

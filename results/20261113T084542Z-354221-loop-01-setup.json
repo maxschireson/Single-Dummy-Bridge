@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 75.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T08:47:29Z",
+ "id": "20261113T084542Z-354221-loop-01-setup",
+ "output_bytes": 1198,
+ "output_tail": "numpy 2.5.4 h5py 3.16.0 jax 0.12.0.1 optax 0.2.9\nsource 79c1845 Rollout loop round 0: bots, unit scripts, and the control's results\nsure.cpp from 2e6ed6d\n{\"left\": 3, \"value\": 0, \"seconds\": 0.0000171, \"search_seconds\": 0.0000171, \"nodes_above\": 65, \"probes\": 0}\ne6609785412cb6b0380a\n/home/bridgebots/work/loop/src/bridge_harness/libbridge_dds.so\n}\n}\n}\n}\npolicy_scratch.npz ok\n/home/bridgebots/work/loop/src/models/cardplay/gen5-2026-11-10/policy.npz\n8f87aa8f52ae2c119408693766c2018a8bb73a5b4b49b2304e7f220babbf34cf  models/cardplay/rollout-net-v2-20261113/poli\nd6b011937ee9ec534ef957061634d9624c5aad56f4c0827ca6c9207bec65dd13  models/cardplay/gen7-policy-v4-2026-11-11/ge\n2ccfd8d112983f262cff63f5151a2838eb314bb7649856a7af0e672acfbf4a37  models/cardplay/gen7-policy-v0-2026-11-11/ge\ncapsule 191M\nSTOP WATCHDOG_STOP artifacts assets ben-preflight.json \ncapsule manifest sha256 2f8f6b792ac874f1 bots ['1', '2', '3', '4b', '5-32', '5R192', '5R32', '5RZ192', '5RZ32', '6-256', '6-32', 'ben']\n/dev/root       123G   39G   85G  32% /\nMem:              31          15           1           0          15          16\n 08:47:29 up 1 day,  6:36,  0 user,  load average: 10.50, 9.29, 8.91\n2026-11-13T08:47:29Z\n",
+ "received": "2026-11-13T08:46:14Z",
+ "script_sha256": "d1fc3b6779755621d8325ec83b1ca14f5b9e3228f3e905448dbf8149bb9c235e",
+ "started": "2026-11-13T08:46:14Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

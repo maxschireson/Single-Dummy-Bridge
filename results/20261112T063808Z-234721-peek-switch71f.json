@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:38:25Z",
+ "id": "20261112T063808Z-234721-peek-switch71f",
+ "output_bytes": 984,
+ "output_tail": "06:38:25\nswitch71f: active; lane-recycle inactive\nlane 1: collector inactive publisher active server active; lane 2: collector inactive publisher active server active; lane 3: collector inactive publisher active server active; lane 4: collector inactive publisher active server active; lane 5: collector inactive publisher active server active; lane 6: collector inactive publisher active server active; lane 7: collector inactive publisher active server active; lane 8: collector inactive publisher inactive server active; \n06:35:32 == build and test the source that has --exclude-families (the lanes keep playing)\n06:35:34 checkout: a588e09e4aec88fa8b41e814df95b515f07e134c Keep promotion gate output JSON-native at the threshold\n06:36:13 policy v4 d6b011937ee9ec53, v4.1 cb3fcfd5c5587373; dds library 103865b6ea4b31eb\n06:36:14 tests test_gen71*.py: Ran 7 tests in 0.209s OK \n06:36:16 tests test_gen7_selfplay.py: Ran 7 tests in 0.268s OK \n06:36:16 == finish the lanes of 06:07 UTC\n",
+ "received": "2026-11-12T06:38:25Z",
+ "script_sha256": "1950057a79036e1cdad9af2130b311fc223476a26bb7f015fae12c9f452641ee",
+ "started": "2026-11-12T06:38:25Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

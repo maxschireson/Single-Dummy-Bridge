@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 872.7,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:55:47Z",
+ "id": "20261114T124102Z-897902-cmd",
+ "output_bytes": 576,
+ "output_tail": "source 9f18993\n2026-11-14T12:52:06Z cut sps0b 280000-280826: 826 boards, {\"episodes\": 826, \"deals\": 822, \"unique_families\": 822, \"examples\": 33936, \"train\": 27561, \"validation\": 3223, \"test\": 3, 1716 KB\n2026-11-14T12:55:47Z cut sp3sb 380000-380273: 274 boards, {\"episodes\": 274, \"deals\": 273, \"unique_families\": 273, \"examples\": 11258, \"train\": 8981, \"validation\": 1071, \"test\": 12, 584 KB\n2026-11-14T12:55:47Z cut round4 done on azure3\nsps0b 826 tables sp3sb 274 tables \n3\nMem:           32086       18479        8160           4        6015       13606\n2026-11-14T12:55:47Z\n",
+ "received": "2026-11-14T12:41:14Z",
+ "script_sha256": "00a27bdc8ee7a0e4de38cf1eafefacb85f291e9e86cfa31269f19a5f9f5b0537",
+ "started": "2026-11-14T12:41:14Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

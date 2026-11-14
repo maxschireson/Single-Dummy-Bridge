@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 243.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:01:20Z",
+ "id": "20261114T205706Z-868009-cmd",
+ "output_bytes": 475,
+ "output_tail": "source 5ab40ee\n5:echo \"$(date -u +%FT%TZ) rollout-recipe bench begins (bench/seat_variants.py on round 3's gate records, one decision in 8)\" >> \"$W/runs.log\"\n7:timeout 7200 \"$PY\" $T/bench/seat_variants.py $(ls -d \"$W\"/runs/bu3-pst200[a-e]-[1-8]) --source \"$W/capsule/recovery\" --boards 100 --every 8 --workers 8 --set horizon \\\nRunning as unit: loop-seatbench.service; invocation ID: 8a5265c7d80a4fc4974abb29296a7bd4\nbench: active; decisions so far: 442\n2026-11-14T21:01:20Z\n",
+ "received": "2026-11-14T20:57:17Z",
+ "script_sha256": "e2a34dad81bc174c15cd78b063a4bdca3b91488fa401f98a4defa044c1f37e98",
+ "started": "2026-11-14T20:57:17Z",
+ "timed_out": false,
+ "timeout_s": 480
+}

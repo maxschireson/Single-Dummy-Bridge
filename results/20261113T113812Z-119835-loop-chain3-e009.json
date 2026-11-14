@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 45.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T11:39:00Z",
+ "id": "20261113T113812Z-119835-loop-chain3-e009",
+ "output_bytes": 2622,
+ "output_tail": "2026-11-13T11:23:18Z start l0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 8fa49a8)\n2026-11-13T11:29:49Z end l0-stu0: exit 0\n2026-11-13T11:29:49Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source 8fa49a8)\nl0-stu0 500\nl0-p 278\nl0-v1 200\nl0-v1-p 200\nl0-n 200\nl0-v1-n 200\nsource e00923e Stu: pure Stu as the main line; its self-play twins, the searched-lead rung, and the plan\nl0-stu0 stu0a~8p-32-v41 131 0 200 8 --episodes\nl0-v1 stu0v1~8p-32-v41 131 0 200 8 --episodes\nl0-p stu0-p~8p-32-v41 131 0 200 8 --episodes\nl0-v1-p stu0v1-p~8p-32-v41 131 0 200 8 --episodes\nl0-n stu0-n~8p-32-v41 131 0 200 8 --episodes\nl0-v1-n stu0v1-n~8p-32-v41 131 0 200 8 --episodes\nl0-stu0 stu0a~8p-32-v41 131 0 500 8 --episodes\nl0-p stu0-p~8p-32-v41 131 0 500 8 --episodes\nl1-stu1 stu1a~8p-32-v41 131 0 500 8 --episodes\nl1-p stu1-p~8p-32-v41 131 0 500 8 --episodes\nl1-n stu1-n~8p-32-v41 131 0 500 8 --episodes\nl0-pl stu0-pl~8p-32-v41 131 0 500 8 --episodes\nl0-v1 stu0v1~8p-32-v41 131 0 500 8 --episodes\nl0-v1-p stu0v1-p~8p-32-v41 131 0 500 8 --episodes\nl0-r3 stu0-r3~8p-32-v41 131 0 200 8 --episodes\nl0-v1-r3 stu0v1-r3~8p-32-v41 131 0 200 8 --episodes\nl0-r6 stu0-r6~8p-32-v41 131 0 200 8 --episodes\nl0-v1-r6 stu0v1-r6~8p-32-v41 131 0 200 8 --episodes\nl0-b50 stu0-b50~8p-32-v41 131 0 200 8 --episodes\nl0-v1-b50 stu0v1-b50~8p-32-v41 131 0 200 8 --episodes\nl0-n stu0-n~8p-32-v41 131 0 500 8 --episodes\nl0-v1-n stu0v1-n~8p-32-v41 131 0 500 8 --episodes\nl0-r3 stu0-r3~8p-32-v41 131 0 500 8 --episodes\nl0-v1-r3 stu0v1-r3~8p-32-v41 131 0 500 8 --episodes\nl0-r6 stu0-r6~8p-32-v41 131 0 500 8 --episodes\nl0-v1-r6 stu0v1-r6~8p-32-v41 131 0 500 8 --episodes\nl0-b50 stu0-b50~8p-32-v41 131 0 500 8 --episodes\nl0-v1-b50 stu0v1-b50~8p-32-v41 131 0 500 8 --episodes\ng0b-stu0 stu0a~8p-32-v41 131 1000 1000 8\nsp0b stu0-pa~stu0-pb 9001 80000 20000 8 --episodes\nd0-p stu0-p~stu0a 9001 40000 1000 8 --episodes\nd0-r3 stu0-r3~stu0a 9001 50000 1000 8 --episodes\nc-n41-n4 n-v41~n-v4 131 0 3000 8\nc-r7-n41 r7-v41~n-v41 131 0 3000 8\nc-r7x4-n41 r7x-v4~n-v41 131 0 3000 8\nc-r7-n4 r7-v41~n-v4 131 0 3000 8\nc-r7x4-n4 r7x-v4~n-v4 131 0 3000 8\nc-r7-r7f4 r7-v41~r7f-v4 131 0 3000 8\nRunning as unit: loop-chain.service; invocation ID: d5e218ed021b4ae8bc6a45db0d7a550b\nactive active \n2026-11-13T11:38:16Z start l0-stu0 stu0a~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source e00923e)\n2026-11-13T11:38:16Z end l0-stu0: exit 0\n2026-11-13T11:38:16Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source e00923e)\n/dev/root       123G   39G   84G  32% /\n2026-11-13T11:39:00Z\n",
+ "received": "2026-11-13T11:38:15Z",
+ "script_sha256": "3eecf73d1f372fd1e065817c2d529a0de2b224f466a3d5400d4ab01c43f5be28",
+ "started": "2026-11-13T11:38:15Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

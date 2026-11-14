@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T17:45:09Z",
+ "id": "20261113T174442Z-698103-loop-status",
+ "output_bytes": 802,
+ "output_tail": "inactive active active active active inactive inactive inactive inactive (collect collect-b chain publish rows rungs rungs2 switch after-ben)\nsp0b 0 tables\nspr0b 0 tables\n2026-11-13T17:44:39Z start l1-n stu1-n~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source b4eea94)\n2026-11-13T17:44:39Z end l1-n: exit 0\n2026-11-13T17:44:39Z start sp0b stu0-pa~stu0-pb seed 9001 first 80000 deals 20000 workers 6 --episodes --one-room (source b4eea94)\n2026-11-13T17:44:48Z start spr0b stu0-pra~stu0-prb seed 9001 first 120000 deals 20000 workers 2 --episodes --one-room (source b4eea94)\ntotal 8\ndrwxr-xr-x  2 bridgebots bridgebots 4096 Nov 13 17:44 .\ndrwxr-xr-x 60 bridgebots bridgebots 4096 Nov 13 17:44 ..\nload average: 4.77, 5.71, 7.24\n/dev/root       123G   40G   84G  33% /\n2026-11-13T17:45:09Z\n",
+ "received": "2026-11-13T17:45:09Z",
+ "script_sha256": "2439433d24bf9368993f6b1ac5dcbbdf6eb15cf35ce7632e918846cd67ce76d9",
+ "started": "2026-11-13T17:45:09Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:19:55Z",
+ "id": "20261112T151928Z-649488-cap",
+ "output_bytes": 713,
+ "output_tail": "capsule: /home/bridgebots/work/capsule-gen7-capture/recovery identity a76a39f13d9d STOP y WATCHDOG_STOP y\ncapsule: /home/bridgebots/work/capsule-gen7-capture/recovery identity a76a39f13d9d STOP y WATCHDOG_STOP y\nben-setup/ ben-venv/ ben/ capsule-gen7-capture/ g8/ gen71/ lanes/ publication/ runs/ sdb-gen7-arena/ sdb-gen7/ sdb-gen71/ sdb-gen71x/ tools/ venv/ \nlane 1: gen71fresh2-azure3-ben64-1 129/185; lane 2: gen71fresh2-azure3-ben64-2 139/185; lane 3: gen71fresh2-azure3-ben64-3 166/185; lane 4: gen71fresh2-azure3-ben64-4 156/184; lane 5: gen71fresh2-azure3-ben64-5 129/184; lane 6: gen71fresh2-azure3-ben64-6 112/184; lane 7: gen71fresh2-azure3-ben64-7 121/184; lane 8: gen71fresh2-azure3-ben64-8 107/184; \n",
+ "received": "2026-11-12T15:19:55Z",
+ "script_sha256": "05dff3398366addd2bb606c0377e7e3c75f9ecacb7621b220c967414af48b839",
+ "started": "2026-11-12T15:19:55Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

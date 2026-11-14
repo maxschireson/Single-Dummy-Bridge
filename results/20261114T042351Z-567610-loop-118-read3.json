@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:24:23Z",
+ "id": "20261114T042351Z-567610-loop-118-read3",
+ "output_bytes": 1523,
+ "output_tail": "2026-11-14T01:35:00Z end bg-200-8: exit 0\n2026-11-14T01:36:24Z end bg-200-4: exit 0\n2026-11-14T01:36:38Z end bg-200-2: exit 0\n2026-11-14T01:36:43Z end bg-200-5: exit 0\n2026-11-14T01:36:53Z end bg-200-3: exit 0\n2026-11-14T01:39:06Z end bg-200-1: exit 0\n2026-11-14T01:40:47Z jobs-azure3-ben3.txt has ended; BEN (200) servers stopped; back to the collection\n2026-11-14T01:53:37Z BEN (200) servers listening: 8 of 8\n2026-11-14T01:53:37Z start b0-ps200-1 stu0-ps~ben200 seed 131 first 0 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)\n2026-11-14T02:30:11Z end b0-ps200-8: exit 0\n2026-11-14T02:35:42Z start b3-ps200-1 stu3-ps~ben200 seed 131 first 0 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)\n2026-11-14T03:12:15Z end b3-ps200-8: exit 0\n2026-11-14T03:17:27Z jobs-azure3-ben4.txt has ended; BEN (200) servers stopped; back to the collection\nunits: rungs active rungs2 active bensession inactive chain inactive\nactive active active active active active active active \nb0-ps200 boards 256 cpu a board 27 seconds a board 0 ['auction_len', 'candidate', 'common', 'common_score', 'contract', 'cpu', 'family', 'index', 'native', 'native_score', 'opponent', 'search', 'tables']\nb3-ps200 boards 256 cpu a board 27 seconds a board 0 ['auction_len', 'candidate', 'common', 'common_score', 'contract', 'cpu', 'family', 'index', 'native', 'native_score', 'opponent', 'search', 'tables']\nMem:              31          12          16           0           2          18\n2026-11-14T04:24:23Z\n",
+ "received": "2026-11-14T04:24:22Z",
+ "script_sha256": "58bc17c8d2c515da763f28807c9c094c9d83153e773335df6e94d2d8ece622e3",
+ "started": "2026-11-14T04:24:22Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

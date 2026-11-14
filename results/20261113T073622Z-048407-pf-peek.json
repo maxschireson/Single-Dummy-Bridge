@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T07:36:37Z",
+ "id": "20261113T073622Z-048407-pf-peek",
+ "output_bytes": 2171,
+ "output_tail": "07:36:37\n07:33:57 tests test_gen71*.py: Ran 8 tests in 0.276s OK \n07:34:30 tests test_rule_bidder.py: Ran 14 tests in 32.769s OK \n07:35:22 tests test_bidding_systems.py: Ran 28 tests in 52.201s OK \n07:36:22 tests test_gen7_alpha.py: Ran 15 tests in 58.889s OK \n07:36:22 tests test_gen9_cohort.py: Ran 6 tests in 0.160s OK (skipped=1) \n07:36:22 tests took 162s\n07:36:23 templates: ExecStart=/bin/sh -c 'cd \"$${CHECKOUT:-/home/bridgebots/work/sdb-gen8}\" && exec /home/bridgebots/work/venv/bin/python -u ops/gen5_runtime.py --run \"$${RUN}\" --w\nlane 1: cohort e3f367dc854f, 1500 fresh deals (seed 8301; excluded: {'training_families': 34092, 'source_corpus': 175, 'played': 85910}), bots and artifacts from the lane's first pool 9684f7da2706, pairs {'8s-32~ben64': 1}, 8s-32 \nlane 2: cohort 0c6c808a6630, 1500 fresh deals (seed 8302; excluded: {'training_families': 34092, 'source_corpus': 173, 'played': 85910}), bots and artifacts from the lane's first pool c6600762301c, pairs {'8s-32~ben64': 1}, 8s-32 \nlane 3: cohort 86ec3baa772e, 1500 fresh deals (seed 8303; excluded: {'training_families': 34092, 'source_corpus': 144, 'played': 85910}), bots and artifacts from the lane's first pool 9c3bdac6a406, pairs {'8s-32~ben64': 1}, 8s-32 \nlane 4: cohort e8054bea50ef, 1500 fresh deals (seed 8304; excluded: {'training_families': 34092, 'source_corpus': 147, 'played': 85910}), bots and artifacts from the lane's first pool 7f2a78097816, pairs {'8s-32~ben64': 1}, 8s-32 \nlane 5: cohort c36a0ee98ebb, 1500 fresh deals (seed 8305; excluded: {'training_families': 34092, 'source_corpus': 177, 'played': 85910}), bots and artifacts from the lane's first pool 42b6dd2df38b, pairs {'8s-32~ben64': 1}, 8s-32 \nlane 6: cohort fcf6457601be, 1500 fresh deals (seed 8306; excluded: {'training_families': 34092, 'source_corpus': 184, 'played': 85910}), bots and artifacts from the lane's first pool a0b6f33778ba, pairs {'8s-32~ben64': 1}, 8s-32 \nlane 7: cohort a583eeb5bfcf, 1500 fresh deals (seed 8307; excluded: {'training_families': 34092, 'source_corpus': 182, 'played': 85910}), bots and artifacts from the lane's first pool c5177491c16c, pairs {'8s-32~ben64': 1}, 8s-32 \nprepf active\n",
+ "received": "2026-11-13T07:36:37Z",
+ "script_sha256": "b53c89be783edf10682207ac5ec49f9c44a3d8062d99bdc347f11e6f422f28c6",
+ "started": "2026-11-13T07:36:37Z",
+ "timed_out": false,
+ "timeout_s": 30
+}

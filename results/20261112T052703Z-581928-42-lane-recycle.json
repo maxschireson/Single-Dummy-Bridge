@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 51.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:28:18Z",
+ "id": "20261112T052703Z-581928-42-lane-recycle",
+ "output_bytes": 313,
+ "output_tail": "lane-recycle: active; available 13922 MB\nlane 1: 1845 MB active; lane 2: 1782 MB active; lane 3: 1706 MB active; lane 4: 1686 MB active; lane 5: 1824 MB active; lane 6: 1703 MB active; lane 7: 1726 MB active; lane 8: 1855 MB active; \n2026-11-12T05:27:27Z started: limit 1900 MB a lane (collector and its workers)\n",
+ "received": "2026-11-12T05:27:26Z",
+ "script_sha256": "720659477168fdfc90b7e77a0b95246f413a2c5fce784939163257d16a2ae712",
+ "started": "2026-11-12T05:27:26Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

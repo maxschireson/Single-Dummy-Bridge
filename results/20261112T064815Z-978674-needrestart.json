@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 1.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:48:46Z",
+ "id": "20261112T064815Z-978674-needrestart",
+ "output_bytes": 950,
+ "output_tail": "written: $nrconf{restart} = 'l';\ntimers: apt-daily.timer: next Thu 2026-11-12 18:41:14, last Thu 2026-11-12 06:42:39;apt-daily-upgrade.timer: next Fri 2026-11-13 06:39:51, last Thu 2026-11-12 06:03:58;\nunattended upgrades today: 1 run(s) with packages; last lines:\n2026-11-12 06:42:46,044 INFO Allowed origins are: o=Ubuntu,a=noble, o=Ubuntu,a=noble-security, o=UbuntuESMApps,a=noble-apps-security, o=UbuntuESM,a=noble-infra-security\n2026-11-12 06:42:46,044 INFO Initial blacklist: \n2026-11-12 06:42:46,045 INFO Initial whitelist (not strict): \nneedrestart restarts today (journal):\nNov 12 06:48:45 Bridgebots3 python3[1551]: 2026-11-12T06:48:45Z running 20261112T064815Z-978674-needrestart (timeout 60s)\nNov 12 06:48:45 Bridgebots3 sudo[58514]: bridgebots : PWD=/home/bridgebots ; USER=root ; COMMAND=/usr/bin/tee /etc/needrestart/conf.d/50-list-only.conf\nunits stopped today:\n   lane-recycle.service: stopped 2 time(s), last Nov 12 06:36:16 \n(end)\n",
+ "received": "2026-11-12T06:48:45Z",
+ "script_sha256": "6d0d315da4842202b674d1061b7a791cb1b4c515e51ad13ac68c67f6ba12974a",
+ "started": "2026-11-12T06:48:45Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

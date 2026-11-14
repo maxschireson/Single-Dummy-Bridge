@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 5.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T08:02:37Z",
+ "id": "20261114T080224Z-600409-loop-182-lt",
+ "output_bytes": 430,
+ "output_tail": "Running as unit: loop-usbclt.service; invocation ID: b9535de995364924b3c6d2e9708bf025\nactive inactive 2026-11-14T08:00:04Z usbc_238184_2_1 Beth Palmer Women's USA2 Final 2/4: 15 boards, 30 tables (10312 requests so far)\n2026-11-14T08:00:12Z usbc_238184_5_1 Beth Palmer Women's USA2 Final 5/5: 15 boards, 30 tables (10352 requests so far)\n2026-11-14T08:00:12Z done: 77 sessions, 9000 tables, 10352 requests\n79\n2026-11-14T08:02:37Z\n",
+ "received": "2026-11-14T08:02:31Z",
+ "script_sha256": "af43a1c751364311bf5ed0235bc0eaa78b8e509c800ffddfd60dd166dcd5303d",
+ "started": "2026-11-14T08:02:31Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

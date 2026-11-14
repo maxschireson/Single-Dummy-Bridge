@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:39:05Z",
+ "id": "20261114T173840Z-449988-cmd",
+ "output_bytes": 1107,
+ "output_tail": "bu4c-pst200a: 256 | bu4c-pst200b: 228 | bu4c-pst200c: 0 | \n2026-11-14T17:00:53Z start bu4c-pst200b-7 stu4c-put~ben200 seed 131 first 448 deals 32 workers 1 --common-only --episodes (source 830661d, n\n2026-11-14T17:00:53Z start bu4c-pst200b-8 stu4c-put~ben200 seed 131 first 480 deals 32 workers 1 --common-only --episodes (source 830661d, n\nloop-ben-bu4c-pst200b-1.service running loop-ben-bu4c-pst200b-2.service running loop-ben-bu4c-pst200b-3.service running loop-ben-bu4c-pst200b-4.service running loop-ben-bu4c-pst200b-5.service running loop-ben-bu4c-pst200b-6.service running loop-ben-bu4c-pst200b-7.service running loop-ben-bu4c-pst200b-8.service running loop-ben200@1.service running loop-ben200@2.service running loop-ben200@3.service running loop-ben200@4.service running loop-ben200@5.service running loop-ben200@6.service running loop-ben200@7.service running loop-ben200@8.service running loop-bensession.service running loop-ledger.service running loop-publish.service running loop-rows.service running \nMem:              31          17           7           0           6          13\n17:39:05\n",
+ "received": "2026-11-14T17:39:05Z",
+ "script_sha256": "82ed244c5b8009a34807f0e22eea63c975087fe6dd4bed81b0bcf4f2c67501c5",
+ "started": "2026-11-14T17:39:05Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

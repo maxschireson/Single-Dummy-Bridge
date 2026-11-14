@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure3",
+ "duration_s": 25.4,
+ "exit_code": 0,
+ "finished": "2026-11-13T12:00:07Z",
+ "id": "20261113T115934Z-621967-loop-chain3-e760",
+ "output_bytes": 390,
+ "output_tail": "l0-p at 440 boards\nsource e760e5e Collection: one table a board (--one-room); lead rungs ahead of round 1's rungs\nRunning as unit: loop-chain.service; invocation ID: e5a4177f94824004aab831cc3560252a\nactive active \n2026-11-13T11:59:43Z end l0-stu0: exit 0\n2026-11-13T11:59:43Z start l0-p stu0-p~8p-32-v41 seed 131 first 0 deals 500 workers 8 --episodes (source e760e5e)\n2026-11-13T12:00:07Z\n",
+ "received": "2026-11-13T11:59:42Z",
+ "script_sha256": "942ab113ba711147bd81d2c3e4935ef9addc67ae777496b6cfce6928bcbbc9b2",
+ "started": "2026-11-13T11:59:42Z",
+ "timed_out": false,
+ "timeout_s": 600
+}
