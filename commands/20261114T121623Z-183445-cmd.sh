@@ -1,0 +1,1 @@
+W=$HOME/work/loop; sudo journalctl -u loop-arena -n 25 --no-pager 2>/dev/null | cut -c1-260 | tail -25; tail -n 5 $W/r4arena/arena.log | cut -c1-200; ls $W/r4arena/eps | wc -l; ls $W/r4arena/ben | wc -l; ls -la $W/r4arena/*.npz 2>/dev/null; df -h ~ | tail -1
