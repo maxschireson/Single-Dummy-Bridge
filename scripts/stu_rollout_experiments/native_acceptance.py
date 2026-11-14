@@ -48,7 +48,7 @@ def main():
                 if mode == 'base' and p.finder:
                     p.finder.close()
                 p.close()
-        assert outcomes[0] == outcomes[1] == outcomes[2], (seed, plies, outcomes)
+        assert outcomes[0] == outcomes[1] == outcomes[2], (seed, plies, [x[:2] for x in outcomes])
         checks.append(dict(seed=seed, plies=plies, null_zero_parity=True, card=outcomes[0][0]))
         print(json.dumps(checks[-1]), flush=True)
     child_calls = 0

@@ -173,7 +173,7 @@ def main():
         source_commit=subprocess.check_output(['git', '-C', str(RUNTIME), 'rev-parse', 'HEAD'], text=True).strip(),
         implementation={p.name: sha256(p) for p in Path(__file__).parent.glob('*.py')},
         environment={key: os.environ.get(key) for key in
-            ('BF16', 'OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'BRIDGE_DDS_CACHE')},
+            ('BRIDGE_NET_BF16', 'OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'BRIDGE_DDS_CACHE')},
         protocol_version=2, retry_policy='none; preserve first failure and stop', run_identity=str(out))
     prepare_output(out, manifest)
     rows, failure = [], None
