@@ -307,3 +307,7 @@
 2026-11-14T15:16:05Z start h4c-n stu4-n~stu4c-n seed 131 first 30000 deals 8000 workers 8  (source a470efe, nets fp32)
 2026-11-14T15:26:56Z end h4c-n: exit 0
 2026-11-14T15:26:56Z start h43-n stu4-n~stu3-n seed 131 first 30000 deals 4000 workers 8  (source a470efe, nets fp32)
+2026-11-14T15:32:24Z end h43-n: exit 0
+2026-11-14T15:32:24Z start h4c3-n stu4c-n~stu3-n seed 131 first 30000 deals 4000 workers 8  (source a470efe, nets fp32)
+2026-11-14T15:37:52Z end h4c3-n: exit 0
+2026-11-14T15:37:52Z start h4c-pst stu4-pst~stu4c-pst seed 131 first 36000 deals 500 workers 8 --episodes (source a470efe, nets fp32)

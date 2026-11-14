@@ -1,0 +1,23 @@
+{
+ "pair": "stu4c-n~stu3-n",
+ "boards": 4000,
+ "cpu_per_board": 0.65,
+ "common": {
+  "imps_per_board": 0.0917,
+  "se": 0.0543,
+  "boards": 4000,
+  "won": 729,
+  "lost": 640,
+  "flat": 2631
+ },
+ "native": {
+  "imps_per_board": 0.0917,
+  "se": 0.0543,
+  "boards": 4000,
+  "won": 729,
+  "lost": 640,
+  "flat": 2631
+ },
+ "failures": 0,
+ "boards_per_hour": 43846
+}
