@@ -1,58 +1,58 @@
 {
   "pair": "rx2-recursive32~rx-ben64",
-  "boards": 23,
-  "cpu_per_board": 41.66,
+  "boards": 29,
+  "cpu_per_board": 42.11,
   "common": {
-    "imps_per_board": -0.3913,
-    "se": 0.5956,
-    "boards": 23,
-    "won": 5,
-    "lost": 4,
-    "flat": 14
+    "imps_per_board": 0.0345,
+    "se": 0.6326,
+    "boards": 29,
+    "won": 7,
+    "lost": 6,
+    "flat": 16
   },
   "native": {
-    "imps_per_board": -0.3913,
-    "se": 0.5956,
-    "boards": 23,
-    "won": 5,
-    "lost": 4,
-    "flat": 14
+    "imps_per_board": 0.0345,
+    "se": 0.6326,
+    "boards": 29,
+    "won": 7,
+    "lost": 6,
+    "flat": 16
   },
   "failures": 0,
-  "unfinished": 8,
-  "attempts": 31,
+  "unfinished": 3,
+  "attempts": 32,
   "interpretation": "development only; not a strength or equal-time decision",
   "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
   "attempt_cpu_scope": "worker plus reaped child solvers; separately hosted BEN server CPU excluded",
   "attempt_work": {
-    "wall_seconds": 1772.086103419977,
-    "worker_cpu_seconds": 959.187524839,
-    "solver_cpu_seconds": 26.740629000000002,
-    "inclusive_cpu_seconds": 985.9281538390001
+    "wall_seconds": 2277.4028510770004,
+    "worker_cpu_seconds": 1222.467486971,
+    "solver_cpu_seconds": 34.099273000000004,
+    "inclusive_cpu_seconds": 1256.566759971
   },
   "actors": {
     "rx2-recursive32": {
       "work": {
-        "solver_cpu_seconds": 26.093029,
-        "solver_wall_seconds": 27.998025970417075,
-        "solver_calls": 72491.0,
-        "solver_hits": 3011.0,
+        "solver_cpu_seconds": 33.273533,
+        "solver_wall_seconds": 35.517332038522,
+        "solver_calls": 93345.0,
+        "solver_hits": 3490.0,
         "solver_timeouts": 0.0,
-        "wall_seconds": 980.7911194635963,
-        "worker_cpu_seconds": 946.0766456649998,
-        "inclusive_cpu_seconds": 972.169674665,
-        "initialization_seconds": 10.2761602710234
+        "wall_seconds": 1252.3374733536039,
+        "worker_cpu_seconds": 1208.4159301159996,
+        "inclusive_cpu_seconds": 1241.6894631159996,
+        "initialization_seconds": 10.508059678046266
       },
       "recursive": {
-        "opportunities": 633031.0,
-        "calls": 2812.0,
-        "cache_hits": 100.0,
-        "changed": 5582.0,
-        "net_rows": 788993.0,
-        "child_wall_seconds": 657.0230911936087,
-        "argmax_different": 4391.0,
-        "applied_rows": 11088.0,
-        "budget_rejected": 123741.0
+        "opportunities": 790663.0,
+        "calls": 3490.0,
+        "cache_hits": 151.0,
+        "changed": 6903.0,
+        "net_rows": 977152.0,
+        "child_wall_seconds": 840.6509201788867,
+        "argmax_different": 5436.0,
+        "applied_rows": 13549.0,
+        "budget_rejected": 154270.0
       },
       "precisions": [
         [
@@ -63,8 +63,8 @@
     },
     "rx-ben64": {
       "work": {
-        "wall_seconds": 779.0062994079199,
-        "worker_cpu_seconds": 0.8067665969997693,
+        "wall_seconds": 1012.0260916650295,
+        "worker_cpu_seconds": 0.976415297999826,
         "external_server_cpu_measured": 0.0
       },
       "recursive": {},
