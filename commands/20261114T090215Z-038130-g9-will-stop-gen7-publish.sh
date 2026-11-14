@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+U=arena-gen7-publish.service; p=$(systemctl show -p MainPID --value $U); a=$(tr "\0" " " < /proc/$p/cmdline 2>/dev/null); echo "MainPID $p: $a"; if [ "$p" = 5704 ] && echo "$a" | grep -q "gen7-phase1-azure4"; then sudo -n systemctl stop $U && sudo -n systemctl disable $U 2>&1; sleep 2; systemctl is-active $U; systemctl is-enabled $U; ps -p 5704 >/dev/null && echo "5704 still running" || echo "5704 gone"; else echo "not matching: left alone"; fi; git -C /home/bridgebots/work/publication/gen7-phase1-azure4 log -1 --format="%h %ci %s" 2>/dev/null
