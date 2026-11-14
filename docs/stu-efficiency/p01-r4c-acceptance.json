@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "reference_commit": "5addd826af8b10d7343df51ada528a7327d059b6",
+  "transfer_commit": "ac2886b97487a8e4717a0d05a1aa642d9ba41ded",
+  "seconds": {
+    "old_full_process": 66.60857378000219,
+    "new_until_baseline_written": 12.169871167992824
+  },
+  "optimizer_steps": 0,
+  "validation": {
+    "n": 135543,
+    "searched": 110242,
+    "nll": 0.5588,
+    "uniform_nll": 1.2813,
+    "tie_nll": 0.751,
+    "agree": 0.7705,
+    "in_best": 0.8972,
+    "rated_pick": 0.9996,
+    "regret": 0.0253,
+    "regret_gap_head": 0.0233,
+    "regret_random": 0.2032,
+    "regret_lowest": 0.2233
+  },
+  "exact_validation": true,
+  "input_sha256": {
+    "val.npz": "954e92405b20c58526de3cdcae5fc8c601ca52f92c64dbf91697e06acdef0f08",
+    "init.npz": "a9ee66def78cea60caa54b8268791efead51e30184f2b8806f6bd8ce9932c53b",
+    "inputs.json": "da5e6bc835acb382c0d2d8d79a2b6f9f9f3cc178a2a41e9538f8c8a30b1a26ec"
+  },
+  "notes": "Test wrapper exits after before.json is written and rejects any optax.apply_updates call. Timings include startup; old includes final ablations, new only baseline scoring. Not a production full-cycle speedup."
+}
