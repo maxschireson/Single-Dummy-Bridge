@@ -1,0 +1,1 @@
+W=$HOME/work/loop; tail -n 4 $W/r4arena/arena.log | cut -c1-220; systemctl is-active loop-arena; sudo journalctl -u loop-arena -n 3 --no-pager | cut -c1-200; ls -la $W/r4arena/*.npz 2>/dev/null; grep MATCH $W/human.log | tail -n +20 | cut -c1-200; date -u +%T
