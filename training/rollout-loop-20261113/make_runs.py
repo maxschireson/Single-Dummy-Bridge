@@ -74,6 +74,7 @@ MOVED = {n: MOVE_NOTE for n in ('s8-greedy', 's8-patient', 's8-greedy0', 's8-hig
 MOVED['h3-px'] = "05:30 UTC on 14 November: dropped (sharper seats did nothing: h3-p2, h3-pg)"
 MOVED['sg8h'] = MOVED['sg8g'] = "05:30 UTC on 14 November: the box makes the one-net Stu R3's self-play records instead"
 MOVED['sg8e'] = MOVED['sg8f'] = "05:40 UTC on 14 November: Gen 8's self-play records from here are played by its personalities (sg8s, sg8t)"
+MOVED['sg8j'] = "18:25 UTC on 14 November: the box collects the personalities' self-play instead (sg8v1 to sg8v36)"
 MOVED['sp3t'] = MOVED['sp3tb'] = ("17:45 UTC on 14 November: round 4's net (stu4c, trained only on bots) takes over the one-net "
                                    "self-play (sp4t, sp4tb; Max, 17:34: 'likely adopt')")
 MOVED['sg8i'] = "05:30 UTC on 14 November: azure3 is the test box; Gen 8 records only when its tests are done (sg8j)"
@@ -122,7 +123,7 @@ def main():
                       ('azure6', 'jobs-azure6-mix.txt'), ('azure2', 'jobs-azure2-onenet.txt'), ('azure3', 'jobs-azure3-ben5.txt'),
                       ('azure6', 'jobs-azure6-ben.txt'), ('azure2', 'jobs-azure2-ben.txt'),
                       ('azure5', 'jobs-azure5-ben.txt'), ('azure1', 'jobs-azure1-ben.txt'), ('azure3', 'jobs-azure3-ben6.txt'), ('azure3', 'jobs-azure3-ben7.txt'),
-                      ('azure5', 'jobs-azure5-human.txt'), ('azure5', 'jobs-azure5-r4.txt'), ('azure3', 'jobs-azure3-ben8.txt')):
+                      ('azure5', 'jobs-azure5-human.txt'), ('azure5', 'jobs-azure5-r4.txt'), ('azure3', 'jobs-azure3-ben8.txt'), ('azure3', 'jobs-azure3-gen.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')
             if stopped:                             # a run taken out of the chain: listed and marked, not run

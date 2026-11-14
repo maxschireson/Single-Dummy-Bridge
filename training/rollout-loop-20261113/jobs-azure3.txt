@@ -33,9 +33,9 @@ l1-n stu1-n~8p-32-v41 131 0 200 8 --episodes
 # 05:30 UTC on 14 November: azure3 is the test box (Max, 05:24). After its BEN session (jobs-azure3-ben5.txt), the tests
 # moved here from the other boxes, most needed first, then Gen 8 card play's self-play records while it has nothing to test.
 #   the one-net bot against Gen 8 card play: told nothing about its opponent (l3-put), and 500 more deals with its control
-l3-put stu3-put~8p-32-v41 131 500 500 8 --episodes
-l3-pstb stu3-pst~8p-32-v41 131 1000 500 8 --episodes
-l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
+#stopped l3-put stu3-put~8p-32-v41 131 500 500 8 --episodes
+#stopped l3-pstb stu3-pst~8p-32-v41 131 1000 500 8 --episodes
+#stopped l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
 #   the personalities of Gen 8 card play against Gen 8 card play (margin 0.1 first, then two at margin 0)
 #stopped s8-greedy g8-greedy~8p-32-v41 131 25000 500 8 --episodes
 #stopped s8-patient g8-patient~8p-32-v41 131 25000 500 8 --episodes
@@ -46,7 +46,11 @@ l3-psb stu3-ps~8p-32-v41 131 1000 500 8 --episodes
 #stopped s8-greedy0 g8-greedy0~8p-32-v41 131 25000 500 8 --episodes
 #stopped s8-passive0 g8-passive0~8p-32-v41 131 25000 500 8 --episodes
 #   what SiD's own randomization costs; policy v4.1 inside (both against the reference, head to head)
-h3-pm stu3-pm~stu3-ps 131 5000 1000 8
-h41-p stuv41-ps~stu0-ps 131 5000 500 8
-h41-pb stuv41-ps~stu0-ps 131 5500 500 8
-sg8j g8a~g8b 9001 640000 20000 8 --episodes --one-room
+#stopped h3-pm stu3-pm~stu3-ps 131 5000 1000 8
+#stopped h41-p stuv41-ps~stu0-ps 131 5000 500 8
+#stopped h41-pb stuv41-ps~stu0-ps 131 5500 500 8
+#stopped sg8j g8a~g8b 9001 640000 20000 8 --episodes --one-room
+# 18:25 UTC on 14 November (Max, 17:27: "Too much time testing relative to learning"; 17:57: "We should continue collecting gen"):
+# the queued tests above are dropped and the BEN gate stopped at 650 deals of stu4c (it is adopted). This box collects Gen 8's
+# self-play (the six personality pairs, deals 880,000 to 951,999) so that azure5, which holds the pool's rows, can train.
+# The runs are in jobs-azure3-gen.txt (a file of its own, so that the chain does not pass through this file's old tests).
