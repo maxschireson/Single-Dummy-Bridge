@@ -1,0 +1,16 @@
+{
+  "poll_start": "2026-11-14T10:30:12Z",
+  "authority": "Max09:25-09:45 Nov14 to Stu/loop: experiment with human boards in training and their weight.",
+  "research_revision": "b4e1eaef0c12160b2f74511bd14a95494532b6a0",
+  "feed": "feed/usbc-human-20261114",
+  "feed_revision": "8381f8e58a93a87c6097945025457d32576f9ec1",
+  "readme_blob": "ed0c890f900643bf425ddac54970c5496f6db4ac",
+  "training_scope": "Adult USBC Open/Senior/Mixed/Women's 2021-2023: 1556 boards/44946 human rows, one fitting-auction table per deal; paired experiment uses1556 bot self-play boards/63993rows. Models trained with/without/weighted human rows, alone and inside one-net rollouts.",
+  "test_scope": "2025 USBCs and every junior event remain test-only. Additional998 bot boards are experiment holdout.",
+  "supersedes": "Earlier blanket USBC test-only notices are now narrowed for this explicitly authorized research experiment. Their historical snapshots are preserved.",
+  "applied_to_this_stream": false,
+  "datasets_or_models_downloaded": false,
+  "local_training": false,
+  "local_corpus_changed": false,
+  "disposition": "No owned collector transition, data import, training, candidate promotion or self-play opening. Current Gen8 actors predate the experiment; frozen34092-family exclusion list and proofs stay byte-identical. Any future new cohort needs complete pinned family membership for ALL released-model training sets, including these human/bot/replay families if used in any released model; metadata counts/seeds are not a complete family-overlap proof."
+}

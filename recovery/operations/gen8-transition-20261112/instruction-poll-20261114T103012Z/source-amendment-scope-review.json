@@ -1,0 +1,11 @@
+{
+  "poll_start": "2026-11-14T10:30:12Z",
+  "revision": "9b2e7ad02458b8a9edbf72609a84a83882ea52dd",
+  "authority_quote": "Max09:17 Nov14, after the Gen9/Azure4 cache-source restart refused: Fix it so that it can run with changed code. Producing the boards is more important.",
+  "context": "Previously reviewed scoped Gen9/Azure4 source-amendment mechanism; branch unchanged9b2e7ad. No new general collector notice or canonical Gen8 source adoption.",
+  "applied": false,
+  "local_guard_retained": true,
+  "local_amendments_file_exists": false,
+  "disposition": "Current producer remains healthy with strict source validation and frozen792c4cb; preserve user-required new identity/drained successor for any new source. No source-amendments.json or guard change.",
+  "evidence": "ownership-review.json"
+}

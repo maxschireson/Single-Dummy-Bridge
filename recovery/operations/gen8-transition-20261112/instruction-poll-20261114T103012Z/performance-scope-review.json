@@ -1,0 +1,31 @@
+{
+  "poll_start": "2026-11-14T10:30:12Z",
+  "branch": "perf/stu-20261114",
+  "revision": "3d353dfbebece7b8dc5951799ddf763d64e407a5",
+  "applied": false,
+  "scope": "Sandbox changes offered to the Stu/loop owner, not general collector instructions.",
+  "claims": "Fork batching mode1 matches its mode2 reference, but changes main draws versus old mode0. NumPy feature scatter and legal-suit-only policy have sandbox checks; matrix-size/kernel differences need real-host comparisons. Gen8 sg8 profile is Stu's self-play, not this arena cohort; bf16 has no claimed card equivalence.",
+  "disposition": "Retain frozen792c4cb FP32 source, existing seeds/streams, DDS semantics and scientific identity. Do not set new BRIDGE_* switches, add torch/BF16, benchmark peer boxes, alter own source, self-play or BEN.",
+  "commits": [
+    {
+      "sha": "3d353dfbebece7b8dc5951799ddf763d64e407a5",
+      "date": "2026-11-14T10:24:46Z",
+      "message": "perf: legal-suit decoding test at the real net's sizes (bit-identical) and within 1e-5 at tiny sizes; README items 4 and Gen 8 profile\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "4182797010bcc5beef497eb1be17ccb5b0e17973",
+      "date": "2026-11-14T10:24:09Z",
+      "message": "gen7_net: policy logits decode only the suits holding a legal card (forward_policy, Bf16Forward.policy)\n\nlog_policy_arrays needs only the legal cards' policy logits. 55% of rollout rows follow\nsuit, so most suit decodings and four of five output columns are skipped. The legal\ncards' log-probabilities are identical to the full pass (tests/test_bf16_buckets.py);\nforward pass +5-15% fp32, +0-12% bf16 in the sandbox, end to end within noise there.\nBRIDGE_POLICY_SUITS=0 turns it off. README: Gen 8 self-play profile.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "17877a19dbcc52b44a9713a140e793c19f807f3c",
+      "date": "2026-11-14T09:48:09Z",
+      "message": "gen7_net: NumPy features written into one array with a scatter (same numbers, about 2.5x faster)\n\nfeatures() was 9% of a bf16 self-play table. The NumPy path now scatters the state\none-hot and writes the other per-card features in place instead of a [n, 52, 11]\ncomparison and a six-way concatenation: identical arrays (tests/test_bf16_buckets.py),\n1.66 to 0.71 ms at 512 rows, about 7% of a table in the sandbox. JAX keeps the generic\npath; BRIDGE_FAST_FEATURES=0 restores it for NumPy.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "8de5828991f8c859ba41f0dc5d298ffe99abee38",
+      "date": "2026-11-14T09:33:24Z",
+      "message": "8X rollouts: fork continuations ride in the main rows' batches (x8_rollout.FORK_BATCH)\n\nThe fork copies were finished after the main loop one group at a time, two rows a\nnet call: half of all net calls and about 10% of a self-play table. From the step a\nfork is taken its copies are at the main rows' ply, so they now advance in the same\nnet evaluation (Seats.cards_pair), drawing from their own stream so the main rows'\ndraws do not depend on them. Sandbox, 6 boards: fp32 20.3 to 18.3 CPU-s a board,\npadded bf16 12.6 to 9.4, the same cards as the old path on the fork stream (mode 2).\nAgainst the old path on the main stream (BRIDGE_FORK_BATCH=0) the draws after a race's\nfirst round differ: same distribution, not the same cards.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ]
+}

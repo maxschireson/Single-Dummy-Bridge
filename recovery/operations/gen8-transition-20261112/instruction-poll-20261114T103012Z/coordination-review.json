@@ -1,0 +1,24 @@
+{
+  "poll_start": "2026-11-14T10:30:12Z",
+  "revision": "783d75fe7358955d3ec72b31b66dd2cd38f47aa5",
+  "blob": "b0e4d289b3b2a9645d5721b6c3c3f18b39b56c71",
+  "new_entries_since_prior_poll": 2,
+  "latest_entry": "2026-11-14T10:30:00Z perf (for loop)",
+  "scope": "Both new notices are perf proposals addressed to loop; no new general collection-worker or owned-producer instruction.",
+  "continuing_general_authority": "Max19:57/19:59, relayed Nov13 20:00, continues Codex primary collection. Canonical Gen8 source/plans/actors unchanged.",
+  "disposition": "Continue strict frozen Gen8 main mix, three normal/zero BEN, source budget18283 and disabled legacy gates. Fork batching has an explicit random-stream caveat; FP32 feature/suit changes and bf16 are source/behavior proposals for the Stu owner, not adopted here. Separate scoped human-training authority changes the USBC research split without changing this producer.",
+  "board_commits": [
+    {
+      "sha": "783d75fe7358955d3ec72b31b66dd2cd38f47aa5",
+      "date": "2026-11-14T10:24:59Z",
+      "message": "perf: fast features, legal-suit policy decoding, exactness caveat, Gen 8 self-play profile\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    },
+    {
+      "sha": "9ffb9ac161a547d8c522f17da75203e7f774b983",
+      "date": "2026-11-14T09:33:47Z",
+      "message": "perf: fork continuations batched with the main rollout rows (8de5828), the same cards\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4"
+    }
+  ],
+  "peer_evidence": "genx-stu-peer-review.json",
+  "human_training_evidence": "human-training-scope-review.json"
+}

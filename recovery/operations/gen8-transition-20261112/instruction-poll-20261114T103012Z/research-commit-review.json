@@ -1,0 +1,80 @@
+{
+  "poll_start": "2026-11-14T10:30:12Z",
+  "source": "research/rollout-loop-20261113",
+  "revision": "b4e1eaef0c12160b2f74511bd14a95494532b6a0",
+  "commits": [
+    {
+      "sha": "b4e1eaef0c12160b2f74511bd14a95494532b6a0",
+      "date": "2026-11-14T09:49:28Z",
+      "message": "Human-boards experiment (Max, 09:25 to 09:45 UTC): the USBC's adult boards of 2021-23 as training rows, nets with and without them (exp_human.sh), their bots alone and inside the one-net rollout bot\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j"
+    }
+  ],
+  "applied": false,
+  "scope": "Scoped USBC human-training research now permits adult2021-23 experiment rows; 2025/juniors remain tests. Separate Stu/perf fork batching, feature and suit-policy proposals.",
+  "disposition": "Max09:25-09:45 revises the prior blanket USBC test-only rule for one Stu training experiment: adult2021-23 boards may train its experimental nets; 2025 and juniors stay held out. This is not a collector-switch or local-training instruction. New perf code remains offered to loop; fork batching changes random draws against mode0, bf16 changes cards, and matrix-size/kernel equivalence needs host checks. Do not install source/settings, enable BF16/fork batching/features/suit switches, import datasets, train/promote or reopen retired cohorts here.",
+  "evidence": [
+    {
+      "sha": "b4e1eaef0c12160b2f74511bd14a95494532b6a0",
+      "message": "Human-boards experiment (Max, 09:25 to 09:45 UTC): the USBC's adult boards of 2021-23 as training rows, nets with and without them (exp_human.sh), their bots alone and inside the one-net rollout bot\n\nCo-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxDPjdoFBFtyygdYP4j",
+      "parents": [
+        "59609cf7363385d33b4811f7fdf908cf67b52d16"
+      ],
+      "files": [
+        "configs/loop-bots.json",
+        "training/rollout-loop-20261113/exp_human.sh",
+        "training/rollout-loop-20261113/make_bots.py",
+        "training/rollout-loop-20261113/usbc/human_episodes.py",
+        "training/rollout-loop-20261113/usbc/human_sets.py"
+      ]
+    },
+    {
+      "sha": "3d353dfbebece7b8dc5951799ddf763d64e407a5",
+      "message": "perf: legal-suit decoding test at the real net's sizes (bit-identical) and within 1e-5 at tiny sizes; README items 4 and Gen 8 profile\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "4182797010bcc5beef497eb1be17ccb5b0e17973"
+      ],
+      "files": [
+        "tests/test_bf16_buckets.py",
+        "training/perf-20261114/README.md"
+      ]
+    },
+    {
+      "sha": "4182797010bcc5beef497eb1be17ccb5b0e17973",
+      "message": "gen7_net: policy logits decode only the suits holding a legal card (forward_policy, Bf16Forward.policy)\n\nlog_policy_arrays needs only the legal cards' policy logits. 55% of rollout rows follow\nsuit, so most suit decodings and four of five output columns are skipped. The legal\ncards' log-probabilities are identical to the full pass (tests/test_bf16_buckets.py);\nforward pass +5-15% fp32, +0-12% bf16 in the sandbox, end to end within noise there.\nBRIDGE_POLICY_SUITS=0 turns it off. README: Gen 8 self-play profile.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "17877a19dbcc52b44a9713a140e793c19f807f3c"
+      ],
+      "files": [
+        "bridge_harness/gen7_net.py",
+        "tests/test_bf16_buckets.py"
+      ]
+    },
+    {
+      "sha": "17877a19dbcc52b44a9713a140e793c19f807f3c",
+      "message": "gen7_net: NumPy features written into one array with a scatter (same numbers, about 2.5x faster)\n\nfeatures() was 9% of a bf16 self-play table. The NumPy path now scatters the state\none-hot and writes the other per-card features in place instead of a [n, 52, 11]\ncomparison and a six-way concatenation: identical arrays (tests/test_bf16_buckets.py),\n1.66 to 0.71 ms at 512 rows, about 7% of a table in the sandbox. JAX keeps the generic\npath; BRIDGE_FAST_FEATURES=0 restores it for NumPy.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "8de5828991f8c859ba41f0dc5d298ffe99abee38"
+      ],
+      "files": [
+        "bridge_harness/gen7_net.py",
+        "tests/test_bf16_buckets.py",
+        "training/perf-20261114/README.md"
+      ]
+    },
+    {
+      "sha": "8de5828991f8c859ba41f0dc5d298ffe99abee38",
+      "message": "8X rollouts: fork continuations ride in the main rows' batches (x8_rollout.FORK_BATCH)\n\nThe fork copies were finished after the main loop one group at a time, two rows a\nnet call: half of all net calls and about 10% of a self-play table. From the step a\nfork is taken its copies are at the main rows' ply, so they now advance in the same\nnet evaluation (Seats.cards_pair), drawing from their own stream so the main rows'\ndraws do not depend on them. Sandbox, 6 boards: fp32 20.3 to 18.3 CPU-s a board,\npadded bf16 12.6 to 9.4, the same cards as the old path on the fork stream (mode 2).\nAgainst the old path on the main stream (BRIDGE_FORK_BATCH=0) the draws after a race's\nfirst round differ: same distribution, not the same cards.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01N2EvxFxonBEZD9BNLUssr4",
+      "parents": [
+        "c443b4a503155ea561d3030c3a5fb6895c6b4ecd"
+      ],
+      "files": [
+        "bridge_harness/x8_rollout.py",
+        "tests/test_fork_batch.py",
+        "training/perf-20261114/README.md"
+      ]
+    }
+  ],
+  "research_plan_blob": "ff27cd3668e90d4e86544e420911254df9b36eec",
+  "future_exclusions": "No owned collector transition, data import, training, candidate promotion or self-play opening. Current Gen8 actors predate the experiment; frozen34092-family exclusion list and proofs stay byte-identical. Any future new cohort needs complete pinned family membership for ALL released-model training sets, including these human/bot/replay families if used in any released model; metadata counts/seeds are not a complete family-overlap proof.",
+  "human_training_scope_evidence": "human-training-scope-review.json"
+}
