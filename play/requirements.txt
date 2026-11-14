@@ -1,0 +1,7 @@
+# The play server and the bot workers. TensorFlow and NumPy are pinned to the versions the arena boxes run Sid with.
+tensorflow==2.21.0
+numpy==2.5.4
+scipy
+fastapi
+uvicorn
+h5py

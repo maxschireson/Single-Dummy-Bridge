@@ -23,6 +23,7 @@
 
 - [Operations and recovery](operations.md)
 - [boxctl: run commands on a collector box through GitHub](boxctl.md)
+- [Play against Sid: the public play server, its bundle and deployment](../play/README.md)
 - [Watchdog implementation/runbook](arena_watchdog.md)
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
