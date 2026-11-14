@@ -1,23 +1,23 @@
 {
  "pair": "g8-low~8p-32-v41",
- "boards": 200,
- "cpu_per_board": 20.98,
+ "boards": 450,
+ "cpu_per_board": 21.16,
  "common": {
-  "imps_per_board": 0.355,
-  "se": 0.2559,
-  "boards": 200,
-  "won": 38,
-  "lost": 37,
-  "flat": 125
+  "imps_per_board": 0.1622,
+  "se": 0.1688,
+  "boards": 450,
+  "won": 87,
+  "lost": 82,
+  "flat": 281
  },
  "native": {
-  "imps_per_board": 0.355,
-  "se": 0.2559,
-  "boards": 200,
-  "won": 38,
-  "lost": 37,
-  "flat": 125
+  "imps_per_board": 0.1622,
+  "se": 0.1688,
+  "boards": 450,
+  "won": 87,
+  "lost": 82,
+  "flat": 281
  },
  "failures": 0,
- "boards_per_hour": 1337
+ "boards_per_hour": 1348
 }
