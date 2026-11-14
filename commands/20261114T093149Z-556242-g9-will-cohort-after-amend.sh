@@ -1,0 +1,2 @@
+# boxctl: timeout=120
+R=$HOME/work/g9/runs/g9-cohort-azure4; ls $R/run/receipts | wc -l; ls $R/run/failures | wc -l; sudo -n journalctl -u g9-job-g9-cohort-azure4 --since "09:24" --no-pager | grep -E "accepted by|Traceback|Error|\"completed\"" | tail -4 | cut -c1-220; P=$(pgrep -f "src/9b2e7ad0/ops/gen5_runtime.py" | head -1); echo "runtime pid $P"; tr "\0" "\n" < /proc/$P/environ | grep BRIDGE_DDS_CACHE_SYNC; iostat -dx 10 2 | grep nvme0n1 | tail -1 | awk "{print \"w/s\",\$8,\"w_await\",\$12,\"f/s\",\$(NF-3),\"util\",\$NF}"; vmstat 5 2 | tail -1
