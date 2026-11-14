@@ -174,3 +174,26 @@ def test_five_card_weak_twos_in_third_seat():
     five = 'S:KQT93 H:32 D:J32 C:432'                    # 6 HCP, five good spades
     assert call(s, [], 0, 0, 'None', five) == 'PASS'
     assert call(s, ['PASS', 'PASS'], 0, 2, 'None', five) == '2S'
+
+
+def test_derived_one_nt_rebid_range():
+    """G9-B10 item 4: the opener's 1NT rebid range, derived from the 1NT opening when the card does not state it."""
+    def rnt(**kw):
+        return CardSystem(load_card({'id': 'x', **kw})).rebid_nt(1, False)
+    assert rnt(**{'open.nt': [{'hcp': [14, 16]}], 'open.min_hcp': 11}) == (11, 13)
+    assert rnt(**{'open.nt': [{'hcp': [14, 17]}], 'open.min_hcp': 12}) == (12, 13)
+    assert rnt(**{'open.nt': [{'hcp': [12, 14]}], 'open.min_hcp': 12}) == (15, 17)     # weak notrump: the range above, as before
+    assert rnt(**{'open.nt': [{'hcp': [15, 17]}], 'open.min_hcp': 12}) == (12, 14)     # strong notrump, as before
+    assert rnt(**{'open.nt': [{'hcp': [14, 16]}], 'open.min_hcp': 11, 'rebid.one_nt': [12, 14]}) == (12, 14)   # a stated range wins
+
+
+def test_built_in_cards_keep_their_rebid_ranges():
+    """Only rb-precision derives a different range (17-17 before, 11-13 now, which is what the rule bidder rebids 1NT
+    with: balanced 11 to 13 on 175 of 6,000 deals, seed 9301), and its card does not cover rebids, so no built-in card
+    bids or reads differently."""
+    want = {'acbl-sayc': (12, 14), 'acol': (15, 17), 'house-gen5-fit': (11, 14), 'polish-club': (12, 14),
+            'precision': (11, 13), 'rb-precision': (11, 13), 'rb-standard': (11, 14), 'sayc': (12, 14),
+            'two-over-one': (12, 14), 'wbf-laukkanen-nordgren': (11, 14), 'wbf-pryor-scerri': (12, 14)}
+    got = {cid: CardSystem(load_card(cid)).rebid_nt(1, False) for cid in builtin_ids()}
+    assert {k: got[k] for k in want} == want
+    assert 'rebid' not in load_card('rb-precision').d['cover']

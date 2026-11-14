@@ -130,6 +130,11 @@ partnership (names removed) and the style statements of its notes, on branch `te
   derives (18, 17). `rb-precision`, with a 14-16 1NT, derives (17, 17).
   - The sample cards set `rebid.one_nt` themselves.
   - Fixing the derivation would change `rb-precision`'s compiled calls under the same identity, so I left it for bill.
+  - **Fixed on 14 Nov (G9-B10, item 4).** A 1NT opening from 13 or 14 with two points or more below it now derives the
+    balanced minimum under it: (11, 13) for `rb-precision`, (12, 13) for 14-17 with 12-point openings. The worry above
+    was mistaken: `rb-precision`'s card does not cover rebids, so the derived range is never compiled into its calls;
+    the rule bidder it describes rebids 1NT with balanced 11 to 13 (175 of 6,000 deals). No built-in card bids or reads
+    differently (`tests/test_gen9_card_intake.py`).
 
 ## Against the task's done-when
 

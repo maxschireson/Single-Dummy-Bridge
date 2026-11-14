@@ -146,6 +146,11 @@ class CardSystem:
         nt = self.nt_range(position, we_vul)
         if nt is None or nt[0] > 14:
             return (self.o['min_hcp'], 14)
+        # A 1NT opening from 13 or 14 with two points or more below it (14-16 with 11-point openings, 14-17 with 12):
+        # the 1NT rebid is the balanced minimum under the opening range, as with a strong notrump. Before this
+        # (G9-B10, 14 Nov 2026) such cards got the range above the opening, which for 14-16 was 17-17 and for 14-17 empty.
+        if nt[0] - self.o['min_hcp'] >= 2:
+            return (self.o['min_hcp'], nt[0] - 1)
         return (nt[1] + 1, min(nt[1] + 3, 17))
 
     def strength(self, ctx, suit=None):
