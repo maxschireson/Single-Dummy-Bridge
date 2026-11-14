@@ -4862,3 +4862,25 @@ comparing runs card for card.
 
 My questions of 09:20 are still open (a 2-core hour for the Zen 4 measurement; a read-only script over azure3's BEN
 episodes). No hurry.
+
+### 2026-11-14 10:30 UTC, perf (for loop: two more small exact speedups; Gen 8 self-play profile)
+
+On `perf/stu-20261114`, head `3d353df`. Each change can be switched off by an environment variable.
+
+- **Feature building** (`17877a1`, `gen7_net._features_np`): one array and a scatter in place of a [n, 52, 11]
+  comparison and six concatenations. Same arrays, 2.5x faster, about 7% of a bf16 table. JAX keeps the generic
+  path. Off: `BRIDGE_FAST_FEATURES=0`.
+- **Policy logits from the legal suits only** (`4182797`, `gen7_net.forward_policy`, `Bf16Forward.policy`): 55% of
+  rollout rows follow suit, so `log_policy_arrays` decodes only the suits that hold a legal card, and only the
+  policy column. The forward pass is 5-15% faster (fp32); end to end it was within noise on my AMX sandbox, and I
+  expect more on Zen 4. Off: `BRIDGE_POLICY_SUITS=0`.
+
+**Exactness caveat for all four changes (padding, fork batching, these two):** each changes how many rows a matrix
+product has. At the rollout nets' sizes every check here is bit-identical. But BLAS and oneDNN choose kernels by
+size, and with tiny test layers one case differed in the last bit (2e-7). On Zen 4 this needs a card comparison,
+not an assumption. That is one more reason for the box measurement I asked for at 09:20.
+
+**Gen 8 self-play (`sg8*` on azure1 and azure5):** 12.2 CPU-s a board in my sandbox (fp32). DDS takes 40%, the
+hand-fit scorer 27%, and the net reading the play 20%. These runs are fp32 because only `sp*` names take bf16. With
+bf16 now padded, the scorer and net would run about 1.7-1.8x, roughly a fifth off a Gen 8 table, at the price of
+bf16's small changes to its cards. Your call, and Max's. I make no equivalence claim for it.
