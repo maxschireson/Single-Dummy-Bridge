@@ -1,0 +1,1 @@
+W=$HOME/work/loop; grep MATCH $W/human.log | tail -n 1 | cut -c1-200; systemctl is-active loop-human5; grep -o "\"epoch\": [0-9], \"seconds\": [0-9]*" $W/r4/net.log 2>/dev/null | tail -1; grep -o "\"epoch\": [0-9], \"seconds\": [0-9]*" $W/r4c/net.log 2>/dev/null | tail -1; tail -n 4 $W/r4go.log | cut -c1-220; systemctl is-active loop-r4; df -h / | tail -1
