@@ -27,6 +27,10 @@
 - [Model release folders](../models)
 - [Dated reports](../reports/README.md)
 
+## Research reviews
+
+- [Stu search-allocation review and test contract](stu-search-allocation-review-2026-11-14.md): helper A's independent R02–R04 findings, regression reproductions, equal-cost controls and confirmation design for PR #38.
+
 ## Historical material
 
 Dated launch documents and design PDFs preserve what was believed or planned at the time.
