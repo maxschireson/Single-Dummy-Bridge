@@ -1,0 +1,12 @@
+{
+  "parent": 1585,
+  "unit_main": 1563,
+  "started": "2026-11-14T20:50:40Z",
+  "status": "drained",
+  "finished": "2026-11-14T20:52:21Z",
+  "rows": 2551,
+  "episodes": 2551,
+  "source": "30e30af88ea196b8189ff39491c83cf531797868",
+  "run": "/home/bridgebots/work/loop/runs/sp4tb",
+  "command": "   1585 /home/bridgebots/work/loop/venv/bin/python scripts/x8_match.py --source /home/bridgebots/work/loop/capsule/recovery --bots configs/loop-bots.json --pair stu4c-psta~stu4c-pstb --deals 20000 --first 780000 --seed 9001 --workers 8 --out /home/bridgebots/work/loop/runs/sp4tb --recycle 20 --episodes --one-room"
+}

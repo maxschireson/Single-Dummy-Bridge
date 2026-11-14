@@ -1,0 +1,15 @@
+{
+  "started": "2026-11-14T20:52:31Z",
+  "runtime": "30e30af88ea196b8189ff39491c83cf531797868",
+  "implementation": "7c79acfaa138a29d140dfef3d50f9a52216a24aa",
+  "bf16": true,
+  "seed": 2026111401,
+  "training_excluded": true,
+  "files": {
+    "bridge_harness/x8_player.py": "04fa2bf53a05bb391ddaad620328b115f07e2605d92e0b4f5d452446376ec700",
+    "bridge_harness/x8_rollout.py": "ca3fead4828ffdf12541bf549f9410cc5c69f6aa89e7ff377c69bca736c9c316",
+    "bridge_harness/gen7.py": "bf8ad22850b150ff2c24e4a220e0c6326a64a71ddd898ee412cd2a930200885b",
+    "bridge_harness/libbridge_dds.so": "6caa8970b3f7dc5530463f1554a6c84d5bfaaf9ff7edf419b52fee6609423434",
+    "models/cardplay/stu-net-r4c-20261113/policy.npz": "e4b689c87db2f56b98221a491757dbf348ddaea066e016f06a9331fc671197f2"
+  }
+}
