@@ -1,0 +1,1 @@
+W=$HOME/work/loop; tail -n 2 $W/r4arena/arena.log | cut -c1-220; systemctl is-active loop-arena; pgrep -u "$USER" -fc gen7_build_dataset; echo "xh-hf-p $(wc -l < $W/runs/xh-hf-p/results.jsonl)"; uptime | cut -c1-90
