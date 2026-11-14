@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 50.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T00:01:27Z",
+ "id": "20261113T000028Z-270018-plan-38-rnet1",
+ "output_bytes": 522,
+ "output_tail": "waiting now: @source rnet1 match2\nposition 18\n2026-11-12T23:13:12Z start match2 (source 0f0f4f8): $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bo\n2026-11-13T00:00:37Z end match2: exit 143\n2026-11-13T00:00:37Z source now 343341d Rollout net v1: the Gen 7+ bots' decisions as a training set, a warm sta\n2026-11-13T00:00:37Z start rnet1 (source 343341d): bash training/rollout-net-v1-20261113/chain.sh\n104\n2026-11-13T00:00:37Z start; source 343341d\njax 0.12.0.1 optax 0.2.9\n",
+ "received": "2026-11-13T00:00:37Z",
+ "script_sha256": "9110d67cbd1ffde9e4bb212d226d38bb2b0a3dd6c45d511cfecac4db3916ba91",
+ "started": "2026-11-13T00:00:37Z",
+ "timed_out": false,
+ "timeout_s": 260
+}

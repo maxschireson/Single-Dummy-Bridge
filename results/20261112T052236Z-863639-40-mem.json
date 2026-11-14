@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:22:50Z",
+ "id": "20261112T052236Z-863639-40-mem",
+ "output_bytes": 2146,
+ "output_tail": "                           total        used        free      shared  buff/cache   available\nMem:           32086       28680         963           4        3036        3405\n== by kind (RSS MB, processes)\n   20879 MB   24  collector and its workers\n    9777 MB    8  BEN server (gameapi.py)\n     818 MB    9  publisher\n     351 MB  186  other\n       4 MB    1  LEFTOVER test or preflight\n== the ten largest\n  2728 MB  up  5703s  pid 10622  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  2715 MB  up  5887s  pid 8479  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  2611 MB  up  5773s  pid 9657  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  2535 MB  up  5761s  pid 9861  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  2508 MB  up  5735s  pid 10250  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  2495 MB  up  5774s  pid 9551  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  2483 MB  up  5718s  pid 10432  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  2363 MB  up  5752s  pid 10046  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n  1305 MB  up  5873s  pid 9025  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1283 MB  up  6036s  pid 8123  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n== BEN servers, one line a lane (RSS MB, uptime s)\nlane 1: 1283 MB up 6036s; lane 2: 1125 MB up 5873s; lane 3: 1232 MB up 5873s; lane 4: 1274 MB up 5873s; lane 5: 1266 MB up 5873s; lane 6: 1225 MB up 5873s; lane 7: 1211 MB up 5873s; lane 8: 1180 MB up 5873s; \n== kernel: recent out-of-memory events\n(end)\n",
+ "received": "2026-11-12T05:22:50Z",
+ "script_sha256": "b4f9ecc9c362ea13c123965f1b1f4d4877f7bba826f9e77b5f5a887c2f68cc44",
+ "started": "2026-11-12T05:22:50Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

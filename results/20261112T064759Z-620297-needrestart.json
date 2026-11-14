@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:48:13Z",
+ "id": "20261112T064759Z-620297-needrestart",
+ "output_bytes": 884,
+ "output_tail": "written: $nrconf{restart} = 'l';\ntimers: apt-daily.timer: next Fri 2026-11-13 02:01:30, last Thu 2026-11-12 06:36:05;apt-daily-upgrade.timer: next Fri 2026-11-13 06:50:57, last Thu 2026-11-12 06:02:55;\nunattended upgrades today: 1 run(s) with packages; last lines:\n2026-11-12 06:36:10,391 INFO Allowed origins are: o=Ubuntu,a=noble, o=Ubuntu,a=noble-security, o=UbuntuESMApps,a=noble-apps-security, o=UbuntuESM,a=noble-infra-security\n2026-11-12 06:36:10,391 INFO Initial blacklist: \n2026-11-12 06:36:10,391 INFO Initial whitelist (not strict): \nneedrestart restarts today (journal):\nNov 12 06:48:13 Bridgebots2 python3[1553]: 2026-11-12T06:48:13Z running 20261112T064759Z-620297-needrestart (timeout 60s)\nNov 12 06:48:13 Bridgebots2 sudo[51981]: bridgebots : PWD=/home/bridgebots ; USER=root ; COMMAND=/usr/bin/tee /etc/needrestart/conf.d/50-list-only.conf\nunits stopped today:\n(end)\n",
+ "received": "2026-11-12T06:48:13Z",
+ "script_sha256": "6d0d315da4842202b674d1061b7a791cb1b4c515e51ad13ac68c67f6ba12974a",
+ "started": "2026-11-12T06:48:13Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

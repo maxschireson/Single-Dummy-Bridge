@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 3.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T05:22:26Z",
+ "id": "20261114T052216Z-308265-loop-135-switch",
+ "output_bytes": 149,
+ "output_tail": "Running as unit: loop-switch.service; invocation ID: d3a371cf7ca74020b12b71e613b4fe23\nswitch: active | loop-collect: inactive\n1\n2026-11-14T05:22:26Z\n",
+ "received": "2026-11-14T05:22:22Z",
+ "script_sha256": "7d4edcafaf27fec36e47755bb67f4e6368193e8e969729316fce5ca97ef6a0a7",
+ "started": "2026-11-14T05:22:22Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

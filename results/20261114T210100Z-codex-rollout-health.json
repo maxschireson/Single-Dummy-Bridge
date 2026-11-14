@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T21:00:47Z",
+ "id": "20261114T210100Z-codex-rollout-health",
+ "output_bytes": 2547,
+ "output_tail": "{\n  \"parent\": 334803,\n  \"unit_main\": 334794,\n  \"started\": \"2026-11-14T20:56:04Z\",\n  \"status\": \"drained\",\n  \"finished\": \"2026-11-14T20:59:04Z\",\n  \"rows\": 4000,\n  \"episodes\": 4000,\n  \"source\": \"30e30af88ea196b8189ff39491c83cf531797868\"\n}MainPID=0\nId=loop-collect.service\nActiveState=inactive\n\nMainPID=357583\nId=stu-rollout-experiments.service\nActiveState=active\n\nMainPID=357123\nId=stu-rollout-publish.service\nActiveState=active\n\nMainPID=195050\nId=loop-publish.service\nActiveState=active\n\nMainPID=339433\nId=loop-rows.service\nActiveState=active\nNov 14 20:56:03 Bridgebots2 systemd[1]: Started stu-rollout-drain.service - /home/bridgebots/work/loop/venv/bin/python /home/bridgebots/work/rollout-experiments-20261114/drain.py.\nNov 14 20:56:07 Bridgebots2 systemd[1]: Started stu-rollout-experiments.service - /usr/bin/bash /home/bridgebots/work/rollout-experiments-20261114/run.sh.\nNov 14 20:57:10 Bridgebots2 systemd[1]: Stopping stu-rollout-experiments.service - /usr/bin/bash /home/bridgebots/work/rollout-experiments-20261114/run.sh...\nNov 14 20:57:10 Bridgebots2 systemd[1]: stu-rollout-experiments.service: Deactivated successfully.\nNov 14 20:57:10 Bridgebots2 systemd[1]: Stopped stu-rollout-experiments.service - /usr/bin/bash /home/bridgebots/work/rollout-experiments-20261114/run.sh.\nNov 14 20:57:43 Bridgebots2 systemd[1]: Started stu-rollout-experiments.service - /usr/bin/bash /home/bridgebots/work/rollout-experiments-20261114/run.sh.\nNov 14 20:59:04 Bridgebots2 sudo[357823]: bridgebots : PWD=/ ; USER=root ; COMMAND=/usr/bin/systemctl stop --no-block loop-collect.service\nNov 14 20:59:04 Bridgebots2 sudo[357823]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)\nNov 14 20:59:04 Bridgebots2 sudo[357823]: pam_unix(sudo:session): session closed for user root\nNov 14 20:59:04 Bridgebots2 python[356886]: {\"parent\": 334803, \"unit_main\": 334794, \"started\": \"2026-11-14T20:56:04Z\", \"status\": \"drained\", \"finished\": \"2026-11-14T20:59:04Z\", \"rows\": 4000, \"episodes\": 4000, \"source\": \"30e30af88ea196b8189ff39491c83cf531797868\"}\nNov 14 20:59:04 Bridgebots2 systemd[1]: stu-rollout-drain.service: Deactivated successfully.\nNov 14 20:59:04 Bridgebots2 systemd[1]: stu-rollout-drain.service: Consumed 9.750s CPU time, 2.2M memory peak, 0B memory swap peak.\nrx-sham v rx-control: 32 boards to play (0 done), 8 workers\n               total        used        free      shared  buff/cache   available\nMem:           32086       12128       16065           4        4392       19957\nSwap:              0           0           0\n",
+ "received": "2026-11-14T21:00:47Z",
+ "script_sha256": "7ead961deba54320154636998bd6c7e32934fef73e75bc2ce5e7e8397979a498",
+ "started": "2026-11-14T21:00:47Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:13:51Z",
+ "id": "20261113T011329Z-572828-plan-rnet2-queue",
+ "output_bytes": 1156,
+ "output_tail": "Traceback (most recent call last):\n  File \"<stdin>\", line 6, in <module>\nAssertionError: match2 $PY scripts/plan_match.py --source $HOME/work/capsule\nposition 19\n2026-11-13T00:00:37Z start rnet1 (source 343341d): bash training/rollout-net-v1-20261113/chain.sh\n2026-11-13T00:59:07Z end rnet1: exit 0\n2026-11-13T00:59:07Z start match2 (source 343341d): $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capture/recovery --bots configs/plan-bo\n2026-11-13T00:38:55Z ft done: {\"done\": \"/home/bridgebots/work/plan/rnet1/ft\", \"selected_epoch\": 3, \"validation\": {\"n\": 902619, \"nll\": 0.4487, \"uniform_nll\": 1.2765, \"tie_nll\": 0.7756, \"agree\": 0.8312, \"in_best\": 0.9137, \"regret\": 0.0241, \"regret_gap_head\": 0.0227, \"regret_random\": 0.2072, \"regret_lo\n2026-11-13T00:38:55Z scratch start\n2026-11-13T00:59:05Z scratch done: {\"done\": \"/home/bridgebots/work/plan/rnet1/scratch\", \"selected_epoch\": 6, \"validation\": {\"n\": 902619, \"nll\": 0.4996, \"uniform_nll\": 1.2765, \"tie_nll\": 0.7756, \"agree\": 0.8027, \"in_best\": 0.9119, \"regret\": 0.0253, \"regret_gap_head\": 0.0232, \"regret_random\": 0.2072, \n2026-11-13T00:59:07Z pushed to transfer/rollout-net-v1-20261113; end\n",
+ "received": "2026-11-13T01:13:51Z",
+ "script_sha256": "dde6ce1a0c823f9024f9d41f625cb47184323a778c3fdf1bb6284b7b7f2c1427",
+ "started": "2026-11-13T01:13:51Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

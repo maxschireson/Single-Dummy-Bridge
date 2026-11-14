@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 68.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:43:12Z",
+ "id": "20261112T074156Z-233307-plan-01-setup",
+ "output_bytes": 840,
+ "output_tail": "checkout: 97eca3a Plan research on the Gen 8 prototype base: match wrapper and plan bots (WIP)\npolicy v4.1 sha256 starts cb3fcfd5c5587373\npolicy files in the checkout: 5\ndds library: 1266008 bytes\n{\"episodes\": 1561, \"tip\": \"cb3a31ca58\"}\n{\"pairs\": 9, \"files\": 4, \"seconds\": 4}\n/home/bridgebots/work/capsule-gen7-capture/recovery/manifest.json\n\n/home/bridgebots/work/capsule-gen7-capture/recovery/assets/bidding:\nben.keras\n2 boards: -1.0 +- 1.0 IMPs/board for pm50-32-v41; 196 boards/hour; 0 failed\n{\"pair\": \"pm50-32-v41~7f-32-v41\", \"boards\": 2, \"cpu_per_board\": 30.42, \"common\": {\"imps_per_board\": -1.0, \"se\": 1.0, \"boards\": 2, \"won\": 0, \"lost\": 1, \"flat\": 1}, \"native\": {\"imps_per_board\": -1.0, \"se\": 1.0, \"boards\": 2, \"won\": 0, \"lost\": 1, \"flat\": 1}}\npython 3.12.3 numpy 2.5.4\nsetup done on azure2: 8 cores, load average: 9.49, 8.60, 7.79\n",
+ "received": "2026-11-12T07:42:04Z",
+ "script_sha256": "2dc0872a5e22c9c7986146cba810563fcc1e1fbd7c94d721381419582342f724",
+ "started": "2026-11-12T07:42:04Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

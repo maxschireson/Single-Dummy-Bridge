@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:50:09Z",
+ "id": "20261112T134954Z-423403-plan-14-requeue",
+ "output_bytes": 258,
+ "output_tail": "running: rb1 | waiting now: @source ceil64b matrix1 fam1 matrix2\nposition 11; 2026-11-12T13:28:35Z start rb1 (source 7a24cf7): $PY scripts/plan_reading_bound.\n10 files, 23 samples, 22962 bot decisions, 642 s\n20 files, 50 samples, 54708 bot decisions, 1164 s\n",
+ "received": "2026-11-12T13:50:09Z",
+ "script_sha256": "8beb911913b5cf98a7241b23042577b4ed78cc88321499440e41e1b4a06de624",
+ "started": "2026-11-12T13:50:09Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

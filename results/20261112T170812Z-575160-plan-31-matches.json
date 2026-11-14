@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 2.5,
+ "exit_code": 0,
+ "finished": "2026-11-12T17:08:41Z",
+ "id": "20261112T170812Z-575160-plan-31-matches",
+ "output_bytes": 244,
+ "output_tail": "running: match1 | waiting now: @source match3 match2\ncommit\n0f0f4f8 Headroom: a simulation check of the fit (--fit-check); report: the trick 3 to 6 fi\nposition 13\n1000 boards: 0.182 +- 0.05 IMPs/board for pr75-32-v41; 377 boards/hour; 0 failed\n",
+ "received": "2026-11-12T17:08:38Z",
+ "script_sha256": "d82aaae2bce4847650f4662fd90bb527c9b55d5cc5c6540fbc8aafb80d6d2304",
+ "started": "2026-11-12T17:08:38Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:16:48Z",
+ "id": "20261113T021617Z-155542-plan-peek2",
+ "output_bytes": 1193,
+ "output_tail": "2026-11-13T02:03:29Z built s14: {\"episodes\": 4125, \"deals\": 4113, \"unique_families\": 4040, \"examples\": 1699082, \"train\": 1375985, \"validation\": 160221, \"test\": 162876}\n2026-11-13T02:06:44Z built s15: {\"episodes\": 4125, \"deals\": 4119, \"unique_families\": 4037, \"examples\": 1701527, \"train\": 1359043, \"validation\": 174657, \"test\": 167827}\n2026-11-13T02:08:52Z set: {\"parts\": 16, \"deals\": 65866, \"bots\": [\"1\", \"2\", \"3\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben32\", \"ben64\"], \"unique_families\": 52152, \"examples\": 27397505, \"deals_by_hash_split\": [52892, 6353, 6621]}\n2026-11-13T02:10:09Z freshB: {\"deals_in\": 885, \"deals_kept\": 277, \"dropped_as_seen\": 608, \"examples\": 236734}\n2026-11-13T02:10:09Z w768 start\n37722 of 37722 blobs, 5.80 GB, 52 s\n{\"finished_utc\": \"2026-11-13T01:15:16Z\", \"seconds\": 52, \"new_blobs\": 37722, \"new_bytes\": 6226159271}\n{\"parts\": 16, \"deals\": 65866, \"bots\": [\"1\", \"2\", \"3\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben32\", \"ben64\"], \"unique_families\": 52152, \"examples\": 27397505, \"deals_by\n37722\n5.9G\t/home/bridgebots/work/plan/rnet2/eps\n 02:16:48 up 1 day, 6 min,  0 user,  load average: 6.04, 5.47, 6.41\n",
+ "received": "2026-11-13T02:16:48Z",
+ "script_sha256": "3e19b7979b42ac5019757e55e3baa90baf5846cef40812cbadff349dccfcc06f",
+ "started": "2026-11-13T02:16:48Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

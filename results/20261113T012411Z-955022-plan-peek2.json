@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:24:34Z",
+ "id": "20261113T012411Z-955022-plan-peek2",
+ "output_bytes": 762,
+ "output_tail": "2026-11-13T01:14:23Z start; source a23f9f9\n/dev/root       123G   36G   88G  29% /\n2026-11-13T01:15:16Z fetched 37722 more episodes; with v1's 28275\n2026-11-13T01:18:41Z built s00: {\"episodes\": 4124, \"deals\": 4116, \"unique_families\": 4035, \"examples\": 1712610, \"train\": 1362992, \"validation\": 176601, \"test\": 173017}\n2026-11-13T01:21:52Z built s01: {\"episodes\": 4125, \"deals\": 4116, \"unique_families\": 4024, \"examples\": 1708345, \"train\": 1351495, \"validation\": 183360, \"test\": 173490}\n37722 of 37722 blobs, 5.80 GB, 52 s\n{\"finished_utc\": \"2026-11-13T01:15:16Z\", \"seconds\": 52, \"new_blobs\": 37722, \"new_bytes\": 6226159271}\n3000 episodes 1262409 examples\n37722\n5.9G\t/home/bridgebots/work/plan/rnet2/eps\n 01:24:34 up 23:14,  0 user,  load average: 8.38, 8.20, 7.80\n",
+ "received": "2026-11-13T01:24:34Z",
+ "script_sha256": "3e19b7979b42ac5019757e55e3baa90baf5846cef40812cbadff349dccfcc06f",
+ "started": "2026-11-13T01:24:34Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

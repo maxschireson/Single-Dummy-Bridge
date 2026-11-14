@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T03:39:51Z",
+ "id": "20261114T033934Z-583441-loop-next",
+ "output_bytes": 294,
+ "output_tail": "Running as unit: loop-rungs2.service; invocation ID: 0d53b0390c4f471daf40fa20e0e78895\nloop-rungs: active; loop-rungs2: active\n2026-11-14T02:39:15Z start h3-ptb stu3-pst~stu0-ps seed 131 first 18000 deals 1000 workers 8  (source 28b5b06, nets fp32)\nh3-pt boards so far: 611\n2026-11-14T03:39:51Z\n",
+ "received": "2026-11-14T03:39:46Z",
+ "script_sha256": "ddf79642b1b8f1a9c5179aed11205d6e6bf19d016bc18cb7648aaacb320267ab",
+ "started": "2026-11-14T03:39:46Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

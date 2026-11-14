@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 20.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:41:17Z",
+ "id": "20261112T124051Z-976234-plan-08-skip",
+ "output_bytes": 1431,
+ "output_tail": "76159 /home/bridgebots/work/venv/bin/python scripts/plan_ceiling.py --episodes /home/bridgebots/work/plan/data/fresh_g6sp --worlds 16 --skip-files 500 --workers 8 --out /home/bridgebots/work/plan/runs/ceil16b.json\n76160 /home/bridgebots/work/venv/bin/python scripts/plan_ceiling.py --episodes /home/bridgebots/work/plan/data/fresh_g6sp --worlds 16 --skip-files 500 --workers 8 --out /home/bridgebots/work/plan/runs/ceil16b.json\n76161 /home/bridgebots/work/venv/bin/python scripts/plan_ceiling.py --episodes /home/bridgebots/work/plan/data/fresh_g6sp --worlds 16 --skip-files 500 --workers 8 --out /home/bridgebots/work/plan/runs/ceil16b.json\nposition 7\n2026-11-12T12:37:30Z start ceil16b (source 94418bd): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp\n2026-11-12T12:40:57Z end ceil16b: exit 143\n2026-11-12T12:40:59Z source now ed3c311 Ceiling: more layouts a pair than one draw of the bot's gives, and a f\n2026-11-12T12:40:59Z start ceil64 (source ed3c311): $PY scripts/plan_ceiling.py --episodes $P/data/fresh_g6sp \n76420 /home/bridgebots/work/venv/bin/python scripts/plan_ceiling.py --episodes /home/bridgebots/work/plan/data/fresh_g6sp --worlds 64 --max-gap 0.25 --skip-files 500 --files 500 --workers 8 --out /hom\n76421 /home/bridgebots/work/venv/bin/python scripts/plan_ceiling.py --episodes /home/bridgebots/work/plan/data/fresh_g6sp --worlds 64 --max-gap 0.25 --skip-files 500 --files 500 --workers 8 --out /hom\n",
+ "received": "2026-11-12T12:40:57Z",
+ "script_sha256": "5eff84817ef8f196c0ea23006d8a4273b0ed419928fe1d605bd5284ed2e88fc4",
+ "started": "2026-11-12T12:40:57Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

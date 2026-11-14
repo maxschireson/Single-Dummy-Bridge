@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 20.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:00:50Z",
+ "id": "20261112T060001Z-853981-53-azure2-vs70",
+ "output_bytes": 117,
+ "output_tail": "go71b: active\n06:00:30 == finish the 7.0 BEN lanes (in the background)\n06:00:30 == wait for the first cohort's trial\n",
+ "received": "2026-11-12T06:00:30Z",
+ "script_sha256": "7a2f5290b4ae0f8dd7f09c1ba0c44eaf06cdbc73349d8b9c43237c19300c6f7a",
+ "started": "2026-11-12T06:00:30Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 1.7,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:23:55Z",
+ "id": "20261112T062349Z-653121-families",
+ "output_bytes": 2523,
+ "output_tail": "list sha256 4818856d731bee23 (expected 4818856d731bee23)\ntraining families: 32205\ngen7-phase1-azure2: 2814 deals, 608 played, STOP True; in the v4.1 training families: 1349 deals (47.9%), of them played 608 {'7s-32~5RZ32': 202, '7s-32~6-32': 203, '7s-32~1': 203}, still to play 741\ngen7-phase1-azure2-ben16-1: 704 deals, 148 played, STOP True; in the v4.1 training families: 336 deals (47.7%), of them played 148 {'7s-32~ben': 148}, still to play 188\ngen7-phase1-azure2-ben16-2: 704 deals, 149 played, STOP True; in the v4.1 training families: 336 deals (47.7%), of them played 149 {'7s-32~ben': 149}, still to play 187\ngen7-phase1-azure2-ben16-3: 703 deals, 159 played, STOP True; in the v4.1 training families: 335 deals (47.7%), of them played 159 {'7s-32~ben': 159}, still to play 176\ngen7-phase1-azure2-ben16-4: 703 deals, 154 played, STOP True; in the v4.1 training families: 336 deals (47.8%), of them played 154 {'7s-32~ben': 154}, still to play 182\ngen7-phase1-azure2-ben16-5: 704 deals, 153 played, STOP True; in the v4.1 training families: 338 deals (48.0%), of them played 153 {'7s-32~ben': 153}, still to play 185\ngen7-phase1-azure2-ben16-6: 704 deals, 139 played, STOP True; in the v4.1 training families: 332 deals (47.2%), of them played 139 {'7s-32~ben': 139}, still to play 193\ngen7-phase1-azure2-ben16-7: 703 deals, 151 played, STOP True; in the v4.1 training families: 335 deals (47.7%), of them played 151 {'7s-32~ben': 151}, still to play 184\ngen7-phase1-azure2-ben16-8: 703 deals, 142 played, STOP True; in the v4.1 training families: 334 deals (47.5%), of them played 142 {'7s-32~ben': 142}, still to play 192\ngen7-phase1-selfplay-azure2: 2206 deals, 4 played, STOP True; in the v4.1 training families: 741 deals (33.6%), of them played 4 {'7s-32~7s-32': 2, '7s-32~6-32': 2}, still to play 737\ngen7-phase1-selfplay-capture-azure2: 2202 deals, 11 played, STOP True; in the v4.1 training families: 737 deals (33.5%), of them played 11 {'7s-32~7s-32': 8, '7s-32~6-32': 3}, still to play 726\ngen71-compare-azure2: 2191 deals, 8 played, STOP True; in the v4.1 training families: 726 deals (33.1%), of them played 8 {'71s-32~7s-32': 5, '71s-32~6-32': 3}, still to play 718\ngen71-vs70-azure2: 2183 deals, 100 played, STOP False; in the v4.1 training families: 718 deals (32.9%), of them played 100 {'71s-32~7s-32': 100}, still to play 618\npre7-7s-vs-6f-azure2: 5627 deals, 363 played, STOP True; in the v4.1 training families: 4072 deals (72.4%), of them played 363 {'7s-32~6-32': 363}, still to play 3709\n",
+ "received": "2026-11-12T06:23:53Z",
+ "script_sha256": "2d3bede2e1f181b3bc4c2733af0ea19bd135016733e08209448c95eee5adc995",
+ "started": "2026-11-12T06:23:53Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

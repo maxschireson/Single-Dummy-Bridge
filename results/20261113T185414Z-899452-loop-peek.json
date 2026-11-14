@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T18:54:46Z",
+ "id": "20261113T185414Z-899452-loop-peek",
+ "output_bytes": 1023,
+ "output_tail": "8\nMem:              31           0          13           0          17          30\n/dev/root       123G   68G   56G  55% /\nload average: 0.04, 0.08, 0.08\nben ben-setup ben-venv capsule-gen7-capture endtable gen71 lanes plan publication runs sdb-gen7 sdb-gen7-arena sdb-gen7-selfplay sdb-gen7-selfplay-capture sdb-gen71 sdb-gen71x selfplay tools venv \n  boxctl.service              loaded active running boxctl agent: runs commands queued on GitHub (box azure2)\n/home/bridgebots/work/capsule-gen7-capture/recovery\ngen71-vs70-azure2 gen71-vs70-fresh-azure2 plan-7s-vs-6f.json pre7-7s-vs-6f-azure2 pre7-7s-vs-6f-azure2.collector.log smoke-azure2.err smoke-azure2.json trailers.txt \n%CPU ELAPSED CMD\n 0.0  146667 /usr/bin/python3 -u bin/WALinuxAgent-2.16.0.2-py3.12.egg -run-exthandlers\n 0.0  146683 [kcompactd0]\n 0.0  146315 /usr/lib/linux-tools/7.0.0-1017-azure/hv_kvp_daemon -n\n 0.0  146670 /usr/sbin/chronyd -F 1\n 0.0  146495 /usr/bin/python3 /home/bridgebots/.boxctl/agent.py --config /home/bridgebots/.boxctl/config.json\n",
+ "received": "2026-11-13T18:54:46Z",
+ "script_sha256": "88ef148e36a4957d253e35c42ec30e591fe5f0690b86874023881b6c334f5ca0",
+ "started": "2026-11-13T18:54:46Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

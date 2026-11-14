@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T11:30:37Z",
+ "id": "20261114T113024Z-209668-cmd",
+ "output_bytes": 281,
+ "output_tail": "sp0d:3886 sp3sd:515 sp3t:5934 spr0d:946 sps0d:2128 \n      3 sp0d       5 sp3t       1 sps0d \ncut.log sp0d-183000-183873.npz spr0d-200000-200945.npz \n69b94df\nloop-collect.service loop-publish.service loop-rows.service 2026-11-14T06:48:53Z the row publisher takes sp3t besides sp3sd\n",
+ "received": "2026-11-14T11:30:37Z",
+ "script_sha256": "af49e1d9d5b40172348b2971f6b3e54b59e2b0d485d5569ee26bbb9c4acb4854",
+ "started": "2026-11-14T11:30:37Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

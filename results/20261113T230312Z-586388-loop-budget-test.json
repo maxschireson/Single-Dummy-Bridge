@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 2.8,
+ "exit_code": 1,
+ "finished": "2026-11-13T23:03:32Z",
+ "id": "20261113T230312Z-586388-loop-budget-test",
+ "output_bytes": 603,
+ "output_tail": "    raise ValueError('Invalid 8X stage settings')\nValueError: Invalid 8X stage settings\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/bridgebots/work/loop/src-lc/training/rollout-loop-20261113/bench/budget.py\", line 134, in <module>\n    main()\n  File \"/home/bridgebots/work/loop/src-lc/training/rollout-loop-20261113/bench/budget.py\", line 111, in main\n    for r in pool.imap_unordered(one, tasks):\n  File \"/usr/lib/python3.12/multiprocessing/pool.py\", line 873, in next\n    raise value\nValueError: Invalid 8X stage settings\n",
+ "received": "2026-11-13T23:03:30Z",
+ "script_sha256": "7cef31c9bbe774b00de0b0b5a82489972f11b22c3d0cc735d7defb71217ab211",
+ "started": "2026-11-13T23:03:30Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

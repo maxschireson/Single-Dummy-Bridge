@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:53:00Z",
+ "id": "20261112T115228Z-194823-plan-04-requeue",
+ "output_bytes": 209,
+ "output_tail": "running: bel1a | waiting now: ceil16a bel1c matrix1 bel1b ceil16b fam1 @source matrix2\nposition 2; 2026-11-12T11:38:48Z start bel1a (source 94418bd): $PY scripts/plan_bench.py --e\n650 files, 1676 pairs, 808 s\n",
+ "received": "2026-11-12T11:53:00Z",
+ "script_sha256": "ad1cb9db843576b24bcfeadd2ba7451aebed9ca2f104adc9ae8e43ce0a5ba146",
+ "started": "2026-11-12T11:53:00Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

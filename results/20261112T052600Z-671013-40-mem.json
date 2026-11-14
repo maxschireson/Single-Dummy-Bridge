@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:26:21Z",
+ "id": "20261112T052600Z-671013-40-mem",
+ "output_bytes": 2144,
+ "output_tail": "                           total        used        free      shared  buff/cache   available\nMem:           32086       11263       17991           4        3424       20822\n== by kind (RSS MB, processes)\n    9536 MB    8  BEN server (gameapi.py)\n    6663 MB   24  collector and its workers\n     821 MB    9  publisher\n     351 MB  188  other\n       4 MB    1  LEFTOVER test or preflight\n== the ten largest\n  1253 MB  up  6084s  pid 9020  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1244 MB  up  6084s  pid 9025  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1222 MB  up  6084s  pid 9024  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1208 MB  up  6084s  pid 9029  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1197 MB  up  6084s  pid 9018  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1163 MB  up  6247s  pid 8123  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1138 MB  up  6084s  pid 9033  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n  1110 MB  up  6084s  pid 9017  /home/bridgebots/work/ben-venv/bin/python src/gameapi.py --config /home/bridgebots/work/runs/gen7-phase1-azure\n   817 MB  up   107s  pid 26384  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n   813 MB  up   107s  pid 26375  /home/bridgebots/work/venv/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=9\n== BEN servers, one line a lane (RSS MB, uptime s)\nlane 1: 1163 MB up 6247s; lane 2: 1110 MB up 6084s; lane 3: 1197 MB up 6084s; lane 4: 1253 MB up 6084s; lane 5: 1222 MB up 6084s; lane 6: 1244 MB up 6084s; lane 7: 1208 MB up 6084s; lane 8: 1138 MB up 6084s; \n== kernel: recent out-of-memory events\n(end)\n",
+ "received": "2026-11-12T05:26:21Z",
+ "script_sha256": "b4f9ecc9c362ea13c123965f1b1f4d4877f7bba826f9e77b5f5a887c2f68cc44",
+ "started": "2026-11-12T05:26:21Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

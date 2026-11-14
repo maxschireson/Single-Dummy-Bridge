@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 30.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:49:42Z",
+ "id": "20261112T054904Z-302078-50-gen71-trial",
+ "output_bytes": 168,
+ "output_tail": "gen71-trial: active\n05:49:12 == build\n05:49:14 checkout: 9f5ec19498e7e20e9f610ed93d896880a17cbcc9 Gen 7.1: policy net v4.1, a cohort that holds bots with different net\n",
+ "received": "2026-11-12T05:49:11Z",
+ "script_sha256": "6c318bc378794f1fb2cc5e6f6bc837623bc57ed5207a657dcc69cac86c8e3d1d",
+ "started": "2026-11-12T05:49:11Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

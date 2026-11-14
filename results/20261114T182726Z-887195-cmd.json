@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T18:27:59Z",
+ "id": "20261114T182726Z-887195-cmd",
+ "output_bytes": 335,
+ "output_tail": "publisher had: sp3sd sp3t\nRunning as unit: loop-rows.service; invocation ID: 42b5ddb565ff40b2af1227a30d3e864a\n/usr/bin/bash /home/bridgebots/work/loop/src/training/rollout-loop-20261113/rows.sh sp3sd sp3t sp4t\n2026-11-14T17:41:29Z start sp4t stu4c-psta~stu4c-pstb seed 9001 first 760000 deals 20000 workers 8 --episodes --one-room\n974\n",
+ "received": "2026-11-14T18:27:54Z",
+ "script_sha256": "c7c5032af4b2a0c293d8eb4a1062b97e21c9bb9f26885a133df21e76ee990a97",
+ "started": "2026-11-14T18:27:54Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 20.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T00:48:03Z",
+ "id": "20261114T004738Z-187838-loop-h3p",
+ "output_bytes": 333,
+ "output_tail": "source 545893b\nRunning as unit: loop-rungs.service; invocation ID: bdd3b76b70444c13a2d19e5381e87369\nactive inactive active 2026-11-14T00:47:43Z the collection is paused for jobs-azure2-h3p.txt\n2026-11-14T00:47:43Z start h3-pb stu3-ps~stu0-ps seed 131 first 6000 deals 1000 workers 8  (source 545893b, nets fp32)\n2026-11-14T00:48:03Z\n",
+ "received": "2026-11-14T00:47:42Z",
+ "script_sha256": "94c53b48c3860614ff08258643a32ced3bbfa394380072ab1f43dc19ae1ffd60",
+ "started": "2026-11-14T00:47:42Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

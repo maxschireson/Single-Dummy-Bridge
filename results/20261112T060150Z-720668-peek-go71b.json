@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:02:22Z",
+ "id": "20261112T060150Z-720668-peek-go71b",
+ "output_bytes": 1458,
+ "output_tail": "go71b: active; gen71-trial: active\n05:52:29 == preflight\npreflight passed in 251s:\n   deal 0 71s-32~7s-32: 47s, root tables 2, tables with forks 2, IMPs {'common': 14, 'native': 14}, searched decisions 654, in the tree's tricks 138, tree consulted 31, moved 6, tree forks 1, gap forks 8 on 2 tables\n   deal 1 71s-32~6-32: 59s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 251, in the tree's tricks 59, tree consulted 20, moved 1, tree forks 0, gap forks 12 on 2 tables\n   deal 2 71s-32~7s-32: 98s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 689, in the tree's tricks 128, tree consulted 73, moved 7, tree forks 4, gap forks 12 on 2 tables\n   deal 3 71s-32~6-32: 42s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 300, in the tree's tricks 50, tree consulted 33, moved 0, tree forks 0, gap forks 12 on 2 tables\n   tree in all: {'in_a_stage': 375, 'consulted': 157, 'moved': 14, 'over_budget': 0, 'tree_forks': 5, 'tree_fork_imps': 0, 'mean_seconds': 0.39, 'p95_seconds': 1.01, 'max_seconds': 1.44, 'mean_solves': 89.99, 'p95_solves': 170, 'max_solves': 252}\n05:56:40 == records\n05:56:44 records written; publication checkout on arena-gen7-1-compare-azure2-feed\n05:56:44 == units\n05:56:44 units written\n05:56:44 == trial 6\n---\n06:00:30 == finish the 7.0 BEN lanes (in the background)\n06:00:30 == wait for the first cohort's trial\n",
+ "received": "2026-11-12T06:02:22Z",
+ "script_sha256": "d4e171768181187a3dc4ff34de957cdfdabb9e837fc8248acd636b014912df1f",
+ "started": "2026-11-12T06:02:22Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

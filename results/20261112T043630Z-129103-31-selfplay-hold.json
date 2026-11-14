@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 2.3,
+ "exit_code": 1,
+ "finished": "2026-11-12T04:37:03Z",
+ "id": "20261112T043630Z-129103-31-selfplay-hold",
+ "output_bytes": 1509,
+ "output_tail": "before: selfplay-trial active, arena-selfplay active\n04:33:42 == preflight\npreflight passed in 124s:\n   deal 0 7s-32~7s-32: 35s, root tables 1, tables with forks 1, IMPs {'self': None}, searched decisions 335, in the tree's tricks 41, tree consulted 25, moved 1, tree forks 0\n   deal 1 7s-32~6-32: 38s, root tables 2, tables with forks 2, IMPs {'common': 1, 'native': 1}, searched decisions 97, in the tree's tricks 20, tree consulted 11, moved 0, tree forks 0\n   deal 2 7s-32~7s-32: 23s, root tables 1, tables with forks 1, IMPs {'self': None}, searched decisions 298, in the tree's tricks 49, tree consulted 10, moved 0, tree forks 0\n   deal 3 7s-32~6-32: 24s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 120, in the tree's tricks 28, tree consulted 8, moved 0, tree forks 0\n   tree in all: {'in_a_stage': 138, 'consulted': 54, 'moved': 1, 'over_budget': 0, 'tree_forks': 0, 'tree_fork_imps': 0, 'mean_seconds': 0.25, 'p95_seconds': 0.68, 'max_seconds': 0.87, 'mean_solves': 55.8, 'p95_solves': 100, 'max_solves': 114}\n04:35:46 == records\n04:35:50 records written; publication checkout on arena-gen7-phase1-selfplay-azure2-feed\n04:35:50 == units\n04:35:50 units written\n04:35:50 == trial 9\nafter: selfplay-trial inactive, arena-selfplay active\nrun folder: exists, 2 boards, STOP yes\nphase 1 cohort: WATCHDOG_STOP yes\n/home/bridgebots/.boxctl/scripts/20261112T043630Z-129103-31-selfplay-hold.sh: line 15: /home/bridgebots/work/selfplay/trial.log: Permission denied\n",
+ "received": "2026-11-12T04:37:01Z",
+ "script_sha256": "ae50aaf6eac790ed87f35cec3023c9a60ecb33a41ab51f56be076f28ea508228",
+ "started": "2026-11-12T04:37:01Z",
+ "timed_out": false,
+ "timeout_s": 90
+}

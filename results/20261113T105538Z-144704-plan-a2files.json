@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T10:56:05Z",
+ "id": "20261113T105538Z-144704-plan-a2files",
+ "output_bytes": 204,
+ "output_tail": " \n4096 .\n4096 ..\n1848378 eps_before.txt\n467852 eps_new.txt\n25734 fetch.json\n25697 fetchB.json\n65251464 freshB.npz\n83624635 freshB_raw.npz\n22977452622 train.npz\n/dev/root       123G   68G   56G  55% /\n969\n",
+ "received": "2026-11-13T10:56:05Z",
+ "script_sha256": "a44c41fb9f4f32006475549c4ec0fce4912c5d94f5a3ef1c69fad4f22291d75b",
+ "started": "2026-11-13T10:56:05Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

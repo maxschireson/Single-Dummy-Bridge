@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 3.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T06:41:26Z",
+ "id": "20261114T064054Z-781777-loop-150-rows2",
+ "output_bytes": 276,
+ "output_tail": "Running as unit: loop-rowswait.service; invocation ID: 6e4c27866f3e4b55acbcf389414ffa03\nactive active active 2026-11-14T06:09:03Z start b3-ps200e-8 stu3-ps~ben200 seed 131 first 1504 deals 32 workers 1 --common-only --episodes (source a0bc029, nets fp32)\n2026-11-14T06:41:25Z\n",
+ "received": "2026-11-14T06:41:23Z",
+ "script_sha256": "8c1fbb0914f8226018e382383ae8d8ab38d794047466279451ceec14764d7880",
+ "started": "2026-11-14T06:41:23Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T08:15:10Z",
+ "id": "20261112T081459Z-083416-peek-drain2",
+ "output_bytes": 385,
+ "output_tail": "08:15:10\ndrain2 inactive\n08:11:55 draining gen71-vs70-fresh-azure2: 737 boards\n08:14:22 drained: 745 boards, published 745, feed head 67dd0edee1f790ff954ee2bb1565b51d80b2ba5b\n08:14:22 units: arena-gen71 inactive, arena-gen71-publish inactive, gen71-recycle inactive; RAM disk 0 MB\n08:14:22 memory available 31029 MB; load 1.23 5.41 7.13; python processes of the arena: 0\n08:14:22 DONE\n",
+ "received": "2026-11-12T08:15:10Z",
+ "script_sha256": "3a77f889d691888d7f7262b6f0422986bb052ccb9e2d348b98bc9c6ffdccfcdf",
+ "started": "2026-11-12T08:15:10Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

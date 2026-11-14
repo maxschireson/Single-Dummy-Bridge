@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 5.2,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:44:05Z",
+ "id": "20261114T044338Z-460761-loop-128-ben2",
+ "output_bytes": 437,
+ "output_tail": "Running as unit: loop-next.service; invocation ID: fa7b89d28a5c43d280167d813ac26253\nunits: rungs2 active next active\n2026-11-14T04:18:17Z the collection is paused for jobs-azure2-onenet.txt\n2026-11-14T04:18:17Z start l3-pst stu3-pst~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source ea20975, nets fp32)\nl3-pst boards 353: -0.88 +- 0.23 IMPs a board against Gen 8 | cpu a board 34\nl3-ps not started\n2026-11-14T04:44:05Z\n",
+ "received": "2026-11-14T04:44:00Z",
+ "script_sha256": "c9ad8c90eaf055cb1a270793b37c7432e04c0fe3f49f9490cfb654f0136e9a45",
+ "started": "2026-11-14T04:44:00Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

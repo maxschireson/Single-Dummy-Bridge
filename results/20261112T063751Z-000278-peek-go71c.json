@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:37:57Z",
+ "id": "20261112T063751Z-000278-peek-go71c",
+ "output_bytes": 2315,
+ "output_tail": "06:37:57\ngo71c: active; collector active; publisher active\n06:32:20 tests test_gen71*.py: Ran 7 tests in 0.202s OK \n06:32:21 tests test_gen7_selfplay.py: Ran 7 tests in 0.181s OK \n06:32:21 tests took 2s\n06:32:21 NOTE: solver library differs from the 9f5ec19 checkout\n06:32:21 == finish the cohort of 06:05 UTC\n06:34:37 old cohort: 160 boards, published 160, feed head 4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d\n06:34:37 == plan\nplan: Gen 7.1 \u00b7 standard with policy v4.1 against Gen 7 standard, every board, deals v4.1 was not trained on, on azure2 | pairs {'71s-32~7s-32': 1} | bots ['71s-32', '7s-32'] | artifacts ['gen7_policy', 'gen7_policy_v41']\n06:34:37 == prepare\ncohort 4b32e6ed0d6b: 1465 deals taken over from cohort 7207e693b740 (160 of its 2183 were played, 558 unplayed deals from training families left out); pairs {'71s-32~7s-32': 1}; 7s-32 identity f0a578598673 as in phase 1; 71s-32 identity 7b0f58b4c403, differing from 7s-32 in the policy release only; audit {'probability': 0.5, 'multiplier': 3.0, 'max_depth': 2, 'max_forks': 64}; gap forks {'per_band': 2, 'bands': [0.125, 0.5], 'max_cpu_share': 1.5}; exclusions 32205 families, sha256 4818856d731bee23; bidding conditions ['common', 'native']\n06:34:38 == preflight\npreflight passed in 85s:\n   deal 0 71s-32~7s-32: 41s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 586, in the tree's tricks 111, tree consulted 45, moved 1, tree forks 0, gap forks 12 on 2 tables\n   deal 1 71s-32~7s-32: 41s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 416, in the tree's tricks 122, tree consulted 52, moved 6, tree forks 0, gap forks 12 on 2 tables\n   tree in all: {'in_a_stage': 233, 'consulted': 97, 'moved': 7, 'over_budget': 0, 'tree_forks': 0, 'tree_fork_imps': 0, 'mean_seconds': 0.11, 'p95_seconds': 0.3, 'max_seconds': 0.46, 'mean_solves': 58.48, 'p95_solves': 104, 'max_solves': 130}\n06:36:03 == records\n06:36:05 records written; publication checkout on arena-gen7-1-vs70-fresh-azure2-feed\n06:36:05 == units\n06:36:05 units written\n06:36:05 == start with eight workers\n06:36:06 collector active with 8 workers, publisher active, feed arena-gen7-1-vs70-fresh-azure2-feed\n06:36:06 memory supervisor gen71-recycle: active, acting on ~/work/runs/gen71-vs70-fresh-azure2\n",
+ "received": "2026-11-12T06:37:57Z",
+ "script_sha256": "cb36f262040fb766539bc958f2a21220f19612cfee63f342b539b87c621e9d18",
+ "started": "2026-11-12T06:37:57Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:34:54Z",
+ "id": "20261112T063427Z-529045-peek-go71c",
+ "output_bytes": 1578,
+ "output_tail": "06:34:54\ngo71c: active; collector inactive; publisher inactive\n06:32:06 == build and test the source that has --exclude-families (the old cohort keeps playing)\n06:32:08 checkout: a588e09e4aec88fa8b41e814df95b515f07e134c Keep promotion gate output JSON-native at the threshold\n06:32:19 policy v4 d6b011937ee9ec53, v4.1 cb3fcfd5c5587373; dds library 103865b6ea4b31eb (phase 1 checkout: 8e2de51a682a1487)\n06:32:20 tests test_gen71*.py: Ran 7 tests in 0.202s OK \n06:32:21 tests test_gen7_selfplay.py: Ran 7 tests in 0.181s OK \n06:32:21 tests took 2s\n06:32:21 NOTE: solver library differs from the 9f5ec19 checkout\n06:32:21 == finish the cohort of 06:05 UTC\n06:34:37 old cohort: 160 boards, published 160, feed head 4d871fff270d74b4e9a6f4a7f0ab88fd231cf36d\n06:34:37 == plan\nplan: Gen 7.1 \u00b7 standard with policy v4.1 against Gen 7 standard, every board, deals v4.1 was not trained on, on azure2 | pairs {'71s-32~7s-32': 1} | bots ['71s-32', '7s-32'] | artifacts ['gen7_policy', 'gen7_policy_v41']\n06:34:37 == prepare\ncohort 4b32e6ed0d6b: 1465 deals taken over from cohort 7207e693b740 (160 of its 2183 were played, 558 unplayed deals from training families left out); pairs {'71s-32~7s-32': 1}; 7s-32 identity f0a578598673 as in phase 1; 71s-32 identity 7b0f58b4c403, differing from 7s-32 in the policy release only; audit {'probability': 0.5, 'multiplier': 3.0, 'max_depth': 2, 'max_forks': 64}; gap forks {'per_band': 2, 'bands': [0.125, 0.5], 'max_cpu_share': 1.5}; exclusions 32205 families, sha256 4818856d731bee23; bidding conditions ['common', 'native']\n06:34:38 == preflight\n",
+ "received": "2026-11-12T06:34:54Z",
+ "script_sha256": "cb36f262040fb766539bc958f2a21220f19612cfee63f342b539b87c621e9d18",
+ "started": "2026-11-12T06:34:54Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

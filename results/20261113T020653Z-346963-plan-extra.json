@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 13.5,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:07:37Z",
+ "id": "20261113T020653Z-346963-plan-extra",
+ "output_bytes": 234,
+ "output_tail": "v1 blobs 28275 at tips at 00:00 28275 ; v2 new blobs 37722 ; v1 blobs not at any tip at 01:15: 5482\nwhy: {'branch gone': 5482}\nby branch at 00:00: [('arena-gen71-independent-feed', 3293), ('arena-gen71-19bbdce5-20261112-feed', 2189)]\n",
+ "received": "2026-11-13T02:07:24Z",
+ "script_sha256": "8f7a4677b6c8d35bf9ad7aadd77f367ee9f03f6f0930c0d17e21a9eb13abad26",
+ "started": "2026-11-13T02:07:24Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

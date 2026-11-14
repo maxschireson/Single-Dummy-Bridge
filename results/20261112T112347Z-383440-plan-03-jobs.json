@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 45.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T11:24:59Z",
+ "id": "20261112T112347Z-383440-plan-03-jobs",
+ "output_bytes": 488,
+ "output_tail": "before: load average: 0.14, 0.11, 0.09; arena python processes: 0\nqueue: active; publisher: active; jobs listed: 8; position 1\n2026-11-12T11:24:21Z source now 94418bd Plan bench: save rows every 50 files (WIP)\n2026-11-12T11:24:21Z start net1 (source 94418bd): $PY scripts/plan_bench.py --episodes $P/data/fresh_g6sp --nets $NETS --sims \"v41:top;v41:blend;v41:draw:4;v41:top:1:2;v41:top:1:3;v4:top;v4:blend;v4:top:1:3;v2:top;v0:top\n50 files, 129 pairs, 34 s\nload average: 3.96, 1.10, 0.43\n",
+ "received": "2026-11-12T11:24:14Z",
+ "script_sha256": "76ad0d38d12336974386a9d7b2b5a2395a68dffbeba7b0ede1fb52c9a7fc0dee",
+ "started": "2026-11-12T11:24:14Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

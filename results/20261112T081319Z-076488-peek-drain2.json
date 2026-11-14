@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T08:13:38Z",
+ "id": "20261112T081319Z-076488-peek-drain2",
+ "output_bytes": 77,
+ "output_tail": "08:13:38\ndrain2 active\n08:11:55 draining gen71-vs70-fresh-azure2: 737 boards\n",
+ "received": "2026-11-12T08:13:38Z",
+ "script_sha256": "3a77f889d691888d7f7262b6f0422986bb052ccb9e2d348b98bc9c6ffdccfcdf",
+ "started": "2026-11-12T08:13:38Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

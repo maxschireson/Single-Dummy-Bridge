@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 20.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:20:04Z",
+ "id": "20261112T071938Z-716761-cachefix",
+ "output_bytes": 168,
+ "output_tail": "patched\nrecycle71.sh parses\ngen71-recycle active\ncachefix: active\n07:19:44 run gen71-vs70-fresh-azure2, 255 boards\n07:19:44 RAM disk: 12G size, 12G free; fstab: 1 line\n",
+ "received": "2026-11-12T07:19:44Z",
+ "script_sha256": "72cf7792698c01fd7d2b0e2f0de8ba0bd44213e7ed57dd12758d21f102e4094f",
+ "started": "2026-11-12T07:19:44Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

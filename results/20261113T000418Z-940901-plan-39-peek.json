@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T00:04:32Z",
+ "id": "20261113T000418Z-940901-plan-39-peek",
+ "output_bytes": 388,
+ "output_tail": "2026-11-13T00:00:37Z start; source 343341d\njax 0.12.0.1 optax 0.2.9\n2026-11-13T00:01:46Z fetched 28275 episodes\n28275 of 28275 blobs, 4.82 GB, 56 s\n{\"finished_utc\": \"2026-11-13T00:01:46Z\", \"seconds\": 56, \"new_blobs\": 28275, \"new_bytes\": 5176917809}\n3000 episodes 975719 examples\n28275\n4.9G\t/home/bridgebots/work/plan/rnet1/eps\n 00:04:32 up 21:54,  0 user,  load average: 8.21, 8.08, 8.06\n",
+ "received": "2026-11-13T00:04:32Z",
+ "script_sha256": "18c86dd22381315f4f121226154b2309521a9ff1a33e56dc3b5836ea326b56ff",
+ "started": "2026-11-13T00:04:32Z",
+ "timed_out": false,
+ "timeout_s": 100
+}

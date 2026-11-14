@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 10.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:16:08Z",
+ "id": "20261112T071547Z-905754-cpu",
+ "output_bytes": 869,
+ "output_tail": "gen7-phase1-azure2: 608 boards; last 120 at 960/h\n   7s-32~6-32: 41 boards, cpu-s a board 20 = base 15 (74%) + audit forks 5 (26%) + gap forks 0 (0%); audit forks 34.6, gap forks 0.0 a board\n   7s-32~1: 40 boards, cpu-s a board 22 = base 17 (78%) + audit forks 5 (22%) + gap forks 0 (0%); audit forks 39.8, gap forks 0.0 a board\n   7s-32~5RZ32: 39 boards, cpu-s a board 25 = base 19 (75%) + audit forks 6 (25%) + gap forks 0 (0%); audit forks 44.2, gap forks 0.0 a board\ngen71-vs70-azure2: 160 boards; last 120 at 363/h\n   71s-32~7s-32: 120 boards, cpu-s a board 52 = base 20 (39%) + audit forks 9 (18%) + gap forks 23 (44%); audit forks 34.9, gap forks 11.1 a board\ngen71-vs70-fresh-azure2: 234 boards; last 120 at 349/h\n   71s-32~7s-32: 120 boards, cpu-s a board 48 = base 18 (38%) + audit forks 9 (19%) + gap forks 21 (44%); audit forks 36.9, gap forks 10.8 a board\n",
+ "received": "2026-11-12T07:15:58Z",
+ "script_sha256": "a5e4414a8aad5109e6dba8d5e9edd431f69658d6b95db8b747d09eccc63dfd58",
+ "started": "2026-11-12T07:15:58Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

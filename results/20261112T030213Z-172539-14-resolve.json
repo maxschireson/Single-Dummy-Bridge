@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 110.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T03:04:15Z",
+ "id": "20261112T030213Z-172539-14-resolve",
+ "output_bytes": 334,
+ "output_tail": "cache journal mode: wal | tables ['positions']\ncollector: active; publisher: active; failures: 0; boards 33\n{\"completed\": 32, \"index\": 31, \"pair\": \"7s-32~1\", \"common\": 1, \"native\": 1}\n{\"completed\": 33, \"index\": 32, \"pair\": \"7s-32~6-32\", \"common\": 0, \"native\": 0}\nstate: 33 of 2814 {'7s-32~5RZ32': 11, '7s-32~1': 11, '7s-32~6-32': 11}\n",
+ "received": "2026-11-12T03:02:25Z",
+ "script_sha256": "1ee0e8dc39541c6c88fd2e9193bf0fd627b4fe53c9401710637e5a3933114d86",
+ "started": "2026-11-12T03:02:25Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

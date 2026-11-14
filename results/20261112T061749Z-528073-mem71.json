@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:18:05Z",
+ "id": "20261112T061749Z-528073-mem71",
+ "output_bytes": 582,
+ "output_tail": "06:18:05\nmemory: total 32086 MB, used 8228 MB, available 23858 MB\ncollector pid 46674 up 742s; tree 9755 MB\n  1298 MB up   742s pid 46733\n  1228 MB up   742s pid 46739\n  1220 MB up   742s pid 46734\n  1217 MB up   742s pid 46737\n  1199 MB up   742s pid 46736\n  1191 MB up   742s pid 46738\n  1191 MB up   742s pid 46730\n  1142 MB up   742s pid 46735\n    12 MB up   742s pid 46729\nlargest worker 46733: Rss: 1298 MB; Pss: 1004 MB; Shared_Clean: 335 MB; Private_Dirty: 963 MB; Anonymous: 963 MB; Swap: 0 MB; \nits threads: 4\nrun: episodes 68, receipts 68, failures 0, cache 343 MB\n(end)\n",
+ "received": "2026-11-12T06:18:05Z",
+ "script_sha256": "64d651f06b804543a62188f50e55f13ef0e4223273a54e78c01a297957bddca4",
+ "started": "2026-11-12T06:18:05Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

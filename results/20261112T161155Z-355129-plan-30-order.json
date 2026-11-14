@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T16:12:00Z",
+ "id": "20261112T161155Z-355129-plan-30-order",
+ "output_bytes": 185,
+ "output_tail": "running: match1 | waiting now: @source ceilT12 ceilTies ceil64b lab1 matrix1 fam1 matrix2\nposition 13\n650 boards: 0.1385 +- 0.0607 IMPs/board for pr75-32-v41; 395 boards/hour; 0 failed\n",
+ "received": "2026-11-12T16:12:00Z",
+ "script_sha256": "58404455c5f607348eb706d90fb7a8057eac6eeaeeb7f4aed5000e2484d1f4a7",
+ "started": "2026-11-12T16:12:00Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

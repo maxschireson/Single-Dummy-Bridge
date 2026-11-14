@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 1.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:27:01Z",
+ "id": "20261112T062644Z-733567-families-source",
+ "output_bytes": 2636,
+ "output_tail": "gen7-phase1-azure2: identity 10772c07d1a7, deals 2814, played 608, source cohort a76a39f13d9d (it had played 725), shard {'index': 1, 'of': 8}, corpus bbe1525a24\ngen7-phase1-azure2-ben16-1: identity 21e33977501e, deals 704, played 148, source cohort a76a39f13d9d (it had played 725), shard {'index': 0, 'of': 32}, corpus 635d1d1f4b\ngen7-phase1-azure2-ben16-2: identity 31a6f480a65f, deals 704, played 149, source cohort a76a39f13d9d (it had played 725), shard {'index': 8, 'of': 32}, corpus de59e57803\ngen7-phase1-azure2-ben16-3: identity 4dfe193fae34, deals 703, played 159, source cohort a76a39f13d9d (it had played 725), shard {'index': 16, 'of': 32}, corpus 153f093fab\ngen7-phase1-azure2-ben16-4: identity 9d0b3e390702, deals 703, played 154, source cohort a76a39f13d9d (it had played 725), shard {'index': 24, 'of': 32}, corpus 69a03ef61e\ngen7-phase1-azure2-ben16-5: identity 77a6611cc6dc, deals 704, played 153, source cohort a76a39f13d9d (it had played 725), shard {'index': 2, 'of': 32}, corpus d8b6570a1c\ngen7-phase1-azure2-ben16-6: identity 52c9d7f1b547, deals 704, played 139, source cohort a76a39f13d9d (it had played 725), shard {'index': 10, 'of': 32}, corpus f3e0f4ba85\ngen7-phase1-azure2-ben16-7: identity 55b0be4a60dc, deals 703, played 151, source cohort a76a39f13d9d (it had played 725), shard {'index': 18, 'of': 32}, corpus 95efbe1a6b\ngen7-phase1-azure2-ben16-8: identity efdf7bec3f5c, deals 703, played 142, source cohort a76a39f13d9d (it had played 725), shard {'index': 26, 'of': 32}, corpus f45fefc650\ngen7-phase1-selfplay-azure2: identity 02cec292ed53, deals 2206, played 4, source cohort 10772c07d1a7 (it had played 608), shard None, corpus 3e9d6d0927\ngen7-phase1-selfplay-capture-azure2: identity c50412d34108, deals 2202, played 11, source cohort 02cec292ed53 (it had played 4), shard None, corpus 302e136f80\ngen71-compare-azure2: identity f171cc038c64, deals 2191, played 8, source cohort c50412d34108 (it had played 11), shard None, corpus d65e570857\ngen71-vs70-azure2: identity 7207e693b740, deals 2183, played 119, source cohort f171cc038c64 (it had played 8), shard None, corpus db7dc7ee71\npre7-7s-vs-6f-azure2: identity 91cdcac28115, deals 5627, played 363, source cohort a76a39f13d9d (it had played 725), shard None, corpus b4b2b3d91f\ngen71-vs70-azure2: 718 training-family deals; played on this box by:\n   pre7-7s-vs-6f-azure2: 45\n   not played by any run on this box: 673\n   deals of this cohort that are also in the corpus of: {'gen7-phase1-azure2': 2183, 'gen7-phase1-selfplay-azure2': 2183, 'gen7-phase1-selfplay-capture-azure2': 2183, 'gen71-compare-azure2': 2183, 'pre7-7s-vs-6f-azure2': 703}\n",
+ "received": "2026-11-12T06:26:59Z",
+ "script_sha256": "72947173c08195628bf557cdef6bfd2eaa210baa8d94268e94c173b13a08e191",
+ "started": "2026-11-12T06:26:59Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

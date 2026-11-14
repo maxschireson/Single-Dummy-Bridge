@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:49:58Z",
+ "id": "20261112T124947Z-137386-plan-09-requeue",
+ "output_bytes": 472,
+ "output_tail": "running: ceil64 | waiting now: @source wide1 wide2 rb1 ceilT12 matrix1 ceil16c fam1 matrix2\nposition 7; 2026-11-12T12:40:59Z start ceil64 (source ed3c311): $PY scripts/plan_ceiling.py \n40 files, 49 pairs, 401 s\nv0=models/cardplay/gen7-policy-v0-2026-11-11/gen7_policy_v0.npz,v2=models/cardplay/gen7-policy-v2-2026-11-11/gen7_policy_v2.npz,v4=models/cardplay/gen7-policy-v4-2026-11-11/gen7_policy_v4.npz,v41=models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz\n",
+ "received": "2026-11-12T12:49:58Z",
+ "script_sha256": "52598f7cdb0edd29490403819769143b2a522cbe534f4bccd76096cf96b7a375",
+ "started": "2026-11-12T12:49:58Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

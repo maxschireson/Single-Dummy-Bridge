@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:39:55Z",
+ "id": "20261114T043924Z-995516-loop-127-lanes2",
+ "output_bytes": 1168,
+ "output_tail": "1.ben.log 1.cache 1.collector.log 1.env 1.preflight.log 1.prepare.json 1.publisher.log 1.shard 2.ben.log 2.cache 2.collector.log 2.env 2.preflight.log 2.prepare.json 2.publisher.log 2.shard 3.ben.log 3.cache 3.collector.log 3.env 3.preflight.log 3.prepare.json 3.publisher.log 3.shard 4.ben.log 4.cac\n\nlane 1: port 8087 conf /home/bridgebots/work/runs/gen7-phase1-azure2-ben16-1/assets/ben-16.conf sha 5bc5d0cccf21e4a1\nlane 2: port 8087 conf /home/bridgebots/work/runs/gen7-phase1-azure2-ben16-2/assets/ben-16.conf sha 5bc5d0cccf21e4a1\nlane 8: port 8087 conf /home/bridgebots/work/runs/gen7-phase1-azure2-ben16-8/assets/ben-16.conf sha 5bc5d0cccf21e4a1\n\ninactive inactive inactive inactive inactive inactive inactive inactive \n  UNIT LOAD ACTIVE SUB DESCRIPTION\n\n0 loaded units listed.\nTo show all installed unit files use 'systemctl list-unit-files'.\n9b5f431\n2026-11-14T04:38:33Z config matches azure3's lane config\n2026-11-14T04:38:33Z installed packages match azure3's\n2026-11-14T04:38:33Z python Python 3.12.3 (azure3: 3.12.3); disk free   54G\n2026-11-14T04:38:33Z BEN install: PASS\nMem:              31           7          21           0           2          23\n",
+ "received": "2026-11-14T04:39:55Z",
+ "script_sha256": "70b03ac4d9bd8a907033a1fa012aa296cb00001b0abd5ab6894c73e173cfac8b",
+ "started": "2026-11-14T04:39:55Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

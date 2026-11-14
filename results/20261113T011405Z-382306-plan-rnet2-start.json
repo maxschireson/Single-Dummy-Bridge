@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 60.1,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:15:23Z",
+ "id": "20261113T011405Z-382306-plan-rnet2-start",
+ "output_bytes": 649,
+ "output_tail": "waiting now: @source a23f9f90955db83ab6fd94dedb80faac269c7e3e | rnet2 bash training/rollout-net-v2-20261113/chain.sh | @source 343341d357cede0b8c7d8ce9928236212a33e24d | match2 $PY scripts/plan_match.py --source $HOME/work/capsule\nposition 21\n2026-11-13T01:14:23Z end match2: exit 143\n2026-11-13T01:14:23Z source now a23f9f9 Rollout net v2: every bot's decisions with the bots' ids, v4.1's feeds a\n2026-11-13T01:14:23Z start rnet2 (source a23f9f9): bash training/rollout-net-v2-20261113/chain.sh\n135\n2026-11-13T01:14:23Z start; source a23f9f9\n/dev/root       123G   36G   88G  29% /\n2026-11-13T01:15:16Z fetched 37722 more episodes; with v1's 28275\n",
+ "received": "2026-11-13T01:14:23Z",
+ "script_sha256": "d90874e533ee960b7e579dc6c36bec1966f6361864bde1f807a1138839a34ee3",
+ "started": "2026-11-13T01:14:23Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

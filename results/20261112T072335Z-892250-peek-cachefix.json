@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:24:08Z",
+ "id": "20261112T072335Z-892250-peek-cachefix",
+ "output_bytes": 743,
+ "output_tail": "07:24:08\ncachefix inactive; collector active\n07:19:44 run gen71-vs70-fresh-azure2, 255 boards\n07:19:44 RAM disk: 12G size, 12G free; fstab: 1 line\n07:20:49 collector stopped with 263 boards\n07:20:49 disk cache kept as dds-cache.disk-20261112T072049Z.sqlite (1150 MB)\n07:20:49 cache now /home/bridgebots/work/runs/gen71-vs70-fresh-azure2/dds-cache.sqlite -> /mnt/ddscache/gen71-vs70-fresh-azure2.sqlite\n07:20:49 collector active; memory supervisor active\n07:23:19 files on the RAM disk: gen71-vs70-fresh-azure2.sqlite gen71-vs70-fresh-azure2.sqlite-shm gen71-vs70-fresh-azure2.sqlite-wal ; in the run: dds-cache.disk-20261112T072049Z.sqlite dds-cache.sqlite \nafter the move: 8 workers at 791% of 800%; system idle 0%, iowait 0.0%\n07:23:49 DONE\n",
+ "received": "2026-11-12T07:24:08Z",
+ "script_sha256": "7e7641c63750a1439656a50d757cf2c881f005ad332610e9208c77b9b4647020",
+ "started": "2026-11-12T07:24:08Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

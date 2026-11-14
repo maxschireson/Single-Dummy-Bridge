@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T22:20:04Z",
+ "id": "20261114T222400Z-codex-rollout-ben-publisher",
+ "output_bytes": 349,
+ "output_tail": "Running as unit: stu-rollout-ben-publish-4951fb0.service; invocation ID: aaa8c82367ce4fe5861c41cd04be210e\n{\n  \"status\": \"waiting for complete guarantee512 handoff\",\n  \"updated\": \"2026-11-14T22:18:30Z\"\n}MainPID=367818\nId=stu-rollout-ben-4951fb0.service\nActiveState=active\n\nMainPID=368095\nId=stu-rollout-ben-publish-4951fb0.service\nActiveState=active\n",
+ "received": "2026-11-14T22:20:03Z",
+ "script_sha256": "6188f7c9fc908a94d2e417676b135a32019b1849fdbd9e1bba9225de6a388598",
+ "started": "2026-11-14T22:20:03Z",
+ "timed_out": false,
+ "timeout_s": 90
+}

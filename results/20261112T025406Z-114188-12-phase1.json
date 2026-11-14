@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 332.9,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:59:51Z",
+ "id": "20261112T025406Z-114188-12-phase1",
+ "output_bytes": 2236,
+ "output_tail": "== prepare (shard 1/8)\nidentity 10772c07d1a778eae7481ac843d9c0d351fc3689b3bd1e5c32eb8b647d167e0b | target 2814 | shard {'index': 1, 'of': 8} | pairs {'7s-32~6-32': 1, '7s-32~5RZ32': 1, '7s-32~1': 1}\ntree: margin 0.25 trust 0.3 path 0.5 tricks 3 breadth 3 layouts 8 plain 1\n== preflight\npreflight passed: [('7s-32~5RZ32', 0, 209), ('7s-32~6-32', 1, 120), ('7s-32~1', 2, 190), ('7s-32~6-32', 3, 57), ('7s-32~1', 4, 67), ('7s-32~5RZ32', 5, 79)]\npreflight took 187s\n== records for recovery\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794452248.778995    5431 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\nI0000 00:00:1794452248.811302    5431 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\nWARNING: All log messages before absl::InitializeLog() is called are written to STDERR\nI0000 00:00:1794452250.037683    5431 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.\n== publication checkout (arena-gen7-phase1-azure2-feed)\n== drain the pre-7 test match\npre-7 run: 363 boards, failures 0; its publisher makes the last push by itself\n== units\ncollector: activating; boards 0; load average: 2.04, 5.49, 5.22\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: Preserved failure requires inspection\n== first publication\n{\"completed\": 0, \"tables\": 0, \"rate\": {\"pairs\": 0, \"per_hour\": 0.0, \"full_window\": true}, \"files\": 4, \"output\": \"/home/bridgebots/work/publication/gen7-phase1-azure2\"}\npushed f3939ed Gen5: 0 verified paired deals, common/native bidding\npublisher: active\nstate: 0 of 2814 {}\n",
+ "received": "2026-11-12T02:54:19Z",
+ "script_sha256": "6216cc1dff46957ddf203b82ffcbab27e0f8e1fa634216fd7cf17189d407c4d9",
+ "started": "2026-11-12T02:54:19Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 40.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:40:47Z",
+ "id": "20261112T043954Z-685979-32-selfplay-capture",
+ "output_bytes": 359,
+ "output_tail": "selfplay-trial2: active\n04:40:07 == close the first trial cohort\n04:40:17 trial cohort: 4 boards, published as 3e35ed6 on transfer/gen7-selfplay-trial-azure2-20261112; pairs: {'7s-32~7s-32': 2, '7s-32~6-32': 2}\n04:40:17 == build\n04:40:19 checkout: 7780e5e849d74e6d9e12b42970e6a589b4065f65 Merge the capture port (gap forks, guess-size fields) into Gen 7 self\n",
+ "received": "2026-11-12T04:40:07Z",
+ "script_sha256": "78b3af39714ff8ca75cb2d238ccaada8c1e36ba307503b914c85bcd0405826b4",
+ "started": "2026-11-12T04:40:07Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

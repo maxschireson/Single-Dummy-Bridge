@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:42:37Z",
+ "id": "20261112T024003Z-885513-progress",
+ "output_bytes": 377,
+ "output_tail": "units: match active, publish active; load average: 7.30, 6.21, 3.41\n2026-11-12T02:33:31Z pushed transfer/pre7-test-azure2-20261112: 0 episodes\nPRE7 {\"box\": \"azure2\", \"run\": \"pre7-7s-vs-6f-azure2\", \"n\": 133, \"sum\": 59, \"sumsq\": 1347, \"won\": 18, \"flat\": 104, \"lost\": 11, \"tables\": 1985, \"last_30min\": 133, \"rate_30min\": null, \"failures\": 0, \"stop\": false, \"disk_free_gb\": 126.1}\n",
+ "received": "2026-11-12T02:42:37Z",
+ "script_sha256": "84be696663c3bf3dd0058a53bbbc95c18a19c989fd8bf348aaf4518313324493",
+ "started": "2026-11-12T02:42:37Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

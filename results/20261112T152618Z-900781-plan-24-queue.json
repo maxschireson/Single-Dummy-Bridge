@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:26:26Z",
+ "id": "20261112T152618Z-900781-plan-24-queue",
+ "output_bytes": 162,
+ "output_tail": "running: match1 | waiting now: ceilT12 ceil64b matrix1 fam1 matrix2\nposition 13\n350 boards: 0.1571 +- 0.094 IMPs/board for pr75-32-v41; 384 boards/hour; 0 failed\n",
+ "received": "2026-11-12T15:26:26Z",
+ "script_sha256": "d077af015cef255bba32a6ea9bb3e818d543a3e0dce27d1d2c3e84deaccf4a79",
+ "started": "2026-11-12T15:26:26Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

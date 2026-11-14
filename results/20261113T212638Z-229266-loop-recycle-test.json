@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 79.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T21:28:15Z",
+ "id": "20261113T212638Z-229266-loop-recycle-test",
+ "output_bytes": 320,
+ "output_tail": "stu0-pa v stu0-pb: 8 boards to play (0 done), 2 workers\n8 boards: None +- None IMPs/board for stu0-pa; 367 boards/hour; 0 failed\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 8, \"cpu_per_board\": 17.51}\nresults: 8, episodes: 8\nMem:           32086       26913        4683           4         940        5172\n2026-11-13T21:28:15Z\n",
+ "received": "2026-11-13T21:26:56Z",
+ "script_sha256": "2c1c9b8896f868949208e9093c735075c4fa95e0e09e614f5b0caffab7140cf9",
+ "started": "2026-11-13T21:26:56Z",
+ "timed_out": false,
+ "timeout_s": 900
+}

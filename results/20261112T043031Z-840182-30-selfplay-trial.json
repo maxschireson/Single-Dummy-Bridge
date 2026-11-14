@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 45.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T04:31:19Z",
+ "id": "20261112T043031Z-840182-30-selfplay-trial",
+ "output_bytes": 289,
+ "output_tail": "selfplay-trial: active\n04:30:34 == build\n04:30:37 checkout: 81707b2738f192c3c43dbbacadbcbe803f00765c Gen 7 self-play plan: say which source run a machine prepares from\n04:31:08 policy v4 d6b011937ee9ec53; dds library fc25bcabe5c653d1 (phase 1 checkout: 8e2de51a682a1487)\n04:31:08 == tests\n",
+ "received": "2026-11-12T04:30:34Z",
+ "script_sha256": "61dec73a54b185e0eba0f648bfccd6a8b5a9d2d682156b2d1ffe6b4e1410902b",
+ "started": "2026-11-12T04:30:34Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:37:22Z",
+ "id": "20261112T123701Z-555533-plan-06-requeue",
+ "output_bytes": 526,
+ "output_tail": "running: ceilT712 | waiting now: ceil16b ceilT12 @source rb1 bel2a matrix1 fam1 matrix2\nposition 4; 2026-11-12T12:32:22Z start ceilT712 (source 94418bd): $PY scripts/plan_ceiling.p\n{\"pairs\": 1298, \"files\": 500, \"seconds\": 2230}\n5:#   @source SHA            check out that commit before the next job\n15:    @source\\ *) sha=${line#@source }\n17:      log \"source now $(git log -1 --format='%h %s' | cut -c1-80)\"; echo $((pos + 1)) > \"$P/queue.pos\"; continue ;;\n21:  log \"start $name (source $(git rev-parse --short HEAD)): $cmd\"\n",
+ "received": "2026-11-12T12:37:22Z",
+ "script_sha256": "4528b1386d64bd48565335e25d3a2175bea52d2d99e643d6660157f8a6d0a831",
+ "started": "2026-11-12T12:37:22Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

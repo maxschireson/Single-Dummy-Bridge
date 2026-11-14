@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 565.9,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:02:57Z",
+ "id": "20261113T225324Z-170772-loop-switch",
+ "output_bytes": 1138,
+ "output_tail": " scripts/gen7_build_dataset.py | 71 +++++++++++++++++++++++++++++++++++++++++--\n 1 file changed, 68 insertions(+), 3 deletions(-)\nsource 1a40de0\nRunning as unit: loop-collect.service; invocation ID: 09343c03c97f493188ad520cb5051618\nRunning as unit: loop-rows.service; invocation ID: 280d0511e7dd4429b0fa1ea46eaba767\nbox azure2: active active active \n2026-11-13T22:53:31Z round 3's cut: sp0d spr0d stopped; the collection moves to sps0d (pure rollout)\n2026-11-13T22:53:32Z start sps0d stu0-psa~stu0-psb seed 9001 first 320000 deals 20000 workers 8 --episodes --one-room (source 1a40de0, nets bf16, --recycle 20)\n2026-11-13T22:58:10Z cut sp0d 183000-183873: 873 boards, {\"episodes\": 873, \"deals\": 871, \"unique_families\": 871, \"examples\": 36075, \"train\": 29011, \"validation\": 3259, \"test\": 3, 1800 KB\n2026-11-13T23:02:57Z cut spr0d 200000-200945: 946 boards, {\"episodes\": 946, \"deals\": 944, \"unique_families\": 944, \"examples\": 38958, \"train\": 32270, \"validation\": 3921, \"test\": 2, 1980 KB\nsp0d 3886 tables (final)\nspr0d 946 tables (final)\nMem:           32086       20180       11215           4        1143       11905\n2026-11-13T23:02:57Z\n",
+ "received": "2026-11-13T22:53:31Z",
+ "script_sha256": "0cbc60cbdba65b666d7238d6ce228b303292169c52ec8685f6ce9294fb9b5897",
+ "started": "2026-11-13T22:53:31Z",
+ "timed_out": false,
+ "timeout_s": 1800
+}

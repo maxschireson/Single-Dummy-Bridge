@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T14:26:17Z",
+ "id": "20261112T142601Z-897071-plan-16-match",
+ "output_bytes": 281,
+ "output_tail": "running: rb1 | waiting now: @source match1 ceil64b matrix1 fam1 matrix2\nposition 11; 2026-11-12T13:28:35Z start rb1 (source 7a24cf7): $PY scripts/plan_reading_bound.py --episo\n30 files, 73 samples, 81832 bot decisions, 1982 s\nSTOP\nWATCHDOG_STOP\nartifacts\nassets\nben-preflight.json\n",
+ "received": "2026-11-12T14:26:17Z",
+ "script_sha256": "8c881843c96ea472461f2276954a2a51a88c7c23e1a62a44b63a4d0d84627e0f",
+ "started": "2026-11-12T14:26:17Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

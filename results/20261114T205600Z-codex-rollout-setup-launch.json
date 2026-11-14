@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 1.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:56:07Z",
+ "id": "20261114T205600Z-codex-rollout-setup-launch",
+ "output_bytes": 1296,
+ "output_tail": "Preparing worktree (detached HEAD 30e30af)\ntest_reader_routes_plain_and_pooled_by_controller_and_restores (__main__.SmokeTests.test_reader_routes_plain_and_pooled_by_controller_and_restores) ... ok\ntest_real_inner_player_runs_flat_and_factory_is_restored (__main__.SmokeTests.test_real_inner_player_runs_flat_and_factory_is_restored) ... ok\ntest_recursive_calls_are_bounded_and_only_receive_observations (__main__.SmokeTests.test_recursive_calls_are_bounded_and_only_receive_observations) ... ok\ntest_row_view_equals_game_and_ignores_hidden_allocation (__main__.SmokeTests.test_row_view_equals_game_and_ignores_hidden_allocation) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.278s\n\nOK\nRunning as unit: stu-rollout-experiments.service; invocation ID: 47e99dcd652f4107bbf8257447c86210\nRunning as unit: stu-rollout-publish.service; invocation ID: bbb1dfc5df834fb892cd178412ddb9b3\n{\n  \"parent\": 334803,\n  \"unit_main\": 334794,\n  \"started\": \"2026-11-14T20:56:04Z\",\n  \"status\": \"waiting-for-recycle-boundary\"\n}MainPID=357118\nId=stu-rollout-experiments.service\nActiveState=active\n\nMainPID=334794\nId=loop-collect.service\nActiveState=active\n\nMainPID=195050\nId=loop-publish.service\nActiveState=active\n\nMainPID=339433\nId=loop-rows.service\nActiveState=active\n",
+ "received": "2026-11-14T20:56:05Z",
+ "script_sha256": "7761c741b3b1df028bc536dff0abf59bf799e86870c73881b2325d65a7367b92",
+ "started": "2026-11-14T20:56:05Z",
+ "timed_out": false,
+ "timeout_s": 600
+}

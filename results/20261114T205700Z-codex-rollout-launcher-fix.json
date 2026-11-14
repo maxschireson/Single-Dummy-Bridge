@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 5,
+ "finished": "2026-11-14T20:57:10Z",
+ "id": "20261114T205700Z-codex-rollout-launcher-fix",
+ "output_bytes": 97,
+ "output_tail": "Failed to start stu-rollout-experiments.service: Unit stu-rollout-experiments.service not found.\n",
+ "received": "2026-11-14T20:57:10Z",
+ "script_sha256": "7eda86bc34ece754fd63c7e14619ba8714c32497f4641032d15b522ecea8f1f9",
+ "started": "2026-11-14T20:57:10Z",
+ "timed_out": false,
+ "timeout_s": 90
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 23.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T23:05:13Z",
+ "id": "20261113T230443Z-495350-loop-budget",
+ "output_bytes": 134,
+ "output_tail": "1000 records\nRunning as unit: loop-budget.service; invocation ID: f90b86b70f7249be802623404efb1439\nactive active 2026-11-13T23:05:13Z\n",
+ "received": "2026-11-13T23:04:50Z",
+ "script_sha256": "6d86b0d08497e10c50ebf0d3abe21f1638d5fb27efcd256c5e6d22fd8c8795d4",
+ "started": "2026-11-13T23:04:50Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

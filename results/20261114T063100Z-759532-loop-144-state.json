@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 1,
+ "finished": "2026-11-14T06:31:08Z",
+ "id": "20261114T063100Z-759532-loop-144-state",
+ "output_bytes": 339,
+ "output_tail": "2026-11-14T02:21:11Z jobs-azure2-h3p.txt has ended; back to the collection\n2026-11-14T04:18:10Z jobs-azure2-h3pt.txt has ended; back to the collection\n2026-11-14T05:28:56Z azure2 joins the gate: jobs-azure2-ben.txt, then the rest of jobs-azure2-onenet.txt\nunits: loop-next loop-switch loop-rows \nsource a0bc029 | rows unit: rows.sh sp3sd \n",
+ "received": "2026-11-14T06:31:08Z",
+ "script_sha256": "bb256dda6ea83c036f6e70ce50bbbe9e91f7d4e5862c3ebb00e7c7fd84fbe73b",
+ "started": "2026-11-14T06:31:08Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:00:15Z",
+ "id": "20261113T015954Z-795643-plan-peek2",
+ "output_bytes": 1117,
+ "output_tail": "2026-11-13T01:44:23Z built s08: {\"episodes\": 4125, \"deals\": 4119, \"unique_families\": 4048, \"examples\": 1717757, \"train\": 1385673, \"validation\": 157547, \"test\": 174537}\n2026-11-13T01:47:33Z built s09: {\"episodes\": 4125, \"deals\": 4117, \"unique_families\": 4049, \"examples\": 1690863, \"train\": 1373316, \"validation\": 154163, \"test\": 163384}\n2026-11-13T01:50:42Z built s10: {\"episodes\": 4124, \"deals\": 4116, \"unique_families\": 4051, \"examples\": 1718469, \"train\": 1368603, \"validation\": 163694, \"test\": 186172}\n2026-11-13T01:53:54Z built s11: {\"episodes\": 4125, \"deals\": 4110, \"unique_families\": 4046, \"examples\": 1731789, \"train\": 1404490, \"validation\": 148944, \"test\": 178355}\n2026-11-13T01:57:03Z built s12: {\"episodes\": 4125, \"deals\": 4119, \"unique_families\": 4047, \"examples\": 1724373, \"train\": 1394535, \"validation\": 155776, \"test\": 174062}\n37722 of 37722 blobs, 5.80 GB, 52 s\n{\"finished_utc\": \"2026-11-13T01:15:16Z\", \"seconds\": 52, \"new_blobs\": 37722, \"new_bytes\": 6226159271}\n4000 episodes 1675731 examples\n37722\n5.9G\t/home/bridgebots/work/plan/rnet2/eps\n 02:00:15 up 23:50,  0 user,  load average: 7.69, 8.09, 8.09\n",
+ "received": "2026-11-13T02:00:15Z",
+ "script_sha256": "3e19b7979b42ac5019757e55e3baa90baf5846cef40812cbadff349dccfcc06f",
+ "started": "2026-11-13T02:00:15Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

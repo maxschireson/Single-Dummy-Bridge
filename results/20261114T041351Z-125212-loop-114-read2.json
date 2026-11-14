@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:14:04Z",
+ "id": "20261114T041351Z-125212-loop-114-read2",
+ "output_bytes": 359,
+ "output_tail": "2026-11-14T02:39:15Z the collection is paused for jobs-azure2-h3pt.txt\n2026-11-14T02:39:15Z start h3-ptb stu3-pst~stu0-ps seed 131 first 18000 deals 1000 workers 8  (source 28b5b06, nets fp32)\nloop-rungs: active; loop-rungs2: active\nh3-ptb boards 957: +0.09 +- 0.12 IMPs a board for the first-named bot | cpu a board 43\nh3-px not started\n2026-11-14T04:14:04Z\n",
+ "received": "2026-11-14T04:14:04Z",
+ "script_sha256": "1fecab86e5e8cf4c4c0d37488fff786e3e35852d2682d770f5fc5acac56e87fd",
+ "started": "2026-11-14T04:14:04Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

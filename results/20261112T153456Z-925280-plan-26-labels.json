@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 38.4,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:35:47Z",
+ "id": "20261112T153456Z-925280-plan-26-labels",
+ "output_bytes": 169,
+ "output_tail": "{\"episodes\": 5214, \"tip\": \"cb3a31ca58\"}\nfiles: 5216\nsize: 1.8G\nrunning: match1 | waiting now: @source ceilTies lab1 ceilT12 ceil64b matrix1 fam1 matrix2\ndisk free: 103G\n",
+ "received": "2026-11-12T15:35:08Z",
+ "script_sha256": "1d42d2d281353082da7644c3b18f04f297e8037753d9dbc7a101bef1d6cb8011",
+ "started": "2026-11-12T15:35:08Z",
+ "timed_out": false,
+ "timeout_s": 1000
+}

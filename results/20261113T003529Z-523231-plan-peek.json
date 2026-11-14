@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T00:35:38Z",
+ "id": "20261113T003529Z-523231-plan-peek",
+ "output_bytes": 1043,
+ "output_tail": "2026-11-13T00:13:28Z built s1: {\"episodes\": 7069, \"deals\": 7056, \"unique_families\": 6440, \"examples\": 2316132, \"train\": 1879695, \"validation\": 226624, \"test\": 209813}\n2026-11-13T00:19:10Z built s2: {\"episodes\": 7069, \"deals\": 7049, \"unique_families\": 6439, \"examples\": 2348549, \"train\": 1880017, \"validation\": 217208, \"test\": 251324}\n2026-11-13T00:24:50Z built s3: {\"episodes\": 7069, \"deals\": 7059, \"unique_families\": 6456, \"examples\": 2299975, \"train\": 1853439, \"validation\": 221016, \"test\": 225520}\n2026-11-13T00:25:17Z set: {\"parts\": 4, \"deals\": 28220, \"unique_families\": 19811, \"examples\": 9285986, \"deals_by_hash_split\": [22657, 2752, 2811]}\n2026-11-13T00:25:19Z ft start\n28275 of 28275 blobs, 4.82 GB, 56 s\n{\"finished_utc\": \"2026-11-13T00:01:46Z\", \"seconds\": 56, \"new_blobs\": 28275, \"new_bytes\": 5176917809}\n{\"parts\": 4, \"deals\": 28220, \"unique_families\": 19811, \"examples\": 9285986, \"deals_by_hash_split\": [22657, 2752, 2811]}\n28275\n4.9G\t/home/bridgebots/work/plan/rnet1/eps\n 00:35:38 up 22:25,  0 user,  load average: 6.56, 6.60, 7.23\n",
+ "received": "2026-11-13T00:35:38Z",
+ "script_sha256": "e903d61da549dac89f99262c50482bbb7d6823437aa8c8af9977e20ed6781f66",
+ "started": "2026-11-13T00:35:38Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

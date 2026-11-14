@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T07:18:41Z",
+ "id": "20261112T071838Z-170241-cache2",
+ "output_bytes": 692,
+ "output_tail": "07:18:41\nboards 248; cache files: 1105\t/home/bridgebots/work/runs/gen71-vs70-fresh-azure2/dds-cache.sqlite 1\t/home/bridgebots/work/runs/gen71-vs70-fresh-azure2/dds-cache.sqlite-shm 8\t/home/bridgebots/work/runs/gen71-vs70-fresh-azure2/dds-cache.sqlite-wal \nold cohort's cache: 728\t/home/bridgebots/work/runs/gen71-vs70-azure2/dds-cache.sqlite  for 160 boards\n/dev/root       123G   18G  106G  15% /\nNAME          SIZE ROTA MODEL\nsr0           630K    1 Virtual DVD-ROM\nnvme0n1       128G    0 MSFT NVMe Accelerator v1.0\n\u251c\u2500nvme0n1p1   127G    0 \n\u251c\u2500nvme0n1p14    4M    0 \n\u251c\u2500nvme0n1p15  106M    0 \n[none] mq-deadline \nlogind RemoveIPC default: #RemoveIPC=yes \n1000\navailable 22249 MB\n",
+ "received": "2026-11-12T07:18:41Z",
+ "script_sha256": "253df664e0468fa7522c494755aed1485625b0dcf47175c1eef023c169608a7b",
+ "started": "2026-11-12T07:18:41Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 58.6,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:18:37Z",
+ "id": "20261114T041734Z-182070-loop-115-onenet2",
+ "output_bytes": 1107,
+ "output_tail": "before: loop-rungs active, loop-rungs2 active\n2026-11-14T02:21:11Z start sp3sd stu3-psa~stu3-psb seed 9001 first 420000 deals 20000 workers 8 --episodes --one-room (source 545893b, nets bf16, --recycle 20)\n2026-11-14T02:39:15Z the collection is paused for jobs-azure2-h3pt.txt\n2026-11-14T02:39:15Z start h3-ptb stu3-pst~stu0-ps seed 131 first 18000 deals 1000 workers 8  (source 28b5b06, nets fp32)\n bridge_harness/x8_rollout.py | 54 ++++++++++++++++++++++++-------\n 4 files changed, 187 insertions(+), 19 deletions(-)\nsource ea20975\n/home/bridgebots/work/loop/src/models/cardplay/stu-net-r3-20261113/policy.npz\na8cf8a94ebcf29da\nRunning as unit: loop-rungs2.service; invocation ID: dc9c4180bb024024bc4b299217fc9703\nactive inactive active 2026-11-14T04:18:17Z h3-px stopped by hand at 0 boards for the one-net matches (it resumes after them)\n2026-11-14T04:18:17Z the collection is paused for jobs-azure2-onenet.txt\n2026-11-14T04:18:17Z start l3-pst stu3-pst~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source ea20975, nets fp32)\nh3-ptb final: boards 1000: +0.11 +- 0.12\n2026-11-14T04:18:37Z\n",
+ "received": "2026-11-14T04:17:39Z",
+ "script_sha256": "f28ba207b203fc7be81ce8209512fd98fa00840fe12677a4de31c5e531a06232",
+ "started": "2026-11-14T04:17:39Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

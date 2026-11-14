@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 5.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T22:18:30Z",
+ "id": "20261114T222300Z-codex-rollout-ben-launch",
+ "output_bytes": 480,
+ "output_tail": "Preparing worktree (detached HEAD 4951fb0)\nHEAD is now at 4951fb0 Add isolated BEN lanes and explicit external timing scope\n{\"revision\": \"9b5f43104aeac713a80b73513f2f2d6daf9f8769\", \"hashed_files\": 117, \"dirty\": \"\"}\nRunning as unit: stu-rollout-ben-4951fb0.service; invocation ID: 48eadc34893f415a938c03080bd71fef\nMainPID=367818\nId=stu-rollout-ben-4951fb0.service\nActiveState=active\n----------------------------------------------------------------------\nRan 27 tests in 3.559s\n\nOK\n",
+ "received": "2026-11-14T22:18:25Z",
+ "script_sha256": "d5c3988484484ac3b19ff42494a32ede6c4c20f3670441f876cc02985f838a82",
+ "started": "2026-11-14T22:18:25Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

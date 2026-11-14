@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 65.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T02:18:25Z",
+ "id": "20261113T021708Z-332754-plan-gen5rz",
+ "output_bytes": 1004,
+ "output_tail": "waiting now: @source 7caad4f197f23f27279d06d825b3eae4b2060d15 | rnet2r RESUME=1 bash training/rollout-net-v2-20261113/chain.sh | @source 343341d357cede0b8c7d8ce9928236212a33e24d | match2 $PY scripts/plan_match.py --source $HOME/work/capsule-gen7-capt\n2026-11-13T02:10:09Z freshB: {\"deals_in\": 885, \"deals_kept\": 277, \"dropped_as_seen\": 608, \"examples\": 236734}\n2026-11-13T02:10:09Z w768 start\n\n4096 .\n4096 ..\n1848378 eps_before.txt\n24982 fetch.json\n24871 fetchB.json\n179096121 freshB.npz\n436969753 freshB_raw.npz\n20729495834 train.npz\nposition 23\n2026-11-13T02:17:20Z source now 7caad4f Rollout net v2 chain: the Gen 5RZ feeds (arena-gen5rz*, Max 02:15); each\n2026-11-13T02:17:20Z start rnet2r (source 7caad4f): RESUME=1 bash training/rollout-net-v2-20261113/chain.sh\n/dev/root       123G   62G   62G  50% /\n2026-11-13T02:17:38Z fetched 47270 episodes; with v1 28275\n2026-11-13T02:17:39Z resume: the joined set so far is one part\n2026-11-13T02:17:48Z resume: 9548 newly fetched episodes as part sx021739\n",
+ "received": "2026-11-13T02:17:20Z",
+ "script_sha256": "b709adbc02708e0ce048d558a90748ca07e33d061e593798eb7f37225538727b",
+ "started": "2026-11-13T02:17:20Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

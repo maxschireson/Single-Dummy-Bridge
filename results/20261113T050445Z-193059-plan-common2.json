@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 315.7,
+ "exit_code": 1,
+ "finished": "2026-11-13T05:10:25Z",
+ "id": "20261113T050445Z-193059-plan-common2",
+ "output_bytes": 1073,
+ "output_tail": "-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 05:05 policy_epoch1.npz\n-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 05:05 policy_epoch2.npz\n-rw-r--r-- 1 bridgebots bridgebots 7007684 Nov 13 05:05 policy_epoch3.npz\n137 of 137 blobs, 0.03 GB, 7 s\n{\"finished_utc\": \"2026-11-13T05:05:18Z\", \"seconds\": 7, \"new_blobs\": 137, \"new_bytes\": 37116187}\n{\"episodes\": 2571, \"deals\": 2568, \"unique_families\": 2496, \"examples\": 1671889, \"train\": 1318573, \"validation\": 172889, \"test\": 180427}\n{\"deals_in\": 2568, \"deals_kept\": 1360, \"dropped_as_seen\": 1208, \"examples\": 1205090}\nTraceback (most recent call last):\n  File \"/tmp/score_rollout_nets.py\", line 21, in <module>\n    from bridge_harness.gen7_net import BANK_KEYS, INPUTS, forward, log_softmax  # noqa: E402\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'bridge_harness'\nTraceback (most recent call last):\n  File \"<stdin>\", line 2, in <module>\nFileNotFoundError: [Errno 2] No such file or directory: '/home/bridgebots/work/plan/runs/common_scores.json'\n",
+ "received": "2026-11-13T05:05:09Z",
+ "script_sha256": "c48f79d2131bc5bfc27500584f070f9f17b7e2d5c4b64d931add3b2f610cca41",
+ "started": "2026-11-13T05:05:09Z",
+ "timed_out": false,
+ "timeout_s": 3600
+}

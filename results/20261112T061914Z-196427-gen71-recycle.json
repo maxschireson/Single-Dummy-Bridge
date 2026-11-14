@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 40.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:20:18Z",
+ "id": "20261112T061914Z-196427-gen71-recycle",
+ "output_bytes": 293,
+ "output_tail": "06:20:18 gen71-recycle: active; the run it would act on: ~/work/runs/gen71-vs70-azure2\navailable 23074 MB; collector tree 10446 MB; collector active; boards 79\n2026-11-12T06:19:38Z started: the collector is restarted after the boards in hand when the box has under 5000 MB of memory available\n",
+ "received": "2026-11-12T06:19:38Z",
+ "script_sha256": "2c0468451ea0ba044068a7431336e33cf6e24bd80a88ce81b12599c80a3248a2",
+ "started": "2026-11-12T06:19:38Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

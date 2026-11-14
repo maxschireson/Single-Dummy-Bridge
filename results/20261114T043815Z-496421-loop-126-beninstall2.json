@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 20.5,
+ "exit_code": 0,
+ "finished": "2026-11-14T04:38:52Z",
+ "id": "20261114T043815Z-496421-loop-126-beninstall2",
+ "output_bytes": 534,
+ "output_tail": "/home/bridgebots/work/ben\n/home/bridgebots/work/ben-venv\n/home/bridgebots/work/lanes\n  54G\nPython 3.12.3\nvenv ok\nRunning as unit: loop-beninstall.service; invocation ID: f0945c95a9984a69ac1d6a179418b761\ninactive\n2026-11-14T04:38:33Z installed packages match azure3's\n2026-11-14T04:38:33Z python Python 3.12.3 (azure3: 3.12.3); disk free   54G\n2026-11-14T04:38:33Z BEN install: PASS\n2026-11-14T04:18:17Z start l3-pst stu3-pst~8p-32-v41 seed 131 first 500 deals 500 workers 8 --episodes (source ea20975, nets fp32)\n2026-11-14T04:38:52Z\n",
+ "received": "2026-11-14T04:38:31Z",
+ "script_sha256": "b3d8e1fa0256b1fea024df640985b4819aa841195515e3cda846114197799147",
+ "started": "2026-11-14T04:38:31Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

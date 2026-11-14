@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 2.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T01:08:45Z",
+ "id": "20261113T010811Z-399910-plan-env",
+ "output_bytes": 1312,
+ "output_tail": "ModuleNotFoundError: No module named 'jax'\npylib jax 0.12.0.1\n/dev/root       123G   36G   88G  29% /\n               total        used        free      shared  buff/cache   available\nMem:              31           3           7           0          20          27\n8\n 01:08:44 up 22:58,  0 user,  load average: 8.15, 7.81, 7.06\n/home/bridgebots/work/sdb-gen71/models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz\n/home/bridgebots/work/sdb-gen7-selfplay-capture/models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz\n/home/bridgebots/work/sdb-gen7/models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz\n/home/bridgebots/work/sdb-gen7-selfplay/models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz\n/home/bridgebots/work/sdb-gen7-arena/models/cardplay/hand-fit-scorer-v0-2026-11-11/hand_fit_v0.npz\n/home/bridgebots/work/sdb-gen71/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz\n/home/bridgebots/work/plan/src/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz\n/home/bridgebots/work/sdb-gen71x/models/cardplay/gen7-policy-v4.1-2026-11-12/gen7_policy_v4.1.npz\nben\nben-setup\nben-venv\ncapsule-gen7-capture\nendtable\ngen71\nlanes\nplan\npublication\nruns\nsdb-gen7\nsdb-gen7-arena\nsdb-gen7-selfplay\nsdb-gen7-selfplay-capture\nsdb-gen71\nsdb-gen71x\nselfplay\ntools\nvenv\n",
+ "received": "2026-11-13T01:08:43Z",
+ "script_sha256": "051563b0e256e5112a733b5f2cfc5544cdf4c3d61d29b29825aeefd3fadf9005",
+ "started": "2026-11-13T01:08:43Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

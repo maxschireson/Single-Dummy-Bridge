@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 20.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:09:23Z",
+ "id": "20261112T060842Z-356411-54-old-publisher",
+ "output_bytes": 1294,
+ "output_tail": "7.0 self-play cohort: 11 boards published; publisher inactive\n== go71b\npreflight passed in 89s:\n   deal 0 71s-32~7s-32: 27s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 346, in the tree's tricks 88, tree consulted 34, moved 0, tree forks 0, gap forks 6 on 2 tables\n   deal 1 71s-32~7s-32: 59s, root tables 2, tables with forks 2, IMPs {'common': 0, 'native': 0}, searched decisions 548, in the tree's tricks 156, tree consulted 58, moved 1, tree forks 2, gap forks 10 on 2 tables\n   tree in all: {'in_a_stage': 244, 'consulted': 92, 'moved': 1, 'over_budget': 0, 'tree_forks': 2, 'tree_fork_imps': 0, 'mean_seconds': 0.14, 'p95_seconds': 0.32, 'max_seconds': 0.46, 'mean_solves': 71.4, 'p95_solves': 136, 'max_solves': 176}\n06:05:27 == records\n06:05:29 records written; publication checkout on arena-gen7-1-vs70-azure2-feed\n06:05:29 == units\n06:05:29 units written\n06:02:57 the eight Gen 7.0 lanes against BEN (16) are finished: 1195 boards, every one published, no failures\n06:05:42 BEN servers stopped; available 30929 MB\n06:05:42 == start with eight workers\n06:05:43 collector active with 8 workers, publisher active, feed arena-gen7-1-vs70-azure2-feed\n== memory\navailable 26636 MB\n934 MB  933 MB  880 MB  869 MB  827 MB  821 MB  819 MB  818 MB  \n",
+ "received": "2026-11-12T06:09:02Z",
+ "script_sha256": "7dff7aa9f7908462c7cbfaf9e592fc8c9e77f799b2d152913f7d84713153bee6",
+ "started": "2026-11-12T06:09:02Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

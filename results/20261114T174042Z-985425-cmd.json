@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 76.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T17:42:29Z",
+ "id": "20261114T174042Z-985425-cmd",
+ "output_bytes": 925,
+ "output_tail": "loop-collect.service running loop-publish.service running loop-rows.service running \n2026-11-14T06:47:51Z start sp3t stu3-psta~stu3-pstb seed 9001 first 600000 deals 20000 workers 8 --episodes --one-room (source 69b94df, nets bf16, --r\n2026-11-14T06:48:53Z the row publisher takes sp3t besides sp3sd\nsource 30e30af\nround 4c's net in place, sha256 e4b689c87db2f56b\nsp4t stu4c-psta~stu4c-pstb 9001 760000 20000 8 --episodes --one-room\nRunning as unit: loop-collect.service; invocation ID: 3d23197feee54798b7cdc0f5922f51a6\nRunning as unit: loop-collect-b.service; invocation ID: bdd109078ac346809af7c8b8350c85b2\nactive 2026-11-14T17:41:29Z round 4's net (stu4c) takes over the one-net self-play (source 30e30af; Max, 17:34 UTC: likely adopt)\n2026-11-14T17:41:29Z start sp4t stu4c-psta~stu4c-pstb seed 9001 first 760000 deals 20000 workers 8 --episodes --one-room (source 30e30af, nets bf16, --recycle 20)\n9\n2026-11-14T17:42:29Z\n",
+ "received": "2026-11-14T17:41:12Z",
+ "script_sha256": "079b0c3c05db6d6c136dcbb265ebc1346b50ddc5bb553c714a5cb37ad2021378",
+ "started": "2026-11-14T17:41:12Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 86.6,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:25:19Z",
+ "id": "20261112T052333Z-728721-41-recycle-now",
+ "output_bytes": 909,
+ "output_tail": "05:23:52 before: available 3169 MB; boards \n05:24:33 collectors still running after the wait: 0\n05:25:18 after: available 20791 MB\nlane 1: collector active, server active, boards 114, STOP no; lane 2: collector active, server active, boards 110, STOP no; lane 3: collector active, server active, boards 114, STOP no; lane 4: collector active, server active, boards 113, STOP no; lane 5: collector active, server active, boards 112, STOP no; lane 6: collector active, server active, boards 102, STOP no; lane 7: collector active, server active, boards 112, STOP no; lane 8: collector active, server active, boards 103, STOP no; \nI0000 00:00:1794461075.931298   26380 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation o\n{\"completed\": 114, \"index\": 113, \"pair\": \"7s-32~ben\", \"common\": 0, \"native\": 0}\n",
+ "received": "2026-11-12T05:23:52Z",
+ "script_sha256": "9c52f2aaf6721c27529e5cf052a3900693f70010ac960925a56c0bc6948ea8e6",
+ "started": "2026-11-12T05:23:52Z",
+ "timed_out": false,
+ "timeout_s": 780
+}

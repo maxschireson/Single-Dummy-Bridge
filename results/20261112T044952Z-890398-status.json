@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.8,
+ "exit_code": 1,
+ "finished": "2026-11-12T04:50:05Z",
+ "id": "20261112T044952Z-890398-status",
+ "output_bytes": 142,
+ "output_tail": "Traceback (most recent call last):\n  File \"<stdin>\", line 14, in <module>\nTypeError: unsupported operand type(s) for +=: 'int' and 'NoneType'\n",
+ "received": "2026-11-12T04:50:04Z",
+ "script_sha256": "68f83916e6bccf5ddfb93b9890699a116d00828f8bea20c88000a51a4583b6f7",
+ "started": "2026-11-12T04:50:04Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

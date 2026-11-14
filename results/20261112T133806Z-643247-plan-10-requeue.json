@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T13:38:24Z",
+ "id": "20261112T133806Z-643247-plan-10-requeue",
+ "output_bytes": 175,
+ "output_tail": "running: rb1 | waiting now: @source ceil64b ceilT12 matrix1 ceil16c fam1 matrix2\nposition 11; 2026-11-12T13:28:35Z start rb1 (source 7a24cf7): $PY scripts/plan_reading_bound.\n",
+ "received": "2026-11-12T13:38:24Z",
+ "script_sha256": "caa06361b1d6bd2499eeac9d7880367311545286fe00aa863d51b4760f9a8119",
+ "started": "2026-11-12T13:38:24Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

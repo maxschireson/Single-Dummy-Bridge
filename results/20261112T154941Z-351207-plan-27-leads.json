@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-12T15:50:03Z",
+ "id": "20261112T154941Z-351207-plan-27-leads",
+ "output_bytes": 193,
+ "output_tail": "running: match1 | waiting now: @source ceilLead ceilT12 ceilTies lab1 ceil64b matrix1 fam1 matrix2\nposition 13\n500 boards: 0.156 +- 0.0736 IMPs/board for pr75-32-v41; 386 boards/hour; 0 failed\n",
+ "received": "2026-11-12T15:50:03Z",
+ "script_sha256": "53b17f603dc1ae42e25c053755ced11c02738866a6676ff6d476f844f32dc5cc",
+ "started": "2026-11-12T15:50:03Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

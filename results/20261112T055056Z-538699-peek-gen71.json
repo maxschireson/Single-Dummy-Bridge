@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:51:14Z",
+ "id": "20261112T055056Z-538699-peek-gen71",
+ "output_bytes": 312,
+ "output_tail": "gen71-trial: active\n05:49:12 == build\n05:49:14 checkout: 9f5ec19498e7e20e9f610ed93d896880a17cbcc9 Gen 7.1: policy net v4.1, a cohort that holds bots with different net\n05:49:54 policy v4 d6b011937ee9ec53, v4.1 cb3fcfd5c5587373; dds library a220dde3165d7a57 (phase 1 checkout: 8e2de51a682a1487)\n05:49:54 == tests\n",
+ "received": "2026-11-12T05:51:14Z",
+ "script_sha256": "16a0e128df16cdd946c05987ae5996475729d17d88fe24a9169c30fc6669e63d",
+ "started": "2026-11-12T05:51:14Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

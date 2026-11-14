@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 590.4,
+ "exit_code": 0,
+ "finished": "2026-11-14T12:50:51Z",
+ "id": "20261114T124057Z-429069-cmd",
+ "output_bytes": 783,
+ "output_tail": "source 69b94df\n2026-11-14T12:42:51Z cut sp3t 607000-607359: 358 boards, {\"episodes\": 358, \"deals\": 358, \"unique_families\": 358, \"examples\": 14737, \"train\": 11636, \"validation\": 1526, \"test\": 1, 760 KB\n2026-11-14T12:45:27Z cut sp3sd 420000-420514: 515 boards, {\"episodes\": 515, \"deals\": 513, \"unique_families\": 513, \"examples\": 21155, \"train\": 17529, \"validation\": 1510, \"test\": 2, 1080 KB\n2026-11-14T12:50:51Z cut sps0d 321000-322127: 1128 boards, {\"episodes\": 1128, \"deals\": 1126, \"unique_families\": 1126, \"examples\": 46500, \"train\": 37205, \"validation\": 5037, \"test\", 2340 KB\n2026-11-14T12:50:51Z cut round4 done on azure2\nsp3t 7499 tables sp3sd 515 tables sps0d 2128 tables \n11\nMem:           32086       18926        9825           4        3817       13159\n2026-11-14T12:50:51Z\n",
+ "received": "2026-11-14T12:41:01Z",
+ "script_sha256": "00a27bdc8ee7a0e4de38cf1eafefacb85f291e9e86cfa31269f19a5f9f5b0537",
+ "started": "2026-11-14T12:41:01Z",
+ "timed_out": false,
+ "timeout_s": 2400
+}

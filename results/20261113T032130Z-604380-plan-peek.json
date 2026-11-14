@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.0,
+ "exit_code": 0,
+ "finished": "2026-11-13T03:22:02Z",
+ "id": "20261113T032130Z-604380-plan-peek",
+ "output_bytes": 1549,
+ "output_tail": "2026-11-13T02:17:48Z resume: 9548 newly fetched episodes as part sx021739\n2026-11-13T02:24:26Z built sx021739: {\"episodes\": 9548, \"deals\": 9524, \"unique_families\": 9483, \"examples\": 2970250, \"train\": 2354750, \"validation\": 297846, \"test\": 317654}\n2026-11-13T02:27:04Z set: {\"parts\": 2, \"deals\": 75390, \"bots\": [\"1\", \"2\", \"3\", \"4b\", \"5-32\", \"5R192\", \"5R32\", \"5RZ192\", \"5RZ32\", \"6-256\", \"6-32\", \"71s-32\", \"7s-32\", \"8c-32\", \"8s-32\", \"ben\", \"ben32\", \"ben64\"], \"unique_families\": 60992, \"examples\": 30367755, \"de\n2026-11-13T02:27:33Z freshB: {\"deals_in\": 171, \"deals_kept\": 100, \"dropped_as_seen\": 71, \"examples\": 86206}\n2026-11-13T02:27:33Z w768 start (lr 2e-3, 5 epochs)\nepoch 3 step 2000 of 59312, 3044 s\nepoch 3 step 4000 of 59312, 3093 s\n{\"epoch\": 1, \"seconds\": 1488, \"train_ce\": 0.6711, \"train_gap\": 0.0442, \"train_owner\": 0.5762, \"val\": {\"n\": 86206, \"searched\": 69762, \"nll\": 0.5821, \"uniform_nll\": 1.2735, \"tie_nll\": 0.7897, \"agree\": 0.759, \"in_best\": 0.9134, \"regret\": 0.0276, \"regret_gap_head\": 0.0277, \"regret_random\": 0.2127, \"regret_lowest\": 0.2319}, \"temperat\n{\"epoch\": 2, \"seconds\": 2985, \"train_ce\": 0.6072, \"train_gap\": 0.0371, \"train_owner\": 0.5623, \"val\": {\"n\": 86206, \"searched\": 69762, \"nll\": 0.5566, \"uniform_nll\": 1.2735, \"tie_nll\": 0.7897, \"agree\": 0.7693, \"in_best\": 0.9177, \"regret\": 0.0242, \"regret_gap_head\": 0.024, \"regret_random\": 0.2127, \"regret_lowest\": 0.2319}, \"temperat\nMem:              31          16           0           0          14          14\n 03:22:02 up 1 day,  1:12,  0 user,  load average: 6.09, 6.05, 6.06\n",
+ "received": "2026-11-13T03:22:02Z",
+ "script_sha256": "aaafc8c9fb09d4b30cfda56722732c6a942dc2abdddba5eb66f241c5c86f82ec",
+ "started": "2026-11-13T03:22:02Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 89.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:35:36Z",
+ "id": "20261113T193346Z-938674-loop-patch-check",
+ "output_bytes": 765,
+ "output_tail": "source ecb813a\n{\"pair\": \"stu0-pa~stu0-pb\", \"boards\": 8, \"cpu_per_board\": 19.91}\n{\"pair\": \"stu0-pra~stu0-prb\", \"boards\": 8, \"cpu_per_board\": 34.45}\npf-one boards 8 cpu a board 19.9 cards digest 98816ce14af8b825\npf-oner boards 8 cpu a board 34.5 cards digest 956b0cd19fe7f894\nRunning as unit: loop-collect.service; invocation ID: 23bad95e9c0e4775912cd8938aeca0a7\nRunning as unit: loop-collect-b.service; invocation ID: e5cdf965fa324bdd84d56980e3b78323\nbox azure2: active active \n2026-11-13T19:35:16Z start sp0d stu0-pa~stu0-pb seed 9001 first 180000 deals 20000 workers 6 --episodes --one-room (source ecb813a)\n2026-11-13T19:35:16Z start spr0d stu0-pra~stu0-prb seed 9001 first 200000 deals 20000 workers 2 --episodes --one-room (source ecb813a)\n2026-11-13T19:35:36Z\n",
+ "received": "2026-11-13T19:34:06Z",
+ "script_sha256": "e9dfd30ec3919322369b83a20109d923ebfae516591a69b4ad47ee8993fc2e3d",
+ "started": "2026-11-13T19:34:06Z",
+ "timed_out": false,
+ "timeout_s": 1200
+}

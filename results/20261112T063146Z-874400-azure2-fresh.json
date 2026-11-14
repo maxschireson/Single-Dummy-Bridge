@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 45.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:32:51Z",
+ "id": "20261112T063146Z-874400-azure2-fresh",
+ "output_bytes": 265,
+ "output_tail": "go71c: active\n06:32:20 tests test_gen71*.py: Ran 7 tests in 0.202s OK \n06:32:21 tests test_gen7_selfplay.py: Ran 7 tests in 0.181s OK \n06:32:21 tests took 2s\n06:32:21 NOTE: solver library differs from the 9f5ec19 checkout\n06:32:21 == finish the cohort of 06:05 UTC\n",
+ "received": "2026-11-12T06:32:06Z",
+ "script_sha256": "26f49a2a83dbaf55ebfe6b25a446c46d3a40ed459be646ae736444829ca1f991",
+ "started": "2026-11-12T06:32:06Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

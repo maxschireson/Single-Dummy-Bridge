@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:25:27Z",
+ "id": "20261112T062506Z-741091-families-order",
+ "output_bytes": 424,
+ "output_tail": "list sha256 4818856d731bee23 (expected 4818856d731bee23)\ngen71-vs70-azure2: 2183 deals, 112 played (highest index 111); training families 718: first fresh deal at index 557, last trained deal at index 1524; played on training families 112; of the next 400 deals in order, 400 are training families; fresh deals left 1465\nall current Gen 7.1 cohorts on this box: {'deals': 2183, 'played': 112, 'hit': 718, 'hit_played': 112}\n",
+ "received": "2026-11-12T06:25:27Z",
+ "script_sha256": "5417079fb2505b3650ee9ee1d1a41263b9207282401915c7ea43f4fc42c2c9ba",
+ "started": "2026-11-12T06:25:27Z",
+ "timed_out": false,
+ "timeout_s": 240
+}

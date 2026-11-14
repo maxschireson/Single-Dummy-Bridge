@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-14T20:57:43Z",
+ "id": "20261114T205800Z-codex-rollout-start-fixed",
+ "output_bytes": 533,
+ "output_tail": "Running as unit: stu-rollout-experiments.service; invocation ID: 13266bce7ae64db694ba830c594e353d\n{\n  \"parent\": 334803,\n  \"unit_main\": 334794,\n  \"started\": \"2026-11-14T20:56:04Z\",\n  \"status\": \"waiting-for-recycle-boundary\"\n}MainPID=357583\nId=stu-rollout-experiments.service\nActiveState=active\n\nMainPID=357123\nId=stu-rollout-publish.service\nActiveState=active\n\nMainPID=334794\nId=loop-collect.service\nActiveState=active\n\nMainPID=195050\nId=loop-publish.service\nActiveState=active\n\nMainPID=339433\nId=loop-rows.service\nActiveState=active\n",
+ "received": "2026-11-14T20:57:43Z",
+ "script_sha256": "a7aac6e1126c31525c536aae73f4670ea746b70e8cfe9bba5c246298053cc291",
+ "started": "2026-11-14T20:57:43Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

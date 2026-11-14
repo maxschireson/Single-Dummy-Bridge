@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 113.3,
+ "exit_code": 0,
+ "finished": "2026-11-12T02:34:44Z",
+ "id": "20261112T023236Z-974310-10-pre7",
+ "output_bytes": 1140,
+ "output_tail": "source now at 95b8380 Pre-7 test runs: deal blocks for several hosts, and a publisher to transfer branch\n{\"identity\": \"91cdcac2811559de599bf077a88dfb81fbd0b0dbc733f7c6d4abb4bddd695294\", \"target\": 5627, \"source_slice\": {\"first\": 5627, \"count\": 5627, \"unplayed\": 22508}, \"allocation\": {\"7s-32~6-32\": 1}, \"policy\": {\"bots\": [\"7s-32\"], \"policy_release\": \"models/cardplay/gen7-policy-v4-2026-11-11\", \"policy_sha256\": \"d6b011937ee9ec534ef957\npreflight passed\nmatch unit: active; publisher unit: active\nStarted pre7-match.service - /home/bridgebots/work/runs/drive.sh /home/bridgebots/work/runs/pre7-7s-vs-6f-azure2 5627 8.\n2026-11-12T02:33:29Z collector pid 3983, 8 workers, STOP after 5627 boards\nStarted pre7-publish.service - /home/bridgebots/work/venv/bin/python -u /home/bridgebots/work/tools/publish_test_run.py --run /home/bridgebots/work/runs/pre7-7s-vs-6f-azure2 --branch transfer/pre7-tes\n2026-11-12T02:33:30Z publishing /home/bridgebots/work/runs/pre7-7s-vs-6f-azure2 to transfer/pre7-test-azure2-20261112 every 600s\n2026-11-12T02:33:31Z pushed transfer/pre7-test-azure2-20261112: 0 episodes\nboards: 19; load average: 5.66, 1.99, 0.87\n",
+ "received": "2026-11-12T02:32:51Z",
+ "script_sha256": "d40853e4344b203930ab06003e4dd2d32f3e0f2f3e027215429699345d537d4d",
+ "started": "2026-11-12T02:32:51Z",
+ "timed_out": false,
+ "timeout_s": 1500
+}

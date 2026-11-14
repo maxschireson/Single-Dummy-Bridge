@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T05:52:47Z",
+ "id": "20261112T055244Z-308583-peek-gen71",
+ "output_bytes": 975,
+ "output_tail": "gen71-trial: active\n05:49:12 == build\n05:49:14 checkout: 9f5ec19498e7e20e9f610ed93d896880a17cbcc9 Gen 7.1: policy net v4.1, a cohort that holds bots with different net\n05:49:54 policy v4 d6b011937ee9ec53, v4.1 cb3fcfd5c5587373; dds library a220dde3165d7a57 (phase 1 checkout: 8e2de51a682a1487)\n05:49:54 == tests\n05:52:16 tests test_gen7*.py: Ran 67 tests in 140.783s OK \n05:52:17 tests test_gap_forks.py: Ran 11 tests in 0.448s OK \n05:52:28 tests test_gen[56]*.py: Ran 41 tests in 9.800s OK \n05:52:28 tests took 154s\n05:52:28 == prepare\ncohort f171cc038c64: 2191 deals taken over from cohort c50412d34108 (11 of its 2202 were played); pairs {'71s-32~6-32': 1, '71s-32~7s-32': 2}; 7s-32 identity f0a578598673 as in phase 1; 71s-32 identity 7b0f58b4c403, differing from 7s-32 in the policy release only; audit {'probability': 0.5, 'multiplier': 3.0, 'max_depth': 2, 'max_forks': 64}; gap forks {'per_band': 2, 'bands': [0.125, 0.5], 'max_cpu_share': 1.5}\n05:52:29 == preflight\n",
+ "received": "2026-11-12T05:52:47Z",
+ "script_sha256": "16a0e128df16cdd946c05987ae5996475729d17d88fe24a9169c30fc6669e63d",
+ "started": "2026-11-12T05:52:47Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:17:03Z",
+ "id": "20261112T061656Z-862834-mem71",
+ "output_bytes": 610,
+ "output_tail": "06:17:03\nmemory: total 32086 MB, used 8143 MB, available 23942 MB\ncollector pid 46674 up 680s\n  1230 MB  up   680s  pid 46733 ppid 46674\n  1181 MB  up   680s  pid 46739 ppid 46674\n  1180 MB  up   680s  pid 46736 ppid 46674\n  1178 MB  up   680s  pid 46730 ppid 46674\n  1170 MB  up   680s  pid 46735 ppid 46674\n  1157 MB  up   680s  pid 46734 ppid 46674\n  1157 MB  up   680s  pid 46738 ppid 46674\n  1108 MB  up   680s  pid 46737 ppid 46674\n    57 MB  up   680s  pid 46674 ppid 1\n    12 MB  up   680s  pid 46729 ppid 46674\n     4 MB  up     0s  pid 47848 ppid 47833\nrun : episodes 0, receipts 0, failures 0\n(end)\n",
+ "received": "2026-11-12T06:17:03Z",
+ "script_sha256": "d3ba8bd2014e964e6efed58a60a42c1307808034c7cf557240b271ff42efebf1",
+ "started": "2026-11-12T06:17:03Z",
+ "timed_out": false,
+ "timeout_s": 60
+}

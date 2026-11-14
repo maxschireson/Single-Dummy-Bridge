@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 3.3,
+ "exit_code": 0,
+ "finished": "2026-11-14T05:30:09Z",
+ "id": "20261114T052948Z-884032-loop-137-roles",
+ "output_bytes": 303,
+ "output_tail": "Running as unit: loop-switch.service; invocation ID: 9085ec0f84b44b9582442a8e675f0c11\nswitch: active | next: active | bensession: inactive\n1\n2026-11-14T05:29:13Z start b3-pst200d-8 stu3-pst~ben200 seed 131 first 1248 deals 32 workers 1 --common-only --episodes (source a0bc029, net\n2026-11-14T05:30:09Z\n",
+ "received": "2026-11-14T05:30:06Z",
+ "script_sha256": "8ea0a88c04eb7ffe2a6689347499eb20d240e9af073e0601c95c913feb02ce2f",
+ "started": "2026-11-14T05:30:06Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

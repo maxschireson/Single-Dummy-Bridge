@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T17:09:44Z",
+ "id": "20261112T170924Z-086551-plan-33-fullsha",
+ "output_bytes": 218,
+ "output_tail": "running: match1 | waiting now: @source 0f0f4f895449ccfe2fc917c73e3b503d709a9c0f | match3 $PY scripts/plan_match.py --source $HOME/work/capsule | match2 $PY scripts/plan_match.py --source $HOME/work/capsule\nposition 13\n",
+ "received": "2026-11-12T17:09:44Z",
+ "script_sha256": "5b19ada93adb169b7a01d450febd102e688cc2aa57ab8d19cfcb896f80650ef2",
+ "started": "2026-11-12T17:09:44Z",
+ "timed_out": false,
+ "timeout_s": 200
+}

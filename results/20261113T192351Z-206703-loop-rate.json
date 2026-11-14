@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.2,
+ "exit_code": 0,
+ "finished": "2026-11-13T19:23:54Z",
+ "id": "20261113T192351Z-206703-loop-rate",
+ "output_bytes": 177,
+ "output_tail": "sp0d 305 tables | last 60 min 305 | last 20 min 243\nspr0d 57 tables | last 60 min 57 | last 20 min 46\nactive active inactive load average: 8.40, 8.31, 6.89\n2026-11-13T19:23:54Z\n",
+ "received": "2026-11-13T19:23:53Z",
+ "script_sha256": "4c0793d5348dfb1deb5189779bb31e988a641235033cd72c8dbff81bc881329b",
+ "started": "2026-11-13T19:23:53Z",
+ "timed_out": false,
+ "timeout_s": 120
+}

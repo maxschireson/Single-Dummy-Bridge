@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T12:40:25Z",
+ "id": "20261112T124008Z-657473-plan-07-requeue",
+ "output_bytes": 232,
+ "output_tail": "running: ceil16b | waiting now: @source ceil64 rb1 ceilT12 bel2a matrix1 ceil16c fam1 matrix2\nposition 5; 2026-11-12T12:37:30Z start ceil16b (source 94418bd): $PY scripts/plan_ceiling.py\n{\"pairs\": 942, \"files\": 500, \"seconds\": 308}\n",
+ "received": "2026-11-12T12:40:25Z",
+ "script_sha256": "d5f36e2618348e74d5ed7f024bf3afccde8292035ac467e385436d7abd260423",
+ "started": "2026-11-12T12:40:25Z",
+ "timed_out": false,
+ "timeout_s": 300
+}

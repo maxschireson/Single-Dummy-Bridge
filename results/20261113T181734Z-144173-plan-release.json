@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 90.6,
+ "exit_code": 0,
+ "finished": "2026-11-13T18:19:11Z",
+ "id": "20261113T181734Z-144173-plan-release",
+ "output_bytes": 462,
+ "output_tail": "2026-11-13T04:34:56Z start match2 (source 343341d): $PY scripts/plan_match.py --source $HOME/work/ca\n2026-11-13T15:11:58Z end match2: exit 0\npos 26 of 26\n  plan-publish.service loaded active running /home/bridgebots/work/plan/pub.sh azure2\n  plan-queue.service   loaded active running /home/bridgebots/work/plan/queue.sh\nstopped plan-queue\nstopped plan-publish\n0\n47G\t/home/bridgebots/work/plan\n 18:19:11 up 1 day, 16:09,  0 user,  load average: 0.43, 0.18, 0.11\n",
+ "received": "2026-11-13T18:17:41Z",
+ "script_sha256": "31b07563990ee6ccc6221746908ed9ef8c522916328c88eb8fcf1ad9c0ced27d",
+ "started": "2026-11-13T18:17:41Z",
+ "timed_out": false,
+ "timeout_s": 180
+}

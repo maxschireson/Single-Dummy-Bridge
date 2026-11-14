@@ -1,0 +1,15 @@
+{
+ "agent_version": "1.0",
+ "box": "azure2",
+ "duration_s": 0.1,
+ "exit_code": 0,
+ "finished": "2026-11-12T06:21:20Z",
+ "id": "20261112T062109Z-483793-smaps",
+ "output_bytes": 798,
+ "output_tail": "06:21:20\nworker 46735 up 937s, rss 1400 MB, threads 4; box available 22856 MB; boards 86\n     887 MB rss     75 maps  [heap]\n     356 MB rss   1013 maps  shared libraries\n     151 MB rss    118 maps  (anonymous)\n       7 MB rss     13 maps  other files\nanonymous maps of about 64 MB (malloc arenas): 3; anonymous maps over 200 MB: 0\n       0 MB rss      1 maps  solver cache file\n       0 MB rss      1 maps  [vvar_vclock]\n       0 MB rss      1 maps  [vvar]\n       0 MB rss      1 maps  [vsyscall]\nVmRSS: 1434592 kB RssAnon: 1079080 kB RssFile: 355500 kB RssShmem: 12 kB VmData: 1189348 kB Threads: 4 \nOPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 TF_NUM_INTRAOP_THREADS=1 TF_NUM_INTEROP_THREADS=1 TF_CPP_MIN_LOG_LEVEL=3 BRIDGE_DDS_CACHE=/home/bridgebots/work/runs/gen71-vs70-azure2/dds-cache.sqlite \n\n",
+ "received": "2026-11-12T06:21:20Z",
+ "script_sha256": "c57e74eabd29dfe494d65cd05ca48b112fe05153d81789a91da0925302d4b0c4",
+ "started": "2026-11-12T06:21:20Z",
+ "timed_out": false,
+ "timeout_s": 60
+}
