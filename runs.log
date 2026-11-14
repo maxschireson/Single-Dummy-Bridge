@@ -527,3 +527,13 @@
 2026-11-14T01:41:33Z start l1-n stu1-n~8p-32-v41 seed 131 first 0 deals 200 workers 8 --episodes (source 57ce557, nets fp32)
 2026-11-14T01:41:33Z end l1-n: exit 0
 2026-11-14T01:41:33Z start sp3sb stu3-psa~stu3-psb seed 9001 first 380000 deals 20000 workers 8 --episodes --one-room (source 57ce557, nets bf16, --recycle 20)
+2026-11-14T01:53:20Z the collection is paused for jobs-azure3-ben4.txt
+2026-11-14T01:53:37Z BEN (200) servers listening: 8 of 8
+2026-11-14T01:53:37Z start b0-ps200-1 stu0-ps~ben200 seed 131 first 0 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
+2026-11-14T01:53:37Z start b0-ps200-2 stu0-ps~ben200 seed 131 first 32 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
+2026-11-14T01:53:37Z start b0-ps200-3 stu0-ps~ben200 seed 131 first 64 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
+2026-11-14T01:53:37Z start b0-ps200-4 stu0-ps~ben200 seed 131 first 96 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
+2026-11-14T01:53:37Z start b0-ps200-5 stu0-ps~ben200 seed 131 first 128 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
+2026-11-14T01:53:37Z start b0-ps200-6 stu0-ps~ben200 seed 131 first 160 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
+2026-11-14T01:53:37Z start b0-ps200-7 stu0-ps~ben200 seed 131 first 192 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
+2026-11-14T01:53:37Z start b0-ps200-8 stu0-ps~ben200 seed 131 first 224 deals 32 workers 1 --common-only --episodes (source 228770d, nets fp32)
