@@ -332,6 +332,7 @@ one-net SiD's self-play (32,596 rated decisions), paired, the standard error clu
 | From scratch on those 10,000 boards (512 wide), with the 1,556 | against without | +0.21 +- 0.11 (2,000) | -0.0014 +- 0.0009 |
 | From scratch at full size (512 wide, 6 epochs): every human table (22,269; 630,296 rows) | against as many pure-Stu boards (920,187 rows) | -0.03 +- 0.11 (2,000) | 0.0754 against 0.0787 |
 | The same, both sets together, playing as SiD | against the pure-Stu boards alone | **+0.79 +- 0.08** (4,000) | 0.0730 against 0.0787 |
+| The same, both sets together | against the human tables alone (Max, 14:31 UTC: do bot boards add to the human ones?) | **+0.71 +- 0.08** (4,000) | 0.0730 against 0.0754 |
 | Inside the one-net rollout bot (250 deals each): the 10,000-board net with the 1,556 four times over | against without | +0.22 +- 0.27 | |
 | Inside it: round 3's net fine-tuned on the human boards | against on SiD boards | +0.27 +- 0.28 | |
 | Inside it: the from-scratch net of the human boards (1,556) | against the SiD boards' | -0.01 +- 0.32 | |
@@ -345,7 +346,9 @@ one-net SiD's self-play (32,596 rated decisions), paired, the standard error clu
 - **Unfamiliar auctions cost nothing**: every table as bid and every table with the unfamiliar auctions blanked play the
   same (+0.24, +0.23), so the 18,428 tables our bidder would not have bid that way are as usable as the others.
 - **At full size the two teachers are equal board for board** (-0.03 +- 0.11), and together they beat Stu's boards alone by
-  +0.79 (part of that is twice the data: there was no second 22,000 pure-Stu boards on azure5 to tell the two apart). The
+  +0.79, and beat the human tables alone by +0.71: at this size each set adds about as much to the other, so most of
+  the gain is twice the data, and Stu's boards still add on top of the human ones. (This is from scratch at 44,000
+  tables; it does not say how much more bot boards add at round 4's 103,000 deals on top of round 3's net.) The
   22,269 human tables are 3,569 deals, about six tables each. As data they are worth about what 22,000 self-play tables
   are, which is about 18 box-hours of the one-net bot.
 - **Inside the rollout bot it does not show**: three matches of 250 deals, +0.22, +0.27 and -0.01, each +-0.3. The last

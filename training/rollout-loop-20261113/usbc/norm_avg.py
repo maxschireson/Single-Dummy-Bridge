@@ -21,13 +21,9 @@ ROLES = ('declarer', 'defense', 'lead')
 MEASURES = ('raw', 'prop', 'curve', 'field', 'both')
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('dirs', nargs='+')
-    ap.add_argument('--player', default='Schireson')
-    a = ap.parse_args()
-    T = load(a.dirs)
-    U = units(T)
+def expectations(T, U):
+    """Per unit: loss, danger, role, adult flag; curve, field and blended expectations; the average adult board
+    per role; the same-deal groups (deal, role, seat relative to declarer)."""
     rel = lambda t, s: 'D' if s == t['dec'] else 'L' if s == 'NESW'[('NESW'.index(t['dec']) + 1) % 4] else 'R'
     adult = lambda u: T[u[0]]['category'] in ADULT
     loss = np.array([u[5] for u in U]); dng = np.array([u[9] for u in U]); role_of = np.array([u[1] for u in U])
@@ -71,6 +67,20 @@ def main():
         w = tau2 / (tau2 + resid_var / np.maximum(nf[r], 1))
         exp_both[r] = exp_curve[r] + w * (exp_field[r] - exp_curve[r])
         ref[role]['blend'] = (tau2, resid_var, float(np.median(w)))
+
+    return dict(rel=rel, adult=adult, loss=loss, dng=dng, role_of=role_of, isad=isad, ref=ref, exp_curve=exp_curve,
+                exp_field=exp_field, exp_both=exp_both, groups=groups, nf=nf)
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('dirs', nargs='+')
+    ap.add_argument('--player', default='Schireson')
+    a = ap.parse_args()
+    T = load(a.dirs)
+    U = units(T)
+    E = expectations(T, U)
+    rel, adult, loss, dng, role_of, isad, ref = (E[k] for k in ('rel', 'adult', 'loss', 'dng', 'role_of', 'isad', 'ref'))
+    exp_curve, exp_field, exp_both, groups = (E[k] for k in ('exp_curve', 'exp_field', 'exp_both', 'groups'))
 
     def score(ks, how, role):
         ks = np.asarray(ks)
