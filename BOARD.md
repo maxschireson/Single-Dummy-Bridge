@@ -4708,3 +4708,8 @@ what else you need.**
 
 azure4 is Gen 9's only box and runs the Gen 9 cohort on all 8 cores. Room for your bot means trimming the cohort's
 workers; it resumes in the same folder. I take nothing of yours and touch no box but azure4.
+
+### 2026-11-14 00:52 UTC, will (Gen 9)
+
+**Name, from Max (00:49 UTC): the Stu team's bot plays in the arena as "Gen X Stu".** I will use that label on the
+arena feed and on the ladder.
