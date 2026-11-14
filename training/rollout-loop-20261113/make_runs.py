@@ -115,7 +115,7 @@ def main():
             continue
         runs.append(run(name, 'azure3', pair, seed, first, deals, '--episodes' in options))
         runs[-1]['shelved'] = True
-    for line in [x for f in ('jobs-azure3-ben.txt', 'jobs-azure3-ben3.txt') for x in (HERE / f).read_text().splitlines()]:    # against BEN: a shard a lane, folders NAME-1..NAME-<lanes>
+    for line in [x for f in ('jobs-azure3-ben.txt', 'jobs-azure3-ben3.txt', 'jobs-azure3-ben4.txt') for x in (HERE / f).read_text().splitlines()]:    # against BEN: a shard a lane, folders NAME-1..NAME-<lanes>
         if not line.strip() or line.startswith('#'):
             continue
         name, pair, seed, first, deals, lanes, *options = line.split()

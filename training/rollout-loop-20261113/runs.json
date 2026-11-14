@@ -1832,6 +1832,70 @@
     "bg-200-8"
    ],
    "queue_order": null
+  },
+  {
+   "name": "b0-ps200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "stu0-ps~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 0,
+    "net": "v2",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b0-ps200-1",
+    "b0-ps200-2",
+    "b0-ps200-3",
+    "b0-ps200-4",
+    "b0-ps200-5",
+    "b0-ps200-6",
+    "b0-ps200-7",
+    "b0-ps200-8"
+   ],
+   "queue_order": null
+  },
+  {
+   "name": "b3-ps200",
+   "box": "azure3",
+   "branch": "transfer/rollout-loop-azure3-20261113",
+   "role": "ben",
+   "pair": "stu3-ps~ben200",
+   "seed": 131,
+   "first": 0,
+   "deals": 256,
+   "records": true,
+   "first_bot": {
+    "family": "stu",
+    "round": 3,
+    "net": "stu3",
+    "rung": "pure-rs"
+   },
+   "second_bot": {
+    "family": "other"
+   },
+   "shards": 8,
+   "folders": [
+    "b3-ps200-1",
+    "b3-ps200-2",
+    "b3-ps200-3",
+    "b3-ps200-4",
+    "b3-ps200-5",
+    "b3-ps200-6",
+    "b3-ps200-7",
+    "b3-ps200-8"
+   ],
+   "queue_order": null
   }
  ]
 }
