@@ -1,0 +1,15 @@
+{
+  "purpose": "Max requested continued R4c128 control alongside BEN; larger development screen, not promotion",
+  "source": "d82f9a7d9884262474a6c0e37871001d70709346",
+  "seed": 2026111401,
+  "first": 6000,
+  "deals": 512,
+  "workers": 8,
+  "arms": [
+    "recursive32",
+    "flat32"
+  ],
+  "control": "rx2-control",
+  "training_excluded": true,
+  "budget_seconds": 10800
+}
