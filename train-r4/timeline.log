@@ -1,0 +1,34 @@
+2026-11-14T14:11:41Z start r4; source a470efe; runs spr0,sp0,sps0,sp3s,sg8t1; held out 300 boards; 4 epochs at 1e-4; replay x0.3333; from /home/bridgebots/work/loop/pub/train-r1/policy.npz
+2026-11-14T14:11:44Z spr0: 2164 records
+2026-11-14T14:11:54Z sp0: 5669 records
+2026-11-14T14:11:55Z sps0: 779 records
+2026-11-14T14:12:01Z sp3s: 3166 records
+2026-11-14T14:12:02Z sg8t1: 923 records
+2026-11-14T14:12:02Z records: 12101 to train on, 300 held out, 300 for the test
+{"episodes": 12101, "deals": 12070, "unique_families": 12070, "examples": 498784, "train": 398287, "validation": 51814, "test": 48683, "rows_with_unrated_cards": 189256}
+{"episodes": 300, "deals": 300, "unique_families": 300, "examples": 12401, "train": 9892, "validation": 1458, "test": 1051, "rows_with_unrated_cards": 4816}
+{"episodes": 300, "deals": 300, "unique_families": 300, "examples": 12419, "train": 9891, "validation": 1413, "test": 1115, "rows_with_unrated_cards": 4963}
+2026-11-14T14:18:42Z with 68 more row files from other boxes
+{"deals": 3972, "of": 75409, "examples": 1591633, "asked": 1591348, "seed": 1, "rows_by_bot": {"1": 49437, "2": 14356, "3": 14458, "4b": 15980, "5-32": 16096, "5R192": 2370, "5R32": 63522, "5RZ192": 942, "5RZ32": 95593, "6-256": 13110, "6-32": 701307, "71s-32": 212380, "7s-32": 159157, "8c-32": 56406, "8s-32": 131893, "ben": 11008, "ben32": 197, "ben64": 33421}}
+2026-11-14T14:19:23Z with 2 row files that draw no replay
+{"parts": 72, "deals": 102811, "bots": ["1", "2", "3", "4b", "5-32", "5R192", "5R32", "5RZ192", "5RZ32", "6-256", "6-32", "71s-32", "7s-32", "8c-32", "8s-32", "8x3-32", "9a-32", "ben", "ben32", "ben64", "stup0", "usbc"], "unique_families": 84020, "examples": 6996453, "deals_by_hash_split": [82397, 10161, 10253]}
+{"parts": 2, "deals": 444, "bots": ["1", "5RZ32", "71s-32", "8c-32", "8s-32", "ben", "ben64", "stup0"], "unique_families": 444, "examples": 135543, "deals_by_hash_split": [240, 179, 25]}
+2026-11-14T14:47:15Z trained
+epochs: [(0, 0.5588, 0.7705), (1, 0.5611, 0.767), (2, 0.5566, 0.7682), (3, 0.5551, 0.7689), (4, 0.5548, 0.7681)] | selected 4
+bot         rows | log-loss          | exact card        | tricks given up (rated) | best rated card picked
+8s-32      49013 | 0.4581 -> 0.4673 | 0.8216 -> 0.8150 | 0.0223 -> 0.0218 | 1.0 -> 1.0
+71s-32     26217 | 0.4552 -> 0.4607 | 0.8194 -> 0.8170 | 0.0196 -> 0.0205 | 1.0 -> 1.0
+8c-32      25362 | 0.4418 -> 0.4453 | 0.8270 -> 0.8236 | 0.021 -> 0.0224 | 1.0 -> 1.0
+stup0      12401 | 1.0505 -> 0.9275 | 0.5887 -> 0.6038 | 0.0673 -> 0.0616 | 0.9954 -> 0.9918
+5RZ32      12371 | 0.5682 -> 0.5877 | 0.7602 -> 0.7541 | None -> None | None -> None
+1           9777 | 1.0048 -> 1.0085 | 0.4809 -> 0.4862 | None -> None | None -> None
+ben          322 | 0.6490 -> 0.6715 | 0.7671 -> 0.7329 | None -> None | None -> None
+ben64         80 | 0.7695 -> 0.9539 | 0.6500 -> 0.6250 | None -> None | None -> None
+all          log-loss 0.5588 -> 0.5548 | exact card 0.7705 -> 0.7681
+from_trick_7 log-loss 0.4683 -> 0.4712 | exact card 0.8006 -> 0.7978
+no bot named (all rows): log-loss 0.6514 -> 0.6422
+stup0          rows  rated | first card gives up | value head gives up | exact card          | random rated card
+lead            300    300 | 0.0558 -> 0.05 | 0.0588 -> 0.0512 | 0.38 -> 0.4033 | 0.1814
+tricks 1-4     3956   3672 | 0.0599 -> 0.0531 | 0.0645 -> 0.0549 | 0.5172 -> 0.5394 | 0.1489
+tricks 5-8     4067   3292 | 0.0817 -> 0.0767 | 0.0794 -> 0.0754 | 0.5338 -> 0.5483 | 0.1778
+tricks 9-13    4078   2386 | 0.0604 -> 0.0552 | 0.0556 -> 0.0569 | 0.7283 -> 0.7364 | 0.1422
