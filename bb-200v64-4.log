@@ -1,1 +1,3 @@
 ben200 v ben64: 32 boards to play (0 done), 1 workers
+32 boards: 0.2812 +- 0.1917 IMPs/board for ben200; 44 boards/hour; 0 failed
+{"pair": "ben200~ben64", "boards": 32, "cpu_per_board": 0.1, "common": {"imps_per_board": 0.2812, "se": 0.1917, "boards": 32, "won": 4, "lost": 0, "flat": 28}, "native": {"imps_per_board": 0.2812, "se": 0.1917, "boards": 32, "won": 4, "lost": 0, "flat": 28}}

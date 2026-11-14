@@ -1,0 +1,23 @@
+{
+ "pair": "ben200~ben64",
+ "boards": 32,
+ "cpu_per_board": 0.09,
+ "common": {
+  "imps_per_board": 0.0,
+  "se": 0.5217,
+  "boards": 32,
+  "won": 2,
+  "lost": 2,
+  "flat": 28
+ },
+ "native": {
+  "imps_per_board": 0.0,
+  "se": 0.5217,
+  "boards": 32,
+  "won": 2,
+  "lost": 2,
+  "flat": 28
+ },
+ "failures": 0,
+ "boards_per_hour": 44
+}
