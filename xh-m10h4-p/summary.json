@@ -1,0 +1,23 @@
+{
+ "pair": "stum10h4-pst~stum10-pst",
+ "boards": 50,
+ "cpu_per_board": 54.31,
+ "common": {
+  "imps_per_board": 0.32,
+  "se": 0.6411,
+  "boards": 50,
+  "won": 13,
+  "lost": 14,
+  "flat": 23
+ },
+ "native": {
+  "imps_per_board": 0.32,
+  "se": 0.6411,
+  "boards": 50,
+  "won": 13,
+  "lost": 14,
+  "flat": 23
+ },
+ "failures": 0,
+ "boards_per_hour": 229
+}

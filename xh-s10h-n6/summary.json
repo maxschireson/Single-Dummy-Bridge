@@ -1,23 +1,23 @@
 {
  "pair": "stus10h-n~stus10-n",
- "boards": 500,
- "cpu_per_board": 0.63,
+ "boards": 2000,
+ "cpu_per_board": 0.62,
  "common": {
-  "imps_per_board": -0.038,
-  "se": 0.2258,
-  "boards": 500,
-  "won": 156,
-  "lost": 143,
-  "flat": 201
+  "imps_per_board": 0.2065,
+  "se": 0.1139,
+  "boards": 2000,
+  "won": 639,
+  "lost": 563,
+  "flat": 798
  },
  "native": {
-  "imps_per_board": -0.038,
-  "se": 0.2258,
-  "boards": 500,
-  "won": 156,
-  "lost": 143,
-  "flat": 201
+  "imps_per_board": 0.2065,
+  "se": 0.1139,
+  "boards": 2000,
+  "won": 639,
+  "lost": 563,
+  "flat": 798
  },
  "failures": 0,
- "boards_per_hour": 14557
+ "boards_per_hour": 15496
 }

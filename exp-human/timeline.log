@@ -63,3 +63,6 @@ s10h   454954    | 1: 1.3395/0.4168/0.0996 2: 1.3391/0.4350/0.0927 3: 1.3470/0.4
 2026-11-14T10:29:00Z done: scratch
 2026-11-14T10:36:27Z net s10 replaced by its last epoch (6): sha256 7c7bc3902cdc1a74; the match xh-s10h-n (epochs 1 and 2) is void
 2026-11-14T10:36:27Z net s10h replaced by its last epoch (6): sha256 91d48bc14f4f5cbb; the match xh-s10h-n (epochs 1 and 2) is void
+2026-11-14T10:44:12Z stage fit; source bd4d0b8; threads 4
+2026-11-14T10:44:13Z set human_fit: 113489 rows
+/home/bridgebots/work/loop/exp-human/m10F.npz: 933658 rows of 14775 deals (train 11877, validation 1516, test 1382); rows by bot {'1': 14985, '2': 4692, '3': 2790, '4b': 5070, '5-32': 3672, '5R192': 1059, '5R32': 18887, '5RZ192': 82, '5RZ32': 24659, '6-256': 3872, '6-32': 181048, '71s-32': 50775, '7s-32': 40452, '8c-32': 13574, '8s-32': 33378, 'ben': 2516, 'ben64': 8650, 'stup0': 410008, 'usbc': 113489}; with the rollouts' values 69%
