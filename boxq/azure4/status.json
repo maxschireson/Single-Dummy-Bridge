@@ -119,7 +119,7 @@
    "cores": 4
   },
   "e9-0-n04": {
-   "state": "running",
+   "state": "paused",
    "owner": "g9",
    "experiment": "E9-0",
    "boards": 387,
@@ -137,8 +137,7 @@
    "eta": "2026-11-14T10:36:15Z",
    "published_at": "2026-11-14T09:15:14Z",
    "published": "transfer/gen9-e9-0-n04-azure4-20261113@f467d0d70",
-   "ended": "2026-11-14T09:19:54Z",
-   "stopping": true
+   "ended": "2026-11-14T09:24:31Z"
   },
   "e9-10-8x-ben16": {
    "state": "cancelled",
@@ -493,7 +492,7 @@
    "ended": "2026-11-13T05:57:02Z"
   },
   "g9-cohort-azure4": {
-   "state": "waiting",
+   "state": "running",
    "owner": "dave",
    "experiment": "G9-D9",
    "boards": 3617,
@@ -503,9 +502,9 @@
    "priority": 1,
    "cores": 4,
    "started": "2026-11-13T06:45:19Z",
-   "resumed": "2026-11-14T09:21:17Z",
+   "resumed": "2026-11-14T09:24:31Z",
    "source": "/home/bridgebots/work/g9/src/9b2e7ad0",
-   "rate_per_hour": 0.0,
+   "rate_per_hour": null,
    "eta": null,
    "published_at": "2026-11-14T09:21:52Z",
    "published": "transfer/gen9-g9-cohort-azure4-azure4-20261113@1b9c7f7ae",
@@ -525,8 +524,8 @@
    "started": "2026-11-13T07:41:58Z",
    "resumed": "2026-11-13T07:41:58Z",
    "source": "/home/bridgebots/work/g9/src/989a4931",
-   "rate_per_hour": 44.6,
-   "eta": "2026-11-15T05:12:41Z",
+   "rate_per_hour": 44.5,
+   "eta": "2026-11-15T05:14:33Z",
    "published_at": "2026-11-14T09:21:17Z",
    "published": "transfer/gen9-g9-cohort-ben64-azure4-azure4-20261113@dde1799b8"
   },
@@ -564,14 +563,14 @@
    "started": "2026-11-14T02:45:11Z",
    "resumed": "2026-11-14T02:45:11Z",
    "source": "/home/bridgebots/work/g9/src/9bba86b6",
-   "rate_per_hour": 56.7,
-   "eta": "2026-11-17T01:39:26Z",
+   "rate_per_hour": 54.6,
+   "eta": "2026-11-17T04:07:16Z",
    "published_at": "2026-11-14T09:20:43Z",
    "published": "transfer/gen9-g9-genx-stu-azure4-azure4-20261114@a27f785da"
   }
  },
  "serving_since": "2026-11-12T15:03:58Z",
- "updated": "2026-11-14T09:23:59Z",
+ "updated": "2026-11-14T09:24:31Z",
  "bad_jobs": [],
  "cores_busy": 8,
  "waiting_before": true,
