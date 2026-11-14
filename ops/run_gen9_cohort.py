@@ -8,6 +8,11 @@ same run. STOP in the run directory drains the collector; PUBLISH_STOP stops the
 
   python ops/run_gen9_cohort.py --run DIR --publication DIR --feed arena-gen9-azure4-feed \
       --source ~/work/capsule-gen7-capture/recovery [--plan configs/round9-cohort.json] [--fresh 10000 --seed 9013] [--workers 8]
+      [--exclusions gen8x-v3-exclusions.json]
+
+--exclusions names the training-family list the deals leave out: policy v4.1's (the default, for the cohort), or
+for a plan whose bots also play rollout net v1 or a net trained from it (Gen X Stu, configs/round9-genx-stu.json)
+the union of v4.1's and v1's. Each list is fetched from its transfer branch and checked against its pin.
 """
 import argparse
 import json
@@ -19,6 +24,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from bridge_harness.loop_registry import sha  # noqa: E402
 from ops.preflight_gen9_cohort import LISTS, RESTORE, fetch_list  # noqa: E402
+EXCLUSIONS = {'v41-training-families-union.json': LISTS['v41-training-families-union.json'],
+              # v4.1's and rollout net v1's training families, 50,818 (the 8X v3 arena's list)
+              'gen8x-v3-exclusions.json': ('transfer/rollout-net-v1-training-families-20261113',
+                                           '72fafc4cce9ed62e6427b021103533e62e1bdfedc6acc96bf01c81186a88ee7a')}
 
 import os  # noqa: E402
 REMOTE = os.environ.get('BRIDGE_FEED_REMOTE', 'https://github.com/maxschireson/Single-Dummy-Bridge.git')   # a local bare repository in tests
@@ -42,7 +51,8 @@ def prepared(run, plan_path, a):
     inputs = run.parent / (run.name + '-inputs')
     inputs.mkdir(parents=True, exist_ok=True)
     lists = {name: fetch_list(name, branch, pin, inputs) for name, (branch, pin) in LISTS.items()}
-    m = P.prepare(run, a.source, plan_path, exclude_families=lists['v41-training-families-union.json'],
+    excluded = lists.get(a.exclusions) or fetch_list(a.exclusions, *EXCLUSIONS[a.exclusions], inputs)
+    m = P.prepare(run, a.source, plan_path, exclude_families=excluded,
                   fresh=(a.fresh, a.seed), played=lists['played-families-20261113.json.gz'])
     say(f"prepared {m['identity'][:12]}, {m['target']} deals")
     return m
@@ -75,6 +85,7 @@ def main():
     ap.add_argument('--fresh', type=int, default=10000)
     ap.add_argument('--seed', type=int, default=9013)
     ap.add_argument('--workers', type=int, default=8)
+    ap.add_argument('--exclusions', choices=sorted(EXCLUSIONS), default='v41-training-families-union.json')
     a = ap.parse_args()
     run, pub = a.run.resolve(), a.publication.resolve()
     m = prepared(run, a.plan.resolve(), a)

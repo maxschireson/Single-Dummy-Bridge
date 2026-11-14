@@ -1,0 +1,13 @@
+{
+ "release": "stu-net-r3-20261113",
+ "files": {
+  "policy": "a8cf8a94ebcf29da88c12d1fb26ad4b53a6322b5518905d41d961f04027428c9"
+ },
+ "scorer_sha256": "56e6444079d1451ada7730e7d4fa5764caee766102af0386831ed73c42245e73",
+ "scorer_note": "hand-fit scorer v0 (models/cardplay/hand-fit-scorer-v0-2026-11-11): the loop builds its rows with it (training/rollout-loop-20261113 round*.sh, rows*.sh: SCORER=.../hand_fit_v0.npz)",
+ "trained_on": {
+  "start": "rollout net v2 (transfer/rollout-net-v2-20261113), on v2's rows plus the loop's self-play games",
+  "games": "the loop's collection runs (training/rollout-loop-20261113/runs.json, role collection); rows on transfer/rollout-loop-azure*-20261113"
+ },
+ "made_by": "loop session, transfer/rollout-loop-azure5-20261113 train-r3/policy.npz (board box/coordination, loop, 14 Nov 00:55 UTC)"
+}
