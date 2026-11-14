@@ -1,0 +1,1 @@
+cd ~/work/loop; ls r3 | head -30; du -sh r3/*.npz 2>/dev/null | head; ls in | head; ls in/* | head -60; ls -la ~/work/loop/src/training/ | head; ls pub/train-r1 | head -5; free -g | head -2; df -h ~ | tail -1
