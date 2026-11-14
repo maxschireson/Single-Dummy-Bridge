@@ -89,7 +89,8 @@ FAMILY = (STU + ['stu0' + r for r in RUNGS] + ['stu0v1'] + ['stu0v1' + r for r i
              'stu3-p2', 'stu3-pg', 'stu0-p2', 'stu3-px', 'stu3-pu', 'stu3-pux', 'stu3-pm', 'stuv41-ps', 'stu3-put', 'stu3-psti', 'stu0-pst', 'stu3-psta', 'stu3-pstb', 'stu3-psu', 'stu3-putb',
              'stuhf-pst', 'stubf-pst', 'stumf-pst', 'stuhs-pst', 'stubs-pst',
              'stum10-pst', 'stum10h-pst', 'stum10h4-pst', 'stus10-pst', 'stus10h-pst',
-             'stum10F-pst', 'stum10A-pst', 'stum10B-pst', 'stuhA-pst', 'stubA-pst', 'stusAh-pst'])   # every bot that claims and mixes as Stu does
+             'stum10F-pst', 'stum10A-pst', 'stum10B-pst', 'stuhA-pst', 'stubA-pst', 'stusAh-pst',
+             'stu4-pst', 'stu4-put', 'stu4-psta', 'stu4-pstb', 'stu4-putb', 'stu4c-pst', 'stu4c-put'])   # every bot that claims and mixes as Stu does
 LEAD = {'layouts': 512, 'seat': 'draw', 'capture': 512}        # cards 13, prior 0, race 0 are the block's defaults: every lead, every layout
 R1 = 'models/cardplay/stu-net-r1-20261113/policy.npz'          # train-r1/policy.npz on transfer/rollout-loop-azure5-20261113
 BEN = {'ben64': 'ben64', 'ben': 'ben', 'ben200': 'ben64'}   # against BEN the net is told so (v2 knows ben64 and ben from BEN's own
@@ -100,6 +101,8 @@ NAMES2 = {'self': 'stup0', '*': 'stup0', '8p-32-v41': '8s-32', **BEN}
 R2S = 'models/cardplay/stu-net-r2s-20261113/policy.npz'        # train-r2s/policy.npz on the same branch
 R3A = 'models/cardplay/stu-net-r3a-20261113/policy.npz'        # train-r3a/policy.npz on the same branch: the interim round
 R3 = 'models/cardplay/stu-net-r3-20261113/policy.npz'          # train-r3/policy.npz on the same branch
+R4 = 'models/cardplay/stu-net-r4-20261113/policy.npz'          # train-r4/policy.npz: round 4, with the USBC's human tables
+R4C = 'models/cardplay/stu-net-r4c-20261113/policy.npz'        # train-r4c/policy.npz: round 4's control, without them
 HUMAN = 'models/cardplay/stu-exp-human-20261114'               # exp_human.sh: hf, bf, mf, hs, bs .npz
 STRONG = 'models/cardplay/stu-exp-strong-20261114/strong.npz'  # exp_strong.sh: from Gen 8 card play's rows of v2's set only
 MIX = 'models/cardplay/stu-exp-strong-20261114/mix.npz'        # exp_strong.sh: as many rows of v2's set, bots in its proportions
@@ -353,6 +356,24 @@ def main():
         b['x8']['names'] = dict(names)
         b['label'] = f'Human-boards experiment: the one-net SiD (rollouts on the settings of stu3-pst) with {what} inside and at the table'
         bots[f'stu{tag}-pst'] = b
+    # Round 4 (cut about 13:00 UTC on 14 November), one net at the table and in the rollouts, in two nets (Max, 09:39 UTC: "If
+    # we aren't sure we can do a R4a and an R4b"): stu4 with every USBC human table of 2021 to 2023 in its training (the
+    # experiment above: they help the net alone at every dose), stu4c the control without them. -put: blind, the gate's bot.
+    for tag, path, what in (('4', R4, "round 4's net (with the USBC's human tables)"), ('4c', R4C, "round 4's control net (without the human tables)")):
+        b = dict(copy.deepcopy(bots['stu3-pst']), rollout_policy=path, gen7_policy=path)
+        b['label'] = (f"Stu round 4 ladder ({what} inside and at the table, its own side read as stup0): pure with the opening lead from "
+                      'rollouts on the settings of every other card')
+        bots[f'stu{tag}-pst'] = b
+        bots[f'stu{tag}-put'] = blind(f'stu{tag}-pst', 'BLIND: told nothing about who sits against it')
+        bots[f'stu{tag}-n'] = alone(f'{what} alone, told its own side is stup0: its first card at every trick, no search, no rollouts, no claims',
+                                    path, dict(NAMES2))
+        bots[f'stu{tag}-n']['label'] = bots[f'stu{tag}-n']['label'].replace('Stu round 0 ladder: ', 'Stu round 4 ladder: ')
+    for twin in ('stu4-psta', 'stu4-pstb'):                    # the one-net bot under two ids for its self-play, defenders mixing
+        bots[twin] = copy.deepcopy(bots['stu4-pst'])
+        bots[twin]['x8']['mix'] = dict(bots[twin]['x8']['mix'], defender=True)
+        bots[twin]['label'] = bots['stu4-pst']['label'] + "; its defenders too play a random one of their equal cards (under a second id, for self-play records)"
+    bots['stu4-putb'] = copy.deepcopy(bots['stu4-put'])
+    bots['stu4-putb']['label'] = bots['stu4-put']['label'] + ' (under a second id, for blind self-play)'
     # The nets alone as the rollouts use them: every card drawn from the net's probabilities (gen7 net_sample).
     for name, base in (('stu3-nd', 'stu3-n'), ('stu0-nd', 'stu0-n')):
         b = copy.deepcopy(bots[base])

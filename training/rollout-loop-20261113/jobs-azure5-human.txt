@@ -1,0 +1,28 @@
+# The human-boards experiment's matches on azure5 (Max, 09:25 to 09:45 UTC on 14 November; exp_human.sh trains the nets), as
+# played by the units loop-human to loop-human4, for the record: nets alone (-n) and inside the one-net rollout bot (-p), on
+# the gate's seed from deal 30000. A second line for a run is more deals of it. xh-s10h-n is void (its nets were kept at
+# epochs 1 and 2; xh-s10h-n6 replays it with both at their last epoch).
+xh-hf-n stuhf-n~stubf-n 131 30000 2000 8
+xh-mf-n stumf-n~stubf-n 131 30000 2000 8
+xh-hs-n stuhs-n~stubs-n 131 30000 2000 8
+xh-m10h-n stum10h-n~stum10-n 131 30000 2000 8
+xh-m10h4-n stum10h4-n~stum10-n 131 30000 2000 8
+xh-s10h-n stus10h-n~stus10-n 131 30000 2000 8
+xh-mf-n stumf-n~stubf-n 131 30000 8000 4
+xh-hf-n stuhf-n~stubf-n 131 30000 8000 4
+xh-hs-n stuhs-n~stubs-n 131 30000 4000 4
+xh-s10h-n6 stus10h-n~stus10-n 131 30000 2000 4
+xh-m10F-n stum10F-n~stum10-n 131 30000 4000 4
+xh-m10h4-n stum10h4-n~stum10-n 131 30000 6000 4
+xh-m10h-n stum10h-n~stum10-n 131 30000 6000 4
+xh-m10A-n stum10A-n~stum10-n 131 30000 4000 4
+xh-m10B-n stum10B-n~stum10-n 131 30000 4000 4
+xh-hA-n stuhA-n~stubA-n 131 30000 2000 4
+xh-sAh-n stusAh-n~stubA-n 131 30000 4000 4
+xh-m10A-F stum10A-n~stum10F-n 131 30000 4000 4
+xh-m10B-A stum10B-n~stum10A-n 131 30000 4000 4
+xh-m10h4-p stum10h4-pst~stum10-pst 131 30000 250 8
+xh-hs-p stuhs-pst~stubs-pst 131 30000 250 8
+xh-hf-p stuhf-pst~stubf-pst 131 30000 250 8
+xh-s10h-p stus10h-pst~stus10-pst 131 30000 250 8
+xh-m10h-p stum10h-pst~stum10-pst 131 30000 250 8

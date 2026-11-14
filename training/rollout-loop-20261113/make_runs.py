@@ -83,9 +83,10 @@ def bot(name):
         return dict(family='stu', round=0, net='v2', rung='stu')
     if name == 'stuv41-ps':
         return dict(family='stu', round=0, net='v4.1', rung='pure-rs')
-    m = re.fullmatch(r'stu(\d+)(v1)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-psti|-psta|-pstb|-pst|-ps|-p2|-pg|-px|-pux|-put|-psu|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
+    m = re.fullmatch(r'stu(\d+)(v1|c)?(a|b|-b50|-r6|-r3|-pra|-prb|-pr|-psa|-psb|-psti|-psta|-pstb|-pst|-ps|-p2|-pg|-px|-pux|-put|-psu|-pu|-pm|-pa|-pb|-pl|-pt|-pv|-p|-nd|-ns|-n)?', name)
     if m:
-        return dict(family='stu', round=int(m.group(1)), net='v1' if m.group(2) else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
+        return dict(family='stu', round=int(m.group(1)),      # c: a round's control net (round 4: without the USBC's human tables)
+                    net='v1' if m.group(2) == 'v1' else f'stu{m.group(1)}c' if m.group(2) == 'c' else ('v2' if m.group(1) == '0' else f'stu{m.group(1)}'),
                     rung=RUNG[m.group(3) or ''])
     return dict(family='other')
 
@@ -118,7 +119,8 @@ def main():
                       ('azure1', 'jobs-azure1-styles.txt'), ('azure5', 'jobs-azure5-v41-styles.txt'),
                       ('azure6', 'jobs-azure6-mix.txt'), ('azure2', 'jobs-azure2-onenet.txt'), ('azure3', 'jobs-azure3-ben5.txt'),
                       ('azure6', 'jobs-azure6-ben.txt'), ('azure2', 'jobs-azure2-ben.txt'),
-                      ('azure5', 'jobs-azure5-ben.txt'), ('azure1', 'jobs-azure1-ben.txt'), ('azure3', 'jobs-azure3-ben6.txt'), ('azure3', 'jobs-azure3-ben7.txt')):
+                      ('azure5', 'jobs-azure5-ben.txt'), ('azure1', 'jobs-azure1-ben.txt'), ('azure3', 'jobs-azure3-ben6.txt'), ('azure3', 'jobs-azure3-ben7.txt'),
+                      ('azure5', 'jobs-azure5-human.txt'), ('azure5', 'jobs-azure5-r4.txt'), ('azure3', 'jobs-azure3-ben8.txt')):
         for line in (HERE / jobs).read_text().splitlines():
             stopped = line.startswith('#stopped ')
             if stopped:                             # a run taken out of the chain: listed and marked, not run
