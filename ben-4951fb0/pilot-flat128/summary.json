@@ -1,0 +1,65 @@
+{
+  "pair": "rx2-control~rx-ben64",
+  "boards": 8,
+  "cpu_per_board": 19.35,
+  "common": {
+    "imps_per_board": 1.125,
+    "se": 2.3561,
+    "boards": 8,
+    "won": 2,
+    "lost": 1,
+    "flat": 5
+  },
+  "native": {
+    "imps_per_board": 1.125,
+    "se": 2.3561,
+    "boards": 8,
+    "won": 2,
+    "lost": 1,
+    "flat": 5
+  },
+  "failures": 0,
+  "unfinished": 0,
+  "attempts": 8,
+  "interpretation": "development only; not a strength or equal-time decision",
+  "cpu_per_board_scope": "legacy Python worker CPU; excludes external solver",
+  "attempt_cpu_scope": "worker plus reaped child solvers; separately hosted BEN server CPU excluded",
+  "attempt_work": {
+    "wall_seconds": 455.595482136996,
+    "worker_cpu_seconds": 155.133217579,
+    "solver_cpu_seconds": 4.780589,
+    "inclusive_cpu_seconds": 159.913806579
+  },
+  "actors": {
+    "rx2-control": {
+      "work": {
+        "solver_cpu_seconds": 4.59,
+        "solver_wall_seconds": 5.241201521945186,
+        "solver_calls": 52692.0,
+        "solver_hits": 6849.0,
+        "solver_timeouts": 0.0,
+        "wall_seconds": 150.14308240980608,
+        "worker_cpu_seconds": 144.36606727799997,
+        "inclusive_cpu_seconds": 148.956067278,
+        "initialization_seconds": 9.81412785500288
+      },
+      "recursive": {},
+      "precisions": [
+        [
+          "bf16",
+          "bf16"
+        ]
+      ]
+    },
+    "rx-ben64": {
+      "work": {
+        "wall_seconds": 294.9334364560491,
+        "worker_cpu_seconds": 0.3625785110000106,
+        "external_server_cpu_measured": 0.0
+      },
+      "recursive": {},
+      "precisions": []
+    }
+  },
+  "driver_failure": null
+}
