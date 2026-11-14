@@ -32,6 +32,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from copy import deepcopy
 import gzip
 import json
+import random
 import math
 from pathlib import Path
 import sys
@@ -48,9 +49,23 @@ from bridge_harness.core import Board, auction_contract  # noqa: E402
 from bridge_harness.gen5_arena import run_board  # noqa: E402
 from bridge_harness.gen7 import player  # noqa: E402
 from bridge_harness.system_bidders import NumpyPolicy, make_bidder  # noqa: E402
+from bridge_harness import bid_style  # noqa: E402
 from bridge_harness.training import digest  # noqa: E402
 
 VUL = ('None', 'NS', 'EW', 'Both')
+
+
+class StyledBidder:
+    """One bot's bidder with its bidding style (bridge_harness/bid_style.py): the same net, shared with other bots, and
+    this bot's own preference among the calls the net rates close."""
+
+    def __init__(self, inner, style):
+        self.inner, self.bid_style = inner, bid_style.check(style)
+
+    def predict(self, x, lengths):
+        return self.inner.predict(x, lengths)
+
+
 NO_FORKS = dict(probability=0., multiplier=1., max_depth=0, max_forks=0)
 STATE = {}
 
@@ -116,14 +131,22 @@ def auction_any(board, bidders):
         seat = (board.dealer + len(calls)) % 4
         mask = legal_mask(board.dealer, calls)
         b = bidders[seat]
+        behavior, probability = 'greedy', 1.
         if hasattr(b, 'predict'):
             xs, lengths = pack_inputs([encode(BidObservation(board.hands[seat], seat, board.dealer, board.vulnerability, tuple(calls)))])
-            action = int(np.argmax(np.where(mask, b.predict(xs, lengths)[0][0], -np.inf)))
+            p = b.predict(xs, lengths)[0][0]
+            style = getattr(b, 'bid_style', None)
+            if style:                   # a bidding style: its own choice among close calls, from a per-decision stream
+                u = random.Random(hash((tuple(tuple(h) for h in board.hands), seat, len(calls), 7919)))
+                action = bid_style.choose(p, mask, board.hands[seat], style, u.random(), u.random())
+                behavior, probability = 'styled', bid_style.distribution(p, mask, board.hands[seat], style)[action]
+            else:
+                action = int(np.argmax(np.where(mask, p, -np.inf)))
         else:
             action = int(b.call(board.hands[seat], seat, board.dealer, VUL.index(board.vulnerability), [CALL_ID[normalize_bid(c)] for c in calls]))
             if not mask[action]:
                 action = CALL_ID['PASS']
-        decisions.append(dict(seat=seat, ply=len(calls), call=CALLS[action], behavior='greedy', behavior_probability=1.))
+        decisions.append(dict(seat=seat, ply=len(calls), call=CALLS[action], behavior=behavior, behavior_probability=probability))
         calls.append(CALLS[action])
         try:
             contract = auction_contract(board.dealer, calls)
@@ -171,8 +194,11 @@ def start(source, manifest, book=None, deals=None):
         name = json.dumps(entry, sort_keys=True) if entry else str((Path(source) / spec['bidding']).resolve())
         if name not in loaded:
             loaded[name] = make_bidder(entry, ROOT) if entry else NumpyPolicy(name)
-        STATE['bidders'][key] = loaded[name]
-        STATE['system_of'].setdefault(id(loaded[name]), spec.get('system', 'house'))
+        bidder = loaded[name]
+        if spec.get('bid_style') and hasattr(bidder, 'predict'):
+            bidder = StyledBidder(bidder, spec['bid_style'])
+        STATE['bidders'][key] = bidder
+        STATE['system_of'].setdefault(id(bidder), spec.get('system', 'house'))
     gen5_arena.auction = auction_any
 
 
