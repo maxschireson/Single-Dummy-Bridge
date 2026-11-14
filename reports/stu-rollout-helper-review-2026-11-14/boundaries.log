@@ -1,0 +1,14 @@
+test_null_and_zero_budget_match_base_actions_values_and_rng (__main__.PlayerReview.test_null_and_zero_budget_match_base_actions_values_and_rng) ... ok
+test_reader_identity_restored_on_plain_and_pooled_exceptions (__main__.PlayerReview.test_reader_identity_restored_on_plain_and_pooled_exceptions) ... ok
+test_real_child_draws_fresh_layouts_and_stays_one_depth (__main__.PlayerReview.test_real_child_draws_fresh_layouts_and_stays_one_depth) ... ok
+test_root_roll_exception_restores_factory (__main__.PlayerReview.test_root_roll_exception_restores_factory) ... ok
+test_cached_card_is_independent_of_other_uncached_rows_at_budget_limit (__main__.SchedulerReview.test_cached_card_is_independent_of_other_uncached_rows_at_budget_limit) ... expected failure
+test_child_exception_restores_factory (__main__.SchedulerReview.test_child_exception_restores_factory) ... ok
+test_equal_observations_with_different_hidden_path_marks_use_same_cached_card (__main__.SchedulerReview.test_equal_observations_with_different_hidden_path_marks_use_same_cached_card) ... expected failure
+test_first_rejected_selective_opportunity_consumes_the_path (__main__.SchedulerReview.test_first_rejected_selective_opportunity_consumes_the_path) ... ok
+test_row_view_exact_all_seats_and_dummy_after_opening_lead (__main__.SchedulerReview.test_row_view_exact_all_seats_and_dummy_after_opening_lead) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 2.675s
+
+OK (expected failures=2)
